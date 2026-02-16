@@ -1,0 +1,166 @@
+Part 1 – Role + Current Architecture
+You are an expert full‑stack engineer and architect.
+Help me migrate an existing web app from its current stack to a new stack.
+
+Current App Architecture (Source Stack)
+My current app is a monorepo with tight frontend/backend integration:
+Frontend (client/):
+
+React SPA powered by Vite
+Routing: Wouter (lightweight alternative to React Router)
+Styling: Tailwind CSS + Shadcn/UI components
+Animations: Framer Motion
+Backend (server/):
+
+Express 5 on Node.js
+RESTful API under the /api/ prefix
+Database:
+
+PostgreSQL using Drizzle ORM
+Schema defined in TypeScript for end‑to‑end type safety
+Shared Layer (shared/):
+
+Shared TypeScript types
+Zod validation schemas
+Ensures frontend and backend stay in sync on data structure
+Key Features:
+
+Portfolio showcase:
+Projects with categories, technology tags, and “featured” flags
+Service management:
+Web development services with dynamic pricing and feature lists
+Service orders:
+Contact form where clients submit requests (stored in the system)
+Modern UI:
+Responsive, dark-themed, smooth transitions, interactive elements
+Developer Implementation Details:
+
+Type Safety:
+Data models in shared/schema.ts
+API contracts in shared/routes.ts
+Styling:
+Custom colors via CSS variables in index.css
+Integrated into Tailwind config
+Data Fetching:
+TanStack React Query for all server interactions
+Custom hooks in client/src/hooks/
+No manual fetch calls
+Development Workflow:
+npm run dev starts the full stack
+Schema changes synced with npm run db:push
+Part 2 – Target Architecture & Assumptions
+Target Architecture (Destination Stack)
+I want to migrate this app to the following stack:
+Frontend Framework: React with Vite
+Styling: Tailwind CSS + Shadcn/UI components (keep or improve current setup)
+Authentication: Firebase Authentication v9+
+Database: Firestore (NoSQL)
+Media Storage: Cloudinary
+Deployment: Vercel
+Assume:
+
+No existing Firebase/Firestore/Cloudinary project is set up yet.
+I want to keep the overall UX and feature set, but modernize the architecture to a serverless / BaaS style.
+I’m fine with replacing the Node/Express backend with Firebase/Firestore‑driven logic (client‑side and possibly Cloud Functions if necessary).
+What I Want From You
+Create a detailed, opinionated migration plan and example code, including:
+Part 3 – A & B (Architecture Plan + Data Modeling)
+A. High‑Level Architecture Plan
+
+Describe the new architecture:
+How authentication, database, and media storage fit together.
+How the frontend will communicate with Firebase/Firestore instead of the current Express /api routes.
+Show a simple diagram‑style explanation (text is fine) of:
+User → React app → Firebase Auth → Firestore / Cloudinary
+Where I might still need serverless functions (e.g., for secure Cloudinary operations or complex logic).
+B. Data Modeling & Migration
+
+Map PostgreSQL tables (via Drizzle) to Firestore:
+Suggest Firestore collections and document structures for:
+Projects (portfolio items)
+Services
+Service orders / contact submissions
+Explain how to handle:
+Categories
+Technology tags
+Featured flags
+Dynamic pricing and feature lists
+Propose document shapes (TypeScript interfaces) for each collection.
+Discuss trade‑offs and best practices for Firestore:
+Denormalization strategies.
+How to structure data for efficient queries I likely need (e.g., featured projects, services by category).
+Part 4 – C & D (Auth + Replacing Backend)
+C. Authentication with Firebase Auth
+
+Propose an auth model:
+Which providers (email/password, OAuth, etc.) you recommend for a portfolio/services site.
+Show:
+Example Firebase initialization code (v9 modular SDK).
+Example React hooks or utilities to:
+Listen for auth state changes.
+Protect certain routes (e.g., admin dashboard for managing projects/services).
+Explain how auth ties into Firestore security rules conceptually.
+D. Replacing the Express Backend
+
+List my existing backend responsibilities (you can infer the typical ones from the description: CRUD for projects/services/orders, contact submissions, maybe some admin endpoints).
+For each responsibility, describe:
+Whether it can move entirely client‑side using Firestore SDK.
+Whether it should go into Firebase Cloud Functions (if needed) and why.
+Give example implementations for:
+Creating a new service order (client‑side Firestore write).
+Fetching portfolio projects with filters (e.g., featured, category).
+Part 5 – E & F (Frontend Steps + Media Handling)
+E. Frontend Migration Steps
+
+Explain how to:
+Remove Express API calls and replace React Query queries/mutations with Firestore SDK calls.
+Keep using React Query but with Firestore as the data source (using custom hooks).
+Provide:
+Example React Query hook for fetching projects from Firestore.
+Example hook for creating a new service order.
+Address:
+How to keep my existing routing (Wouter) and whether you recommend switching to React Router or keeping Wouter.
+Any changes needed to support Vercel deployment (e.g., environment variables, build settings).
+F. Media Handling with Cloudinary
+
+Propose how to handle:
+Project images.
+Service images/icons.
+Show:
+Best‑practice flow for uploading images (assume there is an admin UI):
+Optional: using unsigned upload presets vs signed uploads via a serverless function.
+How to store Cloudinary public IDs / URLs in Firestore.
+Provide example code:
+A React component to upload an image to Cloudinary.
+Saving the resulting URL/ID into Firestore as part of a project or service document.
+Part 6 – G, H & Output Format
+G. Security & Configuration
+
+Describe:
+How to set up Firestore security rules for:
+Public read‑only access to published projects/services.
+Restricted access for creating/updating/deleting content (admin only).
+Handling service orders (public create, restricted read).
+Explain:
+What secrets/configuration should go into Vercel environment variables (Firebase config, Cloudinary keys, etc.).
+Any precautions for client‑side only apps regarding API keys (e.g., using restricted keys, security rules).
+H. Deployment on Vercel
+
+Step‑by‑step instructions for:
+Configuring the Vite + React app for Vercel.
+Setting environment variables for Firebase and Cloudinary on Vercel.
+Explain:
+How the build & deploy process will look compared to my current npm run dev monorepo workflow.
+Any changes I need to make in package.json / project structure to deploy just the frontend.
+Output Format
+Organize your answer into clear sections:
+
+New Architecture Overview
+Data Model & Firestore Collections
+Authentication Setup
+Backend Responsibility Migration
+Frontend Refactor Plan (React Query + Firestore)
+Media Handling with Cloudinary
+Security Rules & Environment Configuration
+Deployment Plan on Vercel
+Concrete Step‑by‑Step Migration Checklist
