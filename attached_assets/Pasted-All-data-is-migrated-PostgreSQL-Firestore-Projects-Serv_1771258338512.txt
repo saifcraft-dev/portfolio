@@ -1,0 +1,52 @@
+All data is migrated
+
+PostgreSQL → Firestore:
+Projects
+Services
+Service orders/contact submissions
+You’ve spot‑checked documents in Firestore and they match what you had in the app (counts and example records).
+No code depends on /api anymore
+
+In the frontend, there are no imports like:
+axios.get('/api/...')
+fetch('/api/...')
+All React Query hooks now use Firestore/Firebase instead of hitting Express routes.
+Auth is moved
+
+Firebase Auth is wired in.
+Admin access (for managing projects/services) is controlled via Firebase Auth + (ideally) security rules or role checks.
+Any login routes on Express (if you had them) are no longer used.
+All server logic is replaced
+
+Anything your Express server used to do is now:
+Done directly from the client with Firestore/Cloudinary, or
+Implemented in Firebase Cloud Functions (for secure/complex stuff, e.g. signed Cloudinary uploads).
+You’ve tested:
+Creating a service order.
+Editing/creating/deleting services/projects (admin).
+Any other special actions you had.
+Local dev and production both work without server/
+
+npm run dev (or npm run dev + vite) runs without starting Express.
+On Vercel, the site builds and:
+Reads data from Firestore.
+Auth works.
+Images are loaded from Cloudinary.
+No network calls fail with /api/... 404 errors.
+No deployment scripts reference the server
+
+package.json has no concurrently "npm run dev:client" "npm run dev:server" style scripts you depend on.
+Vercel is configured to build only the frontend (e.g. root with vite.config.(ts|js)).
+Recommended approach
+
+First: just stop using server/ (don’t delete yet).
+Comment out or remove its startup in dev scripts.
+Run through all main flows in local and production:
+View portfolio
+View services
+Submit order/contact
+Admin actions
+If everything works fine without ever starting the Express server, then:
+Move server/ to something like server_backup/ or an archive branch.
+Keep it in git history for a while.
+After a bit of “burn‑in” time where you’re confident in the new stack, you can delete it from the repo.
