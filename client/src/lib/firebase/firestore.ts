@@ -58,3 +58,21 @@ export const ordersApi = {
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Order));
   }
 };
+
+// Team Members CRUD
+export const teamApi = {
+  getAll: async () => {
+    const querySnapshot = await getDocs(collection(db, "team_members"));
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as TeamMember));
+  },
+  create: async (data: Omit<TeamMember, 'id'>) => {
+    return addDoc(collection(db, "team_members"), { ...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
+  },
+  update: async (id: string, data: Partial<TeamMember>) => {
+    const docRef = doc(db, "team_members", id);
+    return updateDoc(docRef, { ...data, updatedAt: serverTimestamp() });
+  },
+  delete: async (id: string) => {
+    return deleteDoc(doc(db, "team_members", id));
+  }
+};
