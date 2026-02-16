@@ -40,5 +40,20 @@ postcss.config.js        - PostCSS configuration
 - Configured Vite to serve on port 5000 with `host: "0.0.0.0"` and `allowedHosts: true`
 - Set up static deployment configuration
 
-## User Preferences
-- None recorded yet
+## Environment Variables
+The following environment variables are required for the application to function:
+
+### Firebase Configuration
+- `VITE_FIREBASE_API_KEY`: Your Firebase project's API key.
+- `VITE_FIREBASE_AUTH_DOMAIN`: Your Firebase project's auth domain.
+- `VITE_FIREBASE_PROJECT_ID`: Your Firebase project's ID.
+- `VITE_FIREBASE_STORAGE_BUCKET`: Your Firebase project's storage bucket.
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`: Your Firebase project's messaging sender ID.
+- `VITE_FIREBASE_APP_ID`: Your Firebase project's app ID.
+- `VITE_FIREBASE_MEASUREMENT_ID`: Your Firebase project's measurement ID (optional).
+
+### Cloudinary Configuration
+- `VITE_CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
+- `VITE_CLOUDINARY_UPLOAD_PRESET`: Your Cloudinary upload preset (for unsigned uploads).
+
+> **Note**: These variables must be prefixed with `VITE_` to be accessible in the React frontend.
