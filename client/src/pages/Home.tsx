@@ -13,7 +13,7 @@ export default function Home() {
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: services, isLoading: servicesLoading } = useServices();
 
-  const featuredProjects = projects?.filter(p => p.featured).slice(0, 3) || [];
+  const featuredProjects = projects?.filter((p: any) => p.featured).slice(0, 3) || [];
   const featuredServices = services?.slice(0, 3) || [];
 
   return (

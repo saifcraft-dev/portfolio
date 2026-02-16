@@ -1,4 +1,4 @@
-import { Project } from "@shared/schema";
+import type { Project } from "@/types";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

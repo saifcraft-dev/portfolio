@@ -1,4 +1,4 @@
-import { Service } from "@shared/schema";
+import type { Service } from "@/types";
 import { motion } from "framer-motion";
 import { Check, Code, Smartphone, Palette, Cloud, Database } from "lucide-react";
 import { Card } from "@/components/ui/card";

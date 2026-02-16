@@ -10,13 +10,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCreateOrder } from "@/hooks/use-orders";
 import { useToast } from "@/hooks/use-toast";
-import { insertOrderSchema } from "@shared/schema";
-import { Loader2 } from "lucide-react";
-import { motion } from "framer-motion";
-
-const formSchema = insertOrderSchema.extend({
+const formSchema = z.object({
+  clientName: z.string().min(1, "Name is required"),
+  clientEmail: z.string().email("Invalid email"),
+  serviceType: z.string().min(1, "Service type is required"),
+  projectDescription: z.string().min(10, "Please provide more details"),
   budget: z.string().optional(),
   timeline: z.string().optional(),
+  priority: z.string().default("normal"),
 });
 
 export default function Contact() {
