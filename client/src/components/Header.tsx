@@ -90,14 +90,14 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>
-              <a
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === item.href ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {item.label}
-              </a>
+            <Link 
+              key={item.href} 
+              href={item.href}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === item.href ? "text-primary" : "text-muted-foreground"
+              }`}
+            >
+              {item.label}
             </Link>
           ))}
           
@@ -122,11 +122,12 @@ export default function Header() {
                   <DropdownMenuSeparator />
                   {isAdmin && (
                     <DropdownMenuItem asChild>
-                      <Link href="/admin">
-                        <a className="flex items-center gap-2 cursor-pointer w-full">
-                          <LayoutDashboard className="w-4 h-4" />
-                          <span>Admin Dashboard</span>
-                        </a>
+                      <Link 
+                        href="/admin"
+                        className="flex items-center gap-2 cursor-pointer w-full"
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        <span>Admin Dashboard</span>
                       </Link>
                     </DropdownMenuItem>
                   )}
@@ -156,24 +157,25 @@ export default function Header() {
             <SheetContent side="right" className="w-[300px]">
               <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
-                  <Link key={item.href} href={item.href}>
-                    <a
-                      className={`text-lg font-medium py-2 border-b ${
-                        location === item.href ? "text-primary border-primary" : "border-transparent"
-                      }`}
-                    >
-                      {item.label}
-                    </a>
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    className={`text-lg font-medium py-2 border-b ${
+                      location === item.href ? "text-primary border-primary" : "border-transparent"
+                    }`}
+                  >
+                    {item.label}
                   </Link>
                 ))}
                 {user ? (
                   <>
                     {isAdmin && (
-                      <Link href="/admin">
-                        <a className="flex items-center gap-2 py-2 text-primary">
-                          <LayoutDashboard className="w-5 h-5" />
-                          Dashboard
-                        </a>
+                      <Link 
+                        href="/admin"
+                        className="flex items-center gap-2 py-2 text-primary"
+                      >
+                        <LayoutDashboard className="w-5 h-5" />
+                        Dashboard
                       </Link>
                     )}
                     <Button
