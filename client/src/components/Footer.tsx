@@ -10,14 +10,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <Link href="/">
-              <a className="flex items-center space-x-2 mb-6 cursor-pointer">
+              <div className="flex items-center space-x-2 mb-6 cursor-pointer">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-purple-400 flex items-center justify-center">
                   <Rocket className="text-white w-5 h-5" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-white">
                   DevStudio
                 </span>
-              </a>
+              </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Building digital experiences that matter. We help forward-thinking companies design, build, and scale their vision.
@@ -38,20 +38,20 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold text-white mb-6">Services</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><Link href="/services"><a className="hover:text-primary transition-colors cursor-pointer">Web Development</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-primary transition-colors cursor-pointer">Mobile Apps</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-primary transition-colors cursor-pointer">UI/UX Design</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-primary transition-colors cursor-pointer">Cloud Solutions</a></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Web Development</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Mobile Apps</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">UI/UX Design</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Cloud Solutions</span></Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display font-bold text-white mb-6">Company</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><Link href="/about"><a className="hover:text-primary transition-colors cursor-pointer">About Us</a></Link></li>
-              <li><Link href="/portfolio"><a className="hover:text-primary transition-colors cursor-pointer">Our Work</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-primary transition-colors cursor-pointer">Careers</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-primary transition-colors cursor-pointer">Contact</a></Link></li>
+              <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Us</span></Link></li>
+              <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">Our Work</span></Link></li>
+              <li><Link href="/contact"><span className="hover:text-primary transition-colors cursor-pointer">Careers</span></Link></li>
+              <li><Link href="/contact"><span className="hover:text-primary transition-colors cursor-pointer">Contact</span></Link></li>
             </ul>
           </div>
 
