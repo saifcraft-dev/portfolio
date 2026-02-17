@@ -11,10 +11,11 @@ import { useOrders } from "@/hooks/use-orders";
 import { useProjects } from "@/hooks/use-projects";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Order, Project } from "@/types";
 
 export default function AdminDashboard() {
-  const { orders, isLoading: ordersLoading } = useOrders();
-  const { projects, isLoading: projectsLoading } = useProjects();
+  const { data: orders, isLoading: ordersLoading } = useOrders();
+  const { data: projects, isLoading: projectsLoading } = useProjects();
 
   const metrics = [
     {
@@ -27,7 +28,7 @@ export default function AdminDashboard() {
     },
     {
       title: "Pending Orders",
-      value: orders?.filter(o => o.status === "pending").length || 0,
+      value: orders?.filter((o: Order) => o.status === "pending").length || 0,
       icon: Clock,
       description: "Awaiting review",
       color: "text-yellow-500",
@@ -35,7 +36,7 @@ export default function AdminDashboard() {
     },
     {
       title: "Completed Projects",
-      value: projects?.filter(p => p.completedDate).length || 0,
+      value: projects?.filter((p: Project) => p.completedDate).length || 0,
       icon: CheckCircle2,
       description: "Delivered to clients",
       color: "text-green-500",
@@ -43,7 +44,7 @@ export default function AdminDashboard() {
     },
     {
       title: "Active Projects",
-      value: projects?.filter(p => !p.completedDate).length || 0,
+      value: projects?.filter((p: Project) => !p.completedDate).length || 0,
       icon: Briefcase,
       description: "Currently in development",
       color: "text-purple-500",
@@ -90,9 +91,9 @@ export default function AdminDashboard() {
               <div className="space-y-4">
                 {[1, 2, 3].map(i => <Skeleton key={i} className="h-12 w-full" />)}
               </div>
-            ) : orders && orders.length > 0 ? (
+            ) : orders && (orders as Order[]).length > 0 ? (
               <div className="space-y-4">
-                {orders.slice(0, 5).map((order) => (
+                {(orders as Order[]).slice(0, 5).map((order: Order) => (
                   <div key={order.id} className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors">
                     <div>
                       <p className="font-medium">{order.clientName}</p>
@@ -122,9 +123,9 @@ export default function AdminDashboard() {
               <div className="space-y-4">
                 {[1, 2, 3].map(i => <Skeleton key={i} className="h-12 w-full" />)}
               </div>
-            ) : projects && projects.length > 0 ? (
+            ) : projects && (projects as Project[]).length > 0 ? (
               <div className="space-y-4">
-                {projects.slice(0, 5).map((project) => (
+                {(projects as Project[]).slice(0, 5).map((project: Project) => (
                   <div key={project.id} className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors">
                     <div>
                       <p className="font-medium">{project.title}</p>
