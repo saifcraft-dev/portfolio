@@ -49,11 +49,21 @@ function Router() {
             <AdminProtectedRoute>
               <AdminLayout>
                 <Switch>
-                  <Route path="/admin" component={AdminDashboard} />
-                  <Route path="/admin/orders" component={OrdersManagement} />
-                  <Route path="/admin/projects" component={ProjectsManagement} />
-                  <Route path="/admin/services" component={ServicesManagement} />
-                  <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
+                  <Route path="/admin">
+                    <AdminDashboard />
+                  </Route>
+                  <Route path="/admin/orders">
+                    <OrdersManagement />
+                  </Route>
+                  <Route path="/admin/projects">
+                    <ProjectsManagement />
+                  </Route>
+                  <Route path="/admin/services">
+                    <ServicesManagement />
+                  </Route>
+                  <Route path="/admin/team">
+                    <div className="p-8">Team Management (Coming Soon)</div>
+                  </Route>
                   <Route component={NotFound} />
                 </Switch>
               </AdminLayout>
