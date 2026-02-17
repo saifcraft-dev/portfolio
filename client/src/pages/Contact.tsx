@@ -43,9 +43,14 @@ export default function Contact() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       await createOrder.mutateAsync({
-        ...values,
+        clientName: values.clientName,
+        clientEmail: values.clientEmail,
+        serviceType: values.serviceType,
+        projectDescription: values.projectDescription,
+        budget: values.budget || "",
+        timeline: values.timeline || "",
         status: 'pending',
-        priority: values.priority as 'low' | 'medium' | 'high',
+        priority: (values.priority as 'low' | 'medium' | 'high') || 'medium',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });

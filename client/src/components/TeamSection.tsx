@@ -2,7 +2,7 @@ import { useTeam } from "@/hooks/use-team";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
-import { SiGithub, SiLinkedin, SiTwitter } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 
 export default function TeamSection() {
   const { data: team, isLoading } = useTeam();
@@ -46,7 +46,7 @@ export default function TeamSection() {
                 <CardContent className="pt-8 text-center">
                   <Avatar className="w-24 h-24 mx-auto mb-6 border-2 border-primary/20">
                     <AvatarImage src={member.imageUrl} alt={member.name} />
-                    <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    <AvatarFallback>{member.name.split(' ').map((n: string) => n[0]).join('')}</AvatarFallback>
                   </Avatar>
                   <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
                   <p className="text-primary text-sm mb-4 font-medium uppercase tracking-wider">{member.role}</p>
@@ -65,7 +65,7 @@ export default function TeamSection() {
                     )}
                     {member.socialLinks.twitter && (
                       <a href={member.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                        <SiTwitter className="w-5 h-5" />
+                        <SiX className="w-5 h-5" />
                       </a>
                     )}
                   </div>
