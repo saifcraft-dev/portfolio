@@ -15,6 +15,8 @@ import Contact from "@/pages/Contact";
 import AdminLogin from "@/pages/admin/Login";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import OrdersManagement from "@/pages/admin/Orders";
+import ProjectsManagement from "@/pages/admin/Projects";
+import ServicesManagement from "@/pages/admin/Services";
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminProtectedRoute from "@/components/AdminProtectedRoute";
 import NotFound from "@/pages/not-found";
@@ -36,8 +38,8 @@ function Router() {
             <Switch>
               <Route path="/admin" component={AdminDashboard} />
               <Route path="/admin/orders" component={OrdersManagement} />
-              <Route path="/admin/projects" component={() => <div className="p-8">Portfolio Management (Coming Soon)</div>} />
-              <Route path="/admin/services" component={() => <div className="p-8">Services Management (Coming Soon)</div>} />
+              <Route path="/admin/projects" component={ProjectsManagement} />
+              <Route path="/admin/services" component={ServicesManagement} />
               <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
               <Route component={NotFound} />
             </Switch>

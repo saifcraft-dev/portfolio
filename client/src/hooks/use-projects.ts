@@ -1,11 +1,22 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { projectsApi } from "@/lib/firebase/firestore";
 import type { Project } from "@/types";
 
 export function useProjects() {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const unsubscribe = projectsApi.subscribeAll((projects) => {
+      queryClient.setQueryData(["/projects"], projects);
+    });
+    return () => unsubscribe();
+  }, [queryClient]);
+
   return useQuery({
     queryKey: ["/projects"],
     queryFn: () => projectsApi.getAll(),
+    staleTime: Infinity,
   });
 }
 
