@@ -1,0 +1,105 @@
+You are an expert full-stack developer building a professional portfolio website and service ordering platform for a web development team. Follow these 30 steps sequentially, asking for confirmation before proceeding to the next major phase. Use Next.js 14+ (App Router), TypeScript, Tailwind CSS, Shadcn/UI, Firebase Authentication, Firestore, and Cloudinary as specified.
+
+Phase 1: Project Foundation (Steps 1-5)
+Step 1: Project Initialization
+Create a new Next.js 14+ project with App Router and TypeScript. Use the command: npx create-next-app@latest dev-team-portfolio --typescript --tailwind --app --eslint --src-dir. Set up the basic folder structure: src/app, src/components, src/lib, src/types, and src/context. Initialize git repository and create initial commit.
+
+Step 2: Core Dependencies Installation
+Install essential packages: npm install firebase @radix-ui/react-icons class-variance-authority clsx tailwind-merge lucide-react framer-motion react-hook-form @hookform/resolvers zod. These provide Firebase SDK, UI icons, utility functions, animations, and form handling capabilities.
+
+Step 3: Shadcn/UI Setup
+Initialize Shadcn/UI with npx shadcn-ui@latest init. Configure with default settings and install core components: npx shadcn-ui@latest add button card input textarea label select dialog sheet table badge avatar toast form dropdown-menu tabs alert. These components will provide the UI foundation.
+
+Step 4: Environment Configuration
+Create .env.local file with Firebase configuration variables (all prefixed with NEXT_PUBLIC_ for client access): NEXT_PUBLIC_FIREBASE_API_KEY, NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN, NEXT_PUBLIC_FIREBASE_PROJECT_ID, NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET, NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID, NEXT_PUBLIC_FIREBASE_APP_ID, NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET. Add .env.local to .gitignore.
+
+Step 5: TypeScript Definitions
+Create src/types/index.ts with interfaces for: Project (id, title, description, longDescription, technologies, imageUrl, projectUrl, githubUrl, category, featured, completedDate, createdAt, updatedAt), Service (id, title, description, features, pricing, deliveryTime, category, active), Order (id, clientName, clientEmail, serviceType, projectDescription, budget, timeline, status, priority, createdAt, updatedAt, notes), TeamMember (id, name, role, bio, imageUrl, skills, socialLinks, active), and enums for OrderStatus, OrderPriority, ProjectCategory.
+
+Phase 2: Firebase Integration (Steps 6-10)
+Step 6: Firebase Configuration
+Create src/lib/firebase/config.ts to initialize Firebase app, auth, and firestore instances using environment variables. Export configured instances for use throughout the application. Implement proper error handling for initialization failures.
+
+Step 7: Authentication Setup
+Create src/lib/firebase/auth.ts with functions: signInWithEmail(email, password), signInWithGoogle(), signOut(), getCurrentUser(), and isAdmin(user). Implement admin checking by comparing user email against a whitelist stored in environment variables or Firestore.
+
+Step 8: Firestore Database Schema
+Design Firestore collections: projects, services, orders, team. Create src/lib/firebase/firestore.ts with CRUD functions for each collection. Implement proper error handling and type safety for all database operations.
+
+Step 9: Firestore Security Rules
+Configure Firestore security rules to allow public read access to projects, services, and team collections. Restrict orders collection to allow public create access but admin-only read/update access. Implement admin verification in security rules using custom claims or email whitelist.
+
+Step 10: Authentication Context
+Create src/context/AuthContext.tsx providing authentication state management with useAuth hook. Include user state, loading state, admin status, and authentication functions. Wrap the app in this context provider.
+
+Phase 3: Core Layout and Navigation (Steps 11-15)
+Step 11: Global Layout Structure
+Create src/app/layout.tsx with metadata configuration, font optimization, and Tailwind CSS imports. Implement responsive design foundation and ensure proper SEO metadata structure.
+
+Step 12: Navigation Header
+Create src/components/Header.tsx with responsive navigation including logo, menu items (Home, Portfolio, Services, About, Contact), and mobile hamburger menu using Shadcn Sheet component. Include active link highlighting and smooth transitions.
+
+Step 13: Footer Component
+Create src/components/Footer.tsx with company information, quick navigation links, social media icons, and contact details. Ensure responsive design and proper spacing from main content.
+
+Step 14: Page Routing Structure
+Set up route structure: app/page.tsx (homepage), app/portfolio/page.tsx, app/services/page.tsx, app/about/page.tsx, app/contact/page.tsx, and app/admin folder for admin routes. Create loading and error components for each route.
+
+Step 15: Design System Configuration
+Configure Tailwind CSS with custom color palette, typography scale, and component utilities. Set up dark mode support and ensure consistent spacing and sizing throughout the application.
+
+Phase 4: Public Frontend Development (Steps 16-20)
+Step 16: Homepage Hero Section
+Create src/components/Hero.tsx with compelling headline, subheadline, and call-to-action buttons. Implement Framer Motion animations for smooth entry effects. Include responsive design for mobile, tablet, and desktop viewports.
+
+Step 17: Services Display Component
+Create src/components/ServicesSection.tsx to fetch and display services from Firestore. Design service cards with pricing, features, and "Request Quote" buttons. Implement responsive grid layout and hover effects.
+
+Step 18: Portfolio Gallery
+Create src/components/ProjectsGallery.tsx to display projects in a responsive grid. Include project filtering by category, hover effects revealing project details, and modal view for project details. Integrate Cloudinary for optimized image loading.
+
+Step 19: Team Section
+Create src/components/TeamSection.tsx displaying team members with photos, roles, bios, and social links. Fetch data from Firestore and implement responsive card layout with professional styling.
+
+Step 20: Contact Form
+Create src/components/ContactForm.tsx with fields for service requests: name, email, phone, company, service type, project description, budget range, timeline, and additional requirements. Implement form validation using React Hook Form and Zod, with submission to Firestore orders collection.
+
+Phase 5: Admin Authentication and Layout (Steps 21-25)
+Step 21: Admin Login Page
+Create app/admin/login/page.tsx with secure login form supporting email/password and Google authentication. Implement proper error handling and redirect logic after successful authentication.
+
+Step 22: Admin Route Protection
+Create middleware or layout-level protection for all /admin routes. Redirect unauthenticated users to login page and verify admin status before allowing access to admin functionality.
+
+Step 23: Admin Dashboard Layout
+Create app/admin/layout.tsx with sidebar navigation including Dashboard, Orders, Portfolio, Services, and Team management links. Implement responsive design with collapsible sidebar for mobile devices.
+
+Step 24: Admin Dashboard Overview
+Create app/admin/page.tsx displaying key metrics: total orders, pending orders, completed projects, and recent activity. Use Shadcn Card components with appropriate icons and color coding for different metrics.
+
+Step 25: Real-time Data Integration
+Implement Firestore real-time listeners for admin dashboard to show live updates of orders and other data. Ensure proper cleanup of listeners to prevent memory leaks.
+
+Phase 6: Admin Management Interfaces (Steps 26-30)
+Step 26: Orders Management
+Create app/admin/orders/page.tsx with comprehensive orders table using Shadcn Table component. Include filtering by status, search functionality, and detailed order view modal. Implement status update functionality with proper confirmation dialogs.
+
+Step 27: Portfolio Management
+Create app/admin/projects/page.tsx for CRUD operations on portfolio projects. Include form for adding/editing projects with Cloudinary image upload integration. Implement project deletion with confirmation and proper error handling.
+
+Step 28: Services Management
+Create app/admin/services/page.tsx allowing dynamic management of service offerings. Include forms for adding/editing services with pricing, features, and delivery time configuration. Implement service activation/deactivation toggle.
+
+Step 29: Performance Optimization
+Implement Next.js Image optimization for Cloudinary images, lazy loading for components, and proper caching strategies. Add loading states throughout the application and optimize bundle size by analyzing build output.
+
+Step 30: Final Testing and Deployment
+Conduct comprehensive testing of all features: form submissions, authentication flows, admin CRUD operations, and responsive design. Configure deployment for Vercel with proper environment variables and test production deployment. Implement error boundaries and 404 pages for production readiness.
+
+Important Notes for Replit Agent:
+
+Ask for confirmation before moving between major phases
+If you encounter Firebase setup issues, provide step-by-step instructions for manual configuration
+For Cloudinary integration, initially use placeholder images and provide instructions for later image upload setup
+Test each component thoroughly before proceeding to the next step
+Ensure all code follows TypeScript best practices and includes proper error handling

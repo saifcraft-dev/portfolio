@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsGallery from "@/components/ProjectsGallery";
+import TeamSection from "@/components/TeamSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <ProjectsGallery />
+      <TeamSection />
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
