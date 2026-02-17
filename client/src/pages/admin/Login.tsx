@@ -20,7 +20,7 @@ export default function Login() {
 
   // If already logged in and is admin, redirect to dashboard
   if (user && isAdmin) {
-    window.location.href = "/admin";
+    window.location.href = "/admin/dashboard";
     return null;
   }
 
@@ -34,7 +34,7 @@ export default function Login() {
         description: "Logged in successfully",
       });
       // Use window.location for a hard redirect to ensure AuthContext refreshes correctly
-      window.location.href = "/admin";
+      window.location.href = "/admin/dashboard";
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -55,7 +55,7 @@ export default function Login() {
         description: "Logged in with Google successfully",
       });
       // Use window.location for a hard redirect to ensure AuthContext refreshes correctly
-      window.location.href = "/admin";
+      window.location.href = "/admin/dashboard";
     } catch (error: any) {
       toast({
         variant: "destructive",

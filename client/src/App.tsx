@@ -5,7 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -44,12 +44,15 @@ function Router() {
         
         {/* Admin Routes */}
         <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin">
+          <Redirect to="/admin/dashboard" />
+        </Route>
         <Route path="/admin/:rest*">
           {(params) => (
             <AdminProtectedRoute>
               <AdminLayout>
                 <Switch>
-                  <Route path="/admin">
+                  <Route path="/admin/dashboard">
                     <AdminDashboard />
                   </Route>
                   <Route path="/admin/orders">

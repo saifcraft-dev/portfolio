@@ -28,7 +28,7 @@ import { Button } from "@/components/ui/button";
 const menuItems = [
   {
     title: "Dashboard",
-    url: "/admin",
+    url: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
