@@ -33,7 +33,8 @@ export default function Login() {
         title: "Success",
         description: "Logged in successfully",
       });
-      setLocation("/admin");
+      // Use window.location for a hard redirect to ensure AuthContext refreshes correctly
+      window.location.href = "/admin";
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -53,7 +54,8 @@ export default function Login() {
         title: "Success",
         description: "Logged in with Google successfully",
       });
-      setLocation("/admin");
+      // Use window.location for a hard redirect to ensure AuthContext refreshes correctly
+      window.location.href = "/admin";
     } catch (error: any) {
       toast({
         variant: "destructive",

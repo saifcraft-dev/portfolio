@@ -131,6 +131,16 @@ export default function Header() {
                       </Link>
                     </DropdownMenuItem>
                   )}
+                  <DropdownMenuItem asChild>
+                    <Link 
+                      href="/contact"
+                      className="flex items-center gap-2 cursor-pointer w-full"
+                    >
+                      <UserIcon className="w-4 h-4" />
+                      <span>Support / Contact</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive cursor-pointer">
                     <LogOut className="w-4 h-4 mr-2" />
                     <span>Log out</span>
