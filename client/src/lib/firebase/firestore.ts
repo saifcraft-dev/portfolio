@@ -14,7 +14,7 @@ import {
   type Unsubscribe
 } from 'firebase/firestore';
 import { db } from './config';
-import { Project, Service, Order, TeamMember } from '../types';
+import { Project, Service, Order, TeamMember } from '@/types';
 
 // Generic CRUD helper
 const createCRUD = <T extends { id?: string }>(collectionName: string) => {

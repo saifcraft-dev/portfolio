@@ -50,17 +50,30 @@ export default function ProjectsManagement() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      console.log("Submitting form data:", formData);
+      const dataToSubmit = {
+        ...formData,
+        technologies: formData.technologies || [],
+        featured: !!formData.featured,
+        completedDate: formData.completedDate || new Date().toISOString().split('T')[0],
+      };
+
       if (editingProject) {
-        await updateProject.mutateAsync({ id: editingProject.id, ...formData });
+        await updateProject.mutateAsync({ id: editingProject.id, ...dataToSubmit });
         toast({ title: "Project updated successfully" });
       } else {
-        await createProject.mutateAsync(formData as Omit<Project, 'id'>);
+        await createProject.mutateAsync(dataToSubmit as Omit<Project, 'id'>);
         toast({ title: "Project created successfully" });
       }
       setIsDialogOpen(false);
       resetForm();
     } catch (error) {
-      toast({ title: "Operation failed", variant: "destructive" });
+      console.error("Project operation failed:", error);
+      toast({ 
+        title: "Operation failed", 
+        description: error instanceof Error ? error.message : "Check console for details",
+        variant: "destructive" 
+      });
     }
   };
 
