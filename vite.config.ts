@@ -32,6 +32,7 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     assetsDir: "assets",
+    chunkSizeWarningLimit: 2000,
   },
   server: {
     host: "0.0.0.0",
