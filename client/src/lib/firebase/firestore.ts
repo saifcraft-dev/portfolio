@@ -8,8 +8,10 @@ import {
   doc, 
   query, 
   where,
+  onSnapshot,
   serverTimestamp,
-  Timestamp
+  Timestamp,
+  type Unsubscribe
 } from 'firebase/firestore';
 import { db } from './config';
 import { Project, Service, Order, TeamMember } from '../types';
@@ -27,6 +29,12 @@ const createCRUD = <T extends { id?: string }>(collectionName: string) => {
       const docRef = doc(db, collectionName, id);
       const snapshot = await getDoc(docRef);
       return snapshot.exists() ? ({ id: snapshot.id, ...snapshot.data() } as T) : null;
+    },
+    subscribeAll: (callback: (data: T[]) => void): Unsubscribe => {
+      return onSnapshot(colRef, (snapshot) => {
+        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T));
+        callback(data);
+      });
     },
     create: async (data: Omit<T, 'id'>): Promise<string> => {
       const docRef = await addDoc(colRef, {
