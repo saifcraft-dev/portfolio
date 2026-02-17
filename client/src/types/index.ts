@@ -2,16 +2,16 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  longDescription?: string;
+  longDescription: string;
   technologies: string[];
   imageUrl: string;
   projectUrl?: string;
   githubUrl?: string;
   category: string;
   featured: boolean;
-  completedDate?: string;
-  createdAt: any;
-  updatedAt: any;
+  completedDate: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Service {
@@ -23,8 +23,6 @@ export interface Service {
   deliveryTime: string;
   category: string;
   active: boolean;
-  createdAt: any;
-  updatedAt: any;
 }
 
 export interface Order {
@@ -35,10 +33,10 @@ export interface Order {
   projectDescription: string;
   budget: string;
   timeline: string;
-  status: 'pending' | 'in_progress' | 'completed' | 'cancelled';
+  status: 'pending' | 'in-progress' | 'completed' | 'cancelled';
   priority: 'low' | 'medium' | 'high';
-  createdAt: any;
-  updatedAt: any;
+  createdAt: string;
+  updatedAt: string;
   notes?: string;
 }
 
@@ -50,8 +48,9 @@ export interface TeamMember {
   imageUrl: string;
   skills: string[];
   socialLinks: {
-    linkedin?: string;
     github?: string;
+    linkedin?: string;
     twitter?: string;
+    portfolio?: string;
   };
 }

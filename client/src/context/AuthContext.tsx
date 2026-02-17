@@ -1,7 +1,10 @@
+"use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { User, onAuthStateChanged } from "firebase/user";
-import { auth } from "../lib/firebase/config";
-import { isAdmin as checkAdmin } from "../lib/firebase/auth";
+import { User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase/config";
+import { isAdmin as checkAdminStatus } from "@/lib/firebase/auth";
 
 interface AuthContextType {
   user: User | null;
@@ -21,14 +24,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        const adminStatus = await checkAdmin(firebaseUser);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      
+      if (user) {
+        const adminStatus = await checkAdminStatus(user);
         setIsAdmin(adminStatus);
       } else {
         setIsAdmin(false);
       }
+      
       setLoading(false);
     });
 

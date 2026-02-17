@@ -1,78 +1,69 @@
 import { 
   collection, 
-  doc, 
-  addDoc, 
-  getDoc, 
   getDocs, 
+  getDoc, 
+  addDoc, 
   updateDoc, 
   deleteDoc, 
+  doc, 
   query, 
   where,
-  Timestamp,
-  serverTimestamp
-} from "firebase/firestore";
-import { db } from "./config";
-import type { Project, Service, Order, TeamMember } from "../../types";
+  serverTimestamp,
+  Timestamp
+} from 'firebase/firestore';
+import { db } from './config';
+import { Project, Service, Order, TeamMember } from '../types';
 
-// Projects CRUD
-export const projectsApi = {
-  getAll: async () => {
-    const querySnapshot = await getDocs(collection(db, "projects"));
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Project));
-  },
-  getById: async (id: string) => {
-    const docRef = doc(db, "projects", id);
-    const docSnap = await getDoc(docRef);
-    return docSnap.exists() ? ({ id: docSnap.id, ...docSnap.data() } as Project) : null;
-  },
-  create: async (data: Omit<Project, 'id'>) => {
-    return addDoc(collection(db, "projects"), { ...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
-  },
-  update: async (id: string, data: Partial<Project>) => {
-    const docRef = doc(db, "projects", id);
-    return updateDoc(docRef, { ...data, updatedAt: serverTimestamp() });
-  },
-  delete: async (id: string) => {
-    return deleteDoc(doc(db, "projects", id));
-  }
+// Generic CRUD helper
+const createCRUD = <T extends { id?: string }>(collectionName: string) => {
+  const colRef = collection(db, collectionName);
+
+  return {
+    getAll: async (): Promise<T[]> => {
+      const snapshot = await getDocs(colRef);
+      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T));
+    },
+    getById: async (id: string): Promise<T | null> => {
+      const docRef = doc(db, collectionName, id);
+      const snapshot = await getDoc(docRef);
+      return snapshot.exists() ? ({ id: snapshot.id, ...snapshot.data() } as T) : null;
+    },
+    create: async (data: Omit<T, 'id'>): Promise<string> => {
+      const docRef = await addDoc(colRef, {
+        ...data,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+      return docRef.id;
+    },
+    update: async (id: string, data: Partial<T>): Promise<void> => {
+      const docRef = doc(db, collectionName, id);
+      await updateDoc(docRef, {
+        ...data,
+        updatedAt: serverTimestamp(),
+      });
+    },
+    delete: async (id: string): Promise<void> => {
+      const docRef = doc(db, collectionName, id);
+      await deleteDoc(docRef);
+    }
+  };
 };
 
-// Services CRUD
-export const servicesApi = {
-  getAll: async () => {
-    const querySnapshot = await getDocs(collection(db, "services"));
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
-  },
-  create: async (data: Omit<Service, 'id'>) => {
-    return addDoc(collection(db, "services"), { ...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
-  }
+export const projectsApi = createCRUD<Project>('projects');
+export const servicesApi = createCRUD<Service>('services');
+export const ordersApi = createCRUD<Order>('orders');
+export const teamApi = createCRUD<TeamMember>('team');
+
+// Special queries
+export const getFeaturedProjects = async (): Promise<Project[]> => {
+  const q = query(collection(db, 'projects'), where('featured', '==', true));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Project));
 };
 
-// Orders CRUD
-export const ordersApi = {
-  create: async (data: Omit<Order, 'id'>) => {
-    return addDoc(collection(db, "orders"), { ...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp(), status: 'pending' });
-  },
-  getAll: async () => {
-    const querySnapshot = await getDocs(collection(db, "orders"));
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Order));
-  }
-};
-
-// Team Members CRUD
-export const teamApi = {
-  getAll: async () => {
-    const querySnapshot = await getDocs(collection(db, "team_members"));
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as TeamMember));
-  },
-  create: async (data: Omit<TeamMember, 'id'>) => {
-    return addDoc(collection(db, "team_members"), { ...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
-  },
-  update: async (id: string, data: Partial<TeamMember>) => {
-    const docRef = doc(db, "team_members", id);
-    return updateDoc(docRef, { ...data, updatedAt: serverTimestamp() });
-  },
-  delete: async (id: string) => {
-    return deleteDoc(doc(db, "team_members", id));
-  }
+export const getActiveServices = async (): Promise<Service[]> => {
+  const q = query(collection(db, 'services'), where('active', '==', true));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
 };
