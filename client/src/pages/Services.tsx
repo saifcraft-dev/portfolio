@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { useServices } from "@/hooks/use-services";
 import { ServiceCard } from "@/components/ServiceCard";
 import { motion } from "framer-motion";
@@ -11,9 +11,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-
-      <div className="pt-32 pb-20 container-padding max-w-7xl mx-auto">
+      <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
@@ -73,8 +71,6 @@ export default function Services() {
           </Button>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +10,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCreateOrder } from "@/hooks/use-orders";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
+
 const formSchema = z.object({
   clientName: z.string().min(1, "Name is required"),
   clientEmail: z.string().email("Invalid email"),
@@ -56,9 +59,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      
-      <div className="pt-32 pb-20 container-padding max-w-7xl mx-auto">
+      <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-16">
           
           {/* Contact Info */}
@@ -204,8 +205,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
