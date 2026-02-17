@@ -45,18 +45,20 @@ function Router() {
         {/* Admin Routes */}
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/:rest*">
-          <AdminProtectedRoute>
-            <AdminLayout>
-              <Switch>
-                <Route path="/admin" component={AdminDashboard} />
-                <Route path="/admin/orders" component={OrdersManagement} />
-                <Route path="/admin/projects" component={ProjectsManagement} />
-                <Route path="/admin/services" component={ServicesManagement} />
-                <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
-                <Route component={NotFound} />
-              </Switch>
-            </AdminLayout>
-          </AdminProtectedRoute>
+          {(params) => (
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <Switch>
+                  <Route path="/admin" component={AdminDashboard} />
+                  <Route path="/admin/orders" component={OrdersManagement} />
+                  <Route path="/admin/projects" component={ProjectsManagement} />
+                  <Route path="/admin/services" component={ServicesManagement} />
+                  <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
+                  <Route component={NotFound} />
+                </Switch>
+              </AdminLayout>
+            </AdminProtectedRoute>
+          )}
         </Route>
         
         <Route component={NotFound} />

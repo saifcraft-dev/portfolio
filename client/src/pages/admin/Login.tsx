@@ -20,7 +20,7 @@ export default function Login() {
 
   // If already logged in and is admin, redirect to dashboard
   if (user && isAdmin) {
-    setLocation("/admin");
+    window.location.href = "/admin";
     return null;
   }
 
