@@ -14,6 +14,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import AdminLogin from "@/pages/admin/Login";
 import AdminDashboard from "@/pages/admin/Dashboard";
+import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminProtectedRoute from "@/components/AdminProtectedRoute";
 import NotFound from "@/pages/not-found";
 
@@ -28,9 +29,18 @@ function Router() {
       
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin">
+      <Route path="/admin/:rest*">
         <AdminProtectedRoute>
-          <AdminDashboard />
+          <AdminLayout>
+            <Switch>
+              <Route path="/admin" component={AdminDashboard} />
+              <Route path="/admin/orders" component={() => <div className="p-8">Orders Management (Coming Soon)</div>} />
+              <Route path="/admin/projects" component={() => <div className="p-8">Portfolio Management (Coming Soon)</div>} />
+              <Route path="/admin/services" component={() => <div className="p-8">Services Management (Coming Soon)</div>} />
+              <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
+              <Route component={NotFound} />
+            </Switch>
+          </AdminLayout>
         </AdminProtectedRoute>
       </Route>
       

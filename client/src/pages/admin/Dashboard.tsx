@@ -1,41 +1,148 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAuth } from "@/context/AuthContext";
-import { Button } from "@/components/ui/button";
-import { signOut } from "@/lib/firebase/auth";
-import { useLocation } from "wouter";
+import { 
+  ShoppingBag, 
+  Clock, 
+  CheckCircle2, 
+  Briefcase,
+  ArrowUpRight,
+  TrendingUp
+} from "lucide-react";
+import { useOrders } from "@/hooks/use-orders";
+import { useProjects } from "@/hooks/use-projects";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
 
-export default function Dashboard() {
-  const { user } = useAuth();
-  const [, setLocation] = useLocation();
+export default function AdminDashboard() {
+  const { orders, isLoading: ordersLoading } = useOrders();
+  const { projects, isLoading: projectsLoading } = useProjects();
 
-  const handleLogout = async () => {
-    await signOut();
-    setLocation("/admin/login");
-  };
+  const metrics = [
+    {
+      title: "Total Orders",
+      value: orders?.length || 0,
+      icon: ShoppingBag,
+      description: "All time service requests",
+      color: "text-blue-500",
+      loading: ordersLoading
+    },
+    {
+      title: "Pending Orders",
+      value: orders?.filter(o => o.status === "pending").length || 0,
+      icon: Clock,
+      description: "Awaiting review",
+      color: "text-yellow-500",
+      loading: ordersLoading
+    },
+    {
+      title: "Completed Projects",
+      value: projects?.filter(p => p.completedDate).length || 0,
+      icon: CheckCircle2,
+      description: "Delivered to clients",
+      color: "text-green-500",
+      loading: projectsLoading
+    },
+    {
+      title: "Active Projects",
+      value: projects?.filter(p => !p.completedDate).length || 0,
+      icon: Briefcase,
+      description: "Currently in development",
+      color: "text-purple-500",
+      loading: projectsLoading
+    }
+  ];
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <Button variant="outline" onClick={handleLogout} data-testid="button-logout">
-          Logout
-        </Button>
+    <div className="p-6 space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
+        <p className="text-muted-foreground">Welcome back. Here's what's happening with DevStudio.</p>
       </div>
-      
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Welcome</CardTitle>
+        {metrics.map((metric) => (
+          <Card key={metric.title} className="hover-elevate">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">{metric.title}</CardTitle>
+              <metric.icon className={`h-4 w-4 ${metric.color}`} />
+            </CardHeader>
+            <CardContent>
+              {metric.loading ? (
+                <Skeleton className="h-8 w-16" />
+              ) : (
+                <div className="text-2xl font-bold">{metric.value}</div>
+              )}
+              <p className="text-xs text-muted-foreground mt-1">{metric.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
+              Recent Orders
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{user?.email}</div>
-            <p className="text-xs text-muted-foreground mt-1">Authorized Administrator</p>
+            {ordersLoading ? (
+              <div className="space-y-4">
+                {[1, 2, 3].map(i => <Skeleton key={i} className="h-12 w-full" />)}
+              </div>
+            ) : orders && orders.length > 0 ? (
+              <div className="space-y-4">
+                {orders.slice(0, 5).map((order) => (
+                  <div key={order.id} className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors">
+                    <div>
+                      <p className="font-medium">{order.clientName}</p>
+                      <p className="text-xs text-muted-foreground">{order.serviceType}</p>
+                    </div>
+                    <Badge variant={order.status === "pending" ? "outline" : "default"}>
+                      {order.status}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-4">No recent orders found.</p>
+            )}
           </CardContent>
         </Card>
-      </div>
-      
-      <div className="mt-8">
-        <p className="text-muted-foreground italic">Dashboard content for orders, projects, and team management will be implemented in subsequent steps.</p>
+
+        <Card className="col-span-1">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <ArrowUpRight className="h-5 w-5 text-primary" />
+              Recent Projects
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {projectsLoading ? (
+              <div className="space-y-4">
+                {[1, 2, 3].map(i => <Skeleton key={i} className="h-12 w-full" />)}
+              </div>
+            ) : projects && projects.length > 0 ? (
+              <div className="space-y-4">
+                {projects.slice(0, 5).map((project) => (
+                  <div key={project.id} className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors">
+                    <div>
+                      <p className="font-medium">{project.title}</p>
+                      <p className="text-xs text-muted-foreground">{project.category}</p>
+                    </div>
+                    {project.completedDate ? (
+                      <Badge className="bg-green-500/10 text-green-500 border-green-500/20">Completed</Badge>
+                    ) : (
+                      <Badge variant="secondary">In Progress</Badge>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center py-4">No recent projects found.</p>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
