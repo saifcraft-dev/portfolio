@@ -1,0 +1,88 @@
+Please scan this full project and make it fully Vercel-friendly so it can be hosted on Vercel without any errors or routing issues.
+
+TASK: Fix 404 errors on page refresh for a Vite + React + TypeScript + Wouter single-page app deployed on Vercel, and ensure the deployment works smoothly with Firebase and Cloudinary integrations.
+
+PROJECT DETAILS:
+
+Framework: Vite (React + TypeScript)
+React Version: 18
+Language: TypeScript
+Styling: Tailwind CSS, Shadcn/UI, Framer Motion
+Routing: Wouter (client-side routing)
+State/Data: TanStack React Query
+Forms: React Hook Form + Zod
+Backend/BaaS: Firebase (Firestore + Auth)
+Image Hosting: Cloudinary
+Hosting: Vercel
+Build Command: npm run build
+Build Output Directory: dist/public
+Dev Server Port: 5000 (local only)
+Total Pages: 43+ (all handled via Wouter, defined in client/src/App.tsx)
+Environment Variables: all Firebase and Cloudinary keys are VITE_-prefixed
+ARCHITECTURE NOTES:
+
+Frontend-heavy SPA: all routing is done client-side with Wouter.
+Dynamic content (projects, services, orders) is loaded from Firestore.
+Admin dashboard is protected via Firebase Auth.
+Images are loaded from Cloudinary.
+Styling tokens (colors, theme) live in client/src/index.css and should be preserved.
+CURRENT PROBLEM: When users refresh any non-root route (e.g. /tools/loan-calculator, /admin/orders, /services/web-development), Vercel returns a 404 NOT_FOUND.
+This happens because Vercel tries to resolve these as physical files, but the SPA uses Wouter for client-side routing and expects index.html to be served for all frontend routes.
+
+SOLUTION REQUIRED:
+
+Create a vercel.json file in the project root with correct rewrites and headers.
+Configure Vercel to always serve index.html for all frontend routes (SPA behavior), while preserving any /api/* routes if they exist.
+Add proper caching headers for static assets, especially:
+/assets/* (Vite build output) – cache for 1 year with immutable.
+Add basic security headers for all routes:
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Ensure the configuration does not break:
+Static assets (CSS, JS, images, fonts)
+Any /api/* routes (if present now or in the future)
+All current 43+ Wouter pages
+Any future pages I add (using Wouter)
+Existing Firebase / Cloudinary integrations
+IMPLEMENTATION STEPS:
+
+vercel.json
+
+Add a rewrite so that all non-API routes serve /index.html, letting Wouter handle routing.
+Exclude /api/* from the SPA rewrite (so they keep working as API endpoints if they exist).
+Add caching headers for /assets/* so built JS/CSS/images are cached for 1 year with immutable.
+Add security headers for all routes as listed above.
+vite.config.ts verification
+
+Ensure base: '/'.
+Ensure build.outDir is set to dist/public (matching the current project build output).
+Ensure build.assetsDir is assets (Vite default) so the /assets/* cache rule applies.
+Confirm React/TypeScript + path aliases (if any) are correctly configured.
+Vercel project settings
+
+Framework preset: Vite.
+Build Command: npm run build.
+Output Directory: dist/public.
+Ensure all required VITE_ environment variables for Firebase and Cloudinary are defined in Vercel.
+Post-deployment tests
+
+Directly open and refresh routes like:
+/tools/loan-calculator
+/finance-tools
+/projects
+/services
+/admin (if protected, at least ensure no 404 from Vercel)
+Confirm:
+All 43+ pages load and refresh without 404.
+Static assets from /assets/* load correctly, and are cached as expected.
+No console errors from missing assets or incorrect base paths.
+Firebase Auth/Firestore and Cloudinary image loading still work.
+DELIVERABLES:
+
+A complete, ready-to-use vercel.json file matching this architecture.
+A corrected/confirmed vite.config.ts file (React + TS + Vite) that:
+Uses base: '/'.
+Uses build.outDir = 'dist/public'.
+Keeps /assets for static output.
+Any additional notes or changes required in package.json or project structure specifically for Vercel.
