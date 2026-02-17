@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import "./index.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,48 +8,60 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Switch, Route } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Home from "@/pages/Home";
-import Portfolio from "@/pages/Portfolio";
-import Services from "@/pages/Services";
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
-import AdminLogin from "@/pages/admin/Login";
-import AdminDashboard from "@/pages/admin/Dashboard";
-import OrdersManagement from "@/pages/admin/Orders";
-import ProjectsManagement from "@/pages/admin/Projects";
-import ServicesManagement from "@/pages/admin/Services";
-import AdminLayout from "@/pages/admin/AdminLayout";
-import AdminProtectedRoute from "@/components/AdminProtectedRoute";
-import NotFound from "@/pages/not-found";
+
+// Lazy load pages for performance
+const Home = lazy(() => import("@/pages/Home"));
+const Portfolio = lazy(() => import("@/pages/Portfolio"));
+const Services = lazy(() => import("@/pages/Services"));
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const AdminLogin = lazy(() => import("@/pages/admin/Login"));
+const AdminDashboard = lazy(() => import("@/pages/admin/Dashboard"));
+const OrdersManagement = lazy(() => import("@/pages/admin/Orders"));
+const ProjectsManagement = lazy(() => import("@/pages/admin/Projects"));
+const ServicesManagement = lazy(() => import("@/pages/admin/Services"));
+const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
+const AdminProtectedRoute = lazy(() => import("@/components/AdminProtectedRoute"));
+const NotFound = lazy(() => import("@/pages/not-found"));
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-r-transparent" />
+    </div>
+  );
+}
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/portfolio" component={Portfolio} />
-      <Route path="/services" component={Services} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      
-      {/* Admin Routes */}
-      <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin/:rest*">
-        <AdminProtectedRoute>
-          <AdminLayout>
-            <Switch>
-              <Route path="/admin" component={AdminDashboard} />
-              <Route path="/admin/orders" component={OrdersManagement} />
-              <Route path="/admin/projects" component={ProjectsManagement} />
-              <Route path="/admin/services" component={ServicesManagement} />
-              <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
-              <Route component={NotFound} />
-            </Switch>
-          </AdminLayout>
-        </AdminProtectedRoute>
-      </Route>
-      
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<PageLoader />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/portfolio" component={Portfolio} />
+        <Route path="/services" component={Services} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin/:rest*">
+          <AdminProtectedRoute>
+            <AdminLayout>
+              <Switch>
+                <Route path="/admin" component={AdminDashboard} />
+                <Route path="/admin/orders" component={OrdersManagement} />
+                <Route path="/admin/projects" component={ProjectsManagement} />
+                <Route path="/admin/services" component={ServicesManagement} />
+                <Route path="/admin/team" component={() => <div className="p-8">Team Management (Coming Soon)</div>} />
+                <Route component={NotFound} />
+              </Switch>
+            </AdminLayout>
+          </AdminProtectedRoute>
+        </Route>
+        
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
