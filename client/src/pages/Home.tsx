@@ -39,7 +39,7 @@ export default function Home() {
           )}
           
           <div className="mt-12 text-center">
-            <Button variant="link" className="text-primary hover:text-primary/80 text-lg" asChild>
+            <Button variant="ghost" className="text-primary hover:text-primary/80 text-lg" asChild>
               <Link href="/services">
                 <span className="flex items-center">
                   View All Services <ArrowRight className="ml-2 w-4 h-4" />

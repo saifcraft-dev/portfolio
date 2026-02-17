@@ -42,7 +42,13 @@ export default function Contact() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await createOrder.mutateAsync(values);
+      await createOrder.mutateAsync({
+        ...values,
+        status: 'pending',
+        priority: values.priority as 'low' | 'medium' | 'high',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
       toast({
         title: "Request Sent!",
         description: "We'll get back to you within 24 hours.",
