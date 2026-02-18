@@ -28,22 +28,29 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/upload', upload.single('image'), (req: any, res: express.Response) => {
-  try {
-    if (!req.file) {
-      console.error('Upload failed: No file provided');
-      return res.status(400).json({ message: 'No file uploaded' });
+router.post('/upload', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  upload.single('image')(req, res, (err: any) => {
+    if (err) {
+      console.error('Multer/Cloudinary error:', err);
+      return res.status(500).json({ 
+        message: 'Upload failed', 
+        error: err.message,
+        details: err.http_code ? `Cloudinary error ${err.http_code}` : 'Check server logs'
+      });
     }
-    console.log('Upload successful:', req.file.path);
-    res.json({ url: req.file.path });
-  } catch (error: any) {
-    console.error('Cloudinary upload error:', error);
-    res.status(500).json({ 
-      message: 'Upload failed', 
-      error: error.message,
-      details: error.http_code ? `Cloudinary error ${error.http_code}` : undefined
-    });
-  }
+    
+    try {
+      if (!req.file) {
+        console.error('Upload failed: No file provided');
+        return res.status(400).json({ message: 'No file uploaded' });
+      }
+      console.log('Upload successful:', req.file.path);
+      res.json({ url: req.file.path });
+    } catch (error: any) {
+      console.error('Post-upload processing error:', error);
+      res.status(500).json({ message: 'Error processing upload', error: error.message });
+    }
+  });
 });
 
 export default router;
