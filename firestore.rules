@@ -1,14 +1,14 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper function to check if the user is an admin
     function isAdmin() {
-      return request.auth != null && 
-        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
-         request.auth.token.email.matches('.*@yourdomain\\.com')); // Add domain-based check if needed
+      // Allows access if user is logged in AND (has admin role in DB OR is in the specific admin email)
+      return request.auth != null && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+        request.auth.token.email == 'saifkhan13483@gmail.com'
+      );
     }
 
-    // Projects, Services, and Team: Public read, Admin write
     match /projects/{projectId} {
       allow read: if true;
       allow write: if isAdmin();
@@ -24,13 +24,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Orders: Anyone can create, only admin can read/update/delete
     match /orders/{orderId} {
       allow create: if true;
       allow read, update, delete: if isAdmin();
     }
 
-    // Users: Users can read/write their own profiles, admin has full access
     match /users/{userId} {
       allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
     }
