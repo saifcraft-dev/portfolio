@@ -70,12 +70,21 @@ export default function ProjectsManagement() {
 
     try {
       setIsUploading(true);
-      const storageRef = ref(storage, `projects/${Date.now()}_${file.name}`);
-      const snapshot = await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
-      
-      setFormData(prev => ({ ...prev, imageUrl: downloadURL }));
-      toast({ title: "Image uploaded successfully" });
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+      setFormData(prev => ({ ...prev, imageUrl: data.url }));
+      toast({ title: "Image uploaded successfully to Cloudinary" });
     } catch (error) {
       console.error("Upload failed:", error);
       toast({ title: "Upload failed", description: "Please try again", variant: "destructive" });
