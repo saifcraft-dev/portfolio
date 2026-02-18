@@ -25,8 +25,6 @@ import { Project } from "@/types";
 import { Plus, Pencil, Trash2, ExternalLink, Github, Loader2, Upload, X, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "@/lib/firebase/config";
 
 export default function ProjectsManagement() {
   const { data: projects, isLoading } = useProjects();
