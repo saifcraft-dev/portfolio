@@ -15,6 +15,7 @@ const Portfolio = lazy(() => import("@/pages/Portfolio"));
 const Services = lazy(() => import("@/pages/Services"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const ProjectDetail = lazy(() => import("@/pages/ProjectDetail"));
 const AdminLogin = lazy(() => import("@/pages/admin/Login"));
 const AdminDashboard = lazy(() => import("@/pages/admin/Dashboard"));
 const OrdersManagement = lazy(() => import("@/pages/admin/Orders"));
@@ -38,6 +39,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/portfolio" component={Portfolio} />
+        <Route path="/portfolio/:id" component={ProjectDetail} />
         <Route path="/services" component={Services} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />

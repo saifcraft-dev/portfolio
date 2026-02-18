@@ -1,7 +1,8 @@
 import type { Project } from "@/types";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Github, ArrowUpRight, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
 
 interface ProjectCardProps {
   project: Project;
@@ -16,7 +17,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       className="group relative rounded-2xl overflow-hidden bg-card border border-white/5 hover:border-primary/50 transition-colors duration-300"
     >
       <div className="aspect-video relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10" />
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors z-10" />
         <img 
           src={project.imageUrl} 
           alt={project.title}
@@ -25,24 +26,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
         
         {/* Overlay with links that appears on hover */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 z-20">
+          <Link href={`/portfolio/${project.id}`}>
+            <button className="p-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300" data-testid={`button-view-project-${project.id}`}>
+              <Eye className="w-5 h-5" />
+            </button>
+          </Link>
           {project.projectUrl && (
             <a 
               href={project.projectUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white text-black rounded-full hover:bg-primary hover:text-white transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300"
+              className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75"
+              data-testid={`button-external-link-${project.id}`}
             >
               <ExternalLink className="w-5 h-5" />
-            </a>
-          )}
-          {project.githubUrl && (
-            <a 
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white/10 text-white backdrop-blur-md rounded-full hover:bg-white hover:text-black transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75"
-            >
-              <Github className="w-5 h-5" />
             </a>
           )}
         </div>
@@ -54,15 +51,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <p className="text-primary text-xs font-bold uppercase tracking-wider mb-1">
               {project.category}
             </p>
-            <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
+            <Link href={`/portfolio/${project.id}`}>
+              <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors cursor-pointer" data-testid={`text-project-title-${project.id}`}>
+                {project.title}
+              </h3>
+            </Link>
           </div>
-          {project.projectUrl && (
-            <a href={project.projectUrl} target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors">
+          <Link href={`/portfolio/${project.id}`}>
+            <button className="text-gray-500 hover:text-white transition-colors" data-testid={`button-arrow-detail-${project.id}`}>
               <ArrowUpRight className="w-5 h-5" />
-            </a>
-          )}
+            </button>
+          </Link>
         </div>
 
         <p className="text-gray-400 text-sm mb-6 line-clamp-2">
