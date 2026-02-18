@@ -20,18 +20,30 @@ console.log('Cloudinary Configured:', {
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'website_images',
-    allowed_formats: ['jpg', 'png', 'webp'],
+    folder: 'portfolio',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    transformation: [{ width: 1000, height: 1000, crop: 'limit' }]
   } as any,
 });
 
 const upload = multer({ storage: storage });
 
 router.post('/upload', upload.single('image'), (req: any, res: express.Response) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
+  try {
+    if (!req.file) {
+      console.error('Upload failed: No file provided');
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    console.log('Upload successful:', req.file.path);
+    res.json({ url: req.file.path });
+  } catch (error: any) {
+    console.error('Cloudinary upload error:', error);
+    res.status(500).json({ 
+      message: 'Upload failed', 
+      error: error.message,
+      details: error.http_code ? `Cloudinary error ${error.http_code}` : undefined
+    });
   }
-  res.json({ url: req.file.path });
 });
 
 export default router;
