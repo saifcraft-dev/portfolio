@@ -97,7 +97,11 @@ export default function OrdersManagement() {
                   </TableCell>
                   <TableCell>
                     <span className="text-sm">
-                      {order.createdAt ? format(new Date(order.createdAt), 'MMM dd, yyyy') : 'N/A'}
+                      {(() => {
+                        if (!order.createdAt) return 'N/A';
+                        const date = new Date(order.createdAt);
+                        return isNaN(date.getTime()) ? 'Invalid Date' : format(date, 'MMM dd, yyyy');
+                      })()}
                     </span>
                   </TableCell>
                   <TableCell>
