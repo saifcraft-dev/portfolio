@@ -40,7 +40,8 @@ export default function ProjectDetail() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20 z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
           <img 
             src={project.imageUrl} 
             alt={project.title}
@@ -51,7 +52,7 @@ export default function ProjectDetail() {
         <div className="absolute inset-0 z-20 flex items-end">
           <div className="container mx-auto px-4 pb-20 max-w-7xl">
             <Link href="/portfolio">
-              <Button variant="ghost" className="text-white/80 mb-8 hover:text-white hover:bg-white/10 transition-all duration-300 -ml-4 group" data-testid="link-back-portfolio">
+              <Button variant="ghost" className="text-white mb-8 hover:text-white hover:bg-white/10 transition-all duration-300 -ml-4 group" data-testid="link-back-portfolio">
                 <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
                 Back to Portfolio
               </Button>
@@ -61,13 +62,13 @@ export default function ProjectDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium tracking-wide uppercase">
+              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-bold tracking-wide uppercase bg-primary text-white border-none shadow-lg shadow-primary/20">
                 {project.category}
               </Badge>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight tracking-tight">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
                 {project.title}
               </h1>
-              <p className="text-xl text-white/60 max-w-2xl font-light leading-relaxed">
+              <p className="text-xl text-white/90 max-w-2xl font-medium leading-relaxed drop-shadow-md bg-black/20 backdrop-blur-sm p-4 rounded-2xl -ml-4 border border-white/5">
                 {project.description}
               </p>
             </motion.div>
