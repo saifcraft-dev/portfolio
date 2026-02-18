@@ -71,7 +71,7 @@ export default function ProjectDetail() {
             <section>
               <h2 className="text-2xl font-display font-bold text-white mb-6">About the Project</h2>
               <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-                {project.description.split('\n').map((paragraph, i) => (
+                {(project.longDescription || project.description).split('\n').map((paragraph, i) => (
                   <p key={i} className="mb-4">{paragraph}</p>
                 ))}
               </div>
@@ -116,8 +116,14 @@ export default function ProjectDetail() {
                     <Calendar className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Year</p>
-                    <p className="text-white">2024</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Completed Date</p>
+                    <p className="text-white">
+                      {project.completedDate ? new Date(project.completedDate).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }) : 'Not specified'}
+                    </p>
                   </div>
                 </div>
               </div>
