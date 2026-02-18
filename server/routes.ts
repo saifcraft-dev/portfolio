@@ -21,11 +21,11 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/upload', upload.single('image'), (req: express.Request, res: express.Response) => {
+router.post('/upload', upload.single('image'), (req: any, res: express.Response) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No file uploaded' });
   }
-  res.json({ url: (req.file as any).path });
+  res.json({ url: req.file.path });
 });
 
 export default router;
