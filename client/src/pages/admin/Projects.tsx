@@ -226,6 +226,16 @@ export default function ProjectsManagement() {
                 />
               </div>
               
+              <div className="space-y-2">
+                <Label htmlFor="technologies">Technologies Used (comma-separated)</Label>
+                <Input 
+                  id="technologies" 
+                  value={formData.technologies?.join(", ")} 
+                  onChange={e => setFormData({...formData, technologies: e.target.value.split(",").map(t => t.trim()).filter(t => t !== "")})} 
+                  placeholder="React, TypeScript, Tailwind CSS"
+                />
+              </div>
+              
               <div className="space-y-4 border rounded-lg p-4 bg-muted/30">
                 <div className="flex items-center justify-between">
                   <Label className="text-base font-semibold">Project Image</Label>
