@@ -25,17 +25,18 @@ import { Project } from "@/types";
 import { Plus, Pencil, Trash2, ExternalLink, Github, Loader2, Upload, X, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useImageUpload } from "@/hooks/useImageUpload";
 
 export default function ProjectsManagement() {
   const { data: projects, isLoading } = useProjects();
   const createProject = useCreateProject();
   const updateProject = useUpdateProject();
   const deleteProject = useDeleteProject();
+  const imageUpload = useImageUpload();
   const { toast } = useToast();
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [formData, setFormData] = useState<Partial<Project>>({
@@ -67,28 +68,11 @@ export default function ProjectsManagement() {
     }
 
     try {
-      setIsUploading(true);
-      const formData = new FormData();
-      formData.append('image', file);
-
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Upload failed with status ${response.status}`);
-      }
-
-      const data = await response.json();
-      setFormData(prev => ({ ...prev, imageUrl: data.url }));
+      const imageUrl = await imageUpload.mutateAsync(file);
+      setFormData(prev => ({ ...prev, imageUrl }));
       toast({ title: "Image uploaded successfully to Cloudinary" });
     } catch (error) {
       console.error("Upload failed:", error);
-      toast({ title: "Upload failed", description: "Please try again", variant: "destructive" });
-    } finally {
-      setIsUploading(false);
     }
   };
 
@@ -276,7 +260,7 @@ export default function ProjectsManagement() {
                     className="border-2 border-dashed rounded-lg aspect-video flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-muted/50 transition-colors border-muted-foreground/20"
                   >
                     <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
-                      {isUploading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Upload className="h-5 w-5" />}
+                      {imageUpload.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Upload className="h-5 w-5" />}
                     </div>
                     <div className="text-center">
                       <p className="text-sm font-medium">Click to upload image</p>
@@ -336,7 +320,7 @@ export default function ProjectsManagement() {
                 <Label htmlFor="featured">Featured Project</Label>
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={createProject.isPending || updateProject.isPending || isUploading}>
+                <Button type="submit" disabled={createProject.isPending || updateProject.isPending || imageUpload.isPending}>
                   {(createProject.isPending || updateProject.isPending) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   {editingProject ? "Update Project" : "Create Project"}
                 </Button>

@@ -22,15 +22,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useServices, useCreateService, useUpdateService, useDeleteService } from "@/hooks/use-services";
 import { Service } from "@/types";
-import { Plus, Pencil, Trash2, Loader2, Check, X } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, Check, X, Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useImageUpload } from "@/hooks/useImageUpload";
 
 export default function ServicesManagement() {
   const { data: services, isLoading } = useServices();
   const createService = useCreateService();
   const updateService = useUpdateService();
   const deleteService = useDeleteService();
+  const imageUpload = useImageUpload();
   const { toast } = useToast();
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -43,8 +45,22 @@ export default function ServicesManagement() {
     deliveryTime: "",
     active: true,
     features: [],
+    imageUrl: "",
   });
   const [featureInput, setFeatureInput] = useState("");
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const imageUrl = await imageUpload.mutateAsync(file);
+      setFormData(prev => ({ ...prev, imageUrl }));
+      toast({ title: "Image uploaded successfully" });
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,6 +89,7 @@ export default function ServicesManagement() {
       deliveryTime: "",
       active: true,
       features: [],
+      imageUrl: "",
     });
     setFeatureInput("");
   };
@@ -220,6 +237,26 @@ export default function ServicesManagement() {
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <Label htmlFor="imageUrl">Service Image (Optional)</Label>
+                <div className="flex items-center gap-4">
+                  {formData.imageUrl && (
+                    <div className="h-20 w-20 rounded border overflow-hidden bg-muted">
+                      <img src={formData.imageUrl} alt="Preview" className="h-full w-full object-cover" />
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <Input 
+                      type="file" 
+                      onChange={handleFileUpload} 
+                      accept="image/*"
+                      className="cursor-pointer"
+                    />
+                    {imageUpload.isPending && <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1"><Loader2 className="h-3 w-3 animate-spin" /> Uploading...</p>}
+                  </div>
+                </div>
+              </div>
+
               <div className="flex items-center space-x-2">
                 <input 
                   type="checkbox" 
@@ -231,7 +268,7 @@ export default function ServicesManagement() {
                 <Label htmlFor="active">Active Service</Label>
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={createService.isPending || updateService.isPending}>
+                <Button type="submit" disabled={createService.isPending || updateService.isPending || imageUpload.isPending}>
                   {(createService.isPending || updateService.isPending) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   {editingService ? "Update Service" : "Create Service"}
                 </Button>
