@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './config';
 import { Project, Service, Order, TeamMember } from '@/types';
+import naomiImg from "@assets/ChatGPT_Image_Feb_19,_2026,_09_32_33_AM_1771475827794.png";
 
 // Generic CRUD helper
 const createCRUD = <T extends { id?: string }>(collectionName: string) => {
@@ -65,6 +66,18 @@ export const teamApi = createCRUD<TeamMember>('team');
 
 // Local fallback for team if Firestore is empty/inaccessible
 const localTeam: TeamMember[] = [
+  {
+    id: "naomi-okafor",
+    name: "Naomi Okafor",
+    role: "Backend & DevOps Web Developer",
+    bio: "Naomi specializes in building reliable, secure backend services and deployment pipelines. She focuses on API design, database optimization, and observability (logs, metrics, tracing). She enjoys automating repetitive tasks and making deployments boring and predictable.",
+    imageUrl: naomiImg,
+    skills: ["Node.js", "Python (FastAPI, Django)", "REST & GraphQL APIs", "WebSockets", "PostgreSQL", "MySQL", "Redis", "Docker", "Kubernetes", "CI/CD (GitHub Actions)", "AWS"],
+    socialLinks: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
+  },
   {
     id: "marco-alvarez",
     name: "Marco Alvarez",
