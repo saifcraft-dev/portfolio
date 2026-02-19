@@ -63,6 +63,33 @@ export const servicesApi = createCRUD<Service>('services');
 export const ordersApi = createCRUD<Order>('orders');
 export const teamApi = createCRUD<TeamMember>('team');
 
+// Local fallback for team if Firestore is empty/inaccessible
+const localTeam: TeamMember[] = [
+  {
+    id: "marco-alvarez",
+    name: "Marco Alvarez",
+    role: "Full-Stack Web Developer",
+    bio: "Marco builds end‑to‑end web applications, from database design to UI. He cares about clean architecture, scalable APIs, and maintainable code. He enjoys mentoring juniors and documenting everything so teams can move faster.",
+    imageUrl: "/marco-alvarez.png",
+    skills: ["JavaScript", "TypeScript", "Node.js", "Express.js", "Next.js", "REST & GraphQL APIs", "PostgreSQL", "MongoDB", "Redis", "Docker", "CI/CD", "Jest", "Playwright"],
+    socialLinks: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
+  }
+];
+
+export const getTeamWithFallback = async (): Promise<TeamMember[]> => {
+  try {
+    const members = await teamApi.getAll();
+    if (members.length > 0) return members;
+    return localTeam;
+  } catch (error) {
+    console.error("Error fetching team, using fallback:", error);
+    return localTeam;
+  }
+};
+
 // Special queries
 export const getFeaturedProjects = async (): Promise<Project[]> => {
   const q = query(collection(db, 'projects'), where('featured', '==', true));

@@ -1,11 +1,15 @@
-import { useTeam } from "@/hooks/use-team";
+import { getTeamWithFallback } from "@/lib/firebase/firestore";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 
 export default function TeamSection() {
-  const { data: team, isLoading } = useTeam();
+  const { data: team, isLoading } = useQuery({
+    queryKey: ["/team"],
+    queryFn: getTeamWithFallback
+  });
 
   if (isLoading) {
     return (
