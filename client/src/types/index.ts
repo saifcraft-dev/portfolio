@@ -23,6 +23,7 @@ export interface Service {
   deliveryTime: string;
   category: string;
   active: boolean;
+  imageUrl?: string;
 }
 
 export interface Order {
