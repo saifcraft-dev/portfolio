@@ -88,6 +88,18 @@ const localTeam: TeamMember[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com"
     }
+  },
+  {
+    id: "lena-schmidt",
+    name: "Lena Schmidt",
+    role: "Web Developer & UI/UX Designer",
+    bio: "Lena bridges design and development. She prototypes interfaces in Figma and then implements them as production‑ready components. She’s passionate about smooth micro‑interactions, inclusive design, and clear visual hierarchies.",
+    imageUrl: "/lena-schmidt.png",
+    skills: ["HTML", "CSS (Grid/Flexbox)", "JavaScript", "Vue.js", "Nuxt", "GSAP animations", "Figma", "Adobe XD", "Design Systems", "User Research", "Prototyping", "Usability Testing"],
+    socialLinks: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
   }
 ];
 
