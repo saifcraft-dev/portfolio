@@ -9,7 +9,8 @@ A portfolio website for a digital development studio called "DevStudio". Built w
 - **State Management**: TanStack React Query
 - **Styling**: Tailwind CSS with shadcn/ui component library
 - **Firebase**: Used for Firestore data (projects, services, team, orders)
-- **Deployment**: Static site deployment (builds to `dist/public`)
+- **Backend**: Express 5 REST API on port 3000 (image upload via Cloudinary/Multer)
+- **Deployment**: Autoscale deployment (build: `npm run build`, run: `node ./dist/index.cjs`)
 
 ## Project Structure
 ```
@@ -33,12 +34,14 @@ postcss.config.js        - PostCSS configuration
 ```
 
 ## Running the Project
-- Development: `npm run dev` (runs Vite dev server on port 5000)
-- Build: `npm run build` (outputs to dist/public)
+- Development: `npm run dev` (runs Express on port 3000 + Vite dev server on port 5000, Vite proxies /api to Express)
+- Build: `npm run build` (outputs frontend to dist/public, compiles server to dist/index.cjs)
 
 ## Recent Changes
+- Imported project to Replit environment
 - Configured Vite to serve on port 5000 with `host: "0.0.0.0"` and `allowedHosts: true`
-- Set up static deployment configuration
+- Set up autoscale deployment configuration
+- Workflow configured: `npm run dev` (Express backend + Vite frontend)
 
 ## Environment Variables
 The following environment variables are required for the application to function:
