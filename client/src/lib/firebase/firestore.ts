@@ -76,6 +76,18 @@ const localTeam: TeamMember[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com"
     }
+  },
+  {
+    id: "aisha-khan",
+    name: "Aisha Khan",
+    role: "Frontend Web Developer",
+    bio: "Aisha is a frontend engineer focused on building smooth, accessible user interfaces. She loves transforming rough wireframes into pixel-perfect, responsive experiences and is obsessed with performance, micro-animations, and clean, reusable components.",
+    imageUrl: "/aisha-khan.png",
+    skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Figma to React workflows", "Responsive Design", "Accessibility (WCAG)"],
+    socialLinks: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
   }
 ];
 
