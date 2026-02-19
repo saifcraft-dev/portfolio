@@ -16,6 +16,7 @@ import {
 import { db } from './config';
 import { Project, Service, Order, TeamMember } from '@/types';
 import naomiImg from "@assets/ChatGPT_Image_Feb_19,_2026,_09_32_33_AM_1771475827794.png";
+import fullStackImg from "@assets/image_1771476086345.png";
 
 // Generic CRUD helper
 const createCRUD = <T extends { id?: string }>(collectionName: string) => {
@@ -63,6 +64,27 @@ export const projectsApi = createCRUD<Project>('projects');
 export const servicesApi = createCRUD<Service>('services');
 export const ordersApi = createCRUD<Order>('orders');
 export const teamApi = createCRUD<TeamMember>('team');
+
+// Local fallback for services if Firestore is empty/inaccessible
+const localServices: Service[] = [
+  {
+    id: "full-stack-web-development",
+    title: "Full Stack Web Development",
+    description: "Comprehensive digital solutions tailored to help your business grow. We handle everything from design to deployment.",
+    features: [
+      "Custom Web Applications",
+      "Responsive UI/UX Design",
+      "Robust Backend Systems",
+      "Database Integration",
+      "API Development",
+      "Deployment & Hosting"
+    ],
+    pricing: "Starting at $2,500",
+    deliveryTime: "4-8 weeks",
+    category: "Development",
+    active: true
+  }
+];
 
 // Local fallback for team if Firestore is empty/inaccessible
 const localTeam: TeamMember[] = [
@@ -127,6 +149,17 @@ export const getTeamWithFallback = async (): Promise<TeamMember[]> => {
   }
 };
 
+export const getServicesWithFallback = async (): Promise<Service[]> => {
+  try {
+    const services = await servicesApi.getAll();
+    if (services.length > 0) return services;
+    return localServices;
+  } catch (error) {
+    console.error("Error fetching services, using fallback:", error);
+    return localServices;
+  }
+};
+
 // Special queries
 export const getFeaturedProjects = async (): Promise<Project[]> => {
   const q = query(collection(db, 'projects'), where('featured', '==', true));
@@ -135,7 +168,15 @@ export const getFeaturedProjects = async (): Promise<Project[]> => {
 };
 
 export const getActiveServices = async (): Promise<Service[]> => {
-  const q = query(collection(db, 'services'), where('active', '==', true));
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
+  try {
+    const q = query(collection(db, 'services'), where('active', '==', true));
+    const snapshot = await getDocs(q);
+    if (snapshot.docs.length > 0) {
+      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
+    }
+    return localServices.filter(s => s.active);
+  } catch (error) {
+    console.error("Error fetching active services, using fallback:", error);
+    return localServices.filter(s => s.active);
+  }
 };
