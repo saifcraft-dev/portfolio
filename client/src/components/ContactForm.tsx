@@ -35,17 +35,15 @@ export default function ContactForm() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await addDoc(collection(db, "orders"), {
+      await addDoc(collection(db, "contacts"), {
         ...values,
-        status: "pending",
-        priority: "medium",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+        status: "new",
+        timestamp: serverTimestamp(),
       });
 
       toast({
-        title: "Request Sent!",
-        description: "We've received your project inquiry and will get back to you soon.",
+        title: "Message Sent!",
+        description: "We've received your message and will get back to you soon.",
       });
       form.reset();
     } catch (error) {
