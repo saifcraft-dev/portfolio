@@ -97,7 +97,7 @@ export default function Home() {
                 I help businesses build web apps that solve real problems.
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-                I'm a freelance fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
+                I'm a freelance fullstack developer building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                 I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL.</strong> I also integrate AI features into projects — including semantic search, chatbots, content generation, and recommendation engines. I leverage modern AI-assisted development (vibe coding) to ship high-quality code faster without cutting corners. I handle everything from database design and API architecture to pixel-perfect frontends and AI capabilities. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
