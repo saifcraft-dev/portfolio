@@ -136,9 +136,13 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
-    selection-color: hsl(var(--primary));
     line-height: 1.6;
     letter-spacing: 0.3px;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.22);
+    color: inherit;
   }
   
   h1 {
