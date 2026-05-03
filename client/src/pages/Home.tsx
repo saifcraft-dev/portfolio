@@ -326,9 +326,8 @@ export default function Home() {
       </section>
 
       {/* 8. CTA */}
-      <section id="contact-cta" className="py-20 sm:py-32 relative overflow-hidden border-t border-border">
-        <div className="absolute inset-0 bg-primary/5" />
-        <div className="absolute -top-[50%] left-[20%] w-[60%] h-[60%] bg-primary/15 blur-[150px] rounded-full" />
+      <section id="contact-cta" className="py-20 sm:py-32 relative overflow-hidden border-t border-border bg-[hsl(var(--footer))]">
+        <div className="absolute -top-[50%] left-[20%] w-[60%] h-[60%] bg-primary/20 blur-[150px] rounded-full" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
@@ -337,13 +336,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-6 px-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
               Have a project in mind?
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
+            <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
               Tell me what you're building. I'll get back to you within 24 hours with my thoughts and a rough timeline.
             </p>
-            <p className="text-xs sm:text-sm text-muted-foreground/70 mb-8 sm:mb-12 px-2">
+            <p className="text-xs sm:text-sm text-white/45 mb-8 sm:mb-12 px-2">
               50% upfront · Fixed-scope contract · 30-day post-launch support
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -362,7 +361,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-16 px-10 text-lg rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50"
+                className="h-16 px-10 text-lg rounded-full border-white/20 text-white/80 hover:text-white hover:border-white/50 hover:bg-white/10"
                 asChild
               >
                 <Link href="/faq">Read the FAQ</Link>

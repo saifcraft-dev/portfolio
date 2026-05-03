@@ -65,7 +65,7 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="mt-12 sm:mt-20 pt-8 sm:pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+            <div className="mt-12 sm:mt-20 pt-8 sm:pt-10 border-t border-border grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {[
                 { label: "Client Satisfaction", value: "99%" },
                 { label: "Projects Delivered", value: "50+" },
