@@ -302,16 +302,16 @@ export default function Home() {
       </section>
 
       {/* 3. SKILLS / TECH STACK */}
-      <section id="skills" className="py-12 sm:py-16 border-t border-border bg-card/20">
+      <section id="skills" className="py-10 sm:py-16 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Compact header */}
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8"
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-4 mb-6 sm:mb-8"
           >
             <div>
               <p className="text-primary text-xs font-bold uppercase tracking-widest mb-1.5">My Skills</p>
@@ -319,12 +319,12 @@ export default function Home() {
                 Tech Stack & Expertise
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground max-w-xs sm:text-right leading-relaxed">
+            <p className="text-sm text-muted-foreground sm:text-right sm:max-w-xs leading-relaxed">
               Battle-tested tools I use daily to build fast, scalable, production-ready apps.
             </p>
           </motion.div>
 
-          {/* Compact category rows */}
+          {/* Category rows */}
           <div className="bg-card border border-border rounded-2xl overflow-hidden divide-y divide-border">
             {skillCategories.map((cat, ci) => (
               <motion.div
@@ -333,33 +333,44 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: ci * 0.06, duration: 0.4 }}
-                className="flex flex-col sm:flex-row sm:items-center gap-3 px-4 sm:px-5 py-3.5 hover:bg-muted/30 transition-colors duration-150"
+                className="px-4 sm:px-5 py-3 sm:py-3.5 hover:bg-muted/30 transition-colors duration-150"
               >
-                {/* Category label */}
-                <div className="flex items-center gap-2 sm:w-36 shrink-0">
+                {/* Mobile: label row */}
+                <div className="flex items-center gap-2 mb-2 sm:hidden">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${cat.dot}`} />
-                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
                     {cat.label}
                   </span>
                 </div>
 
-                {/* Skill chips */}
-                <div className="flex flex-wrap gap-2">
-                  {cat.skills.map((tech) => (
-                    <div
-                      key={tech.name}
-                      className="inline-flex items-center gap-1.5 bg-background border border-border rounded-lg px-2.5 py-1.5 group hover:border-primary/40 hover:bg-primary/5 transition-all duration-150 cursor-default"
-                      data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    >
-                      <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-xs font-medium text-foreground">{tech.name}</span>
-                      <span className={`text-[10px] font-semibold ml-0.5 ${
-                        tech.level === "Expert" ? "text-primary" : "text-secondary"
-                      }`}>
-                        {tech.level === "Expert" ? "★" : "◆"}
-                      </span>
-                    </div>
-                  ))}
+                {/* Desktop: side-by-side / Mobile: chips indented */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  {/* Desktop-only label */}
+                  <div className="hidden sm:flex items-center gap-2 w-36 shrink-0">
+                    <span className={`w-2 h-2 rounded-full shrink-0 ${cat.dot}`} />
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
+                      {cat.label}
+                    </span>
+                  </div>
+
+                  {/* Skill chips — indented on mobile */}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pl-4 sm:pl-0">
+                    {cat.skills.map((tech) => (
+                      <div
+                        key={tech.name}
+                        className="inline-flex items-center gap-1.5 bg-background border border-border rounded-lg px-2.5 py-1.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-150 cursor-default"
+                        data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
+                      >
+                        <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
+                        <span className="text-xs font-medium text-foreground">{tech.name}</span>
+                        <span className={`text-[10px] font-semibold ml-0.5 ${
+                          tech.level === "Expert" ? "text-primary" : "text-secondary"
+                        }`}>
+                          {tech.level === "Expert" ? "★" : "◆"}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -371,7 +382,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.4 }}
-            className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+            className="mt-4 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4"
           >
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
@@ -381,7 +392,7 @@ export default function Home() {
                 <span className="text-secondary font-bold">◆</span> Advanced
               </span>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="grid grid-cols-3 sm:flex sm:items-center sm:gap-6 bg-card sm:bg-transparent border sm:border-0 border-border rounded-xl sm:rounded-none px-4 sm:px-0 py-3 sm:py-0">
               {[
                 { value: "7+", label: "Yrs Exp." },
                 { value: "18+", label: "Technologies" },
