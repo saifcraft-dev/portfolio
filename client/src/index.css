@@ -58,11 +58,22 @@
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
     selection-color: hsl(var(--primary));
+    line-height: 1.6;
+    letter-spacing: 0.3px;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
     font-family: var(--font-display);
-    @apply tracking-tight;
+    @apply tracking-tight leading-[1.2];
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight leading-[1.3];
+  }
+
+  p {
+    @apply leading-relaxed;
   }
 
   /* Custom Scrollbar */

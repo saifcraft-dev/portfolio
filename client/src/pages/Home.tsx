@@ -95,16 +95,16 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-6 sm:mb-8">
                 I help businesses build web apps that solve real problems.
               </h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                 I'm a freelance fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                 I specialize in <strong className="text-white">React, Node.js, TypeScript, and PostgreSQL.</strong> I handle everything from database design and API architecture to pixel-perfect frontends. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8">
                 What drives me: I want to build things that genuinely make clients' businesses better — not just pretty apps that sit unused. I price for the result I deliver, not the hours I spend.
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -144,9 +144,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">My Skills</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Tech Stack</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">My Skills</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Tech Stack</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Modern, battle-tested technologies I use every day to build production-ready applications.
             </p>
           </motion.div>
@@ -185,9 +185,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">What I Offer</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Services & Pricing</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">What I Offer</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Services & Pricing</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Fixed-scope packages. Clear deliverables. Transparent prices. No hourly surprises.
             </p>
           </motion.div>
@@ -243,9 +243,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">Social Proof</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">What Clients Say</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Social Proof</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">What Clients Say</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Results-focused testimonials — not just "great work." Real problems solved, real outcomes delivered.
             </p>
           </motion.div>
@@ -262,7 +262,7 @@ export default function Home() {
                 data-testid={`card-testimonial-${i}`}
               >
                 <Quote className="w-8 h-8 text-primary/40" />
-                <p className="text-foreground/90 leading-relaxed flex-1">"{t.quote}"</p>
+                <p className="text-foreground/85 leading-relaxed flex-1">{t.quote}</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-bold text-white text-sm">{t.name}</p>
@@ -290,9 +290,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">Find Me Online</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Where to Hire or Follow Me</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Find Me Online</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Where to Hire or Follow Me</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Whether you prefer a platform with built-in protection or a direct hire — I'm available on all major channels.
             </p>
           </motion.div>

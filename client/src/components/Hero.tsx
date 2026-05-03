@@ -26,7 +26,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight mb-4 sm:mb-8 px-2">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.15] tracking-tight mb-6 sm:mb-10 px-2">
               I build{" "}
               <span className="text-gradient-primary">
                 fast, custom
@@ -34,11 +34,11 @@ export default function Hero() {
               web apps that deliver results.
             </h1>
 
-            <p className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-4 sm:mb-6 leading-relaxed max-w-3xl mx-auto px-2">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
               I'm a fullstack developer who helps startups and businesses turn ideas into high-performance web applications — on time, within budget, with clean code you can actually maintain.
             </p>
 
-            <p className="text-sm sm:text-base text-muted-foreground/70 mb-6 sm:mb-12 max-w-2xl mx-auto px-2">
+            <p className="text-sm sm:text-base text-muted-foreground/75 mb-8 sm:mb-14 max-w-2xl mx-auto px-2">
               React · Node.js · TypeScript · PostgreSQL · Mobile · Cloud
             </p>
 
