@@ -51,7 +51,7 @@ export default function About() {
           >
             <h2 className="text-3xl font-display font-bold text-foreground mb-6">My Story</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              I'm a self-driven fullstack developer building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
+              I'm a self-driven fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL</strong>. I also have 2 years of hands-on experience integrating AI into projects — whether it's semantic search, chatbots, content generation, or recommendation engines. Beyond that, I leverage AI tools (vibe coding) for faster, more efficient development without sacrificing code quality. I handle everything — from database architecture and API design to pixel-perfect frontend interfaces and AI-powered features.
