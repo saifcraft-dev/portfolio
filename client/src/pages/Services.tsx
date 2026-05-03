@@ -106,7 +106,7 @@ const packages = [
 const pricingTable = [
   { level: "Beginner", experience: "0–1 year", hourly: "$15 – $30/hr", small: "$150 – $600", large: "$600 – $2,000" },
   { level: "Intermediate", experience: "1–3 years", hourly: "$30 – $65/hr", small: "$600 – $2,500", large: "$2,500 – $7,000" },
-  { level: "Senior", experience: "3–5 years", hourly: "$65 – $120/hr", small: "$2,000 – $6,000", large: "$6,000 – $20,000", highlight: true },
+  { level: "Senior", experience: "5+ years (2 with AI)", hourly: "$65 – $120/hr", small: "$2,000 – $6,000", large: "$6,000 – $20,000", highlight: true },
   { level: "Expert / Specialist", experience: "5+ years", hourly: "$120 – $200+/hr", small: "$5,000+", large: "$20,000+" },
 ];
 
