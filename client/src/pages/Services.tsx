@@ -161,19 +161,22 @@ export default function Services() {
         {/* 5 Packages */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-20 md:mb-24">
           {packages.map((pkg, idx) => (
-            <motion.div
+            <div
               key={pkg.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.08 }}
-              className={`relative rounded-2xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
-                pkg.highlight
-                  ? "border-primary/60 bg-primary/5 shadow-lg shadow-primary/10"
-                  : "border-border bg-card hover:border-primary/30"
-              }`}
-              data-testid={`card-package-${pkg.id}`}
+              className={pkg.id >= 3 ? "theme-bold" : ""}
             >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className={`relative rounded-2xl border p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
+                  pkg.highlight
+                    ? "border-primary/60 bg-primary/5 shadow-lg shadow-primary/10"
+                    : "border-border bg-card hover:border-primary/30"
+                }`}
+                data-testid={`card-package-${pkg.id}`}
+              >
               {pkg.badge && (
                 <div className="absolute -top-3 left-6">
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${pkg.highlight ? "bg-primary text-foreground" : "bg-card border border-border text-muted-foreground"}`}>
@@ -212,7 +215,8 @@ export default function Services() {
                   <div className="text-lg font-bold text-foreground">{pkg.price}</div>
                 </div>
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           ))}
         </div>
 

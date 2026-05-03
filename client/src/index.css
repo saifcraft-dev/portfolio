@@ -8,52 +8,125 @@
   --font-sans: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   
-  /* Refined Modern Color Palette - Better Readability */
-  /* Clean, neutral background with excellent contrast */
-  --background: 0 0% 98%;
-  --foreground: 0 0% 13%;
-
-  /* Card Surface — Pure white with strong contrast */
+  /* OPTION A: SLEEK & PREMIUM (Default - Navy/Emerald) */
+  --background: 0 0% 99%;
+  --foreground: 220 13% 20%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 13%;
- 
+  --card-foreground: 220 13% 20%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 35%;
- 
-  /* Primary Blue — professional and balanced */
-  --primary: 217 91% 44%;
+  --popover-foreground: 220 13% 20%;
+  --primary: 220 90% 45%;
   --primary-foreground: 0 0% 100%;
- 
-  /* Secondary Teal — calm and supporting */
-  --secondary: 178 65% 38%;
+  --secondary: 160 84% 39%;
   --secondary-foreground: 0 0% 100%;
- 
-  /* Refined neutral grays with better contrast */
-  --muted: 0 0% 87%;
-  --muted-foreground: 0 0% 45%;
- 
-  /* Accent — Sophisticated purple */
-  --accent: 259 80% 52%;
+  --accent: 220 85% 50%;
   --accent-foreground: 0 0% 100%;
- 
-  /* Clear destructive color */
+  --muted: 220 10% 87%;
+  --muted-foreground: 220 8% 48%;
+  --border: 220 10% 91%;
+  --input: 220 10% 96%;
+  --ring: 220 90% 45%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-
-  /* Border color — neutral gray */
-  --border: 0 0% 89%;
-  --input: 0 0% 96%;
-  --ring: 217 91% 44%;
- 
-  /* CTA Amber — warm and inviting */
-  --cta: 38 92% 50%;
-  --cta-hover: 38 92% 44%;
-
-  /* Footer — dark sophisticated background */
-  --footer: 217 32% 17%;
+  --success: 142 72% 29%;
+  --warning: 38 92% 50%;
+  --cta: 220 90% 45%;
+  --cta-hover: 220 90% 38%;
+  --footer: 220 25% 18%;
   --footer-foreground: 0 0% 95%;
 
   --radius: 0.75rem;
+}
+
+/* OPTION B: BOLD & CREATIVE (Purple/Gold) - Applied via .theme-bold */
+:root.theme-bold,
+[data-theme="bold"] {
+  --background: 0 0% 98%;
+  --foreground: 280 10% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 280 10% 16%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 280 10% 16%;
+  --primary: 280 85% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 280 45% 72%;
+  --secondary-foreground: 280 20% 25%;
+  --accent: 48 100% 50%;
+  --accent-foreground: 280 20% 20%;
+  --muted: 280 10% 85%;
+  --muted-foreground: 280 10% 45%;
+  --border: 280 10% 90%;
+  --input: 280 10% 96%;
+  --ring: 280 85% 48%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 72% 29%;
+  --warning: 38 92% 50%;
+  --cta: 48 100% 50%;
+  --cta-hover: 48 100% 45%;
+  --footer: 280 30% 25%;
+  --footer-foreground: 0 0% 95%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Option A Dark Mode */
+    --background: 220 20% 8%;
+    --foreground: 220 10% 95%;
+    --card: 220 20% 15%;
+    --card-foreground: 220 10% 95%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 220 10% 95%;
+    --primary: 220 90% 55%;
+    --primary-foreground: 220 20% 8%;
+    --secondary: 160 100% 45%;
+    --secondary-foreground: 220 20% 8%;
+    --accent: 220 95% 60%;
+    --accent-foreground: 220 20% 8%;
+    --muted: 220 15% 35%;
+    --muted-foreground: 220 10% 72%;
+    --border: 220 20% 25%;
+    --input: 220 20% 20%;
+    --ring: 220 90% 55%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 220 20% 8%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 60%;
+    --cta: 220 90% 55%;
+    --cta-hover: 220 90% 50%;
+    --footer: 220 25% 12%;
+    --footer-foreground: 220 10% 90%;
+  }
+
+  :root.theme-bold,
+  [data-theme="bold"] {
+    /* Option B Dark Mode */
+    --background: 280 20% 10%;
+    --foreground: 280 10% 93%;
+    --card: 280 25% 18%;
+    --card-foreground: 280 10% 93%;
+    --popover: 280 25% 18%;
+    --popover-foreground: 280 10% 93%;
+    --primary: 280 85% 58%;
+    --primary-foreground: 280 20% 10%;
+    --secondary: 280 60% 70%;
+    --secondary-foreground: 280 20% 10%;
+    --accent: 48 100% 58%;
+    --accent-foreground: 280 20% 10%;
+    --muted: 280 20% 35%;
+    --muted-foreground: 280 15% 75%;
+    --border: 280 25% 28%;
+    --input: 280 25% 22%;
+    --ring: 280 85% 58%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 280 20% 10%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 60%;
+    --cta: 48 100% 58%;
+    --cta-hover: 48 100% 50%;
+    --footer: 280 30% 15%;
+    --footer-foreground: 280 10% 90%;
+  }
 }
 
 @layer base {
