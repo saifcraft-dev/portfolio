@@ -8,46 +8,46 @@
   --font-sans: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   
-  /* Premium Modern Color Palette - Enhanced */
-  /* Cleaner, slightly warmer background for better readability */
-  --background: 210 25% 97%;
-  --foreground: 210 35% 10%;
+  /* Refined Modern Color Palette - Better Readability */
+  /* Clean, neutral background with excellent contrast */
+  --background: 0 0% 98%;
+  --foreground: 0 0% 13%;
 
-  /* Card Surface — Bright white with refined contrast */
+  /* Card Surface — Pure white with strong contrast */
   --card: 0 0% 100%;
-  --card-foreground: 210 35% 10%;
+  --card-foreground: 0 0% 13%;
  
   --popover: 0 0% 100%;
-  --popover-foreground: 210 25% 35%;
+  --popover-foreground: 0 0% 35%;
  
-  /* Premium Blue primary — sophisticated yet energetic */
-  --primary: 217 92% 42%;
+  /* Primary Blue — professional and balanced */
+  --primary: 217 91% 44%;
   --primary-foreground: 0 0% 100%;
  
-  /* Complementary Teal secondary — modern and balanced */
-  --secondary: 174 80% 38%;
+  /* Secondary Teal — calm and supporting */
+  --secondary: 178 65% 38%;
   --secondary-foreground: 0 0% 100%;
  
-  /* Refined neutral grays */
-  --muted: 210 20% 83%;
-  --muted-foreground: 210 25% 48%;
+  /* Refined neutral grays with better contrast */
+  --muted: 0 0% 87%;
+  --muted-foreground: 0 0% 45%;
  
-  /* Vibrant Accent — Vivid Indigo */
-  --accent: 258 95% 52%;
+  /* Accent — Sophisticated purple */
+  --accent: 259 80% 52%;
   --accent-foreground: 0 0% 100%;
  
-  /* Warm destructive color */
-  --destructive: 0 90% 56%;
+  /* Clear destructive color */
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  /* Refined border color — softer gray */
-  --border: 210 20% 88%;
-  --input: 210 25% 95%;
-  --ring: 217 92% 42%;
+  /* Border color — neutral gray */
+  --border: 0 0% 89%;
+  --input: 0 0% 96%;
+  --ring: 217 91% 44%;
  
-  /* CTA Premium Orange — sophisticated and attention-grabbing */
-  --cta: 23 98% 52%;
-  --cta-hover: 23 98% 46%;
+  /* CTA Amber — warm and inviting */
+  --cta: 38 92% 50%;
+  --cta-hover: 38 92% 44%;
 
   --radius: 0.75rem;
 }
