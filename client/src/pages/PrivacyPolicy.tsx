@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, ArrowLeft, Home } from "lucide-react";
+import { Link } from "wouter";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -78,42 +79,60 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20">
+      <section className="relative overflow-hidden pt-14 pb-10 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-20">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute -top-32 -right-20 h-[480px] w-[480px] rounded-full bg-primary/8 blur-3xl" />
           <div className="absolute top-20 -left-16 h-[320px] w-[320px] rounded-full bg-secondary/6 blur-3xl" />
           <div className="absolute bottom-0 left-1/2 h-[200px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-2xl" />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-2 mb-8 sm:mb-10"
+          >
+            <Link href="/">
+              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors group">
+                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+                <Home className="w-3 h-3" />
+                <span className="hidden sm:inline">Home</span>
+              </span>
+            </Link>
+            <span className="text-border text-xs">/</span>
+            <span className="text-xs sm:text-sm text-foreground font-medium">Privacy Policy</span>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs sm:text-sm font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-primary/20">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5 sm:mb-6 border border-primary/20">
               <ShieldCheck className="w-3.5 h-3.5" />
               Legal
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-foreground mb-5 leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-5 leading-tight tracking-tight">
               Privacy{" "}
               <span className="text-primary">Policy</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-2">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-2">
               How DevStudio collects, uses, and protects your personal information.
             </p>
 
-            <p className="mt-4 text-xs text-muted-foreground/70">Last updated: May 2026</p>
+            <p className="mt-3 sm:mt-4 text-xs text-muted-foreground/70">Last updated: May 2026</p>
           </motion.div>
         </div>
       </section>
 
       {/* ── Content ── */}
-      <section className="container mx-auto px-4 max-w-3xl pb-20 sm:pb-28">
-        <div className="space-y-10">
+      <section className="container mx-auto px-4 sm:px-6 max-w-3xl pb-14 sm:pb-20 lg:pb-28">
+        <div className="space-y-8 sm:space-y-10">
           {sections.map(({ title, body }, i) => (
             <motion.div
               key={title}
@@ -122,9 +141,9 @@ export default function PrivacyPolicy() {
               whileInView="show"
               viewport={{ once: true }}
               custom={i}
-              className="border-b border-border pb-10 last:border-0"
+              className="border-b border-border pb-8 sm:pb-10 last:border-0"
             >
-              <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-4">{title}</h2>
+              <h2 className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground mb-3 sm:mb-4">{title}</h2>
               <div className="text-sm sm:text-base text-muted-foreground leading-relaxed space-y-3">
                 {body.split("\n\n").map((para, j) => (
                   <p key={j} className="whitespace-pre-line">
@@ -139,6 +158,27 @@ export default function PrivacyPolicy() {
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 sm:mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <Link href="/">
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group">
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+              Back to Home
+            </span>
+          </Link>
+          <Link href="/terms-of-service">
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              Terms of Service →
+            </span>
+          </Link>
+        </motion.div>
       </section>
 
     </div>
