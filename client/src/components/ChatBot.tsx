@@ -51,11 +51,15 @@ export default function ChatBot() {
           parts: [{ text: m.content }],
         }));
 
+      console.log("[ChatBot] Sending message to Gemini...");
       const reply = await geminiChat(history, text, buildChatbotPrompt());
+      console.log("[ChatBot] Got response!");
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+      setError(null);
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "Something went wrong.";
+      console.error("[ChatBot] Error:", message);
       setError(message);
     } finally {
       setLoading(false);

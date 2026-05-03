@@ -251,61 +251,79 @@ export async function geminiChat(
 ): Promise<string> {
   const keys = getKeys();
   if (keys.length === 0) {
-    throw new Error("No Gemini API keys configured.");
+    throw new Error("No Gemini API keys configured. Please contact support.");
   }
 
-  for (const key of keys) {
-    for (const model of MODELS) {
+  let lastError: Error | null = null;
+
+  for (let keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+    const key = keys[keyIndex];
+    
+    for (let modelIndex = 0; modelIndex < MODELS.length; modelIndex++) {
+      const model = MODELS[modelIndex];
+      
       try {
+        const body = {
+          systemInstruction: {
+            parts: [{ text: systemInstruction }],
+          },
+          contents: [
+            ...history,
+            { role: "user", parts: [{ text: userMessage }] },
+          ],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 1024,
+          },
+        };
+
+        console.log(`[Gemini] Trying key ${keyIndex + 1}/${keys.length}, model ${model}`);
+
         const response = await fetch(
           `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              system_instruction: {
-                parts: [{ text: systemInstruction }],
-              },
-              contents: [
-                ...history,
-                { role: "user", parts: [{ text: userMessage }] },
-              ],
-              generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 1024,
-              },
-            }),
+            body: JSON.stringify(body),
           }
         );
 
+        console.log(`[Gemini] Response status: ${response.status}`);
+
         if (response.ok) {
           const data = await response.json();
-          return (
-            data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Sorry, I couldn't generate a response."
-          );
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) {
+            console.log("[Gemini] Success!");
+            return text;
+          }
         }
 
-        if (STOP_ERRORS.has(response.status)) {
-          const err = await response.json().catch(() => ({}));
-          throw new Error(err?.error?.message || "Bad request");
+        const responseData = await response.json().catch(() => ({}));
+        const errorMsg = responseData?.error?.message || `HTTP ${response.status}`;
+
+        // Stop on hard errors
+        if (response.status === 400) {
+          throw new Error(`Bad request: ${errorMsg}`);
         }
 
-        // 429, 401, 403, 500, 502, 503, 504 → try next key/model
+        // Log but continue on retriable errors (429, 401, 403, 500, 502, 503, 504)
+        console.log(`[Gemini] Retriable error (${response.status}): ${errorMsg}`);
+        lastError = new Error(errorMsg);
+        
       } catch (err: unknown) {
-        if (
-          err instanceof Error &&
-          (err.message.includes("Bad request") ||
-            err.message.includes("400"))
-        ) {
-          throw err;
+        const errMsg = err instanceof Error ? err.message : String(err);
+        console.error(`[Gemini] Error on key ${keyIndex + 1}, model ${model}:`, errMsg);
+        lastError = err instanceof Error ? err : new Error(errMsg);
+        
+        // Hard errors - throw immediately
+        if (errMsg.includes("Bad request") || errMsg.includes("400")) {
+          throw lastError;
         }
-        // network error or non-stop error → continue to next
+        // Retriable errors - continue to next
       }
     }
   }
 
-  throw new Error(
-    "All Gemini API keys and models are currently unavailable. Please try again shortly."
-  );
+  throw lastError || new Error("All Gemini API keys and models are currently unavailable. Please try again shortly.");
 }
