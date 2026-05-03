@@ -8,6 +8,75 @@ interface Message {
   content: string;
 }
 
+// Format message content with better readability
+function MessageFormatter({ content, isUser }: { content: string; isUser: boolean }) {
+  if (isUser) {
+    return <span>{content}</span>;
+  }
+
+  // Split by bullet points and sections
+  const parts = content.split(/(\*[^*]+\*|\*\*[^*]+\*\*|###\s+.+|##\s+.+)/);
+  
+  return (
+    <div className="space-y-2">
+      {parts.map((part, idx) => {
+        if (!part.trim()) return null;
+
+        // Bold text (**text** or *text*)
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={idx} className="font-semibold">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        
+        if (part.startsWith("*") && part.endsWith("*")) {
+          return (
+            <div key={idx} className="ml-4 flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">•</span>
+              <span>{part.slice(1, -1)}</span>
+            </div>
+          );
+        }
+
+        // Headers
+        if (part.startsWith("###")) {
+          return (
+            <h4 key={idx} className="font-semibold text-sm mt-2 mb-1">
+              {part.replace(/###\s+/, "")}
+            </h4>
+          );
+        }
+
+        if (part.startsWith("##")) {
+          return (
+            <h3 key={idx} className="font-bold text-base mt-3 mb-2">
+              {part.replace(/##\s+/, "")}
+            </h3>
+          );
+        }
+
+        // Regular text - clean up and format
+        const cleaned = part
+          .trim()
+          .replace(/^\*\s+/, "") // Remove leading asterisks from bullet formatting
+          .replace(/\s+/g, " "); // Normalize whitespace
+
+        if (cleaned) {
+          return (
+            <p key={idx} className="text-sm">
+              {cleaned}
+            </p>
+          );
+        }
+
+        return null;
+      })}
+    </div>
+  );
+}
+
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -163,7 +232,7 @@ export default function ChatBot() {
                         : "bg-card border border-border text-foreground rounded-tl-sm"
                     }`}
                   >
-                    {msg.content}
+                    <MessageFormatter content={msg.content} isUser={msg.role === "user"} />
                   </div>
                 </div>
               ))}
