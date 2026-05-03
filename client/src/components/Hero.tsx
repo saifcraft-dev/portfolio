@@ -347,15 +347,15 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT: Visual Panel */}
-          <div className="relative hidden lg:flex flex-col gap-3 items-end">
-            {/* Main code card with typewriter */}
+          {/* RIGHT: Visual Panel — scattered absolute layout */}
+          <div className="relative hidden lg:block h-[460px]">
+            {/* Main code card — top-left */}
             <motion.div
-              initial={{ opacity: 0, x: 30, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.65, delay: 0.25, type: "spring", stiffness: 120 }}
               whileHover={{ scale: 1.02, y: -3 }}
-              className="w-full max-w-xs bg-card border border-border rounded-2xl shadow-xl shadow-primary/5 overflow-hidden"
+              className="absolute top-0 left-0 w-[255px] bg-card border border-border rounded-2xl shadow-xl shadow-primary/5 overflow-hidden"
             >
               <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border-b border-border px-4 py-3 flex items-center gap-2.5">
                 <div className="flex gap-1.5">
@@ -380,47 +380,14 @@ export default function Hero() {
               <TypewriterCode />
             </motion.div>
 
-            {/* Floating feature cards */}
-            {floatingCards.map((card, i) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, x: 20, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: card.delay, type: "spring", stiffness: 130 }}
-              >
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{
-                    duration: 3.2,
-                    delay: card.floatDelay,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  whileHover={{ scale: 1.06, x: -4 }}
-                  className={`flex items-center gap-2.5 bg-gradient-to-r ${card.color} border border-border backdrop-blur-sm rounded-xl px-3.5 py-2.5 shadow-sm ${i % 2 === 0 ? "self-end" : "self-start"} max-w-[240px] cursor-default`}
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 6, -6, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, delay: card.floatDelay + 0.5, ease: "easeInOut" }}
-                    className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0 shadow-sm"
-                  >
-                    <card.icon className={`w-3.5 h-3.5 ${card.iconColor}`} />
-                  </motion.div>
-                  <div>
-                    <div className="text-xs font-semibold text-foreground leading-tight">{card.title}</div>
-                    <div className="text-[11px] text-muted-foreground">{card.desc}</div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-
-            {/* Star rating badge */}
+            {/* Star rating badge — top-right */}
             <motion.div
               initial={{ opacity: 0, scale: 0.75 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.95, type: "spring", stiffness: 160 }}
+              transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 160 }}
               whileHover={{ scale: 1.07 }}
-              className="flex items-center gap-2 bg-card border border-border rounded-full px-3.5 py-2 shadow-md self-start cursor-default"
+              animate-float={{ y: [0, -6, 0] }}
+              className="absolute top-4 right-0 flex items-center gap-2 bg-card border border-border rounded-full px-3.5 py-2 shadow-md cursor-default"
             >
               <motion.div
                 className="flex gap-0.5"
@@ -432,7 +399,7 @@ export default function Hero() {
                     key={i}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1 + i * 0.08, type: "spring", stiffness: 200 }}
+                    transition={{ delay: 0.6 + i * 0.08, type: "spring", stiffness: 200 }}
                   >
                     <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
                   </motion.div>
@@ -440,6 +407,87 @@ export default function Hero() {
               </motion.div>
               <span className="text-xs font-semibold text-foreground">5.0</span>
               <span className="text-xs text-muted-foreground">· 30+ clients</span>
+            </motion.div>
+
+            {/* Web Applications — mid-right */}
+            <motion.div
+              initial={{ opacity: 0, x: 24, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5, type: "spring", stiffness: 130 }}
+              className="absolute top-[44%] right-0"
+            >
+              <motion.div
+                animate={{ y: [0, -9, 0] }}
+                transition={{ duration: 3.2, delay: 0, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.06, x: -4 }}
+                className="flex items-center gap-2.5 bg-gradient-to-r from-blue-500/20 to-cyan-500/10 border border-border backdrop-blur-sm rounded-xl px-3.5 py-2.5 shadow-sm max-w-[210px] cursor-default"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 6, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 0.5, ease: "easeInOut" }}
+                  className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0 shadow-sm"
+                >
+                  <Globe className="w-3.5 h-3.5 text-blue-500" />
+                </motion.div>
+                <div>
+                  <div className="text-xs font-semibold text-foreground leading-tight">Web Applications</div>
+                  <div className="text-[11px] text-muted-foreground">Full-stack, production-ready</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Clean Architecture — bottom-left */}
+            <motion.div
+              initial={{ opacity: 0, x: -24, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.65, type: "spring", stiffness: 130 }}
+              className="absolute bottom-[18%] left-2"
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3.4, delay: 0.6, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.06, x: 4 }}
+                className="flex items-center gap-2.5 bg-gradient-to-r from-emerald-500/20 to-green-500/10 border border-border backdrop-blur-sm rounded-xl px-3.5 py-2.5 shadow-sm max-w-[210px] cursor-default"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 6, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1.1, ease: "easeInOut" }}
+                  className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0 shadow-sm"
+                >
+                  <Layers className="w-3.5 h-3.5 text-emerald-500" />
+                </motion.div>
+                <div>
+                  <div className="text-xs font-semibold text-foreground leading-tight">Clean Architecture</div>
+                  <div className="text-[11px] text-muted-foreground">Scalable & maintainable</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Modern Stack — bottom-right */}
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8, type: "spring", stiffness: 130 }}
+              className="absolute bottom-0 right-4"
+            >
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3.0, delay: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.06, x: -4 }}
+                className="flex items-center gap-2.5 bg-gradient-to-r from-violet-500/20 to-purple-500/10 border border-border backdrop-blur-sm rounded-xl px-3.5 py-2.5 shadow-sm max-w-[210px] cursor-default"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 6, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1.7, ease: "easeInOut" }}
+                  className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0 shadow-sm"
+                >
+                  <Code2 className="w-3.5 h-3.5 text-violet-500" />
+                </motion.div>
+                <div>
+                  <div className="text-xs font-semibold text-foreground leading-tight">Modern Stack</div>
+                  <div className="text-[11px] text-muted-foreground">React, Node, TypeScript</div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
