@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="bg-[hsl(222,47%,4%)] pt-20 pb-10 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-1">
+          <div className="col-span-1">
             <Link href="/">
               <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
                 <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
@@ -20,7 +20,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Freelance fullstack developer. I build fast, custom web apps that solve real problems and deliver measurable results.
+              Freelance fullstack developer. I help startups and businesses build fast, custom web apps that solve real problems.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
@@ -38,19 +38,21 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Web Development</span></Link></li>
-              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Mobile Apps</span></Link></li>
-              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">UI/UX Design</span></Link></li>
-              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Cloud Solutions</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Landing Page — from $250</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Business Website — from $700</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Custom Web App — from $2,500</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">AI Features — from $600</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Monthly Retainer — from $250/mo</span></Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Pages</h4>
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Me</span></Link></li>
               <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">My Work</span></Link></li>
-              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Services</span></Link></li>
+              <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Services & Pricing</span></Link></li>
+              <li><Link href="/faq"><span className="hover:text-primary transition-colors cursor-pointer">FAQ</span></Link></li>
               <li><Link href="/contact"><span className="hover:text-primary transition-colors cursor-pointer">Hire Me</span></Link></li>
             </ul>
           </div>
@@ -67,12 +69,22 @@ export default function Footer() {
                 <span>Available remotely worldwide</span>
               </li>
             </ul>
+
+            <div className="mt-6">
+              <h4 className="font-display font-bold text-white mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-primary transition-colors">Upwork</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Fiverr</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>&copy; {currentYear} DevStudio. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/faq"><span className="hover:text-white transition-colors cursor-pointer">FAQ</span></Link>
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>

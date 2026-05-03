@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import Hero from "@/components/Hero";
-import ServicesSection from "@/components/ServicesSection";
 import ProjectsGallery from "@/components/ProjectsGallery";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Quote, Star, ArrowRight, Zap, Shield, Clock, HeartHandshake } from "lucide-react";
-import { SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiTailwindcss, SiNextdotjs, SiMongodb, SiDocker, SiFirebase, SiGraphql } from "react-icons/si";
+import {
+  Quote, Star, ArrowRight, Zap, Shield, Clock, HeartHandshake,
+  CheckCircle2, ExternalLink
+} from "lucide-react";
+import {
+  SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiTailwindcss,
+  SiNextdotjs, SiMongodb, SiDocker, SiFirebase, SiGraphql,
+  SiUpwork, SiFiverr, SiGithub, SiLinkedin, SiX
+} from "react-icons/si";
 
 const techStack = [
   { icon: SiReact, name: "React", color: "#61DAFB" },
@@ -48,56 +55,99 @@ const values = [
   { icon: HeartHandshake, title: "Clear Communication", desc: "You'll always know exactly where your project stands. I reply within hours, not days." },
 ];
 
+const platforms = [
+  { icon: SiUpwork, name: "Upwork", desc: "Hire me for long-term projects & hourly contracts", href: "#", color: "#6FDA44" },
+  { icon: SiFiverr, name: "Fiverr", desc: "Fixed-price gigs — quick wins, defined scope", href: "#", color: "#1DBF73" },
+  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#ffffff" },
+  { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
+  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#ffffff" },
+];
+
+const servicePreview = [
+  { name: "Landing Page", price: "$250 – $600", time: "5–7 days", desc: "Fully responsive, SEO-optimised, with contact form and CTA." },
+  { name: "Business Website", price: "$700 – $1,800", time: "2–3 weeks", desc: "5–8 pages, Google Analytics, maps, mobile-first.", highlight: false },
+  { name: "Custom Web App", price: "$2,500 – $10,000+", time: "4–8 weeks", desc: "React + Node.js + PostgreSQL, auth, admin panel, deployed.", highlight: true },
+  { name: "AI Feature Add-On", price: "$600 – $4,000", time: "1–3 weeks", desc: "Chatbot, semantic search, AI generation — added to any app." },
+  { name: "Monthly Retainer", price: "$250 – $1,000/mo", time: "Ongoing", desc: "Bug fixes, updates, monitoring, priority response time." },
+];
+
 export default function Home() {
+  useEffect(() => {
+    document.title = "DevStudio — Freelance Fullstack Developer | React · Node.js · TypeScript";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "I help startups and businesses build fast, custom web applications — on time, within budget, with clean code you can maintain.");
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
+
+      {/* 1. HERO */}
       <Hero />
 
-      {/* Why Work With Me */}
-      <section className="py-20 border-t border-border">
+      {/* 2. ABOUT — inline per guide */}
+      <section id="about" className="py-20 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((v, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex flex-col items-start gap-4"
-              >
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <v.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-white mb-1">{v.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">About Me</p>
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+                I help businesses build web apps that solve real problems.
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                I'm a freelance fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                I specialize in <strong className="text-white">React, Node.js, TypeScript, and PostgreSQL.</strong> I handle everything from database design and API architecture to pixel-perfect frontends. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                What drives me: I want to build things that genuinely make clients' businesses better — not just pretty apps that sit unused. I price for the result I deliver, not the hours I spend.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {values.map((v, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm text-muted-foreground">{v.title}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-primary/15 blur-[100px] rounded-full" />
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072"
+                alt="Developer at work"
+                className="relative rounded-2xl border border-border shadow-2xl z-10"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <ServicesSection />
-      <ProjectsGallery />
-
-      {/* Tech Stack */}
-      <section className="py-24 border-t border-border">
+      {/* 3. SKILLS / TECH STACK */}
+      <section id="skills" className="py-24 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-16"
+            className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">My Skills</p>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">
-              Tech Stack
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              I use modern, battle-tested technologies to build fast and scalable applications.
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Tech Stack</h2>
+            <p className="text-muted-foreground">
+              Modern, battle-tested technologies I use every day to build production-ready applications.
             </p>
           </motion.div>
 
@@ -122,8 +172,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-card/40 border-t border-border">
+      {/* 4. PROJECTS */}
+      <ProjectsGallery />
+
+      {/* 5. SERVICES PREVIEW */}
+      <section id="services" className="py-24 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-2xl mx-auto mb-14"
+          >
+            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">What I Offer</p>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Services & Pricing</h2>
+            <p className="text-muted-foreground">
+              Fixed-scope packages. Clear deliverables. Transparent prices. No hourly surprises.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10">
+            {servicePreview.map((s, i) => (
+              <motion.div
+                key={s.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className={`rounded-2xl border p-6 flex flex-col gap-3 transition-colors ${
+                  s.highlight
+                    ? "border-primary/60 bg-primary/5 relative"
+                    : "border-border bg-card hover:border-primary/30"
+                }`}
+                data-testid={`card-service-preview-${i}`}
+              >
+                {s.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                  </div>
+                )}
+                <h3 className="font-display font-bold text-white text-sm">{s.name}</h3>
+                <p className="text-primary font-bold text-lg leading-tight">{s.price}</p>
+                <p className="text-xs text-muted-foreground">{s.time}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50 group" asChild>
+              <Link href="/services">
+                <span className="flex items-center gap-2">
+                  View Full Packages & Details
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. TESTIMONIALS */}
+      <section id="testimonials" className="py-24 bg-card/40 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -133,11 +244,9 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-16"
           >
             <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Social Proof</p>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">
-              What Clients Say
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              I let results speak. Here's what my clients say about working with me.
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">What Clients Say</h2>
+            <p className="text-muted-foreground">
+              Results-focused testimonials — not just "great work." Real problems solved, real outcomes delivered.
             </p>
           </motion.div>
 
@@ -171,8 +280,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32 relative overflow-hidden border-t border-border">
+      {/* 7. PLATFORMS — Find me on */}
+      <section id="platforms" className="py-24 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-2xl mx-auto mb-14"
+          >
+            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Find Me Online</p>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Where to Hire or Follow Me</h2>
+            <p className="text-muted-foreground">
+              Whether you prefer a platform with built-in protection or a direct hire — I'm available on all major channels.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {platforms.map((p, i) => (
+              <motion.a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="bg-card border border-border rounded-2xl p-6 flex flex-col items-start gap-4 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group"
+                data-testid={`link-platform-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                  <p.icon style={{ color: p.color }} className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="font-bold text-white text-sm mb-1 flex items-center gap-1">
+                    {p.name}
+                    <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. CTA */}
+      <section id="contact-cta" className="py-32 relative overflow-hidden border-t border-border">
         <div className="absolute inset-0 bg-primary/5" />
         <div className="absolute -top-[50%] left-[20%] w-[60%] h-[60%] bg-primary/15 blur-[150px] rounded-full" />
 
@@ -186,24 +342,38 @@ export default function Home() {
             <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
               Have a project in mind?
             </h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-              I'd love to hear about it. Let's build something that actually works — on time, on budget, with measurable results.
+            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+              Tell me what you're building. I'll get back to you within 24 hours with my thoughts and a rough timeline.
             </p>
-            <Button
-              size="lg"
-              className="btn-cta border-0 text-lg h-16 px-12 rounded-full shadow-lg shadow-orange-900/20 group"
-              asChild
-            >
-              <Link href="/contact">
-                <span className="flex items-center gap-2">
-                  Let's Work Together
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            </Button>
+            <p className="text-sm text-muted-foreground/70 mb-12">
+              50% upfront · Fixed-scope contract · 30-day post-launch support
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                size="lg"
+                className="btn-cta border-0 text-lg h-16 px-12 rounded-full shadow-lg shadow-orange-900/20 group"
+                asChild
+              >
+                <Link href="/contact">
+                  <span className="flex items-center gap-2">
+                    Let's Work Together
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-16 px-10 text-lg rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50"
+                asChild
+              >
+                <Link href="/faq">Read the FAQ</Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 }

@@ -9,12 +9,12 @@ import { Switch, Route, Redirect } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Lazy load pages for performance
 const Home = lazy(() => import("@/pages/Home"));
 const Portfolio = lazy(() => import("@/pages/Portfolio"));
 const Services = lazy(() => import("@/pages/Services"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const FAQ = lazy(() => import("@/pages/FAQ"));
 const ProjectDetail = lazy(() => import("@/pages/ProjectDetail"));
 const AdminLogin = lazy(() => import("@/pages/admin/Login"));
 const AdminDashboard = lazy(() => import("@/pages/admin/Dashboard"));
@@ -43,8 +43,8 @@ function Router() {
         <Route path="/services" component={Services} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        
-        {/* Admin Routes */}
+        <Route path="/faq" component={FAQ} />
+
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin">
           <Redirect to="/admin/dashboard" />
@@ -66,16 +66,13 @@ function Router() {
                   <Route path="/admin/services">
                     <ServicesManagement />
                   </Route>
-                  <Route path="/admin/team">
-                    <div className="p-8">Team Management (Coming Soon)</div>
-                  </Route>
                   <Route component={NotFound} />
                 </Switch>
               </AdminLayout>
             </AdminProtectedRoute>
           )}
         </Route>
-        
+
         <Route component={NotFound} />
       </Switch>
     </Suspense>
