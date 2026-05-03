@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Code2, Twitter, Linkedin, Github, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Code2, Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -65,7 +66,7 @@ export default function Footer() {
                 <span>hello@devstudio.com</span>
               </li>
               <li className="flex items-center space-x-2">
-                <MessageCircle className="w-4 h-4 text-primary shrink-0" />
+                <SiWhatsapp className="w-4 h-4 text-primary shrink-0" />
                 <a href="https://wa.me/923188055850" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+92 318 8055850</a>
               </li>
               <li className="flex items-start space-x-2">
