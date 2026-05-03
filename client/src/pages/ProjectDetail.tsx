@@ -13,8 +13,8 @@ export default function ProjectDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background pt-32 flex items-center justify-center">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-r-transparent" />
+      <div className="min-h-screen bg-background pt-24 sm:pt-32 flex items-center justify-center">
+        <div className="h-10 w-10 sm:h-12 sm:w-12 animate-spin rounded-full border-4 border-primary border-r-transparent" />
       </div>
     );
   }
@@ -70,10 +70,10 @@ export default function ProjectDetail() {
               <Badge className="mb-3 sm:mb-4 px-3 py-1 text-xs sm:text-sm font-bold tracking-wide uppercase bg-primary text-primary-foreground border-none shadow-lg shadow-primary/20">
                 {project.category}
               </Badge>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-3 sm:mb-5 leading-tight tracking-tight drop-shadow-2xl">
+              <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-3 sm:mb-5 leading-tight tracking-tight drop-shadow-2xl">
                 {project.title}
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-white/85 max-w-2xl font-medium leading-relaxed drop-shadow-md bg-black/25 backdrop-blur-sm px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/10">
+              <p className="text-xs sm:text-base lg:text-lg text-white/85 max-w-2xl font-medium leading-relaxed drop-shadow-md bg-black/25 backdrop-blur-sm px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl border border-white/10">
                 {project.description}
               </p>
             </motion.div>
@@ -97,14 +97,14 @@ export default function ProjectDetail() {
                 Project Overview
               </h3>
 
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 sm:gap-5 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 sm:gap-5 lg:gap-8">
                 <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 group">
                   <div className="p-2.5 sm:p-3 bg-primary/10 rounded-xl lg:rounded-2xl group-hover:bg-primary/20 transition-colors duration-300 shrink-0">
                     <Tag className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-primary" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-black mb-0.5">Category</p>
-                    <p className="text-sm sm:text-base lg:text-lg text-foreground font-semibold truncate">{project.category}</p>
+                    <p className="text-sm sm:text-base lg:text-lg text-foreground font-semibold break-words">{project.category}</p>
                   </div>
                 </div>
 
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              <div className="mt-5 sm:mt-7 lg:mt-12 flex flex-col sm:flex-row lg:flex-col gap-3">
+              <div className="mt-5 sm:mt-7 lg:mt-12 flex flex-col gap-3">
                 {project.projectUrl && (
                   <Button
                     asChild
