@@ -23,26 +23,26 @@ const skills = [
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
+      <div className="pt-24 sm:pt-32 pb-16 sm:pb-20 container mx-auto px-4 max-w-7xl">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">About Me</p>
-          <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
+          <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
             Hi, I'm Saif Khan
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-2">
             I help startups and businesses build fast, custom web applications that solve real problems and deliver measurable results.
           </p>
         </motion.div>
 
         {/* Bio + Photo */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-20 md:mb-24">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}

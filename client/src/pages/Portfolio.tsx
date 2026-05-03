@@ -14,11 +14,11 @@ export default function Portfolio() {
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.5 }}
-           className="text-center max-w-3xl mx-auto mb-20"
+           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">Our Work</h1>
-          <p className="text-xl text-gray-400">
-            A selection of projects we've built for clients across various industries. From fintech to healthcare, we deliver excellence.
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6">My Work</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-2">
+            A selection of projects I've built for clients across various industries. Each one solved a real problem and delivered measurable results.
           </p>
         </motion.div>
 

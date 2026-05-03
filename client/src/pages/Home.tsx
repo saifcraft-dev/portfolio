@@ -85,20 +85,20 @@ export default function Home() {
       <Hero />
 
       {/* 2. ABOUT — inline per guide */}
-      <section id="about" className="py-20 border-t border-border">
+      <section id="about" className="py-16 sm:py-20 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">About Me</p>
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+              <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-6">
                 I help businesses build web apps that solve real problems.
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
                 I'm a freelance fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
@@ -135,23 +135,23 @@ export default function Home() {
       </section>
 
       {/* 3. SKILLS / TECH STACK */}
-      <section id="skills" className="py-24 border-t border-border bg-card/20">
+      <section id="skills" className="py-16 sm:py-24 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-14"
+            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">My Skills</p>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Tech Stack</h2>
-            <p className="text-muted-foreground">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">My Skills</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Tech Stack</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2">
               Modern, battle-tested technologies I use every day to build production-ready applications.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-5 md:grid-cols-10 gap-4 md:gap-6">
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-10 gap-3 sm:gap-4 md:gap-6">
             {techStack.map((tech, i) => (
               <motion.div
                 key={tech.name}
@@ -176,23 +176,23 @@ export default function Home() {
       <ProjectsGallery />
 
       {/* 5. SERVICES PREVIEW */}
-      <section id="services" className="py-24 border-t border-border">
+      <section id="services" className="py-16 sm:py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-14"
+            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">What I Offer</p>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Services & Pricing</h2>
-            <p className="text-muted-foreground">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">What I Offer</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Services & Pricing</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2">
               Fixed-scope packages. Clear deliverables. Transparent prices. No hourly surprises.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10">
             {servicePreview.map((s, i) => (
               <motion.div
                 key={s.name}
@@ -234,23 +234,23 @@ export default function Home() {
       </section>
 
       {/* 6. TESTIMONIALS */}
-      <section id="testimonials" className="py-24 bg-card/40 border-t border-border">
+      <section id="testimonials" className="py-16 sm:py-24 bg-card/40 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-16"
+            className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
           >
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Social Proof</p>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">What Clients Say</h2>
-            <p className="text-muted-foreground">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">Social Proof</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">What Clients Say</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2">
               Results-focused testimonials — not just "great work." Real problems solved, real outcomes delivered.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
@@ -281,23 +281,23 @@ export default function Home() {
       </section>
 
       {/* 7. PLATFORMS — Find me on */}
-      <section id="platforms" className="py-24 border-t border-border">
+      <section id="platforms" className="py-16 sm:py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-14"
+            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Find Me Online</p>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">Where to Hire or Follow Me</h2>
-            <p className="text-muted-foreground">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">Find Me Online</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-3 sm:mb-4 px-2">Where to Hire or Follow Me</h2>
+            <p className="text-sm sm:text-base text-muted-foreground px-2">
               Whether you prefer a platform with built-in protection or a direct hire — I'm available on all major channels.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             {platforms.map((p, i) => (
               <motion.a
                 key={p.name}
@@ -328,7 +328,7 @@ export default function Home() {
       </section>
 
       {/* 8. CTA */}
-      <section id="contact-cta" className="py-32 relative overflow-hidden border-t border-border">
+      <section id="contact-cta" className="py-20 sm:py-32 relative overflow-hidden border-t border-border">
         <div className="absolute inset-0 bg-primary/5" />
         <div className="absolute -top-[50%] left-[20%] w-[60%] h-[60%] bg-primary/15 blur-[150px] rounded-full" />
 
@@ -339,13 +339,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
               Have a project in mind?
             </h2>
-            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
               Tell me what you're building. I'll get back to you within 24 hours with my thoughts and a rough timeline.
             </p>
-            <p className="text-sm text-muted-foreground/70 mb-12">
+            <p className="text-xs sm:text-sm text-muted-foreground/70 mb-8 sm:mb-12 px-2">
               50% upfront · Fixed-scope contract · 30-day post-launch support
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

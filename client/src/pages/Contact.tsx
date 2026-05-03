@@ -68,8 +68,8 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
-        <div className="flex flex-col lg:flex-row gap-16">
+      <div className="pt-24 sm:pt-32 pb-16 sm:pb-20 container mx-auto px-4 max-w-7xl">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
 
           {/* Contact Info */}
           <div className="lg:w-1/3">
@@ -78,9 +78,9 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">Get in Touch</p>
-              <h1 className="text-4xl lg:text-5xl font-display font-bold text-white mb-5">Let's Work Together</h1>
-              <p className="text-lg text-muted-foreground mb-10">
+              <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">Get in Touch</p>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-4 sm:mb-5 px-2 sm:px-0">Let's Work Together</h1>
+              <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 px-2 sm:px-0">
                 Have a project in mind? Fill out the form and I'll get back to you within 24 hours with my thoughts and a rough timeline.
               </p>
 

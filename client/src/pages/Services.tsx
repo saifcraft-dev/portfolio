@@ -142,24 +142,24 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
+      <div className="pt-24 sm:pt-32 pb-16 sm:pb-20 container mx-auto px-4 max-w-7xl">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">What I Offer</p>
-          <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">Services & Packages</h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">What I Offer</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">Services & Packages</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-2">
             Fixed-scope packages with transparent pricing. You know exactly what you're getting before we start — no hourly billing, no scope surprises.
           </p>
         </motion.div>
 
         {/* 5 Packages */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-20 md:mb-24">
           {packages.map((pkg, idx) => (
             <motion.div
               key={pkg.id}
