@@ -232,6 +232,14 @@
   animation: float 6s ease-in-out infinite;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes pulse-ring {
   0% { transform: scale(0.9); opacity: 0.7; }
   50% { transform: scale(1.05); opacity: 1; }
