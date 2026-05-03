@@ -73,12 +73,13 @@ const packages = [
     timeline: "1–3 weeks per feature",
     revisions: "Included",
     features: [
-      "Smart semantic search",
+      "Smart semantic search with vector databases",
       "AI-generated content / product descriptions",
       "Chatbot trained on your own data",
       "Recommendation engine",
       "Automated summarization or classification",
       "OpenAI / Anthropic API integration",
+      "AI-assisted code generation (vibe coding workflows)",
     ],
     highlight: false,
     badge: "🔥 Fastest Growing",
@@ -106,7 +107,7 @@ const packages = [
 const pricingTable = [
   { level: "Beginner", experience: "0–1 year", hourly: "$15 – $30/hr", small: "$150 – $600", large: "$600 – $2,000" },
   { level: "Intermediate", experience: "1–3 years", hourly: "$30 – $65/hr", small: "$600 – $2,500", large: "$2,500 – $7,000" },
-  { level: "Senior", experience: "5+ years (2 with AI)", hourly: "$65 – $120/hr", small: "$2,000 – $6,000", large: "$6,000 – $20,000", highlight: true },
+  { level: "Senior", experience: "5+ years (2 with AI + Vibe Coding)", hourly: "$65 – $120/hr", small: "$2,000 – $6,000", large: "$6,000 – $20,000", highlight: true },
   { level: "Expert / Specialist", experience: "5+ years", hourly: "$120 – $200+/hr", small: "$5,000+", large: "$20,000+" },
 ];
 
@@ -154,7 +155,7 @@ export default function Services() {
           <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">What I Offer</p>
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-6 sm:mb-8 px-2">Services & Packages</h1>
           <p className="text-base sm:text-lg text-muted-foreground px-2 leading-relaxed">
-            Fixed-scope packages with transparent pricing. You know exactly what you're getting before we start — no hourly billing, no scope surprises.
+            Fixed-scope packages with transparent pricing. Built fast with modern AI tools and vibe coding. You know exactly what you're getting before we start — no hourly billing, no scope surprises.
           </p>
         </motion.div>
 
