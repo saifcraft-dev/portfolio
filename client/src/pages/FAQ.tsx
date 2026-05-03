@@ -259,57 +259,40 @@ export default function FAQ() {
 
       {/* ── Category Filter Tabs ── */}
       <div className="sticky top-[64px] z-30 bg-background/90 backdrop-blur-md border-b border-border">
-        {/* overflow-x-auto must be a direct child so touch-scroll isn't clipped */}
-        <div className="overflow-x-auto no-scrollbar touch-pan-x">
-          <div className="flex items-center gap-2 py-3 sm:py-3.5 px-4 w-max sm:w-auto sm:max-w-7xl sm:mx-auto">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Mobile: wrap to 2 rows so all tabs are tap-accessible without swiping */}
+          {/* Desktop: single row, no wrapping needed */}
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 py-3 sm:py-3.5">
 
-            {/* Mobile "All" — icon dot */}
             <button
               onClick={() => setActiveCategory("All")}
-              className={`sm:hidden flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 ${
-                activeCategory === "All"
-                  ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                  : "bg-card text-muted-foreground border-border"
-              }`}
-              data-testid="filter-faq-all-mobile"
-            >
-              All <span className="opacity-70">({faqs.reduce((a, s) => a + s.items.length, 0)})</span>
-            </button>
-
-            {/* Desktop "All" */}
-            <button
-              onClick={() => setActiveCategory("All")}
-              className={`hidden sm:flex flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
+              className={`flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold border transition-all duration-200 ${
                 activeCategory === "All"
                   ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                   : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
               }`}
               data-testid="filter-faq-all"
             >
-              All <span className="ml-1 opacity-70">({faqs.reduce((a, s) => a + s.items.length, 0)})</span>
+              All <span className="ml-0.5 opacity-70">({faqs.reduce((a, s) => a + s.items.length, 0)})</span>
             </button>
 
             {faqs.map((section) => {
               const Icon = categoryIcons[section.category] || MessageCircle;
               const isActive = activeCategory === section.category;
-              const testId = `filter-faq-${section.category.toLowerCase().replace(/\s+/g, "-")}`;
               return (
                 <button
                   key={section.category}
                   onClick={() => setActiveCategory(section.category)}
-                  data-testid={testId}
+                  data-testid={`filter-faq-${section.category.toLowerCase().replace(/\s+/g, "-")}`}
                   title={section.category}
-                  className={`flex-shrink-0 flex items-center gap-1.5 border transition-all duration-200 font-semibold whitespace-nowrap
-                    /* mobile: icon + first word */
-                    px-3 py-1.5 rounded-full text-[11px]
-                    sm:px-3.5 sm:text-xs
-                    ${isActive
+                  className={`flex-shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold border transition-all duration-200 whitespace-nowrap ${
+                    isActive
                       ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                       : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
-                    }`}
+                  }`}
                 >
                   <Icon className="w-3 h-3 shrink-0" />
-                  {/* Mobile: first word only */}
+                  {/* Mobile: abbreviated label */}
                   <span className="sm:hidden">{section.category.split(" ")[0]}</span>
                   {/* Desktop: full label */}
                   <span className="hidden sm:inline">{section.category}</span>
