@@ -180,7 +180,7 @@ export default function Services() {
               >
               {pkg.badge && (
                 <div className="absolute -top-3 left-6">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${pkg.highlight ? "bg-primary text-foreground" : "bg-card border border-border text-muted-foreground"}`}>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${pkg.highlight ? "bg-primary text-primary-foreground" : "bg-card border border-border text-muted-foreground"}`}>
                     {pkg.badge}
                   </span>
                 </div>
@@ -295,7 +295,7 @@ export default function Services() {
                     }`}
                   >
                     <td className={`px-3 sm:px-6 py-3 sm:py-4 font-bold text-xs sm:text-sm whitespace-nowrap ${row.highlight ? "text-primary" : "text-foreground"}`}>
-                      {row.level} {row.highlight && <span className="hidden sm:inline text-xs bg-primary text-foreground px-2 py-0.5 rounded-full ml-1">← Me</span>}
+                      {row.level} {row.highlight && <span className="hidden sm:inline text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full ml-1">← Me</span>}
                     </td>
                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.experience}</td>
                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.hourly}</td>

@@ -17,7 +17,7 @@ const skills = [
   { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
   { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
   { icon: SiTailwindcss, name: "Tailwind CSS", color: "#38BDF8" },
-  { icon: SiNextdotjs, name: "Full-Stack", color: "#000000" },
+  { icon: SiNextdotjs, name: "Full-Stack", color: "#111827" },
 ];
 
 export default function About() {

@@ -18,7 +18,7 @@ const techStack = [
   { icon: SiReact, name: "React", color: "#61DAFB" },
   { icon: SiNodedotjs, name: "Node.js", color: "#68A063" },
   { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
+  { icon: SiNextdotjs, name: "Next.js", color: "#111827" },
   { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
   { icon: SiTailwindcss, name: "Tailwind", color: "#38BDF8" },
   { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
@@ -56,9 +56,9 @@ const values = [
 ];
 
 const platforms = [
-  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#ffffff" },
+  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#1a1a2e" },
   { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
-  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#ffffff" },
+  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#1a1a2e" },
 ];
 
 const servicePreview = [
@@ -207,7 +207,7 @@ export default function Home() {
               >
                 {s.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-foreground text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                    <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
                   </div>
                 )}
                 <h3 className="font-display font-bold text-foreground text-sm">{s.name}</h3>
@@ -309,7 +309,7 @@ export default function Home() {
                 className="bg-card border border-border rounded-2xl p-6 flex flex-col items-start gap-4 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group"
                 data-testid={`link-platform-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-muted/60 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                   <p.icon style={{ color: p.color }} className="w-5 h-5" />
                 </div>
                 <div>

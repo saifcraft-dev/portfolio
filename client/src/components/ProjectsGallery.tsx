@@ -50,7 +50,7 @@ export default function ProjectsGallery() {
                 onClick={() => setActiveCategory(category)}
                 className={`rounded-full text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4 ${
                   activeCategory === category
-                    ? "bg-primary text-foreground border-primary"
+                    ? "bg-primary text-primary-foreground border-primary"
                     : "border-border text-muted-foreground hover:text-foreground hover:border-primary/50"
                 }`}
                 data-testid={`button-filter-${category.toLowerCase()}`}
