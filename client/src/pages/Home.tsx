@@ -56,8 +56,6 @@ const values = [
 ];
 
 const platforms = [
-  { icon: SiUpwork, name: "Upwork", desc: "Hire me for long-term projects & hourly contracts", href: "#", color: "#6FDA44" },
-  { icon: SiFiverr, name: "Fiverr", desc: "Fixed-price gigs — quick wins, defined scope", href: "#", color: "#1DBF73" },
   { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#ffffff" },
   { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
   { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#ffffff" },
