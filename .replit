@@ -43,7 +43,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
+args = "npx vite"
 waitForPort = 5000
 
 [userenv]
@@ -63,3 +63,4 @@ VITE_CLOUDINARY_CLOUD_NAME = "de2wrwg6e"
 
 [agent]
 expertMode = true
+stack = "FULLSTACK_JS"
