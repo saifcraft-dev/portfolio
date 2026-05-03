@@ -208,9 +208,22 @@ export default function ChatBot() {
           >
             {/* Header with safe area insets */}
             <div 
-              className="flex items-center gap-3 px-4 py-3 bg-primary/10 border-b border-border shrink-0"
+              className="flex items-center justify-between gap-3 px-4 py-3 bg-primary/10 border-b border-border shrink-0"
               style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))", paddingBottom: "0.75rem" }}
             >
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
+                  <Bot className="w-5 h-5 text-primary-foreground" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-foreground leading-tight truncate">
+                    Saif's AI Assistant
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">
+                    Ask anything about services
+                  </p>
+                </div>
+              </div>
               <button
                 onClick={() => setOpen(false)}
                 data-testid="button-close-chat"
@@ -219,17 +232,6 @@ export default function ChatBot() {
               >
                 <X className="w-4 h-4 text-foreground" />
               </button>
-              <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
-                <Bot className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-foreground leading-tight truncate">
-                  Saif's AI Assistant
-                </p>
-                <p className="text-xs text-muted-foreground truncate">
-                  Ask anything about services
-                </p>
-              </div>
             </div>
 
             {/* Messages */}
