@@ -134,19 +134,19 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-card border border-border rounded-3xl p-8 lg:p-12"
+              className="bg-card border border-border rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12"
             >
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <FormField
                       control={form.control}
                       name="clientName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Your Name</FormLabel>
+                          <FormLabel className="text-white text-sm">Your Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} className="bg-background border-border text-white h-12" data-testid="input-name" />
+                            <Input placeholder="John Doe" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-name" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -157,9 +157,9 @@ export default function Contact() {
                       name="clientEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Email Address</FormLabel>
+                          <FormLabel className="text-white text-sm">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="john@example.com" {...field} className="bg-background border-border text-white h-12" data-testid="input-email" />
+                            <Input placeholder="john@example.com" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-email" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -167,16 +167,16 @@ export default function Contact() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <FormField
                       control={form.control}
                       name="serviceType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">What Do You Need?</FormLabel>
+                          <FormLabel className="text-white text-sm">What Do You Need?</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-background border-border text-white h-12" data-testid="select-service">
+                              <SelectTrigger className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="select-service">
                                 <SelectValue placeholder="Select a service" />
                               </SelectTrigger>
                             </FormControl>
@@ -196,9 +196,9 @@ export default function Contact() {
                       name="budget"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Budget (Optional)</FormLabel>
+                          <FormLabel className="text-white text-sm">Budget (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g. $3,000 – $8,000" {...field} className="bg-background border-border text-white h-12" data-testid="input-budget" />
+                            <Input placeholder="e.g. $3,000 – $8,000" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-budget" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -211,12 +211,12 @@ export default function Contact() {
                     name="projectDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Tell Me About Your Project</FormLabel>
+                        <FormLabel className="text-white text-sm">Tell Me About Your Project</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="What problem are you trying to solve? What does success look like?"
                             {...field}
-                            className="bg-background border-border text-white min-h-[150px] resize-none"
+                            className="bg-background border-border text-white min-h-[120px] sm:min-h-[150px] resize-none text-sm"
                             data-testid="textarea-description"
                           />
                         </FormControl>
@@ -227,7 +227,7 @@ export default function Contact() {
 
                   <Button
                     type="submit"
-                    className="w-full h-14 text-lg btn-cta border-0 rounded-xl shadow-lg shadow-orange-900/20"
+                    className="w-full h-12 sm:h-14 text-base sm:text-lg btn-cta border-0 rounded-xl shadow-lg shadow-orange-900/20"
                     disabled={createOrder.isPending}
                     data-testid="button-submit"
                   >

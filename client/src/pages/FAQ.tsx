@@ -173,7 +173,7 @@ export default function FAQ() {
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-12 sm:space-y-16">
           {faqs.map((section, si) => (
             <motion.div
               key={si}
@@ -181,12 +181,13 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: si * 0.05 }}
+              className="px-2 sm:px-0"
             >
-              <h2 className="text-xl font-display font-bold text-white mb-5 flex items-center gap-3">
-                <span className="text-primary text-sm font-mono">{String(si + 1).padStart(2, "0")}</span>
-                {section.category}
+              <h2 className="text-lg sm:text-xl font-display font-bold text-white mb-4 sm:mb-5 flex items-center gap-2 sm:gap-3">
+                <span className="text-primary text-xs sm:text-sm font-mono">{String(si + 1).padStart(2, "0")}</span>
+                <span className="text-sm sm:text-lg">{section.category}</span>
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {section.items.map((item, ii) => (
                   <FAQItem key={ii} q={item.q} a={item.a} />
                 ))}
@@ -195,20 +196,20 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="mt-24 text-center bg-card border border-border rounded-2xl p-10">
-          <h2 className="text-2xl font-display font-bold text-white mb-3">Still have a question?</h2>
-          <p className="text-muted-foreground mb-8">
+        <div className="mt-16 sm:mt-24 text-center bg-card border border-border rounded-2xl p-6 sm:p-10 px-3 sm:px-10">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-white mb-2 sm:mb-3 px-2">Still have a question?</h2>
+          <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 px-2">
             Send me a message and I'll reply within 24 hours.
           </p>
           <Button
             size="lg"
-            className="btn-cta border-0 rounded-full px-10 h-14 text-lg shadow-lg shadow-orange-900/20 group"
+            className="w-full sm:w-auto btn-cta border-0 rounded-full px-6 sm:px-10 h-12 sm:h-14 text-base sm:text-lg shadow-lg shadow-orange-900/20 group"
             asChild
           >
             <Link href="/contact">
-              <span className="flex items-center gap-2">
+              <span className="flex items-center justify-center gap-2">
                 Get in Touch
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
           </Button>
