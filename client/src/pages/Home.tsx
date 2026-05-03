@@ -577,7 +577,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
               Have a project in mind?
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-white/82 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
+            <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
               Tell me what you're building. I'll get back to you within 24 hours with my thoughts and a rough timeline.
             </p>
             <p className="text-xs sm:text-sm text-white/60 mb-8 sm:mb-12 px-2">
