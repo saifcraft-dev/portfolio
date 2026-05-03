@@ -83,50 +83,188 @@ export default function Home() {
       <Hero />
 
       {/* 2. ABOUT — inline per guide */}
-      <section id="about" className="py-16 sm:py-20 border-t border-border">
+      <section id="about" className="py-20 sm:py-28 border-t border-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+
+          {/* Section label + headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mb-14 sm:mb-18"
+          >
+            <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">About Me</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground leading-[1.15] mb-5">
+              I help businesses build web apps that{" "}
+              <span className="text-gradient-primary">solve real problems.</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Senior fullstack developer. Direct communication. Results you can measure.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+
+            {/* LEFT: Text + values */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="lg:col-span-3 flex flex-col gap-6"
             >
-              <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-6 sm:mb-8">
-                I help businesses build web apps that solve real problems.
-              </h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-                I'm a freelance fullstack developer with <strong className="text-foreground">7+ years of experience</strong> building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                I'm a freelance fullstack developer with{" "}
+                <strong className="text-foreground">7+ years of experience</strong> building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
               </p>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-                I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL.</strong> For the past <strong className="text-foreground">2 years, I've integrated AI features</strong> into projects — including semantic search, chatbots, content generation, and recommendation engines. I also leverage <strong className="text-foreground">AI-assisted development (vibe coding)</strong> to ship high-quality code faster without cutting corners. I handle everything from database design and API architecture to pixel-perfect frontends and AI capabilities. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                I specialize in{" "}
+                <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL.</strong>{" "}
+                For the past <strong className="text-foreground">2 years, I've integrated AI features</strong> into projects — semantic search, chatbots, content generation, and recommendation engines. I handle everything from database design and API architecture to pixel-perfect frontends. When you hire me, you talk directly to the developer doing the work.
               </p>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8">
-                What drives me: I want to build things that genuinely make clients' businesses better — not just pretty apps that sit unused. I price for the result I deliver, not the hours I spend.
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                What drives me: building things that genuinely improve clients' businesses — not just pretty apps that sit unused. I price for the result I deliver, not the hours I spend.
               </p>
-              <div className="grid grid-cols-2 gap-4">
+
+              {/* Value cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                 {values.map((v, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">{v.title}</span>
-                  </div>
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15 + i * 0.07, duration: 0.4 }}
+                    className="flex items-start gap-3 bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:bg-primary/3 transition-all duration-200"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <v.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground mb-0.5">{v.title}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
+
+              <div className="pt-2">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-border hover:border-primary/50 hover:bg-primary/5 group text-sm"
+                  asChild
+                >
+                  <Link href="/about">
+                    <span className="flex items-center gap-2">
+                      Read My Full Story
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                </Button>
+              </div>
             </motion.div>
+
+            {/* RIGHT: Visual card stack */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative"
+              transition={{ duration: 0.55, delay: 0.2 }}
+              className="lg:col-span-2 flex flex-col gap-4"
             >
-              <div className="absolute inset-0 bg-primary/15 blur-[100px] rounded-full" />
-              <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072"
-                alt="Developer at work"
-                className="relative rounded-2xl border border-border shadow-2xl z-10"
-              />
+              {/* Profile card */}
+              <div className="relative bg-card border border-border rounded-2xl overflow-hidden shadow-lg">
+                {/* Top image strip */}
+                <div className="relative h-36 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/10 overflow-hidden">
+                  <div className="absolute inset-0 opacity-40"
+                    style={{
+                      backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+                      backgroundSize: "28px 28px",
+                    }}
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
+                    alt="Developer at work"
+                    className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
+                  />
+                </div>
+                {/* Profile info */}
+                <div className="px-5 pb-5 pt-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="font-display font-bold text-foreground text-lg leading-tight">Saif Khan</h3>
+                      <p className="text-sm text-muted-foreground">Senior Fullstack Developer</p>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-semibold rounded-full px-3 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Available
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3 pt-3 border-t border-border">
+                    {[
+                      { value: "7+", label: "Yrs Exp." },
+                      { value: "50+", label: "Projects" },
+                      { value: "99%", label: "Satisfaction" },
+                    ].map((s) => (
+                      <div key={s.label} className="text-center">
+                        <div className="text-lg font-display font-bold text-foreground">{s.value}</div>
+                        <div className="text-xs text-muted-foreground">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Specializations */}
+              <div className="bg-card border border-border rounded-2xl p-5">
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Specializations</p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { label: "React / Next.js Frontends", pct: 95 },
+                    { label: "Node.js APIs & Backends", pct: 92 },
+                    { label: "AI Feature Integration", pct: 85 },
+                    { label: "Database Design", pct: 88 },
+                  ].map((skill, i) => (
+                    <motion.div
+                      key={skill.label}
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + i * 0.07 }}
+                    >
+                      <div className="flex justify-between text-xs mb-1.5">
+                        <span className="font-medium text-foreground">{skill.label}</span>
+                        <span className="text-muted-foreground">{skill.pct}%</span>
+                      </div>
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.4 + i * 0.07, ease: "easeOut" }}
+                          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick facts */}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { label: "Based in", value: "Remote — Global" },
+                  { label: "Response time", value: "< 24 hours" },
+                  { label: "Contract type", value: "Fixed-scope" },
+                  { label: "AI-ready", value: "Yes — LLMs & RAG" },
+                ].map((fact) => (
+                  <div key={fact.label} className="bg-card border border-border rounded-xl px-4 py-3">
+                    <p className="text-xs text-muted-foreground mb-0.5">{fact.label}</p>
+                    <p className="text-sm font-semibold text-foreground">{fact.value}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
