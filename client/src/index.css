@@ -8,37 +8,42 @@
   --font-sans: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   
-  /* Modern/Tech Developer Palette — Deep Navy + Electric Blue */
-  --background: 222 47% 6%;
-  --foreground: 213 31% 91%;
+  /* Palette 01 — Classic & Trustworthy (Navy + Orange + Gold) from Professional Guide */
+  /* Brand Primary — Navy Blue */
+  --background: 210 25% 96%;
+  --foreground: 200 29% 16%;
 
-  --card: 222 47% 9%;
-  --card-foreground: 213 31% 91%;
+  /* Card Surface — Pure White */
+  --card: 0 0% 100%;
+  --card-foreground: 200 29% 16%;
  
-  --popover: 222 47% 9%;
-  --popover-foreground: 215 20% 65%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 194 8% 42%;
  
-  /* Electric Blue primary */
-  --primary: 217 91% 60%;
+  /* Navy Blue primary — trustworthy brand color */
+  --primary: 210 56% 23%;
   --primary-foreground: 0 0% 100%;
  
-  --secondary: 222 40% 14%;
-  --secondary-foreground: 210 40% 98%;
+  /* Sky Blue secondary */
+  --secondary: 204 61% 47%;
+  --secondary-foreground: 0 0% 100%;
  
-  --muted: 222 40% 12%;
-  --muted-foreground: 215 20% 55%;
+  --muted: 210 13% 88%;
+  --muted-foreground: 194 8% 42%;
  
-  --accent: 217 91% 60%;
+  /* Golden Yellow accent */
+  --accent: 37 90% 55%;
   --accent-foreground: 0 0% 100%;
  
-  --destructive: 0 63% 50%;
+  --destructive: 6 76% 57%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 217 25% 16%;
-  --input: 217 25% 16%;
-  --ring: 217 91% 60%;
+  /* Light Blue Gray border */
+  --border: 210 13% 88%;
+  --input: 210 25% 96%;
+  --ring: 210 56% 23%;
  
-  /* CTA Orange — complementary to blue */
+  /* CTA Orange — proven for conversions */
   --cta: 25 80% 51%;
   --cta-hover: 25 78% 43%;
 
@@ -74,11 +79,11 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/60;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1A3C5E] via-[#2E86C1] to-[#F5A623];
   }
   
   .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#3B82F6] via-[#60A5FA] to-[#93C5FD];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1A3C5E] via-[#2E86C1] to-[#5DADE2];
   }
 
   .text-gradient-cta {
@@ -102,7 +107,23 @@
   }
 
   .blue-glow {
-    box-shadow: 0 0 80px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 80px rgba(26, 60, 94, 0.15);
+  }
+
+  .success {
+    color: hsl(145 63% 42%);
+  }
+
+  .warning {
+    color: hsl(37 90% 51%);
+  }
+
+  .error {
+    color: hsl(6 76% 57%);
+  }
+
+  .info {
+    color: hsl(204 64% 44%);
   }
 }
 
