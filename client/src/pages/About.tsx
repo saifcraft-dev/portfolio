@@ -54,7 +54,7 @@ export default function About() {
               I'm a self-driven fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL</strong>. I handle everything — from database architecture and API design to pixel-perfect frontend interfaces.
+              I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL</strong>. I also have 2 years of hands-on experience integrating AI into projects — whether it's semantic search, chatbots, content generation, or recommendation engines. I handle everything — from database architecture and API design to pixel-perfect frontend interfaces and AI features.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
               When you hire me, you're not handing your project to a project manager who then hands it to a junior. <strong className="text-foreground">You talk directly to the developer doing the work.</strong> Fast replies, clear updates, honest timelines.
