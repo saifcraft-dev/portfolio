@@ -41,7 +41,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
 
         <div className="space-y-2.5 mb-8">
           {service.features?.map((feature, i) => (
-            <div key={i} className="flex items-start space-x-3 text-sm text-foreground/80">
+            <div key={i} className="flex items-start space-x-3 text-sm text-foreground">
               <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
               <span>{feature}</span>
             </div>

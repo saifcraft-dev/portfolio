@@ -10,30 +10,30 @@
   
   /* OPTION A: SLEEK & PREMIUM (Default - Navy/Emerald) */
   --background: 0 0% 99%;
-  --foreground: 220 13% 20%;
+  --foreground: 220 18% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 220 13% 20%;
+  --card-foreground: 220 18% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 220 13% 20%;
-  --primary: 220 90% 45%;
+  --popover-foreground: 220 18% 12%;
+  --primary: 220 90% 42%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 160 84% 39%;
+  --secondary: 160 84% 35%;
   --secondary-foreground: 0 0% 100%;
-  --accent: 220 85% 50%;
+  --accent: 220 85% 46%;
   --accent-foreground: 0 0% 100%;
-  --muted: 220 10% 87%;
-  --muted-foreground: 220 8% 48%;
-  --border: 220 10% 91%;
-  --input: 220 10% 96%;
-  --ring: 220 90% 45%;
-  --destructive: 0 84% 60%;
+  --muted: 220 12% 88%;
+  --muted-foreground: 220 12% 38%;
+  --border: 220 14% 84%;
+  --input: 220 12% 95%;
+  --ring: 220 90% 42%;
+  --destructive: 0 84% 55%;
   --destructive-foreground: 0 0% 100%;
-  --success: 142 72% 29%;
-  --warning: 38 92% 50%;
-  --cta: 220 90% 45%;
-  --cta-hover: 220 90% 38%;
-  --footer: 220 40% 10%;
-  --footer-foreground: 0 0% 95%;
+  --success: 142 72% 27%;
+  --warning: 38 92% 46%;
+  --cta: 220 90% 42%;
+  --cta-hover: 220 90% 35%;
+  --footer: 220 45% 8%;
+  --footer-foreground: 0 0% 98%;
 
   --radius: 0.75rem;
 }

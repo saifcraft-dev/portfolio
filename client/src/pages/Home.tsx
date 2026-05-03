@@ -498,7 +498,7 @@ export default function Home() {
                 data-testid={`card-testimonial-${i}`}
               >
                 <Quote className="w-8 h-8 text-primary/40" />
-                <p className="text-foreground/85 leading-relaxed flex-1">{t.quote}</p>
+                <p className="text-foreground leading-relaxed flex-1">{t.quote}</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-bold text-foreground text-sm">{t.name}</p>
@@ -577,10 +577,10 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
               Have a project in mind?
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
+            <p className="text-base sm:text-lg lg:text-xl text-white/82 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
               Tell me what you're building. I'll get back to you within 24 hours with my thoughts and a rough timeline.
             </p>
-            <p className="text-xs sm:text-sm text-white/45 mb-8 sm:mb-12 px-2">
+            <p className="text-xs sm:text-sm text-white/60 mb-8 sm:mb-12 px-2">
               50% upfront · Fixed-scope contract · 30-day post-launch support
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
