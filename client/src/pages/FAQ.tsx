@@ -259,9 +259,9 @@ export default function FAQ() {
 
       {/* ── Category Filter Tabs ── */}
       <div className="sticky top-[64px] z-30 bg-background/90 backdrop-blur-md border-b border-border">
-        <div className="container mx-auto px-4 max-w-7xl">
-          {/* Mobile: icon-only row | sm+: full pill labels */}
-          <div className="flex items-center gap-2 py-3 sm:py-3.5 overflow-x-auto no-scrollbar">
+        {/* overflow-x-auto must be a direct child so touch-scroll isn't clipped */}
+        <div className="overflow-x-auto no-scrollbar touch-pan-x">
+          <div className="flex items-center gap-2 py-3 sm:py-3.5 px-4 w-max sm:w-auto sm:max-w-7xl sm:mx-auto">
 
             {/* Mobile "All" — icon dot */}
             <button
