@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Link } from "wouter";
-import { Menu, X, Code2, LogIn, User as UserIcon, LayoutDashboard, LogOut } from "lucide-react";
+import { Menu, Code2, LogIn, User as UserIcon, LayoutDashboard, LogOut, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/context/AuthContext";
 import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -29,6 +30,7 @@ const navItems = [
 export default function Header() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAdmin } = useAuth();
   const { toast } = useToast();
 
@@ -76,40 +78,66 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b shadow-sm"
+          ? "bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <Code2 className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform" />
-          <span className="text-xl font-bold font-display tracking-tighter">
-            DevStudio
-          </span>
-        </Link>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-16 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center group-hover:bg-primary/90 transition-colors duration-300">
+              <Code2 className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <span className="text-xl font-bold font-display tracking-tight hidden sm:inline-block">
+              DevStudio
+            </span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link 
-              key={item.href} 
-              href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location === item.href ? "text-primary" : "text-muted-foreground"
-              }`}
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Link 
+                key={item.href} 
+                href={item.href}
+                className={`px-3 py-2 text-sm font-medium transition-colors rounded-lg relative group ${
+                  location === item.href 
+                    ? "text-foreground" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.label}
+                {location === item.href && (
+                  <motion.div
+                    layoutId="header-underline"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-primary rounded-full"
+                  />
+                )}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-3">
+            {/* Desktop CTA */}
+            <Button
+              asChild
+              className="hidden md:inline-flex btn-cta border-0 rounded-full px-6 font-semibold gap-1.5 shadow-md hover:shadow-lg transition-all"
             >
-              {item.label}
-            </Link>
-          ))}
-          
-          <div className="flex items-center gap-4 pl-4 border-l">
+              <Link href="/contact" className="flex items-center gap-1.5">
+                Get Started
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+
+            {/* User Menu / Login */}
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                    <Avatar className="h-8 w-8">
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0 hover:bg-primary/10">
+                    <Avatar className="h-9 w-9">
                       <AvatarImage src={user.photoURL || ""} alt={user.displayName || ""} />
-                      <AvatarFallback>{user.displayName?.charAt(0) || "U"}</AvatarFallback>
+                      <AvatarFallback className="bg-primary/20 font-semibold">{user.displayName?.charAt(0) || "U"}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -149,64 +177,104 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={handleLogin} size="sm" className="gap-2">
+              <Button 
+                onClick={handleLogin} 
+                variant="outline" 
+                size="sm" 
+                className="hidden sm:inline-flex gap-2 rounded-full px-5"
+              >
                 <LogIn className="w-4 h-4" />
-                Login
+                <span>Login</span>
               </Button>
             )}
-          </div>
-        </nav>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center gap-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="w-6 h-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-              <nav className="flex flex-col gap-4 mt-8">
-                {navItems.map((item) => (
-                  <Link 
-                    key={item.href} 
-                    href={item.href}
-                    className={`text-lg font-medium py-2 border-b ${
-                      location === item.href ? "text-primary border-primary" : "border-transparent"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                {user ? (
-                  <>
-                    {isAdmin && (
+            {/* Mobile Menu */}
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild className="lg:hidden">
+                <Button variant="ghost" size="icon" className="w-10 h-10">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] p-0">
+                <div className="flex flex-col h-full">
+                  {/* Mobile Header */}
+                  <div className="flex items-center gap-2 px-6 py-4 border-b">
+                    <Code2 className="w-5 h-5 text-primary" />
+                    <span className="font-bold text-sm">DevStudio</span>
+                  </div>
+
+                  {/* Mobile Nav */}
+                  <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+                    {navItems.map((item) => (
                       <Link 
-                        href="/admin"
-                        className="flex items-center gap-2 py-2 text-primary"
+                        key={item.href} 
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                          location === item.href 
+                            ? "bg-primary/10 text-primary" 
+                            : "text-foreground/70 hover:text-foreground hover:bg-card/50"
+                        }`}
                       >
-                        <LayoutDashboard className="w-5 h-5" />
-                        Dashboard
+                        {item.label}
                       </Link>
-                    )}
+                    ))}
+                  </nav>
+
+                  {/* Mobile Footer */}
+                  <div className="border-t p-4 space-y-3">
                     <Button
-                      variant="destructive"
-                      onClick={handleLogout}
-                      className="w-full justify-start gap-2 mt-4"
+                      asChild
+                      className="w-full btn-cta border-0 rounded-lg font-semibold"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
-                      <LogOut className="w-5 h-5" />
-                      Logout
+                      <Link href="/contact">Get Started</Link>
                     </Button>
-                  </>
-                ) : (
-                  <Button onClick={handleLogin} className="w-full gap-2 mt-4">
-                    <LogIn className="w-5 h-5" />
-                    Login with Google
-                  </Button>
-                )}
-              </nav>
-            </SheetContent>
-          </Sheet>
+
+                    {user ? (
+                      <>
+                        {isAdmin && (
+                          <Button
+                            variant="outline"
+                            asChild
+                            className="w-full justify-start gap-2 rounded-lg"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <Link href="/admin" className="flex items-center gap-2">
+                              <LayoutDashboard className="w-4 h-4" />
+                              Dashboard
+                            </Link>
+                          </Button>
+                        )}
+                        <Button
+                          variant="destructive"
+                          onClick={() => {
+                            handleLogout();
+                            setMobileMenuOpen(false);
+                          }}
+                          className="w-full justify-start gap-2 rounded-lg"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Logout
+                        </Button>
+                      </>
+                    ) : (
+                      <Button 
+                        onClick={() => {
+                          handleLogin();
+                          setMobileMenuOpen(false);
+                        }} 
+                        className="w-full justify-start gap-2 rounded-lg"
+                      >
+                        <LogIn className="w-4 h-4" />
+                        Login
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
