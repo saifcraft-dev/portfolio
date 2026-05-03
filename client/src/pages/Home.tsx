@@ -129,9 +129,109 @@ export default function Home() {
       <Hero />
 
       {/* 2. ABOUT — inline per guide */}
-      <section id="about" className="py-12 sm:py-16 border-t border-border overflow-hidden">
+      <section id="about" className="py-10 sm:py-16 border-t border-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 lg:items-start">
+
+            {/* RIGHT: Profile card — shown FIRST on mobile, second on desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="order-first lg:order-last lg:col-span-2 flex flex-col gap-3"
+            >
+              {/* Profile + stats card */}
+              <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
+                <div className="relative h-20 sm:h-24 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/10 overflow-hidden">
+                  <div className="absolute inset-0 opacity-30"
+                    style={{
+                      backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+                      backgroundSize: "24px 24px",
+                    }}
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
+                    alt="Developer at work"
+                    className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity"
+                  />
+                </div>
+                <div className="px-4 pb-4 pt-3">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="font-display font-bold text-foreground text-base leading-tight">Saif Khan</h3>
+                      <p className="text-xs text-muted-foreground">Senior Fullstack Developer</p>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[11px] font-semibold rounded-full px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      Available
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border">
+                    {[
+                      { value: "7+", label: "Yrs Exp." },
+                      { value: "50+", label: "Projects" },
+                      { value: "99%", label: "Satisfaction" },
+                    ].map((s) => (
+                      <div key={s.label} className="text-center">
+                        <div className="text-base font-display font-bold text-foreground">{s.value}</div>
+                        <div className="text-[11px] text-muted-foreground">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Specializations */}
+              <div className="bg-card border border-border rounded-2xl p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Specializations</p>
+                <div className="flex flex-col gap-2.5">
+                  {[
+                    { label: "React / Next.js Frontends", pct: 95 },
+                    { label: "Node.js APIs & Backends", pct: 92 },
+                    { label: "AI Feature Integration", pct: 85 },
+                    { label: "Database Design", pct: 88 },
+                  ].map((skill, i) => (
+                    <motion.div
+                      key={skill.label}
+                      initial={{ opacity: 0, x: 8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.15 + i * 0.06 }}
+                    >
+                      <div className="flex justify-between text-[11px] mb-1">
+                        <span className="font-medium text-foreground">{skill.label}</span>
+                        <span className="text-muted-foreground">{skill.pct}%</span>
+                      </div>
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.25 + i * 0.06, ease: "easeOut" }}
+                          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick facts — 2×2 */}
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { label: "Based in", value: "Remote — Global" },
+                  { label: "Response time", value: "< 24 hours" },
+                  { label: "Contract type", value: "Fixed-scope" },
+                  { label: "AI-ready", value: "Yes — LLMs & RAG" },
+                ].map((fact) => (
+                  <div key={fact.label} className="bg-card border border-border rounded-xl px-3 py-2.5">
+                    <p className="text-[10px] text-muted-foreground mb-0.5">{fact.label}</p>
+                    <p className="text-xs font-semibold text-foreground leading-snug">{fact.value}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
             {/* LEFT: Headline + text + values */}
             <motion.div
@@ -139,7 +239,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-3 flex flex-col gap-5"
+              className="order-last lg:order-first lg:col-span-3 flex flex-col gap-5"
             >
               <div>
                 <p className="text-primary text-xs font-bold uppercase tracking-widest mb-2">About Me</p>
@@ -159,8 +259,8 @@ export default function Home() {
                 For the past <strong className="text-foreground">2 years I've integrated AI features</strong> into real products: chatbots, semantic search, content generation. You talk directly to the developer, not a project manager.
               </p>
 
-              {/* Value cards — compact 2x2 */}
-              <div className="grid grid-cols-2 gap-2.5">
+              {/* Value cards — 1 col on mobile, 2 col on sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {values.map((v, i) => (
                   <motion.div
                     key={i}
@@ -168,12 +268,12 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 + i * 0.06, duration: 0.35 }}
-                    className="flex items-start gap-2.5 bg-card border border-border rounded-xl p-3 hover:border-primary/30 hover:bg-primary/3 transition-all duration-200"
+                    className="flex items-start gap-3 bg-card border border-border rounded-xl p-3 hover:border-primary/30 hover:bg-primary/3 transition-all duration-200"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <v.icon className="w-3.5 h-3.5 text-primary" />
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <v.icon className="w-4 h-4 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs font-semibold text-foreground mb-0.5">{v.title}</p>
                       <p className="text-[11px] text-muted-foreground leading-relaxed">{v.desc}</p>
                     </div>
@@ -184,11 +284,11 @@ export default function Home() {
               <div>
                 <Button
                   variant="outline"
-                  className="rounded-full border-border hover:border-primary/50 hover:bg-primary/5 group text-sm"
+                  className="rounded-full border-border hover:border-primary/50 hover:bg-primary/5 group text-sm w-full sm:w-auto"
                   asChild
                 >
                   <Link href="/about">
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center justify-center sm:justify-start gap-2">
                       Read My Full Story
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -197,106 +297,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* RIGHT: Combined card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="lg:col-span-2 flex flex-col gap-3"
-            >
-              {/* Profile + stats in one card */}
-              <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
-                {/* Slim image banner */}
-                <div className="relative h-24 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/10 overflow-hidden">
-                  <div className="absolute inset-0 opacity-30"
-                    style={{
-                      backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-                      backgroundSize: "24px 24px",
-                    }}
-                  />
-                  <img
-                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
-                    alt="Developer at work"
-                    className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity"
-                  />
-                </div>
-                <div className="px-4 pb-4 pt-3">
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <h3 className="font-display font-bold text-foreground text-base leading-tight">Saif Khan</h3>
-                      <p className="text-xs text-muted-foreground">Senior Fullstack Developer</p>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[11px] font-semibold rounded-full px-2.5 py-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Available
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border">
-                    {[
-                      { value: "7+", label: "Yrs Exp." },
-                      { value: "50+", label: "Projects" },
-                      { value: "99%", label: "Satisfaction" },
-                    ].map((s) => (
-                      <div key={s.label} className="text-center">
-                        <div className="text-base font-display font-bold text-foreground">{s.value}</div>
-                        <div className="text-[11px] text-muted-foreground">{s.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Specializations — compact */}
-              <div className="bg-card border border-border rounded-2xl p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Specializations</p>
-                <div className="flex flex-col gap-2.5">
-                  {[
-                    { label: "React / Next.js Frontends", pct: 95 },
-                    { label: "Node.js APIs & Backends", pct: 92 },
-                    { label: "AI Feature Integration", pct: 85 },
-                    { label: "Database Design", pct: 88 },
-                  ].map((skill, i) => (
-                    <motion.div
-                      key={skill.label}
-                      initial={{ opacity: 0, x: 8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.25 + i * 0.06 }}
-                    >
-                      <div className="flex justify-between text-[11px] mb-1">
-                        <span className="font-medium text-foreground">{skill.label}</span>
-                        <span className="text-muted-foreground">{skill.pct}%</span>
-                      </div>
-                      <div className="h-1 bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.pct}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.7, delay: 0.35 + i * 0.06, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick facts — 2x2 compact */}
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { label: "Based in", value: "Remote — Global" },
-                  { label: "Response time", value: "< 24 hours" },
-                  { label: "Contract type", value: "Fixed-scope" },
-                  { label: "AI-ready", value: "Yes — LLMs & RAG" },
-                ].map((fact) => (
-                  <div key={fact.label} className="bg-card border border-border rounded-xl px-3 py-2.5">
-                    <p className="text-[10px] text-muted-foreground mb-0.5">{fact.label}</p>
-                    <p className="text-xs font-semibold text-foreground">{fact.value}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
