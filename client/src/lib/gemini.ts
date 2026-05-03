@@ -10,6 +10,17 @@ function getKeys(): string[] {
     import.meta.env.VITE_GEMINI_API_KEY_B,
     import.meta.env.VITE_GEMINI_API_KEY_C,
   ].filter(Boolean);
+  
+  // Debug logging
+  console.log("Gemini Keys Available:", keys.length > 0 ? `${keys.length} keys loaded` : "NO KEYS FOUND");
+  if (keys.length === 0) {
+    console.error("ENV VARS:", {
+      KEY: import.meta.env.VITE_GEMINI_API_KEY ? "defined" : "undefined",
+      KEY_B: import.meta.env.VITE_GEMINI_API_KEY_B ? "defined" : "undefined",
+      KEY_C: import.meta.env.VITE_GEMINI_API_KEY_C ? "defined" : "undefined",
+    });
+  }
+  
   return keys;
 }
 
