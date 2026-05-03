@@ -28,7 +28,7 @@ export const SITE_KNOWLEDGE_BASE = `
 ### WHO I AM
 - Name: Saif Khan
 - Title: Senior Fullstack Developer & AI Integration Specialist
-- Experience: 5+ years total | 2 years AI integration
+- Experience: 5+ years fullstack development | 2 years AI integration & vibe coding
 - Location: Pakistan (works remotely worldwide)
 - Direct contact: WhatsApp +92 318 8055850
 
@@ -218,7 +218,7 @@ ${SITE_KNOWLEDGE_BASE}
 
 **If asked about**:
 - **Services**: Explain all 5 packages (Landing Page, Website, Web App, AI Add-On, Retainer), pricing, timeline
-- **Experience**: Mention 5+ years total, 2 with AI (semantic search, chatbots, recommendations, etc.), vibe coding
+- **Experience**: Mention 5+ years fullstack development, plus 2 years of AI integration (semantic search, chatbots, recommendations, etc.), vibe coding expertise
 - **Tech Stack**: React, Node.js, TypeScript, PostgreSQL, TailwindCSS, Firebase, Docker, OpenAI/Anthropic
 - **Process**: Discovery → Proposal → Kickoff → Sprints (2-week with updates) → Delivery + 30-day support
 - **Pricing**: Link to Services page, mention fixed-scope approach, payment structures
