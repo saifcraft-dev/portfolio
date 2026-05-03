@@ -13,7 +13,7 @@ const techBadges = ["React", "Node.js", "TypeScript", "PostgreSQL", "AI / LLMs",
 
 export default function Hero() {
   return (
-    <section className="relative pt-20 sm:pt-32 md:pt-48 pb-16 sm:pb-20 lg:pb-32 overflow-hidden">
+    <section className="relative pt-16 sm:pt-20 md:pt-28 pb-16 sm:pb-20 lg:pb-32 overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] bg-primary/15 blur-[130px] rounded-full" />
