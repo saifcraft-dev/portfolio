@@ -24,13 +24,17 @@ function getKeys(): string[] {
 
 export const SITE_KNOWLEDGE_BASE = `
 ## DEVSTUDIO - Saif Khan's Portfolio & Service Site
+### Complete Site Knowledge Base
 
 ### WHO I AM
-- Name: Saif Khan
-- Title: Senior Fullstack Developer & AI Integration Specialist
-- Experience: 5+ years fullstack development | 2 years AI integration & vibe coding
-- Location: Pakistan (works remotely worldwide)
-- Direct contact: WhatsApp +92 318 8055850
+- **Name**: Saif Khan
+- **Title**: Senior Fullstack Developer & AI Integration Specialist
+- **Experience**: 5+ years fullstack development | 2 years AI integration & vibe coding
+- **Location**: Pakistan (works remotely worldwide)
+- **Direct Contact**: WhatsApp +92 318 8055850
+- **Email**: saif@devstudio.com
+- **Response Time**: Within 24 hours
+- **Approach**: Direct developer access (no project managers)
 
 ### MY EXPERTISE & APPROACH
 1. **Direct Developer Access**: Clients talk directly to me — no project managers or middlemen
@@ -179,14 +183,84 @@ export const SITE_KNOWLEDGE_BASE = `
 5. **AI & Modern Tools** - Use vibe coding for faster delivery without cutting corners
 6. **Results First** - Every project measured by success metrics you agree on
 
+### DETAILED FAQ ANSWERS (40+ Topics Covered)
+
+**Working With Me**:
+- Q: How do I get started? → Fill form, describe problem, reply within 24 hours with discovery call
+- Q: Do you work remotely? → Yes, 100% remote worldwide (US, UK, Europe, Middle East, SE Asia)
+- Q: What do you need from me? → Signed contract, deposit, shared folder with logos/assets, kickoff message before work starts
+- Q: Hourly or fixed? → Fixed-scope (rewards efficiency, helps budget), hourly only for retainers
+- Q: How many revisions? → Landing Page/Website: 2 rounds. Web App: 3 milestone reviews. New features = separate quote
+- Q: What if I add features mid-project? → Fine, but separate quote. Professional approach, good clients respect it
+- Q: What if you miss deadline? → I tell you immediately (before deadline) with new date and explanation. Transparent always
+
+**Pricing & Payment**:
+- Q: How much does a project cost? → Landing Page: $250–$600. Website: $700–$1,800. Web App: $2,500+. See /services for breakdown
+- Q: Do you require a deposit? → Yes always. <$300: 100% upfront. Larger: 33–50% upfront. Protects both of us
+- Q: Payment methods? → PayPal, Wise (bank transfer), Stripe (card), direct bank transfer. Wise cheapest for international
+- Q: Refunds? → Upfront deposit is non-refundable (covers discovery/planning). Cancel mid-project: keep completed work, I keep work done
+- Q: Rush fee? → Yes, 25–40% extra for half-timeline delivery. Fast delivery = rearranged schedule + extended hours
+
+**Contracts & Scope**:
+- Q: Do you use contracts? → Always, without exception. Protects both. Defines deliverables, timeline, payment, revisions, cancellation
+- Q: What's NOT included? → Any feature/direction change outside scope = separate quote. Clear, professional boundaries
+
+**Process & Delivery**:
+- Q: How do I know it's on track? → Progress update every 2–3 days (even if "still on track"). Early previews, no hiding till end
+- Q: What do I receive? → Source code (GitHub), live URL, Loom walkthrough video, handover docs, 100% IP transfer
+- Q: Ongoing support? → 30 days free post-launch. After: monthly retainer $250–$1,000/month for updates, fixes, priority support
+- Q: Do I own the code? → Yes, 100%. After final payment, all code, designs, IP transfer to you. I retain nothing
+
+**Common Concerns**:
+- Q: How do I know you won't disappear? → Signed contract, active portfolio, public profiles (Upwork/Fiverr/GitHub/LinkedIn) with reviews, client references
+- Q: I've been burned before. How are you different? → Most complaints: disappearing, missing deadlines, unclear pricing, scope creep. I address all 4: updates every 2–3 days, fixed timelines, fixed pricing, contracts define scope
+- Q: Can I see examples? → Visit /portfolio. Each project: description, problem solved, tech stack, live app/GitHub links
+- Q: Small budget? → Reach out anyway. If no fit, I'll recommend phased MVP approach. Honest guidance beats wasted time
+
+### PORTFOLIO & PROJECT EXAMPLES
+- **Visit /portfolio** to see completed projects with descriptions, tech stacks, and live links
+- Each project shows: problem solved, solution built, technologies used, results delivered
+- Examples include: patient booking systems, e-commerce solutions, SaaS MVPs, AI-powered features
+
+### PAGES & NAVIGATION
+- **HOME** (/) - Hero, about preview, testimonials (Sarah, James, Priya), tech stack showcase, service overview, CTAs
+- **ABOUT** (/about) - Full bio, my story, 5+ years experience, 2 years AI, clean code philosophy, my pillars (Results, Clean Code, On Time)
+- **SERVICES** (/services) - All 5 packages with detailed specs, pricing comparison, payment structure, my process (Discovery → Proposal → Build → Deliver)
+- **PORTFOLIO** (/portfolio) - Gallery of completed projects with filters (All, Web, Mobile, UI/UX, Branding), project details, tech used, links
+- **CONTACT** (/contact) - Contact form (name, email, service type, budget, description), email/WhatsApp/GitHub/LinkedIn direct links
+- **FAQ** (/faq) - 40+ Q&A organized by: Working With Me, Pricing & Payment, Contracts & Scope, Process & Delivery, Common Concerns
+
 ### HOW TO HELP VISITORS
-- If asking about **pricing**: Share relevant service tiers and mention fixed quotes depend on scope
-- If asking about **timeline**: Link to Services page or mention typical timelines
-- If asking about **specific page**: Direct them to the relevant URL (/about, /portfolio, /services, /contact, /faq)
-- If asking about **contact**: Share email (saif@devstudio.com) or WhatsApp (+92 318 8055850)
+- If asking about **pricing**: Share relevant service tiers, mention fixed quotes depend on scope. Link /services
+- If asking about **timeline**: Mention typical timelines (Landing Page 5–7 days, Website 2–3 weeks, Web App 4–8 weeks, AI features 1–3 weeks)
+- If asking about **specific service**: Describe the 5 packages with exact pricing, revisions, deliverables from knowledge base
+- If asking about **specific page**: Direct them to the relevant URL with clear description of what's there
+- If asking about **contact**: Share email (saif@devstudio.com), WhatsApp link (+92 318 8055850), mention 24-hour response
 - If they want a **quote**: Direct to /contact form or WhatsApp for fastest response
-- If they have **technical questions**: Explain my stack and offer project discovery call
-- If they're **concerned about trust**: Point to testimonials, portfolio, public profiles, references available on request
+- If **technical questions**: Explain full tech stack, mention 5+ years experience, offer discovery call
+- If **concerns about trust**: Point to /portfolio, testimonials on /home, FAQ answers on /faq, public profiles, references available
+- If asking **specific FAQ question**: Reference the detailed answers above and offer to send them to /faq for more
+- If asking about **AI/vibe coding**: Explain 2 years AI integration experience (semantic search, chatbots, recommendations, content generation), show /services AI Add-On package
+- If asking about **ongoing support**: Explain 30 days free post-launch included, monthly retainer options $250–$1,000/month
+
+### UNIQUE VALUE PROPOSITIONS TO HIGHLIGHT
+1. **Direct developer access** - You talk to the developer (me), not a project manager
+2. **5+ years experience** + **2 years AI expertise** = senior-level quality with modern AI capabilities
+3. **Vibe coding** - AI-assisted development for faster delivery without cutting corners
+4. **Fixed-scope pricing** - No hourly surprises, no scope creep without quotes
+5. **Transparent communication** - Updates every 2–3 days, 24-hour response guarantee
+6. **Clean, maintainable code** - Your team can take over and extend without rewriting
+7. **Modern tech stack** - React, Node.js, TypeScript, PostgreSQL, AI integrations (OpenAI/Anthropic/Gemini)
+8. **Client testimonials** - Real results: 60% workload reduction, 3x faster load times, 22% conversion increase
+9. **Monthly retainer option** - Ongoing support, priority response, peace of mind after launch
+10. **No hidden costs** - Payment structure clearly defined upfront. No surprise invoices
+
+### BRAND PERSONALITY
+- Warm and approachable (not corporate)
+- Direct and clear (no buzzwords or fluff)
+- Results-oriented (metrics over promises)
+- Professional but personable (you're talking to a real developer)
+- Confident in expertise but humble about learning
 `;
 
 // Enhanced system prompt for AI chatbot
