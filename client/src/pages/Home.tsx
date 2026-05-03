@@ -317,118 +317,98 @@ export default function Home() {
       </section>
 
       {/* 3. SKILLS / TECH STACK */}
-      <section id="skills" className="py-20 sm:py-28 border-t border-border bg-card/20 overflow-hidden">
+      <section id="skills" className="py-12 sm:py-16 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-14 sm:mb-18">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">My Skills</p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground leading-[1.15]">
-                Tools I use to{" "}
-                <span className="text-gradient-primary">ship great software.</span>
+          {/* Compact header */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8"
+          >
+            <div>
+              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-1.5">My Skills</p>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+                Tech Stack & Expertise
               </h2>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-base text-muted-foreground leading-relaxed lg:text-right"
-            >
-              Battle-tested, modern technologies I use every day to build production-ready applications — from pixel-perfect frontends to scalable backends and AI-powered features.
-            </motion.p>
-          </div>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-xs sm:text-right leading-relaxed">
+              Battle-tested tools I use daily to build fast, scalable, production-ready apps.
+            </p>
+          </motion.div>
 
-          {/* Category cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {/* Compact category rows */}
+          <div className="bg-card border border-border rounded-2xl overflow-hidden divide-y divide-border">
             {skillCategories.map((cat, ci) => (
               <motion.div
                 key={cat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: ci * 0.08, duration: 0.5 }}
-                className={`bg-gradient-to-br ${cat.color} border ${cat.border} rounded-2xl p-5 sm:p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300`}
+                transition={{ delay: ci * 0.06, duration: 0.4 }}
+                className="flex flex-col sm:flex-row sm:items-center gap-3 px-4 sm:px-5 py-3.5 hover:bg-muted/30 transition-colors duration-150"
               >
-                {/* Category header */}
-                <div className="flex items-center gap-2 mb-5">
-                  <span className={`w-2 h-2 rounded-full ${cat.dot}`} />
-                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                {/* Category label */}
+                <div className="flex items-center gap-2 sm:w-36 shrink-0">
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${cat.dot}`} />
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
                     {cat.label}
-                  </span>
-                  <span className="ml-auto text-xs text-muted-foreground/60 font-medium">
-                    {cat.skills.length} {cat.skills.length === 1 ? "tool" : "tools"}
                   </span>
                 </div>
 
-                {/* Tech items */}
-                <div className="flex flex-col gap-3">
-                  {cat.skills.map((tech, ti) => (
-                    <motion.div
+                {/* Skill chips */}
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((tech) => (
+                    <div
                       key={tech.name}
-                      initial={{ opacity: 0, x: -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: ci * 0.08 + ti * 0.06, duration: 0.4 }}
-                      className="flex items-center gap-3 bg-card/70 backdrop-blur-sm border border-border/60 rounded-xl px-3 py-2.5 group hover:border-border hover:bg-card transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 bg-background border border-border rounded-lg px-2.5 py-1.5 group hover:border-primary/40 hover:bg-primary/5 transition-all duration-150 cursor-default"
                       data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
-                      <div className="w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                        <tech.icon style={{ color: tech.color }} className="w-4 h-4" />
-                      </div>
-                      <span className="text-sm font-medium text-foreground flex-1">{tech.name}</span>
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                        tech.level === "Expert"
-                          ? "bg-primary/10 text-primary"
-                          : tech.level === "Advanced"
-                          ? "bg-secondary/10 text-secondary"
-                          : "bg-muted text-muted-foreground"
+                      <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
+                      <span className="text-xs font-medium text-foreground">{tech.name}</span>
+                      <span className={`text-[10px] font-semibold ml-0.5 ${
+                        tech.level === "Expert" ? "text-primary" : "text-secondary"
                       }`}>
-                        {tech.level}
+                        {tech.level === "Expert" ? "★" : "◆"}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </motion.div>
             ))}
-
-            {/* Summary card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.45, duration: 0.5 }}
-              className="bg-gradient-to-br from-primary/10 to-secondary/5 border border-primary/20 rounded-2xl p-5 sm:p-6 flex flex-col justify-between"
-            >
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">At a glance</p>
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { value: "7+", label: "Years coding" },
-                    { value: "18+", label: "Technologies" },
-                    { value: "2+", label: "Years with AI" },
-                    { value: "50+", label: "Apps shipped" },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-card/60 border border-border/60 rounded-xl p-3 text-center">
-                      <div className="text-xl font-display font-bold text-foreground">{s.value}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-4 border-t border-border/60">
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  I stay current with the ecosystem and choose the right tool for the job — not the trendiest one.
-                </p>
-              </div>
-            </motion.div>
           </div>
+
+          {/* Legend + stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <span className="text-primary font-bold">★</span> Expert
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-secondary font-bold">◆</span> Advanced
+              </span>
+            </div>
+            <div className="flex items-center gap-6">
+              {[
+                { value: "7+", label: "Yrs Exp." },
+                { value: "18+", label: "Technologies" },
+                { value: "50+", label: "Apps Shipped" },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <div className="text-sm font-display font-bold text-foreground">{s.value}</div>
+                  <div className="text-xs text-muted-foreground">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
