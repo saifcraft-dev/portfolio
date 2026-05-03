@@ -1,5 +1,12 @@
 import { Link } from "wouter";
-import { Code2, Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
+import { Code2, Twitter, Linkedin, Github, Mail, MapPin, ExternalLink } from "lucide-react";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+
+const platforms = [
+  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#ffffff" },
+  { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
+  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#ffffff" },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -69,6 +76,31 @@ export default function Footer() {
                 <span>Available remotely worldwide</span>
               </li>
             </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border pt-12 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+            {platforms.map((p) => (
+              <a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-card/40 border border-border rounded-xl p-4 flex flex-col items-start gap-3 hover:border-primary/40 hover:bg-card/60 transition-all duration-300 group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                  <p.icon style={{ color: p.color }} className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-bold text-foreground text-xs mb-0.5 flex items-center gap-1">
+                    {p.name}
+                    <ExternalLink className="w-2.5 h-2.5 text-muted-foreground" />
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
 
