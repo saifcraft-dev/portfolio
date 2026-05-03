@@ -38,9 +38,9 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2.5 group">
           <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center group-hover:bg-primary/90 transition-colors duration-300">
-            <Code2 className="text-white w-5 h-5" />
+            <Code2 className="text-foreground w-5 h-5" />
           </div>
-          <span className="font-display font-bold text-xl tracking-tight text-white">
+          <span className="font-display font-bold text-xl tracking-tight text-foreground">
             DevStudio
           </span>
         </Link>
@@ -53,8 +53,8 @@ export function Navbar() {
               href={item.href}
               className={`text-sm font-medium transition-colors duration-200 relative ${
                 location === item.href
-                  ? "text-white"
-                  : "text-muted-foreground hover:text-white"
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {item.name}
@@ -78,7 +78,7 @@ export function Navbar() {
         {/* Mobile Menu */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-white" data-testid="button-mobile-menu">
+            <Button variant="ghost" size="icon" className="text-foreground" data-testid="button-mobile-menu">
               <Menu className="w-6 h-6" />
             </Button>
           </SheetTrigger>
@@ -89,7 +89,7 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={`text-xl font-display font-bold ${
-                    location === item.href ? "text-primary" : "text-white/60"
+                    location === item.href ? "text-primary" : "text-foreground/60"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >

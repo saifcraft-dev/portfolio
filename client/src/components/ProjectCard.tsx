@@ -26,7 +26,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         
         <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 z-20">
           <Link href={`/portfolio/${project.id}`}>
-            <button className="p-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors" data-testid={`button-view-project-${project.id}`}>
+            <button className="p-3 bg-primary text-foreground rounded-full hover:bg-primary/90 transition-colors" data-testid={`button-view-project-${project.id}`}>
               <Eye className="w-5 h-5" />
             </button>
           </Link>
@@ -35,7 +35,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.projectUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 text-white border border-white/20 rounded-full hover:bg-white/20 transition-colors"
+              className="p-3 bg-white/10 text-foreground border border-white/20 rounded-full hover:bg-white/20 transition-colors"
               data-testid={`button-external-link-${project.id}`}
             >
               <ExternalLink className="w-5 h-5" />
@@ -51,7 +51,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {project.category}
             </p>
             <Link href={`/portfolio/${project.id}`}>
-              <h3 className="text-lg font-display font-bold text-white group-hover:text-primary transition-colors cursor-pointer" data-testid={`text-project-title-${project.id}`}>
+              <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors cursor-pointer" data-testid={`text-project-title-${project.id}`}>
                 {project.title}
               </h3>
             </Link>

@@ -34,7 +34,7 @@ export default function ServicesSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">What I Offer</p>
-          <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-5">Services & Packages</h2>
+          <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-5">Services & Packages</h2>
           <p className="text-muted-foreground text-lg">
             Fixed-scope packages with clear deliverables and transparent starting prices. No surprises.
           </p>

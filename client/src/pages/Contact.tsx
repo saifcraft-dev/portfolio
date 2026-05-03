@@ -79,7 +79,7 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
             >
               <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">Get in Touch</p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-4 sm:mb-5 px-2 sm:px-0">Let's Work Together</h1>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2 sm:px-0">Let's Work Together</h1>
               <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 px-2 sm:px-0">
                 Have a project in mind? Fill out the form and I'll get back to you within 24 hours with my thoughts and a rough timeline.
               </p>
@@ -90,7 +90,7 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">Email</p>
+                    <p className="text-foreground font-semibold text-sm mb-0.5">Email</p>
                     <p className="text-muted-foreground text-sm">saif@devstudio.com</p>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export default function Contact() {
                     <Clock className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">Response Time</p>
+                    <p className="text-foreground font-semibold text-sm mb-0.5">Response Time</p>
                     <p className="text-muted-foreground text-sm">Within 24 hours</p>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export default function Contact() {
                     <Github className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">GitHub</p>
+                    <p className="text-foreground font-semibold text-sm mb-0.5">GitHub</p>
                     <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors">github.com/devstudio</a>
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export default function Contact() {
                     <Linkedin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">LinkedIn</p>
+                    <p className="text-foreground font-semibold text-sm mb-0.5">LinkedIn</p>
                     <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors">linkedin.com/in/devstudio</a>
                   </div>
                 </div>
@@ -144,9 +144,9 @@ export default function Contact() {
                       name="clientName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white text-sm">Your Name</FormLabel>
+                          <FormLabel className="text-foreground text-sm">Your Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-name" />
+                            <Input placeholder="John Doe" {...field} className="bg-background border-border text-foreground h-10 sm:h-12 text-sm" data-testid="input-name" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -157,9 +157,9 @@ export default function Contact() {
                       name="clientEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white text-sm">Email Address</FormLabel>
+                          <FormLabel className="text-foreground text-sm">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="john@example.com" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-email" />
+                            <Input placeholder="john@example.com" {...field} className="bg-background border-border text-foreground h-10 sm:h-12 text-sm" data-testid="input-email" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -173,14 +173,14 @@ export default function Contact() {
                       name="serviceType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white text-sm">What Do You Need?</FormLabel>
+                          <FormLabel className="text-foreground text-sm">What Do You Need?</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="select-service">
+                              <SelectTrigger className="bg-background border-border text-foreground h-10 sm:h-12 text-sm" data-testid="select-service">
                                 <SelectValue placeholder="Select a service" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-card border-border text-white">
+                            <SelectContent className="bg-card border-border text-foreground">
                               <SelectItem value="Web App">Web Application</SelectItem>
                               <SelectItem value="Mobile App">Mobile App</SelectItem>
                               <SelectItem value="Website">Marketing Website</SelectItem>
@@ -196,9 +196,9 @@ export default function Contact() {
                       name="budget"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white text-sm">Budget (Optional)</FormLabel>
+                          <FormLabel className="text-foreground text-sm">Budget (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g. $3,000 – $8,000" {...field} className="bg-background border-border text-white h-10 sm:h-12 text-sm" data-testid="input-budget" />
+                            <Input placeholder="e.g. $3,000 – $8,000" {...field} className="bg-background border-border text-foreground h-10 sm:h-12 text-sm" data-testid="input-budget" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -211,12 +211,12 @@ export default function Contact() {
                     name="projectDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white text-sm">Tell Me About Your Project</FormLabel>
+                        <FormLabel className="text-foreground text-sm">Tell Me About Your Project</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="What problem are you trying to solve? What does success look like?"
                             {...field}
-                            className="bg-background border-border text-white min-h-[120px] sm:min-h-[150px] resize-none text-sm"
+                            className="bg-background border-border text-foreground min-h-[120px] sm:min-h-[150px] resize-none text-sm"
                             data-testid="textarea-description"
                           />
                         </FormControl>

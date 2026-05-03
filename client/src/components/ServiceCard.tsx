@@ -27,11 +27,11 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       transition={{ delay: index * 0.1 }}
     >
       <Card className="bg-card border-border p-8 h-full hover:border-primary/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
-        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-foreground transition-all duration-300">
           <Icon className="w-6 h-6" />
         </div>
         
-        <h3 className="text-xl font-display font-bold text-white mb-3">
+        <h3 className="text-xl font-display font-bold text-foreground mb-3">
           {service.title}
         </h3>
         
@@ -51,9 +51,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         <div className="pt-5 border-t border-border flex items-center justify-between mt-auto">
           <div>
             <div className="text-xs text-muted-foreground mb-0.5">Starting from</div>
-            <div className="text-xl font-bold text-white">{service.pricing}</div>
+            <div className="text-xl font-bold text-foreground">{service.pricing}</div>
           </div>
-          <div className="w-9 h-9 rounded-full bg-primary/10 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-white transition-all duration-300">
+          <div className="w-9 h-9 rounded-full bg-primary/10 group-hover:bg-primary flex items-center justify-center text-primary group-hover:text-foreground transition-all duration-300">
             <ArrowRight className="w-4 h-4" />
           </div>
         </div>

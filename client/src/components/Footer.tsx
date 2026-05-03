@@ -12,9 +12,9 @@ export default function Footer() {
             <Link href="/">
               <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
                 <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <Code2 className="text-white w-4 h-4" />
+                  <Code2 className="text-foreground w-4 h-4" />
                 </div>
-                <span className="font-display font-bold text-xl tracking-tight text-white">
+                <span className="font-display font-bold text-xl tracking-tight text-foreground">
                   DevStudio
                 </span>
               </div>
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
+            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Landing Page — from $250</span></Link></li>
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Business Website — from $700</span></Link></li>
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Navigate</h4>
+            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Me</span></Link></li>
               <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">My Work</span></Link></li>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Contact</h4>
+            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Contact</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
@@ -71,7 +71,7 @@ export default function Footer() {
             </ul>
 
             <div className="mt-6">
-              <h4 className="font-display font-bold text-white mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
+              <h4 className="font-display font-bold text-foreground mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Upwork</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Fiverr</a></li>
@@ -84,9 +84,9 @@ export default function Footer() {
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>&copy; {currentYear} Saif Khan / DevStudio. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/faq"><span className="hover:text-white transition-colors cursor-pointer">FAQ</span></Link>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link href="/faq"><span className="hover:text-foreground transition-colors cursor-pointer">FAQ</span></Link>
+            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

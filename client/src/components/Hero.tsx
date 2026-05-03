@@ -73,7 +73,7 @@ export default function Hero() {
                 { label: "Happy Clients", value: "30+" }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white mb-1">
+                  <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-foreground mb-1">
                     {stat.value}
                   </div>
                   <div className="text-xs text-foreground/70 uppercase tracking-wider font-semibold">

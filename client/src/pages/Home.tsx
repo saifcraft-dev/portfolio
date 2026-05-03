@@ -95,14 +95,14 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-6 sm:mb-8">
                 I help businesses build web apps that solve real problems.
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                 I'm a freelance fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, growing businesses, and local companies — always focused on clean code and measurable outcomes.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-                I specialize in <strong className="text-white">React, Node.js, TypeScript, and PostgreSQL.</strong> I handle everything from database design and API architecture to pixel-perfect frontends. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
+                I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL.</strong> I handle everything from database design and API architecture to pixel-perfect frontends. When you hire me, you talk directly to the developer doing the work — no project managers in the middle.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8">
                 What drives me: I want to build things that genuinely make clients' businesses better — not just pretty apps that sit unused. I price for the result I deliver, not the hours I spend.
@@ -145,7 +145,7 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">My Skills</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Tech Stack</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Tech Stack</h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Modern, battle-tested technologies I use every day to build production-ready applications.
             </p>
@@ -186,7 +186,7 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">What I Offer</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Services & Pricing</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Services & Pricing</h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Fixed-scope packages. Clear deliverables. Transparent prices. No hourly surprises.
             </p>
@@ -209,10 +209,10 @@ export default function Home() {
               >
                 {s.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                    <span className="bg-primary text-foreground text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
                   </div>
                 )}
-                <h3 className="font-display font-bold text-white text-sm">{s.name}</h3>
+                <h3 className="font-display font-bold text-foreground text-sm">{s.name}</h3>
                 <p className="text-primary font-bold text-lg leading-tight">{s.price}</p>
                 <p className="text-xs text-muted-foreground">{s.time}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
@@ -221,7 +221,7 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50 group" asChild>
+            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50 group" asChild>
               <Link href="/services">
                 <span className="flex items-center gap-2">
                   View Full Packages & Details
@@ -244,7 +244,7 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
           >
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Social Proof</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">What Clients Say</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">What Clients Say</h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Results-focused testimonials — not just "great work." Real problems solved, real outcomes delivered.
             </p>
@@ -265,7 +265,7 @@ export default function Home() {
                 <p className="text-foreground/85 leading-relaxed flex-1">{t.quote}</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-bold text-white text-sm">{t.name}</p>
+                    <p className="font-bold text-foreground text-sm">{t.name}</p>
                     <p className="text-muted-foreground text-xs mt-0.5">{t.role}</p>
                   </div>
                   <div className="flex gap-0.5">
@@ -291,7 +291,7 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Find Me Online</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-4 sm:mb-5 px-2">Where to Hire or Follow Me</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Where to Hire or Follow Me</h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
               Whether you prefer a platform with built-in protection or a direct hire — I'm available on all major channels.
             </p>
@@ -315,7 +315,7 @@ export default function Home() {
                   <p.icon style={{ color: p.color }} className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold text-white text-sm mb-1 flex items-center gap-1">
+                  <p className="font-bold text-foreground text-sm mb-1 flex items-center gap-1">
                     {p.name}
                     <ExternalLink className="w-3 h-3 text-muted-foreground" />
                   </p>
@@ -339,7 +339,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-6 px-2">
               Have a project in mind?
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
@@ -364,7 +364,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-16 px-10 text-lg rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50"
+                className="h-16 px-10 text-lg rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50"
                 asChild
               >
                 <Link href="/faq">Read the FAQ</Link>

@@ -22,7 +22,7 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen bg-background pt-32 text-center">
-        <h2 className="text-2xl text-white mb-4">Project not found</h2>
+        <h2 className="text-2xl text-foreground mb-4">Project not found</h2>
         <Link href="/portfolio">
           <Button variant="outline">Back to Portfolio</Button>
         </Link>
@@ -52,7 +52,7 @@ export default function ProjectDetail() {
         <div className="absolute inset-0 z-20 flex items-end">
           <div className="container mx-auto px-4 pb-20 max-w-7xl">
             <Link href="/portfolio">
-              <Button variant="ghost" className="text-white mb-8 hover:text-white hover:bg-white/10 transition-all duration-300 -ml-4 group" data-testid="link-back-portfolio">
+              <Button variant="ghost" className="text-foreground mb-8 hover:text-foreground hover:bg-white/10 transition-all duration-300 -ml-4 group" data-testid="link-back-portfolio">
                 <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
                 Back to Portfolio
               </Button>
@@ -62,13 +62,13 @@ export default function ProjectDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-bold tracking-wide uppercase bg-primary text-white border-none shadow-lg shadow-primary/20">
+              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-bold tracking-wide uppercase bg-primary text-foreground border-none shadow-lg shadow-primary/20">
                 {project.category}
               </Badge>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-foreground mb-6 leading-tight tracking-tight drop-shadow-2xl">
                 {project.title}
               </h1>
-              <p className="text-xl text-white/90 max-w-2xl font-medium leading-relaxed drop-shadow-md bg-black/20 backdrop-blur-sm p-4 rounded-2xl -ml-4 border border-white/5">
+              <p className="text-xl text-foreground/90 max-w-2xl font-medium leading-relaxed drop-shadow-md bg-black/20 backdrop-blur-sm p-4 rounded-2xl -ml-4 border border-white/5">
                 {project.description}
               </p>
             </motion.div>
@@ -86,7 +86,7 @@ export default function ProjectDetail() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl font-display font-bold text-white mb-8 relative inline-block">
+              <h2 className="text-3xl font-display font-bold text-foreground mb-8 relative inline-block">
                 About the Project
                 <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full"></span>
               </h2>
@@ -104,7 +104,7 @@ export default function ProjectDetail() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <h2 className="text-3xl font-display font-bold text-white mb-8 relative inline-block">
+                <h2 className="text-3xl font-display font-bold text-foreground mb-8 relative inline-block">
                   Technologies Used
                   <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full"></span>
                 </h2>
@@ -135,7 +135,7 @@ export default function ProjectDetail() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-3xl p-10 sticky top-32 shadow-2xl shadow-primary/5"
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-10">Project Overview</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-10">Project Overview</h3>
               
               <div className="space-y-8">
                 <div className="flex items-center gap-5 group">
@@ -144,7 +144,7 @@ export default function ProjectDetail() {
                   </div>
                   <div>
                     <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-black mb-1">Category</p>
-                    <p className="text-lg text-white font-medium">{project.category}</p>
+                    <p className="text-lg text-foreground font-medium">{project.category}</p>
                   </div>
                 </div>
 
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
                   </div>
                   <div>
                     <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-black mb-1">Completed</p>
-                    <p className="text-lg text-white font-medium">
+                    <p className="text-lg text-foreground font-medium">
                       {project.completedDate ? new Date(project.completedDate).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long'
@@ -166,7 +166,7 @@ export default function ProjectDetail() {
 
               <div className="mt-12 space-y-4">
                 {project.projectUrl && (
-                  <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 h-14 rounded-2xl text-lg font-bold" data-testid="button-live-demo">
+                  <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-foreground shadow-lg shadow-primary/20 h-14 rounded-2xl text-lg font-bold" data-testid="button-live-demo">
                     <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="mr-3 h-5 w-5" />
                       View Live Project
@@ -174,7 +174,7 @@ export default function ProjectDetail() {
                   </Button>
                 )}
                 {project.githubUrl && (
-                  <Button asChild variant="outline" size="lg" className="w-full border-white/10 text-white hover:bg-white/5 h-14 rounded-2xl text-lg font-bold" data-testid="button-github-repo">
+                  <Button asChild variant="outline" size="lg" className="w-full border-white/10 text-foreground hover:bg-white/5 h-14 rounded-2xl text-lg font-bold" data-testid="button-github-repo">
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="mr-3 h-5 w-5" />
                       Source Code

@@ -152,7 +152,7 @@ export default function Services() {
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
           <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">What I Offer</p>
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-6 sm:mb-8 px-2">Services & Packages</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-6 sm:mb-8 px-2">Services & Packages</h1>
           <p className="text-base sm:text-lg text-muted-foreground px-2 leading-relaxed">
             Fixed-scope packages with transparent pricing. You know exactly what you're getting before we start — no hourly billing, no scope surprises.
           </p>
@@ -176,7 +176,7 @@ export default function Services() {
             >
               {pkg.badge && (
                 <div className="absolute -top-3 left-6">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${pkg.highlight ? "bg-primary text-white" : "bg-card border border-border text-muted-foreground"}`}>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${pkg.highlight ? "bg-primary text-foreground" : "bg-card border border-border text-muted-foreground"}`}>
                     {pkg.badge}
                   </span>
                 </div>
@@ -186,7 +186,7 @@ export default function Services() {
                 <pkg.icon className="w-5 h-5 text-primary" />
               </div>
 
-              <h2 className="text-xl font-display font-bold text-white mb-3">{pkg.name}</h2>
+              <h2 className="text-xl font-display font-bold text-foreground mb-3">{pkg.name}</h2>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{pkg.tagline}</p>
 
               <div className="space-y-3 mb-6">
@@ -209,7 +209,7 @@ export default function Services() {
                 </div>
                 <div className="pt-3 flex items-center justify-between">
                   <div className="text-xs text-muted-foreground">Starting from</div>
-                  <div className="text-lg font-bold text-white">{pkg.price}</div>
+                  <div className="text-lg font-bold text-foreground">{pkg.price}</div>
                 </div>
               </div>
             </motion.div>
@@ -220,7 +220,7 @@ export default function Services() {
         <div className="mb-20 sm:mb-24 bg-card border border-border rounded-2xl p-4 sm:p-8">
           <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <Zap className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
-            <h2 className="text-lg sm:text-xl font-display font-bold text-white">Pricing Rules I Follow</h2>
+            <h2 className="text-lg sm:text-xl font-display font-bold text-foreground">Pricing Rules I Follow</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {pricingRules.map((rule, i) => (
@@ -236,7 +236,7 @@ export default function Services() {
         <div className="mb-20 sm:mb-24">
           <div className="text-center mb-10 sm:mb-12 px-2">
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">How Payment Works</p>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4">Payment Structure</h2>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-4">Payment Structure</h2>
             <p className="text-muted-foreground max-w-lg mx-auto text-xs sm:text-sm leading-relaxed">
               I never start work before receiving the upfront payment. This protects both of us and keeps the project moving.
             </p>
@@ -245,14 +245,14 @@ export default function Services() {
             <table className="w-full text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-border bg-card/50">
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Project Size</th>
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Payment Schedule</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Project Size</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Payment Schedule</th>
                 </tr>
               </thead>
               <tbody>
                 {paymentStructure.map((row, i) => (
                   <tr key={i} className="border-b border-border last:border-0 hover:bg-card/40 transition-colors">
-                    <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-white whitespace-nowrap">{row.size}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-foreground whitespace-nowrap">{row.size}</td>
                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm">{row.structure}</td>
                   </tr>
                 ))}
@@ -265,7 +265,7 @@ export default function Services() {
         <div className="mb-20 sm:mb-24">
           <div className="text-center mb-10 sm:mb-12 px-2">
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">Market Reference</p>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4">Pricing by Experience Level</h2>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-4">Pricing by Experience Level</h2>
             <p className="text-muted-foreground max-w-lg mx-auto text-xs sm:text-sm leading-relaxed">
               For reference — where market rates sit at each experience level. I operate at the Senior tier.
             </p>
@@ -274,11 +274,11 @@ export default function Services() {
             <table className="w-full text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-border bg-card/50">
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Level</th>
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Experience</th>
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Hourly</th>
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Small</th>
-                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Large</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Level</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Experience</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Hourly</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Small</th>
+                  <th className="text-left text-foreground font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Large</th>
                 </tr>
               </thead>
               <tbody>
@@ -289,8 +289,8 @@ export default function Services() {
                       row.highlight ? "bg-primary/5 border-primary/20" : "hover:bg-card/40"
                     }`}
                   >
-                    <td className={`px-3 sm:px-6 py-3 sm:py-4 font-bold text-xs sm:text-sm whitespace-nowrap ${row.highlight ? "text-primary" : "text-white"}`}>
-                      {row.level} {row.highlight && <span className="hidden sm:inline text-xs bg-primary text-white px-2 py-0.5 rounded-full ml-1">← Me</span>}
+                    <td className={`px-3 sm:px-6 py-3 sm:py-4 font-bold text-xs sm:text-sm whitespace-nowrap ${row.highlight ? "text-primary" : "text-foreground"}`}>
+                      {row.level} {row.highlight && <span className="hidden sm:inline text-xs bg-primary text-foreground px-2 py-0.5 rounded-full ml-1">← Me</span>}
                     </td>
                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.experience}</td>
                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.hourly}</td>
@@ -307,7 +307,7 @@ export default function Services() {
         <div className="mb-24 border-t border-border pt-24">
           <div className="text-center mb-16 sm:mb-20">
             <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">My Process</p>
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-5 sm:mb-6">How I Work</h2>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-foreground mb-5 sm:mb-6">How I Work</h2>
             <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
               A clear, predictable process designed to keep you informed and the project on track.
             </p>
@@ -323,7 +323,7 @@ export default function Services() {
                 transition={{ delay: i * 0.1 }}
               >
                 <div className="text-5xl font-display font-bold text-primary/10 mb-4">{step.number}</div>
-                <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+                <h3 className="text-lg font-bold text-foreground mb-3">{step.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
@@ -345,7 +345,7 @@ export default function Services() {
                 </span>
               </Link>
             </Button>
-            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50 h-14 px-8" asChild>
+            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50 h-14 px-8" asChild>
               <Link href="/faq">Read the FAQ</Link>
             </Button>
           </div>

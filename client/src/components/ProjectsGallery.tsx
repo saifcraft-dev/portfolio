@@ -36,7 +36,7 @@ export default function ProjectsGallery() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-4 sm:gap-6">
           <div className="max-w-2xl px-2 sm:px-0">
             <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-2 sm:mb-3">My Work</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-display font-bold text-white mb-3 sm:mb-4">Recent Projects</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-display font-bold text-foreground mb-3 sm:mb-4">Recent Projects</h2>
             <p className="text-muted-foreground text-sm sm:text-lg">
               Real projects. Real results. Each one started with a problem to solve.
             </p>
@@ -50,8 +50,8 @@ export default function ProjectsGallery() {
                 onClick={() => setActiveCategory(category)}
                 className={`rounded-full text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4 ${
                   activeCategory === category
-                    ? "bg-primary text-white border-primary"
-                    : "border-border text-muted-foreground hover:text-white hover:border-primary/50"
+                    ? "bg-primary text-foreground border-primary"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-primary/50"
                 }`}
                 data-testid={`button-filter-${category.toLowerCase()}`}
               >
@@ -83,7 +83,7 @@ export default function ProjectsGallery() {
 
         {filteredProjects.length > 0 && (
           <div className="text-center mt-12">
-            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-white hover:border-primary/50 group" asChild>
+            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50 group" asChild>
               <Link href="/portfolio">
                 <span className="flex items-center gap-2">
                   View All Projects

@@ -33,7 +33,7 @@ export default function About() {
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
           <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">About Me</p>
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-6 px-2">
             Hi, I'm Saif Khan
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-2">
@@ -49,19 +49,19 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-display font-bold text-white mb-6">My Story</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground mb-6">My Story</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               I'm a self-driven fullstack developer with 5+ years of experience building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              I specialize in <strong className="text-white">React, Node.js, TypeScript, and PostgreSQL</strong>. I handle everything — from database architecture and API design to pixel-perfect frontend interfaces.
+              I specialize in <strong className="text-foreground">React, Node.js, TypeScript, and PostgreSQL</strong>. I handle everything — from database architecture and API design to pixel-perfect frontend interfaces.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              When you hire me, you're not handing your project to a project manager who then hands it to a junior. <strong className="text-white">You talk directly to the developer doing the work.</strong> Fast replies, clear updates, honest timelines.
+              When you hire me, you're not handing your project to a project manager who then hands it to a junior. <strong className="text-foreground">You talk directly to the developer doing the work.</strong> Fast replies, clear updates, honest timelines.
             </p>
 
             <div className="flex items-center gap-4">
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors" aria-label="GitHub">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
                 <Github className="w-5 h-5" />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
@@ -103,7 +103,7 @@ export default function About() {
               <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
                 <p.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-lg font-display font-bold text-white mb-2">{p.title}</h3>
+              <h3 className="text-lg font-display font-bold text-foreground mb-2">{p.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
@@ -111,7 +111,7 @@ export default function About() {
 
         {/* Skills */}
         <div className="mb-24">
-          <h2 className="text-2xl font-display font-bold text-white text-center mb-3">My Core Stack</h2>
+          <h2 className="text-2xl font-display font-bold text-foreground text-center mb-3">My Core Stack</h2>
           <p className="text-muted-foreground text-center mb-10">Technologies I use every day to build production-ready applications.</p>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
             {skills.map((s, i) => (
@@ -134,7 +134,7 @@ export default function About() {
 
         {/* CTA */}
         <div className="text-center border-t border-border pt-20">
-          <h2 className="text-3xl font-display font-bold text-white mb-4">Ready to work together?</h2>
+          <h2 className="text-3xl font-display font-bold text-foreground mb-4">Ready to work together?</h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
             Tell me about your project and I'll get back to you within 24 hours.
           </p>

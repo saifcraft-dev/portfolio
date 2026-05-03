@@ -67,7 +67,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/10 text-white" />
+                  <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/10 text-foreground" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,7 +80,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="john@example.com" {...field} className="bg-white/5 border-white/10 text-white" />
+                  <Input placeholder="john@example.com" {...field} className="bg-white/5 border-white/10 text-foreground" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -96,11 +96,11 @@ export default function ContactForm() {
               <FormLabel>Service Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                  <SelectTrigger className="bg-white/5 border-white/10 text-foreground">
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="bg-gray-900 border-white/10 text-white">
+                <SelectContent className="bg-gray-900 border-white/10 text-foreground">
                   <SelectItem value="Web Development">Web Development</SelectItem>
                   <SelectItem value="Mobile Development">Mobile Development</SelectItem>
                   <SelectItem value="UI/UX Design">UI/UX Design</SelectItem>
@@ -120,7 +120,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Budget Range</FormLabel>
                 <FormControl>
-                  <Input placeholder="$5,000 - $10,000" {...field} className="bg-white/5 border-white/10 text-white" />
+                  <Input placeholder="$5,000 - $10,000" {...field} className="bg-white/5 border-white/10 text-foreground" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,7 +133,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Expected Timeline</FormLabel>
                 <FormControl>
-                  <Input placeholder="3 months" {...field} className="bg-white/5 border-white/10 text-white" />
+                  <Input placeholder="3 months" {...field} className="bg-white/5 border-white/10 text-foreground" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -150,7 +150,7 @@ export default function ContactForm() {
               <FormControl>
                 <Textarea 
                   placeholder="Tell us about your project goals and requirements..." 
-                  className="min-h-[150px] bg-white/5 border-white/10 text-white"
+                  className="min-h-[150px] bg-white/5 border-white/10 text-foreground"
                   {...field} 
                 />
               </FormControl>
@@ -159,7 +159,7 @@ export default function ContactForm() {
           )}
         />
 
-        <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white h-14 text-lg font-bold">
+        <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-foreground h-14 text-lg font-bold">
           Send Project Inquiry
         </Button>
       </form>

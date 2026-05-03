@@ -125,7 +125,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-card/50 transition-colors"
         data-testid={`faq-toggle-${q.slice(0, 20).replace(/\s+/g, "-").toLowerCase()}`}
       >
-        <span className="font-semibold text-white pr-4">{q}</span>
+        <span className="font-semibold text-foreground pr-4">{q}</span>
         <ChevronDown className={`w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence initial={false}>
@@ -165,7 +165,7 @@ export default function FAQ() {
           className="text-center max-w-2xl mx-auto mb-16 sm:mb-20"
         >
           <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4">FAQ</p>
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-6 px-2">
             Frequently Asked Questions
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground px-2">
@@ -183,7 +183,7 @@ export default function FAQ() {
               transition={{ delay: si * 0.05 }}
               className="px-2 sm:px-0"
             >
-              <h2 className="text-lg sm:text-xl font-display font-bold text-white mb-4 sm:mb-5 flex items-center gap-2 sm:gap-3">
+              <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-4 sm:mb-5 flex items-center gap-2 sm:gap-3">
                 <span className="text-primary text-xs sm:text-sm font-mono">{String(si + 1).padStart(2, "0")}</span>
                 <span className="text-sm sm:text-lg">{section.category}</span>
               </h2>
@@ -197,7 +197,7 @@ export default function FAQ() {
         </div>
 
         <div className="mt-16 sm:mt-24 text-center bg-card border border-border rounded-2xl p-6 sm:p-10 px-3 sm:px-10">
-          <h2 className="text-xl sm:text-2xl font-display font-bold text-white mb-2 sm:mb-3 px-2">Still have a question?</h2>
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3 px-2">Still have a question?</h2>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 px-2">
             Send me a message and I'll reply within 24 hours.
           </p>
