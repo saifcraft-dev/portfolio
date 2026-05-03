@@ -257,11 +257,11 @@ export default function FAQ() {
 
       {/* ── Category Filter Tabs ── */}
       <div className="sticky top-[64px] z-30 bg-background/90 backdrop-blur-md border-b border-border">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-3 sm:py-3.5">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-3 sm:py-3.5">
             <button
               onClick={() => setActiveCategory("All")}
-              className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 ${
+              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
                 activeCategory === "All"
                   ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                   : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
@@ -276,7 +276,7 @@ export default function FAQ() {
                 <button
                   key={section.category}
                   onClick={() => setActiveCategory(section.category)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 ${
+                  className={`flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 whitespace-nowrap ${
                     activeCategory === section.category
                       ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                       : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
@@ -284,8 +284,7 @@ export default function FAQ() {
                   data-testid={`filter-faq-${section.category.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <Icon className="w-3 h-3 shrink-0" />
-                  <span className="hidden sm:inline">{section.category}</span>
-                  <span className="sm:hidden">{section.category.split(" ")[0]}</span>
+                  {section.category}
                 </button>
               );
             })}
