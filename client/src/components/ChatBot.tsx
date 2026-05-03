@@ -211,6 +211,14 @@ export default function ChatBot() {
               className="flex items-center gap-3 px-4 py-3 bg-primary/10 border-b border-border shrink-0"
               style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))", paddingBottom: "0.75rem" }}
             >
+              <button
+                onClick={() => setOpen(false)}
+                data-testid="button-close-chat"
+                className="w-8 h-8 rounded-lg hover:bg-primary/20 active:bg-primary/30 transition-colors flex items-center justify-center shrink-0"
+                aria-label="Close chat"
+              >
+                <X className="w-4 h-4 text-foreground" />
+              </button>
               <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
                 <Bot className="w-5 h-5 text-primary-foreground" />
               </div>
