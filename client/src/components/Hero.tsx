@@ -35,7 +35,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
-              I'm a senior fullstack developer with <strong className="text-foreground">5+ years of experience</strong>, plus <strong className="text-foreground">2 years integrating AI</strong> into production apps. I help startups and businesses turn ideas into high-performance web applications — on time, within budget, with clean code you can actually maintain. I leverage AI-assisted development (vibe coding) to deliver faster without cutting corners.
+              I'm a senior fullstack developer with <strong className="text-foreground">7+ years of experience</strong>, plus <strong className="text-foreground">2 years integrating AI</strong> into production apps. I help startups and businesses turn ideas into high-performance web applications — on time, within budget, with clean code you can actually maintain. I leverage AI-assisted development (vibe coding) to deliver faster without cutting corners.
             </p>
 
             <p className="text-sm sm:text-base text-muted-foreground/75 mb-8 sm:mb-14 max-w-2xl mx-auto px-2">

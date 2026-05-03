@@ -29,7 +29,7 @@ export const SITE_KNOWLEDGE_BASE = `
 ### WHO I AM
 - **Name**: Saif Khan
 - **Title**: Senior Fullstack Developer & AI Integration Specialist
-- **Experience**: 5+ years fullstack development | 2 years AI integration & vibe coding
+- **Experience**: 7+ years fullstack development | 2 years AI integration & vibe coding
 - **Location**: Pakistan (works remotely worldwide)
 - **Direct Contact**: WhatsApp +92 318 8055850
 - **Email**: saif@devstudio.com
@@ -110,7 +110,7 @@ export const SITE_KNOWLEDGE_BASE = `
 ### EXPERIENCE LEVEL PRICING (Market Reference)
 - **Beginner** (0–1 year): $15–$30/hr | Small: $150–$600 | Large: $600–$2,000
 - **Intermediate** (1–3 years): $30–$65/hr | Small: $600–$2,500 | Large: $2,500–$7,000
-- **Senior** (5+ years): $65–$120/hr | Small: $2,000–$6,000 | Large: $6,000–$20,000 ← SAIF IS HERE
+- **Senior** (7+ years): $65–$120/hr | Small: $2,000–$6,000 | Large: $6,000–$20,000 ← SAIF IS HERE
 - **Expert/Specialist** (7+ years): $120–$200+/hr | Small: $5,000+ | Large: $20,000+
 
 ### TESTIMONIALS (Real Client Feedback)
@@ -224,7 +224,7 @@ export const SITE_KNOWLEDGE_BASE = `
 
 ### PAGES & NAVIGATION
 - **HOME** (/) - Hero, about preview, testimonials (Sarah, James, Priya), tech stack showcase, service overview, CTAs
-- **ABOUT** (/about) - Full bio, my story, 5+ years experience, 2 years AI, clean code philosophy, my pillars (Results, Clean Code, On Time)
+- **ABOUT** (/about) - Full bio, my story, 7+ years experience, 2 years AI, clean code philosophy, my pillars (Results, Clean Code, On Time)
 - **SERVICES** (/services) - All 5 packages with detailed specs, pricing comparison, payment structure, my process (Discovery → Proposal → Build → Deliver)
 - **PORTFOLIO** (/portfolio) - Gallery of completed projects with filters (All, Web, Mobile, UI/UX, Branding), project details, tech used, links
 - **CONTACT** (/contact) - Contact form (name, email, service type, budget, description), email/WhatsApp/GitHub/LinkedIn direct links
@@ -237,7 +237,7 @@ export const SITE_KNOWLEDGE_BASE = `
 - If asking about **specific page**: Direct them to the relevant URL with clear description of what's there
 - If asking about **contact**: Share email (saif@devstudio.com), WhatsApp link (+92 318 8055850), mention 24-hour response
 - If they want a **quote**: Direct to /contact form or WhatsApp for fastest response
-- If **technical questions**: Explain full tech stack, mention 5+ years experience, offer discovery call
+- If **technical questions**: Explain full tech stack, mention 7+ years experience, offer discovery call
 - If **concerns about trust**: Point to /portfolio, testimonials on /home, FAQ answers on /faq, public profiles, references available
 - If asking **specific FAQ question**: Reference the detailed answers above and offer to send them to /faq for more
 - If asking about **AI/vibe coding**: Explain 2 years AI integration experience (semantic search, chatbots, recommendations, content generation), show /services AI Add-On package
@@ -245,7 +245,7 @@ export const SITE_KNOWLEDGE_BASE = `
 
 ### UNIQUE VALUE PROPOSITIONS TO HIGHLIGHT
 1. **Direct developer access** - You talk to the developer (me), not a project manager
-2. **5+ years experience** + **2 years AI expertise** = senior-level quality with modern AI capabilities
+2. **7+ years experience** + **2 years AI expertise** = senior-level quality with modern AI capabilities
 3. **Vibe coding** - AI-assisted development for faster delivery without cutting corners
 4. **Fixed-scope pricing** - No hourly surprises, no scope creep without quotes
 5. **Transparent communication** - Updates every 2–3 days, 24-hour response guarantee
@@ -286,13 +286,13 @@ ${SITE_KNOWLEDGE_BASE}
 - Fixed-scope pricing (no surprises)
 - Clean, maintainable code
 - AI & modern development expertise
-- 5+ years experience, 2 with AI
+- 7+ years experience, 2 with AI
 - Fast, transparent communication
 - 24-hour response guarantee
 
 **If asked about**:
 - **Services**: Explain all 5 packages (Landing Page, Website, Web App, AI Add-On, Retainer), pricing, timeline
-- **Experience**: Mention 5+ years fullstack development, plus 2 years of AI integration (semantic search, chatbots, recommendations, etc.), vibe coding expertise
+- **Experience**: Mention 7+ years fullstack development, plus 2 years of AI integration (semantic search, chatbots, recommendations, etc.), vibe coding expertise
 - **Tech Stack**: React, Node.js, TypeScript, PostgreSQL, TailwindCSS, Firebase, Docker, OpenAI/Anthropic
 - **Process**: Discovery → Proposal → Kickoff → Sprints (2-week with updates) → Delivery + 30-day support
 - **Pricing**: Link to Services page, mention fixed-scope approach, payment structures
