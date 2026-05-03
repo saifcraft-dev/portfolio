@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Navigate</h4>
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Me</span></Link></li>
               <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">My Work</span></Link></li>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Contact</h4>
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Contact</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
@@ -71,7 +71,7 @@ export default function Footer() {
             </ul>
 
             <div className="mt-6">
-              <h4 className="font-display font-bold text-foreground mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
+              <h4 className="font-display font-bold text-white mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="#" className="hover:text-primary transition-colors">Upwork</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Fiverr</a></li>
