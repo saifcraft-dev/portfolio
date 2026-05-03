@@ -260,10 +260,26 @@ export default function FAQ() {
       {/* ── Category Filter Tabs ── */}
       <div className="sticky top-[64px] z-30 bg-background/90 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-3 sm:py-3.5">
+          {/* Mobile: icon-only row | sm+: full pill labels */}
+          <div className="flex items-center gap-2 py-3 sm:py-3.5 overflow-x-auto no-scrollbar">
+
+            {/* Mobile "All" — icon dot */}
             <button
               onClick={() => setActiveCategory("All")}
-              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
+              className={`sm:hidden flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 ${
+                activeCategory === "All"
+                  ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                  : "bg-card text-muted-foreground border-border"
+              }`}
+              data-testid="filter-faq-all-mobile"
+            >
+              All <span className="opacity-70">({faqs.reduce((a, s) => a + s.items.length, 0)})</span>
+            </button>
+
+            {/* Desktop "All" */}
+            <button
+              onClick={() => setActiveCategory("All")}
+              className={`hidden sm:flex flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
                 activeCategory === "All"
                   ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                   : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
@@ -272,21 +288,31 @@ export default function FAQ() {
             >
               All <span className="ml-1 opacity-70">({faqs.reduce((a, s) => a + s.items.length, 0)})</span>
             </button>
+
             {faqs.map((section) => {
               const Icon = categoryIcons[section.category] || MessageCircle;
+              const isActive = activeCategory === section.category;
+              const testId = `filter-faq-${section.category.toLowerCase().replace(/\s+/g, "-")}`;
               return (
                 <button
                   key={section.category}
                   onClick={() => setActiveCategory(section.category)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 whitespace-nowrap ${
-                    activeCategory === section.category
+                  data-testid={testId}
+                  title={section.category}
+                  className={`flex-shrink-0 flex items-center gap-1.5 border transition-all duration-200 font-semibold whitespace-nowrap
+                    /* mobile: icon + first word */
+                    px-3 py-1.5 rounded-full text-[11px]
+                    sm:px-3.5 sm:text-xs
+                    ${isActive
                       ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20"
                       : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
-                  }`}
-                  data-testid={`filter-faq-${section.category.toLowerCase().replace(/\s+/g, "-")}`}
+                    }`}
                 >
                   <Icon className="w-3 h-3 shrink-0" />
-                  {section.category}
+                  {/* Mobile: first word only */}
+                  <span className="sm:hidden">{section.category.split(" ")[0]}</span>
+                  {/* Desktop: full label */}
+                  <span className="hidden sm:inline">{section.category}</span>
                 </button>
               );
             })}
