@@ -205,24 +205,26 @@ export default function FAQ() {
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
+      <section className="relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-24 -left-20 h-[400px] w-[400px] rounded-full bg-primary/8 blur-3xl" />
-          <div className="absolute top-10 right-0 h-[280px] w-[280px] rounded-full bg-secondary/6 blur-3xl" />
+          <div className="absolute -top-32 -left-20 h-[480px] w-[480px] rounded-full bg-primary/8 blur-3xl" />
+          <div className="absolute top-10 right-0 h-[320px] w-[320px] rounded-full bg-secondary/6 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-[200px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-2xl" />
         </div>
 
-        <div className="container mx-auto px-4 max-w-3xl text-center">
+        <div className="container mx-auto px-4 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto"
           >
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs sm:text-sm font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-primary/20">
               <MessageCircle className="w-3.5 h-3.5" />
               FAQ
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground mb-4 sm:mb-5 leading-tight tracking-tight px-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-foreground mb-5 leading-tight tracking-tight">
               Frequently Asked{" "}
               <span className="text-primary">Questions</span>
             </h1>
@@ -293,7 +295,7 @@ export default function FAQ() {
       </div>
 
       {/* ── FAQ Sections ── */}
-      <div className="container mx-auto px-4 max-w-4xl py-10 sm:py-14">
+      <div className="container mx-auto px-4 max-w-4xl py-14 sm:py-20">
 
         {/* Search result count */}
         {search && (
