@@ -31,24 +31,24 @@ export default function ProjectsGallery() {
   }
 
   return (
-    <section id="portfolio" className="py-24 bg-card/20 border-t border-border">
+    <section id="portfolio" className="py-16 sm:py-24 bg-card/20 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-          <div className="max-w-2xl">
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">My Work</p>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">Recent Projects</h2>
-            <p className="text-muted-foreground text-lg">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-4 sm:gap-6">
+          <div className="max-w-2xl px-2 sm:px-0">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-2 sm:mb-3">My Work</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-display font-bold text-white mb-3 sm:mb-4">Recent Projects</h2>
+            <p className="text-muted-foreground text-sm sm:text-lg">
               Real projects. Real results. Each one started with a problem to solve.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 shrink-0">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 shrink-0 w-full md:w-auto px-2 sm:px-0">
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={activeCategory === category ? "default" : "outline"}
                 onClick={() => setActiveCategory(category)}
-                className={`rounded-full text-sm ${
+                className={`rounded-full text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4 ${
                   activeCategory === category
                     ? "bg-primary text-white border-primary"
                     : "border-border text-muted-foreground hover:text-white hover:border-primary/50"

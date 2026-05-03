@@ -217,15 +217,15 @@ export default function Services() {
         </div>
 
         {/* Pricing Rules */}
-        <div className="mb-24 bg-card border border-border rounded-2xl p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Zap className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-display font-bold text-white">Pricing Rules I Follow</h2>
+        <div className="mb-20 sm:mb-24 bg-card border border-border rounded-2xl p-4 sm:p-8">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
+            <Zap className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+            <h2 className="text-lg sm:text-xl font-display font-bold text-white">Pricing Rules I Follow</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {pricingRules.map((rule, i) => (
-              <div key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-                <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+              <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground">
+                <Star className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-primary shrink-0 mt-0.5" />
                 <span>{rule}</span>
               </div>
             ))}
@@ -233,27 +233,27 @@ export default function Services() {
         </div>
 
         {/* Payment Structure */}
-        <div className="mb-24">
-          <div className="text-center mb-10">
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">How Payment Works</p>
-            <h2 className="text-3xl font-display font-bold text-white mb-3">Payment Structure</h2>
-            <p className="text-muted-foreground max-w-lg mx-auto text-sm">
+        <div className="mb-20 sm:mb-24">
+          <div className="text-center mb-8 sm:mb-10 px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-2 sm:mb-3">How Payment Works</p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3">Payment Structure</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto text-xs sm:text-sm">
               I never start work before receiving the upfront payment. This protects both of us and keeps the project moving.
             </p>
           </div>
           <div className="overflow-x-auto rounded-2xl border border-border">
-            <table className="w-full text-sm">
+            <table className="w-full text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-border bg-card/50">
-                  <th className="text-left text-white font-semibold px-6 py-4">Project Size</th>
-                  <th className="text-left text-white font-semibold px-6 py-4">Payment Schedule</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Project Size</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">Payment Schedule</th>
                 </tr>
               </thead>
               <tbody>
                 {paymentStructure.map((row, i) => (
                   <tr key={i} className="border-b border-border last:border-0 hover:bg-card/40 transition-colors">
-                    <td className="px-6 py-4 font-medium text-white">{row.size}</td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.structure}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-white whitespace-nowrap">{row.size}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm">{row.structure}</td>
                   </tr>
                 ))}
               </tbody>
@@ -262,23 +262,23 @@ export default function Services() {
         </div>
 
         {/* Pricing by Experience */}
-        <div className="mb-24">
-          <div className="text-center mb-10">
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Market Reference</p>
-            <h2 className="text-3xl font-display font-bold text-white mb-3">Pricing by Experience Level</h2>
-            <p className="text-muted-foreground max-w-lg mx-auto text-sm">
+        <div className="mb-20 sm:mb-24">
+          <div className="text-center mb-8 sm:mb-10 px-2">
+            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-2 sm:mb-3">Market Reference</p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3">Pricing by Experience Level</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto text-xs sm:text-sm">
               For reference — where market rates sit at each experience level. I operate at the Senior tier.
             </p>
           </div>
           <div className="overflow-x-auto rounded-2xl border border-border">
-            <table className="w-full text-sm">
+            <table className="w-full text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-border bg-card/50">
-                  <th className="text-left text-white font-semibold px-6 py-4">Level</th>
-                  <th className="text-left text-white font-semibold px-6 py-4">Experience</th>
-                  <th className="text-left text-white font-semibold px-6 py-4">Hourly Rate</th>
-                  <th className="text-left text-white font-semibold px-6 py-4">Small Project</th>
-                  <th className="text-left text-white font-semibold px-6 py-4">Large Project</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Level</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Experience</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Hourly</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Small</th>
+                  <th className="text-left text-white font-semibold px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap">Large</th>
                 </tr>
               </thead>
               <tbody>
@@ -289,13 +289,13 @@ export default function Services() {
                       row.highlight ? "bg-primary/5 border-primary/20" : "hover:bg-card/40"
                     }`}
                   >
-                    <td className={`px-6 py-4 font-bold ${row.highlight ? "text-primary" : "text-white"}`}>
-                      {row.level} {row.highlight && <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full ml-2">← My Level</span>}
+                    <td className={`px-3 sm:px-6 py-3 sm:py-4 font-bold text-xs sm:text-sm whitespace-nowrap ${row.highlight ? "text-primary" : "text-white"}`}>
+                      {row.level} {row.highlight && <span className="hidden sm:inline text-xs bg-primary text-white px-2 py-0.5 rounded-full ml-1">← Me</span>}
                     </td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.experience}</td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.hourly}</td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.small}</td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.large}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.experience}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.hourly}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.small}</td>
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">{row.large}</td>
                   </tr>
                 ))}
               </tbody>
