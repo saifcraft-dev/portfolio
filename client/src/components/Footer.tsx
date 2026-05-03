@@ -1,12 +1,5 @@
 import { Link } from "wouter";
-import { Code2, Twitter, Linkedin, Github, Mail, MapPin, ExternalLink } from "lucide-react";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
-
-const platforms = [
-  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#ffffff" },
-  { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
-  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#ffffff" },
-];
+import { Code2, Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -76,31 +69,6 @@ export default function Footer() {
                 <span>Available remotely worldwide</span>
               </li>
             </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-border/40 pt-12 mb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
-            {platforms.map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col items-start gap-3 hover:border-white/20 hover:bg-white/10 transition-all duration-300 group"
-              >
-                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/15 transition-colors">
-                  <p.icon style={{ color: p.color }} className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="font-bold text-[hsl(var(--footer-foreground))] text-xs mb-0.5 flex items-center gap-1">
-                    {p.name}
-                    <ExternalLink className="w-2.5 h-2.5 text-[hsl(var(--footer-foreground))]/60" />
-                  </p>
-                  <p className="text-xs text-[hsl(var(--footer-foreground))]/70 leading-relaxed">{p.desc}</p>
-                </div>
-              </a>
-            ))}
           </div>
         </div>
 
