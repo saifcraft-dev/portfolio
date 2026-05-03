@@ -90,13 +90,30 @@ export default function ChatBot() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // Manage body overflow when chat opens
   useEffect(() => {
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 300);
+      document.body.style.overflow = "hidden";
+      setTimeout(() => textareaRef.current?.focus(), 300);
+    } else {
+      document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      const newHeight = Math.min(textarea.scrollHeight, 120);
+      textarea.style.height = `${newHeight}px`;
+    }
+  }, [input]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -135,7 +152,7 @@ export default function ChatBot() {
     }
   }
 
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -148,7 +165,7 @@ export default function ChatBot() {
       <motion.button
         onClick={() => setOpen((v) => !v)}
         data-testid="button-chatbot-toggle"
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
+        className="fixed bottom-4 right-4 sm:bottom-[5.5rem] lg:bottom-6 lg:right-6 z-[60] w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         aria-label="Open AI Chat"
@@ -183,50 +200,53 @@ export default function ChatBot() {
         {open && (
           <motion.div
             key="chatwindow"
-            initial={{ opacity: 0, y: 24, scale: 0.95 }}
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-20 sm:bottom-24 right-3 sm:right-6 left-3 sm:left-auto z-50 w-auto sm:w-[380px] max-h-[calc(100vh-100px)] sm:max-h-[580px] flex flex-col rounded-2xl border border-border bg-background shadow-2xl overflow-hidden"
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 sm:inset-auto z-[60] sm:bottom-[5.5rem] sm:right-4 lg:bottom-6 lg:right-6 h-[100dvh] sm:h-[480px] w-screen sm:w-[calc(100vw-2rem)] max-w-sm flex flex-col rounded-none sm:rounded-2xl border-0 sm:border border-border bg-background shadow-none sm:shadow-2xl overflow-hidden"
           >
-            {/* Header */}
-            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/10 border-b border-border">
-              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
-                <Bot className="w-4 sm:w-5 h-4 sm:h-5 text-primary-foreground" />
+            {/* Header with safe area insets */}
+            <div 
+              className="flex items-center gap-3 px-4 py-3 bg-primary/10 border-b border-border shrink-0"
+              style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))", paddingBottom: "0.75rem" }}
+            >
+              <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
+                <Bot className="w-5 h-5 text-primary-foreground" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight truncate">
+                <p className="text-sm font-semibold text-foreground leading-tight truncate">
                   Saif's AI Assistant
                 </p>
-                <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
+                <p className="text-xs text-muted-foreground truncate">
                   Ask anything about services
                 </p>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-2.5 sm:px-4 py-3 sm:py-4 space-y-3 sm:space-y-4 min-h-0">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0">
               {messages.map((msg, i) => (
                 <div
                   key={i}
                   data-testid={`message-${msg.role}-${i}`}
-                  className={`flex gap-1.5 sm:gap-2 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
+                  className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
                 >
                   <div
-                    className={`w-6 sm:w-7 h-6 sm:h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                       msg.role === "user"
                         ? "bg-primary/20"
                         : "bg-primary/10"
                     }`}
                   >
                     {msg.role === "user" ? (
-                      <User className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-primary" />
+                      <User className="w-4 h-4 text-primary" />
                     ) : (
-                      <Bot className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-primary" />
+                      <Bot className="w-4 h-4 text-primary" />
                     )}
                   </div>
                   <div
-                    className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm leading-relaxed ${
+                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user"
                         ? "bg-primary text-primary-foreground rounded-tr-sm"
                         : "bg-card border border-border text-foreground rounded-tl-sm"
@@ -238,19 +258,19 @@ export default function ChatBot() {
               ))}
 
               {loading && (
-                <div className="flex gap-1.5 sm:gap-2 flex-row">
-                  <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Bot className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-primary" />
+                <div className="flex gap-2 flex-row animate-in fade-in duration-200">
+                  <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Bot className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2">
-                    <Loader2 className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-primary animate-spin" />
-                    <span className="text-xs text-muted-foreground">Thinking…</span>
+                  <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-3.5 py-2.5 flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 text-primary animate-spin" />
+                    <span className="text-sm text-muted-foreground">Thinking…</span>
                   </div>
                 </div>
               )}
 
               {error && (
-                <div className="text-xs text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2">
+                <div className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-3 py-2 animate-in fade-in duration-200">
                   {error}
                 </div>
               )}
@@ -258,27 +278,30 @@ export default function ChatBot() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Input */}
-            <div className="px-2.5 sm:px-3 py-2.5 sm:py-3 border-t border-border bg-card/30 flex items-center gap-1.5 sm:gap-2">
-              <input
-                ref={inputRef}
+            {/* Input with safe area insets */}
+            <div 
+              className="px-4 py-3 border-t border-border bg-card/30 flex items-end gap-2 shrink-0"
+              style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+            >
+              <textarea
+                ref={textareaRef}
                 data-testid="input-chat-message"
-                type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything…"
                 disabled={loading}
-                className="flex-1 bg-background border border-border rounded-lg sm:rounded-xl px-2.5 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-60 transition-all"
+                className="flex-1 bg-background border border-border rounded-xl px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-60 transition-all resize-none overflow-hidden max-h-[120px]"
+                rows={1}
               />
               <button
                 onClick={handleSend}
                 disabled={loading || !input.trim()}
                 data-testid="button-send-message"
-                className="w-9 sm:w-10 h-9 sm:h-10 rounded-lg sm:rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shrink-0"
+                className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shrink-0"
                 aria-label="Send message"
               >
-                <Send className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                <Send className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
