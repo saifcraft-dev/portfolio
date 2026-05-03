@@ -81,8 +81,8 @@ export default function Footer() {
           <p>&copy; {currentYear} Saif Khan / DevStudio. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/faq"><span className="hover:text-white transition-colors cursor-pointer">FAQ</span></Link>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link href="/privacy-policy"><span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span></Link>
+            <Link href="/terms-of-service"><span className="hover:text-white transition-colors cursor-pointer">Terms of Service</span></Link>
           </div>
         </div>
       </div>
