@@ -38,7 +38,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2.5 group">
           <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center group-hover:bg-primary/90 transition-colors duration-300">
-            <Code2 className="text-foreground w-5 h-5" />
+            <Code2 className="text-white w-5 h-5" />
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-foreground">
             DevStudio

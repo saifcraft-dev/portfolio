@@ -12,7 +12,7 @@ export default function Footer() {
             <Link href="/">
               <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
                 <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <Code2 className="text-foreground w-4 h-4" />
+                  <Code2 className="text-white w-4 h-4" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-foreground">
                   DevStudio
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-foreground mb-6 text-sm uppercase tracking-wider">Services</h4>
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Landing Page — from $250</span></Link></li>
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Business Website — from $700</span></Link></li>
