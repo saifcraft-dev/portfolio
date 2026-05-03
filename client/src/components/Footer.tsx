@@ -1,43 +1,43 @@
 import { Link } from "wouter";
-import { Rocket, Twitter, Linkedin, Github, Instagram, Mail } from "lucide-react";
+import { Code2, Twitter, Linkedin, Github, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black pt-20 pb-10 border-t border-white/5">
+    <footer className="bg-[hsl(222,47%,4%)] pt-20 pb-10 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <Link href="/">
-              <div className="flex items-center space-x-2 mb-6 cursor-pointer">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-purple-400 flex items-center justify-center">
-                  <Rocket className="text-white w-5 h-5" />
+              <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
+                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                  <Code2 className="text-white w-4 h-4" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-white">
                   DevStudio
                 </span>
               </div>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Building digital experiences that matter. We help forward-thinking companies design, build, and scale their vision.
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              We help businesses build fast, custom web apps that deliver real results. Clean code, clear communication, on-time delivery.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
                 <Github className="w-5 h-5" />
               </a>
             </div>
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6">Services</h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Web Development</span></Link></li>
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Mobile Apps</span></Link></li>
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">UI/UX Design</span></Link></li>
@@ -46,8 +46,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6">Company</h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Us</span></Link></li>
               <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">Our Work</span></Link></li>
               <li><Link href="/contact"><span className="hover:text-primary transition-colors cursor-pointer">Careers</span></Link></li>
@@ -56,20 +56,25 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6">Contact</h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Contact</h4>
+            <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-primary" />
+                <Mail className="w-4 h-4 text-primary shrink-0" />
                 <span>hello@devstudio.com</span>
               </li>
-              <li>
-                <p>123 Innovation Drive,<br />Tech Valley, CA 94043</p>
+              <li className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-primary shrink-0" />
+                <span>+1 (555) 000-0000</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <span>123 Innovation Drive,<br />Tech Valley, CA 94043</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>&copy; {currentYear} DevStudio Inc. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
