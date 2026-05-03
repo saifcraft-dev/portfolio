@@ -20,7 +20,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Freelance fullstack developer. I help startups and businesses build fast, custom web apps that solve real problems.
+              Hi, I'm Saif Khan — a freelance fullstack developer. I help startups and businesses build fast, custom web apps that solve real problems.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} DevStudio. All rights reserved.</p>
+          <p>&copy; {currentYear} Saif Khan / DevStudio. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/faq"><span className="hover:text-white transition-colors cursor-pointer">FAQ</span></Link>
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

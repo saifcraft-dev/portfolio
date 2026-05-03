@@ -34,7 +34,7 @@ export default function About() {
         >
           <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">About Me</p>
           <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
-            Hi, I'm a Fullstack Developer
+            Hi, I'm Saif Khan
           </h1>
           <p className="text-xl text-muted-foreground">
             I help startups and businesses build fast, custom web applications that solve real problems and deliver measurable results.

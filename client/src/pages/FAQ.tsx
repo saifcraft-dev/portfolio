@@ -149,9 +149,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function FAQ() {
   useEffect(() => {
-    document.title = "FAQ — DevStudio | Freelance Fullstack Developer";
+    document.title = "FAQ — Saif Khan | DevStudio | Freelance Fullstack Developer";
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Answers to the most common questions about working with me — pricing, contracts, payment, process, and delivery.");
+    if (meta) meta.setAttribute("content", "Answers to the most common questions about working with Saif Khan — pricing, contracts, payment, process, and delivery.");
   }, []);
 
   return (

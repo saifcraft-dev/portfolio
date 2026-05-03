@@ -135,9 +135,9 @@ const pricingRules = [
 
 export default function Services() {
   useEffect(() => {
-    document.title = "Services & Pricing — DevStudio | Freelance Fullstack Developer";
+    document.title = "Services & Pricing — Saif Khan | DevStudio | Freelance Fullstack Developer";
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Fixed-scope packages for landing pages, business websites, custom web apps, AI features, and monthly retainers. Clear pricing, no hourly surprises.");
+    if (meta) meta.setAttribute("content", "Fixed-scope packages for landing pages, business websites, custom web apps, AI features, and monthly retainers. Clear pricing, no hourly surprises. By Saif Khan.");
   }, []);
 
   return (
