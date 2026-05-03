@@ -49,6 +49,10 @@
   --cta: 38 92% 50%;
   --cta-hover: 38 92% 44%;
 
+  /* Footer — dark sophisticated background */
+  --footer: 217 32% 17%;
+  --footer-foreground: 0 0% 95%;
+
   --radius: 0.75rem;
 }
 
