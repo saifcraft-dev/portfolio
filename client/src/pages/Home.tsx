@@ -18,7 +18,7 @@ const techStack = [
   { icon: SiReact, name: "React", color: "#61DAFB" },
   { icon: SiNodedotjs, name: "Node.js", color: "#68A063" },
   { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+  { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
   { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
   { icon: SiTailwindcss, name: "Tailwind", color: "#38BDF8" },
   { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
