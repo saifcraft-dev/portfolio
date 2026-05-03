@@ -8,44 +8,44 @@
   --font-sans: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   
-  /* Palette 01 — Classic & Trustworthy (Navy + Orange + Gold) from Professional Guide */
-  /* Brand Primary — Navy Blue */
-  --background: 210 25% 96%;
-  --foreground: 200 29% 16%;
+  /* Modern & Vibrant Color Palette */
+  /* Clean light background */
+  --background: 210 20% 98%;
+  --foreground: 210 30% 12%;
 
-  /* Card Surface — Pure White */
+  /* Card Surface — Pure White with better contrast */
   --card: 0 0% 100%;
-  --card-foreground: 200 29% 16%;
+  --card-foreground: 210 30% 12%;
  
   --popover: 0 0% 100%;
-  --popover-foreground: 194 8% 42%;
+  --popover-foreground: 210 20% 35%;
  
-  /* Navy Blue primary — trustworthy brand color */
-  --primary: 210 56% 23%;
+  /* Vibrant Modern Blue primary — more saturated and energetic */
+  --primary: 215 85% 40%;
   --primary-foreground: 0 0% 100%;
  
-  /* Sky Blue secondary */
-  --secondary: 204 61% 47%;
+  /* Vibrant Teal secondary — complementary and modern */
+  --secondary: 170 75% 45%;
   --secondary-foreground: 0 0% 100%;
  
-  --muted: 210 13% 88%;
-  --muted-foreground: 194 8% 42%;
+  --muted: 210 15% 85%;
+  --muted-foreground: 210 20% 45%;
  
-  /* Golden Yellow accent */
-  --accent: 37 90% 55%;
+  /* Vibrant Accent — Electric Purple */
+  --accent: 270 85% 55%;
   --accent-foreground: 0 0% 100%;
  
-  --destructive: 6 76% 57%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  /* Light Blue Gray border */
-  --border: 210 13% 88%;
-  --input: 210 25% 96%;
-  --ring: 210 56% 23%;
+  /* Refined border color */
+  --border: 210 15% 90%;
+  --input: 210 20% 96%;
+  --ring: 215 85% 40%;
  
-  /* CTA Orange — proven for conversions */
-  --cta: 25 80% 51%;
-  --cta-hover: 25 78% 43%;
+  /* CTA Vibrant Orange-Red — energetic and conversion-focused */
+  --cta: 12 95% 55%;
+  --cta-hover: 12 95% 48%;
 
   --radius: 0.75rem;
 }
@@ -90,15 +90,15 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1A3C5E] via-[#2E86C1] to-[#F5A623];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1e5a96] via-[#2563eb] to-[#ff4500];
   }
   
   .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1A3C5E] via-[#2E86C1] to-[#5DADE2];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563eb] via-[#3b82f6] to-[#06b6d4];
   }
 
   .text-gradient-cta {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#E8691E] to-[#F5A623];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ff4500] to-[#ff6347];
   }
 
   .glass-card {
