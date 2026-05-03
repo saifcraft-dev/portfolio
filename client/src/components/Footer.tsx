@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Services</h4>
+            <h4 className="font-display font-bold text-[hsl(var(--footer-foreground))] mb-6 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Landing Page — from $250</span></Link></li>
               <li><Link href="/services"><span className="hover:text-primary transition-colors cursor-pointer">Business Website — from $700</span></Link></li>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Navigate</h4>
+            <h4 className="font-display font-bold text-[hsl(var(--footer-foreground))] mb-6 text-sm uppercase tracking-wider">Navigate</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link href="/about"><span className="hover:text-primary transition-colors cursor-pointer">About Me</span></Link></li>
               <li><Link href="/portfolio"><span className="hover:text-primary transition-colors cursor-pointer">My Work</span></Link></li>
@@ -65,7 +65,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-white mb-6 text-sm uppercase tracking-wider">Contact</h4>
+            <h4 className="font-display font-bold text-[hsl(var(--footer-foreground))] mb-6 text-sm uppercase tracking-wider">Contact</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border pt-12 mb-8">
+        <div className="border-t border-border/40 pt-12 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
             {platforms.map((p) => (
               <a
@@ -87,17 +87,17 @@ export default function Footer() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-card/40 border border-border rounded-xl p-4 flex flex-col items-start gap-3 hover:border-primary/40 hover:bg-card/60 transition-all duration-300 group"
+                className="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col items-start gap-3 hover:border-white/20 hover:bg-white/10 transition-all duration-300 group"
               >
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/15 transition-colors">
                   <p.icon style={{ color: p.color }} className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-xs mb-0.5 flex items-center gap-1">
+                  <p className="font-bold text-[hsl(var(--footer-foreground))] text-xs mb-0.5 flex items-center gap-1">
                     {p.name}
-                    <ExternalLink className="w-2.5 h-2.5 text-muted-foreground" />
+                    <ExternalLink className="w-2.5 h-2.5 text-[hsl(var(--footer-foreground))]/60" />
                   </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+                  <p className="text-xs text-[hsl(var(--footer-foreground))]/70 leading-relaxed">{p.desc}</p>
                 </div>
               </a>
             ))}
