@@ -6,25 +6,71 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   Quote, Star, ArrowRight, Zap, Shield, Clock, HeartHandshake,
-  CheckCircle2, ExternalLink
+  ExternalLink
 } from "lucide-react";
 import {
   SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiTailwindcss,
   SiNextdotjs, SiMongodb, SiDocker, SiFirebase, SiGraphql,
-  SiUpwork, SiFiverr, SiGithub, SiLinkedin, SiX
+  SiGithub, SiLinkedin, SiX, SiRedis, SiPrisma, SiVercel,
+  SiGit, SiOpenai
 } from "react-icons/si";
 
-const techStack = [
-  { icon: SiReact, name: "React", color: "#61DAFB" },
-  { icon: SiNodedotjs, name: "Node.js", color: "#68A063" },
-  { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#111827" },
-  { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
-  { icon: SiTailwindcss, name: "Tailwind", color: "#38BDF8" },
-  { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
-  { icon: SiDocker, name: "Docker", color: "#2496ED" },
-  { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
-  { icon: SiGraphql, name: "GraphQL", color: "#E10098" },
+const skillCategories = [
+  {
+    label: "Frontend",
+    color: "from-blue-500/15 to-cyan-500/5",
+    border: "border-blue-500/20",
+    dot: "bg-blue-500",
+    skills: [
+      { icon: SiReact, name: "React", color: "#61DAFB", level: "Expert" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#111827", level: "Expert" },
+      { icon: SiTypescript, name: "TypeScript", color: "#3178C6", level: "Expert" },
+      { icon: SiTailwindcss, name: "Tailwind CSS", color: "#38BDF8", level: "Expert" },
+    ],
+  },
+  {
+    label: "Backend",
+    color: "from-emerald-500/15 to-green-500/5",
+    border: "border-emerald-500/20",
+    dot: "bg-emerald-500",
+    skills: [
+      { icon: SiNodedotjs, name: "Node.js", color: "#68A063", level: "Expert" },
+      { icon: SiGraphql, name: "GraphQL", color: "#E10098", level: "Advanced" },
+      { icon: SiPrisma, name: "Prisma", color: "#2D3748", level: "Advanced" },
+      { icon: SiFirebase, name: "Firebase", color: "#FFCA28", level: "Advanced" },
+    ],
+  },
+  {
+    label: "Database",
+    color: "from-violet-500/15 to-purple-500/5",
+    border: "border-violet-500/20",
+    dot: "bg-violet-500",
+    skills: [
+      { icon: SiPostgresql, name: "PostgreSQL", color: "#336791", level: "Expert" },
+      { icon: SiMongodb, name: "MongoDB", color: "#47A248", level: "Expert" },
+      { icon: SiRedis, name: "Redis", color: "#DC382D", level: "Advanced" },
+    ],
+  },
+  {
+    label: "DevOps & Tools",
+    color: "from-orange-500/15 to-amber-500/5",
+    border: "border-orange-500/20",
+    dot: "bg-orange-500",
+    skills: [
+      { icon: SiDocker, name: "Docker", color: "#2496ED", level: "Advanced" },
+      { icon: SiVercel, name: "Vercel", color: "#111827", level: "Expert" },
+      { icon: SiGit, name: "Git", color: "#F05032", level: "Expert" },
+    ],
+  },
+  {
+    label: "AI / LLMs",
+    color: "from-pink-500/15 to-rose-500/5",
+    border: "border-pink-500/20",
+    dot: "bg-pink-500",
+    skills: [
+      { icon: SiOpenai, name: "OpenAI API", color: "#10A37F", level: "Advanced" },
+    ],
+  },
 ];
 
 const testimonials = [
@@ -271,39 +317,117 @@ export default function Home() {
       </section>
 
       {/* 3. SKILLS / TECH STACK */}
-      <section id="skills" className="py-16 sm:py-24 border-t border-border bg-card/20">
+      <section id="skills" className="py-20 sm:py-28 border-t border-border bg-card/20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
-          >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">My Skills</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Tech Stack</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
-              Modern, battle-tested technologies I use every day to build production-ready applications.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-10 gap-3 sm:gap-4 md:gap-6">
-            {techStack.map((tech, i) => (
+          {/* Header */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-14 sm:mb-18">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">My Skills</p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground leading-[1.15]">
+                Tools I use to{" "}
+                <span className="text-gradient-primary">ship great software.</span>
+              </h2>
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-base text-muted-foreground leading-relaxed lg:text-right"
+            >
+              Battle-tested, modern technologies I use every day to build production-ready applications — from pixel-perfect frontends to scalable backends and AI-powered features.
+            </motion.p>
+          </div>
+
+          {/* Category cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {skillCategories.map((cat, ci) => (
               <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                key={cat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.4 }}
-                className="flex flex-col items-center gap-2 group"
-                data-testid={`badge-tech-${tech.name.toLowerCase()}`}
+                transition={{ delay: ci * 0.08, duration: 0.5 }}
+                className={`bg-gradient-to-br ${cat.color} border ${cat.border} rounded-2xl p-5 sm:p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300`}
               >
-                <div className="w-14 h-14 rounded-2xl bg-card border border-border flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
-                  <tech.icon style={{ color: tech.color }} className="w-7 h-7" />
+                {/* Category header */}
+                <div className="flex items-center gap-2 mb-5">
+                  <span className={`w-2 h-2 rounded-full ${cat.dot}`} />
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    {cat.label}
+                  </span>
+                  <span className="ml-auto text-xs text-muted-foreground/60 font-medium">
+                    {cat.skills.length} {cat.skills.length === 1 ? "tool" : "tools"}
+                  </span>
                 </div>
-                <span className="text-xs text-muted-foreground font-medium">{tech.name}</span>
+
+                {/* Tech items */}
+                <div className="flex flex-col gap-3">
+                  {cat.skills.map((tech, ti) => (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: ci * 0.08 + ti * 0.06, duration: 0.4 }}
+                      className="flex items-center gap-3 bg-card/70 backdrop-blur-sm border border-border/60 rounded-xl px-3 py-2.5 group hover:border-border hover:bg-card transition-all duration-200"
+                      data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-background border border-border flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                        <tech.icon style={{ color: tech.color }} className="w-4 h-4" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground flex-1">{tech.name}</span>
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                        tech.level === "Expert"
+                          ? "bg-primary/10 text-primary"
+                          : tech.level === "Advanced"
+                          ? "bg-secondary/10 text-secondary"
+                          : "bg-muted text-muted-foreground"
+                      }`}>
+                        {tech.level}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             ))}
+
+            {/* Summary card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="bg-gradient-to-br from-primary/10 to-secondary/5 border border-primary/20 rounded-2xl p-5 sm:p-6 flex flex-col justify-between"
+            >
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">At a glance</p>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {[
+                    { value: "7+", label: "Years coding" },
+                    { value: "18+", label: "Technologies" },
+                    { value: "2+", label: "Years with AI" },
+                    { value: "50+", label: "Apps shipped" },
+                  ].map((s) => (
+                    <div key={s.label} className="bg-card/60 border border-border/60 rounded-xl p-3 text-center">
+                      <div className="text-xl font-display font-bold text-foreground">{s.value}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="pt-4 border-t border-border/60">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  I stay current with the ecosystem and choose the right tool for the job — not the trendiest one.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
