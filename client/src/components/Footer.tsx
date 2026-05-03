@@ -69,15 +69,6 @@ export default function Footer() {
                 <span>Available remotely worldwide</span>
               </li>
             </ul>
-
-            <div className="mt-6">
-              <h4 className="font-display font-bold text-white mb-3 text-xs uppercase tracking-wider">Hire Me On</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Upwork</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Fiverr</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
-              </ul>
-            </div>
           </div>
         </div>
 
