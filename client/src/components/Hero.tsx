@@ -76,7 +76,7 @@ export default function Hero() {
                   <div className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                  <div className="text-xs text-foreground/70 uppercase tracking-wider font-semibold">
                     {stat.label}
                   </div>
                 </div>
