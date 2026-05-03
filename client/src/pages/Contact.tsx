@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useCreateOrder } from "@/hooks/use-orders";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail, Github, Linkedin, Clock } from "lucide-react";
 
 const formSchema = z.object({
   clientName: z.string().min(1, "Name is required"),
@@ -26,7 +24,7 @@ const formSchema = z.object({
 export default function Contact() {
   const { toast } = useToast();
   const createOrder = useCreateOrder();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,8 +53,8 @@ export default function Contact() {
         updatedAt: new Date().toISOString(),
       });
       toast({
-        title: "Request Sent!",
-        description: "We'll get back to you within 24 hours.",
+        title: "Message sent!",
+        description: "I'll get back to you within 24 hours.",
       });
       form.reset();
     } catch (error) {
@@ -72,7 +70,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background">
       <div className="pt-32 pb-20 container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-16">
-          
+
           {/* Contact Info */}
           <div className="lg:w-1/3">
             <motion.div
@@ -80,23 +78,51 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">Let's Talk</h1>
-              <p className="text-xl text-gray-400 mb-12">
-                Have a project in mind? We'd love to hear about it. Fill out the form and we'll be in touch shortly.
+              <p className="text-primary text-sm font-bold uppercase tracking-wider mb-4">Get in Touch</p>
+              <h1 className="text-4xl lg:text-5xl font-display font-bold text-white mb-5">Let's Work Together</h1>
+              <p className="text-lg text-muted-foreground mb-10">
+                Have a project in mind? Fill out the form and I'll get back to you within 24 hours with my thoughts and a rough timeline.
               </p>
 
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-white font-bold mb-2">Email Us</h3>
-                  <p className="text-gray-400">hello@devstudio.com</p>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">Email</p>
+                    <p className="text-muted-foreground text-sm">hello@devstudio.com</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white font-bold mb-2">Call Us</h3>
-                  <p className="text-gray-400">+1 (555) 000-0000</p>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">Response Time</p>
+                    <p className="text-muted-foreground text-sm">Within 24 hours</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white font-bold mb-2">Visit Us</h3>
-                  <p className="text-gray-400">123 Innovation Drive<br />Tech Valley, CA 94043</p>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Github className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">GitHub</p>
+                    <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors">github.com/devstudio</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Linkedin className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm mb-0.5">LinkedIn</p>
+                    <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors">linkedin.com/in/devstudio</a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -104,11 +130,11 @@ export default function Contact() {
 
           {/* Form */}
           <div className="lg:w-2/3">
-             <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-card border border-white/5 rounded-3xl p-8 lg:p-12"
+              className="bg-card border border-border rounded-3xl p-8 lg:p-12"
             >
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -118,9 +144,9 @@ export default function Contact() {
                       name="clientName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Name</FormLabel>
+                          <FormLabel className="text-white">Your Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} className="bg-background border-white/10 text-white h-12" />
+                            <Input placeholder="John Doe" {...field} className="bg-background border-border text-white h-12" data-testid="input-name" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -131,9 +157,9 @@ export default function Contact() {
                       name="clientEmail"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Email</FormLabel>
+                          <FormLabel className="text-white">Email Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="john@example.com" {...field} className="bg-background border-white/10 text-white h-12" />
+                            <Input placeholder="john@example.com" {...field} className="bg-background border-border text-white h-12" data-testid="input-email" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -147,14 +173,14 @@ export default function Contact() {
                       name="serviceType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Service Type</FormLabel>
+                          <FormLabel className="text-white">What Do You Need?</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-background border-white/10 text-white h-12">
+                              <SelectTrigger className="bg-background border-border text-white h-12" data-testid="select-service">
                                 <SelectValue placeholder="Select a service" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-card border-white/10 text-white">
+                            <SelectContent className="bg-card border-border text-white">
                               <SelectItem value="Web App">Web Application</SelectItem>
                               <SelectItem value="Mobile App">Mobile App</SelectItem>
                               <SelectItem value="Website">Marketing Website</SelectItem>
@@ -165,14 +191,14 @@ export default function Contact() {
                         </FormItem>
                       )}
                     />
-                     <FormField
+                    <FormField
                       control={form.control}
                       name="budget"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white">Budget (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="$5,000 - $10,000" {...field} className="bg-background border-white/10 text-white h-12" />
+                            <Input placeholder="e.g. $3,000 – $8,000" {...field} className="bg-background border-border text-white h-12" data-testid="input-budget" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -185,12 +211,13 @@ export default function Contact() {
                     name="projectDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Project Details</FormLabel>
+                        <FormLabel className="text-white">Tell Me About Your Project</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="Tell us about your project..." 
-                            {...field} 
-                            className="bg-background border-white/10 text-white min-h-[150px] resize-none" 
+                          <Textarea
+                            placeholder="What problem are you trying to solve? What does success look like?"
+                            {...field}
+                            className="bg-background border-border text-white min-h-[150px] resize-none"
+                            data-testid="textarea-description"
                           />
                         </FormControl>
                         <FormMessage />
@@ -198,17 +225,18 @@ export default function Contact() {
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
-                    className="w-full h-14 text-lg bg-primary hover:bg-primary/90 text-white"
+                  <Button
+                    type="submit"
+                    className="w-full h-14 text-lg btn-cta border-0 rounded-xl shadow-lg shadow-orange-900/20"
                     disabled={createOrder.isPending}
+                    data-testid="button-submit"
                   >
                     {createOrder.isPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Sending...
                       </>
-                    ) : "Submit Request"}
+                    ) : "Send Message"}
                   </Button>
                 </form>
               </Form>

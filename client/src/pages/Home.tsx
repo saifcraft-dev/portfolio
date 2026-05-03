@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsGallery from "@/components/ProjectsGallery";
-import TeamSection from "@/components/TeamSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -25,28 +24,28 @@ const testimonials = [
   {
     name: "Sarah Mitchell",
     role: "Founder, MedBook",
-    quote: "DevStudio built our patient booking system in 6 weeks. It reduced our front-desk workload by 60% and the code is clean enough that our own team can maintain it. Best investment we made.",
+    quote: "He built our patient booking system in 6 weeks. It reduced our front-desk workload by 60% and the code is clean enough that our own team can maintain it. Best investment we made.",
     stars: 5,
   },
   {
     name: "James Okonkwo",
     role: "CEO, ShopLocal",
-    quote: "They replaced our Shopify store with a custom solution that loads 3x faster. We eliminated $300/month in fees and our conversion rate went up by 22%. I wish I'd done this sooner.",
+    quote: "He replaced our Shopify store with a custom solution that loads 3x faster. We eliminated $300/month in fees and our conversion rate went up by 22%. I wish I'd done this sooner.",
     stars: 5,
   },
   {
     name: "Priya Sharma",
     role: "CTO, LaunchPad SaaS",
-    quote: "We went from idea to working MVP in under 8 weeks. DevStudio communicated clearly throughout, hit every milestone, and the code quality blew our in-house team away.",
+    quote: "We went from idea to working MVP in under 8 weeks. He communicated clearly throughout, hit every milestone, and the code quality blew our in-house team away.",
     stars: 5,
   },
 ];
 
 const values = [
-  { icon: Zap, title: "Fast Delivery", desc: "We work in focused sprints so you get a working product quickly — not months from now." },
-  { icon: Shield, title: "Clean Code", desc: "We write maintainable, well-documented code your team can confidently take over." },
+  { icon: Zap, title: "Fast Delivery", desc: "I work in focused sprints so you get a working product quickly — not months from now." },
+  { icon: Shield, title: "Clean Code", desc: "I write maintainable, well-documented code your team can confidently take over." },
   { icon: Clock, title: "On Time & On Budget", desc: "Fixed-scope projects. No surprise invoices. No scope creep without your approval." },
-  { icon: HeartHandshake, title: "Clear Communication", desc: "You'll always know exactly where your project stands. We reply within hours, not days." },
+  { icon: HeartHandshake, title: "Clear Communication", desc: "You'll always know exactly where your project stands. I reply within hours, not days." },
 ];
 
 export default function Home() {
@@ -54,7 +53,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Hero />
 
-      {/* Why Us — Values Section */}
+      {/* Why Work With Me */}
       <section className="py-20 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -83,7 +82,7 @@ export default function Home() {
       <ServicesSection />
       <ProjectsGallery />
 
-      {/* Tech Stack / Skills Section */}
+      {/* Tech Stack */}
       <section className="py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -93,15 +92,16 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-16"
           >
+            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">My Skills</p>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">
-              Our Tech Stack
+              Tech Stack
             </h2>
             <p className="text-muted-foreground text-lg">
-              We use modern, battle-tested technologies to build fast and scalable applications.
+              I use modern, battle-tested technologies to build fast and scalable applications.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-4 md:gap-6">
+          <div className="grid grid-cols-5 md:grid-cols-10 gap-4 md:gap-6">
             {techStack.map((tech, i) => (
               <motion.div
                 key={tech.name}
@@ -122,7 +122,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section className="py-24 bg-card/40 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -132,11 +132,12 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-16"
           >
+            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Social Proof</p>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">
               What Clients Say
             </h2>
             <p className="text-muted-foreground text-lg">
-              We let results speak. Here's what our clients say about working with us.
+              I let results speak. Here's what my clients say about working with me.
             </p>
           </motion.div>
 
@@ -170,13 +171,11 @@ export default function Home() {
         </div>
       </section>
 
-      <TeamSection />
-
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="py-32 relative overflow-hidden border-t border-border">
         <div className="absolute inset-0 bg-primary/5" />
         <div className="absolute -top-[50%] left-[20%] w-[60%] h-[60%] bg-primary/15 blur-[150px] rounded-full" />
-        
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -185,10 +184,10 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
-              Ready to bring your vision to life?
+              Have a project in mind?
             </h2>
             <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Let's build something that actually works — on time, on budget, and with measurable results.
+              I'd love to hear about it. Let's build something that actually works — on time, on budget, with measurable results.
             </p>
             <Button
               size="lg"
@@ -197,7 +196,7 @@ export default function Home() {
             >
               <Link href="/contact">
                 <span className="flex items-center gap-2">
-                  Start Your Project
+                  Let's Work Together
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>

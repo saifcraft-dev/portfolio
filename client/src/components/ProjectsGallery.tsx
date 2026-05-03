@@ -35,13 +35,13 @@ export default function ProjectsGallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div className="max-w-2xl">
-            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">Our Work</p>
+            <p className="text-primary text-sm font-bold uppercase tracking-wider mb-3">My Work</p>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4">Recent Projects</h2>
             <p className="text-muted-foreground text-lg">
-              Real projects. Real results. Every case study includes the problem we solved and the measurable outcome.
+              Real projects. Real results. Each one started with a problem to solve.
             </p>
           </div>
-          
+
           <div className="flex flex-wrap gap-2 shrink-0">
             {categories.map((category) => (
               <Button

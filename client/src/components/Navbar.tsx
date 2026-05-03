@@ -70,7 +70,7 @@ export function Navbar() {
             className="btn-cta border-0 font-semibold rounded-full px-6 shadow-md"
             data-testid="button-nav-cta"
           >
-            <Link href="/contact">Start Project</Link>
+            <Link href="/contact">Hire Me</Link>
           </Button>
         </nav>
 
@@ -100,7 +100,7 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 asChild
               >
-                <Link href="/contact">Let's Talk</Link>
+                <Link href="/contact">Hire Me</Link>
               </Button>
             </div>
           </SheetContent>
