@@ -507,7 +507,7 @@ export default function Home() {
                     {cat.skills.map((tech) => (
                       <div
                         key={tech.name}
-                        className="inline-flex items-center gap-1.5 bg-background border border-border rounded-lg px-2.5 py-1.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-150 cursor-default"
+                        className="inline-flex items-center gap-1.5 bg-white border border-border rounded-lg px-2.5 py-1.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-150 cursor-default"
                         data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
                       >
                         <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
