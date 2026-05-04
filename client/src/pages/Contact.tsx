@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -43,6 +44,12 @@ const nextSteps = [
 ];
 
 export default function Contact() {
+  useEffect(() => {
+    document.title = "Contact Saif Khan — Hire a Fullstack Developer | DevStudio";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "Ready to build your web app? Get in touch with Saif Khan for a free consultation. Fixed-scope pricing, clear timelines, direct communication.");
+  }, []);
+
   const { toast } = useToast();
   const createOrder = useCreateOrder();
 

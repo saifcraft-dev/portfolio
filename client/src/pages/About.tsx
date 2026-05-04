@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import {
   Github, Linkedin, Twitter, Target, Lightbulb, Clock,
   ArrowRight, CheckCircle2, Zap, Users, Award, Code2,
@@ -64,6 +65,12 @@ const fadeUp = {
 };
 
 export default function About() {
+  useEffect(() => {
+    document.title = "About Saif Khan — Senior Fullstack Developer | DevStudio";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "7+ years building fast, production-ready web apps. React, Node.js, TypeScript & AI specialist. Direct communication, clean code, on-time delivery.");
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
 

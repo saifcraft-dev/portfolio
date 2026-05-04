@@ -15,8 +15,9 @@ import {
 } from 'firebase/firestore';
 import { db } from './config';
 import { Project, Service, Order, TeamMember } from '@/types';
-import naomiImg from "@assets/ChatGPT_Image_Feb_19,_2026,_09_32_33_AM_1771475827794.png";
-import fullStackImg from "@assets/image_1771476086345.png";
+
+const naomiImg = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&q=80";
+const fullStackImg = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80";
 
 // Generic CRUD helper
 const createCRUD = <T extends { id?: string }>(collectionName: string) => {

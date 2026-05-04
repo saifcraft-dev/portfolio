@@ -8,7 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Switch, Route, Redirect, useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ChatBot from "@/components/ChatBot";
+const ChatBot = lazy(() => import("@/components/ChatBot"));
 
 const Home = lazy(() => import("@/pages/Home"));
 const Portfolio = lazy(() => import("@/pages/Portfolio"));
@@ -101,7 +101,9 @@ export default function App() {
               <Router />
             </main>
             <Footer />
-            <ChatBot />
+            <Suspense fallback={null}>
+              <ChatBot />
+            </Suspense>
           </div>
           <Toaster />
         </TooltipProvider>

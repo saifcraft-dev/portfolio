@@ -234,6 +234,37 @@ export default function Home() {
     document.title = "Saif Khan — Freelance Fullstack Developer | DevStudio | React · Node.js · TypeScript";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "I'm Saif Khan, a freelance fullstack developer. I help startups and businesses build fast, custom web applications — on time, within budget, with clean code you can maintain.");
+
+    const existingScript = document.getElementById("jsonld-person");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "jsonld-person";
+      script.type = "application/ld+json";
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Saif Khan",
+        "url": "https://portfolio-wheat-iota-47.vercel.app/",
+        "jobTitle": "Senior Fullstack Developer",
+        "description": "Freelance fullstack developer specializing in React, Node.js, TypeScript, and AI integrations.",
+        "knowsAbout": ["React", "Node.js", "TypeScript", "PostgreSQL", "AI/LLMs", "Firebase"],
+        "offers": {
+          "@type": "Offer",
+          "description": "Custom web application development",
+          "priceRange": "$250 - $10,000+"
+        },
+        "sameAs": [
+          "https://github.com/saifkhan-dev",
+          "https://linkedin.com/in/saifkhan"
+        ]
+      });
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      const s = document.getElementById("jsonld-person");
+      if (s) s.remove();
+    };
   }, []);
 
   return (
@@ -267,6 +298,10 @@ export default function Home() {
                   <img
                     src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
                     alt="Developer at work"
+                    width="800"
+                    height="300"
+                    loading="eager"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity"
                   />
                 </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useProjects } from "@/hooks/use-projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,6 +9,12 @@ const CATEGORIES = ["All", "Web App", "E-Commerce", "Mobile", "SaaS", "Full-Stac
 export default function Portfolio() {
   const { data: projects, isLoading } = useProjects();
   const [activeCategory, setActiveCategory] = useState("All");
+
+  useEffect(() => {
+    document.title = "Portfolio — Saif Khan | Fullstack Developer Projects";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "Browse real-world projects by Saif Khan — fullstack web apps, SaaS platforms, e-commerce solutions, and more. Each project started with a problem to solve.");
+  }, []);
 
   const categories = ["All", ...Array.from(new Set(projects?.map((p: any) => p.category) ?? []))];
 
