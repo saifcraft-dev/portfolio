@@ -122,9 +122,52 @@ const values = [
 ];
 
 const platforms = [
-  { icon: SiGithub, name: "GitHub", desc: "Browse my open-source work and code quality", href: "#", color: "#1a1a2e" },
-  { icon: SiLinkedin, name: "LinkedIn", desc: "Connect, read my posts, and see recommendations", href: "#", color: "#0A66C2" },
-  { icon: SiX, name: "Twitter / X", desc: "I build in public — follow my daily progress", href: "#", color: "#1a1a2e" },
+  {
+    icon: SiGithub,
+    name: "GitHub",
+    handle: "@saifkhan-dev",
+    tag: "Open Source",
+    tagColor: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300",
+    desc: "Where my code lives. Browse real projects, review my architecture decisions, and judge my commit discipline.",
+    highlights: ["15+ public repositories", "Clean, documented code", "Real production projects"],
+    cta: "Browse My Code",
+    href: "#",
+    iconBg: "bg-[#1a1a2e]",
+    accentFrom: "from-slate-700",
+    accentTo: "to-slate-900",
+    stat: "15+ repos",
+  },
+  {
+    icon: SiLinkedin,
+    name: "LinkedIn",
+    handle: "Saif Khan",
+    tag: "Professional",
+    tagColor: "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+    desc: "My professional home. Client recommendations, case studies, and posts on building real web products.",
+    highlights: ["Verified recommendations", "500+ connections", "Weekly dev insights"],
+    cta: "Connect with Me",
+    href: "#",
+    iconBg: "bg-[#0A66C2]",
+    accentFrom: "from-blue-600",
+    accentTo: "to-blue-800",
+    stat: "500+ connections",
+    featured: true,
+  },
+  {
+    icon: SiX,
+    name: "Twitter / X",
+    handle: "@saifbuilds",
+    tag: "Building in Public",
+    tagColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
+    desc: "I document my builds, share quick tips, and post honest thoughts on freelancing and the dev world.",
+    highlights: ["Daily build updates", "Freelance tips & lessons", "Dev community threads"],
+    cta: "Follow My Journey",
+    href: "#",
+    iconBg: "bg-[#111827]",
+    accentFrom: "from-zinc-700",
+    accentTo: "to-zinc-900",
+    stat: "Building daily",
+  },
 ];
 
 const servicePreview = [
@@ -767,49 +810,134 @@ export default function Home() {
       </section>
 
       {/* 7. PLATFORMS — Find me on */}
-      <section id="platforms" className="py-16 sm:py-24 border-t border-border">
+      <section id="platforms" className="py-16 sm:py-24 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Find Me Online</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Where to Hire or Follow Me</h2>
-            <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
-              Whether you prefer a platform with built-in protection or a direct hire — I'm available on all major channels.
+            <div>
+              <div className="inline-flex items-center gap-2 bg-primary/8 border border-primary/15 rounded-full px-4 py-1.5 mb-4">
+                <ExternalLink className="w-3.5 h-3.5 text-primary" />
+                <p className="text-primary text-xs font-bold uppercase tracking-wider">Find Me Online</p>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground">
+                Where to Hire or Follow Me
+              </h2>
+            </div>
+            <p className="text-sm text-muted-foreground sm:text-right sm:max-w-xs leading-relaxed shrink-0">
+              Prefer a platform with built-in protection, or a direct hire? I'm reachable on all major channels.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
+          {/* Platform cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
             {platforms.map((p, i) => (
               <motion.a
                 key={p.name}
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="bg-card border border-border rounded-2xl p-6 flex flex-col items-start gap-4 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group"
+                transition={{ delay: i * 0.1, duration: 0.45 }}
+                className={`relative bg-card border rounded-2xl flex flex-col overflow-hidden transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl hover:shadow-black/8 ${
+                  p.featured
+                    ? "border-primary/40 ring-1 ring-primary/15"
+                    : "border-border hover:border-border"
+                }`}
                 data-testid={`link-platform-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <div className="w-10 h-10 rounded-xl bg-muted/60 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                  <p.icon style={{ color: p.color }} className="w-5 h-5" />
+                {/* Dark gradient hero area */}
+                <div className={`relative bg-gradient-to-br ${p.accentFrom} ${p.accentTo} px-5 pt-5 pb-6`}>
+                  {/* Subtle grid texture */}
+                  <div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                      backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
+                      backgroundSize: "20px 20px",
+                    }}
+                  />
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                      <p.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${p.tagColor}`}>
+                      {p.tag}
+                    </span>
+                  </div>
+                  <div className="relative z-10 mt-4">
+                    <h3 className="font-display font-bold text-white text-lg leading-none">{p.name}</h3>
+                    <p className="text-white/60 text-xs mt-1">{p.handle}</p>
+                  </div>
+                  {/* Stat badge */}
+                  <div className="relative z-10 mt-3 inline-flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/70" />
+                    <span className="text-white/80 text-[11px] font-semibold">{p.stat}</span>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-bold text-foreground text-sm mb-1 flex items-center gap-1">
-                    {p.name}
-                    <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+
+                {/* Card body */}
+                <div className="p-5 flex flex-col gap-4 flex-1">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+
+                  {/* Highlights list */}
+                  <ul className="flex flex-col gap-1.5 flex-1">
+                    {p.highlights.map((h) => (
+                      <li key={h} className="flex items-center gap-2 text-xs text-foreground/75">
+                        <Check className="w-3.5 h-3.5 text-primary shrink-0" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA row */}
+                  <div className="pt-3 border-t border-border flex items-center justify-between">
+                    <span className="text-xs font-semibold text-primary group-hover:underline underline-offset-2 transition-all">
+                      {p.cta}
+                    </span>
+                    <div className="w-7 h-7 rounded-full bg-primary/8 border border-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-200">
+                      <ArrowRight className="w-3.5 h-3.5 text-primary group-hover:text-white transition-colors duration-200" />
+                    </div>
+                  </div>
                 </div>
               </motion.a>
             ))}
           </div>
+
+          {/* Bottom nudge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="mt-6 sm:mt-8 bg-card border border-border rounded-2xl px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                <HeartHandshake className="w-4.5 h-4.5 text-primary" style={{ width: 18, height: 18 }} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">Prefer to skip the platforms?</p>
+                <p className="text-xs text-muted-foreground">You can reach me directly — I reply within 24 hours.</p>
+              </div>
+            </div>
+            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-5 shrink-0 group" asChild>
+              <Link href="/contact">
+                <span className="flex items-center gap-2">
+                  Contact Me Directly
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </Button>
+          </motion.div>
+
         </div>
       </section>
 
