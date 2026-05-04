@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { useDarkMode } from "@/hooks/use-dark-mode";
 import {
   Github, Linkedin, Twitter, Target, Lightbulb, Clock,
   ArrowRight, CheckCircle2, Zap, Users, Award, Code2,
@@ -50,7 +51,7 @@ const stackGroups = [
     bg: "bg-blue-500/8",
     skills: [
       { icon: SiReact,       name: "React",       color: "#61DAFB" },
-      { icon: SiNextdotjs,   name: "Next.js",     color: "#ffffff" },
+      { icon: SiNextdotjs,   name: "Next.js",     color: "#111827" },
       { icon: SiTypescript,  name: "TypeScript",  color: "#3178C6" },
       { icon: SiTailwindcss, name: "Tailwind",    color: "#38BDF8" },
     ],
@@ -154,6 +155,7 @@ function SectionHeading({ label, title, subtitle }: { label: string; title: stri
 }
 
 export default function About() {
+  const isDark = useDarkMode();
   useEffect(() => {
     document.title = "About Saif Khan — Senior Fullstack Developer | DevStudio";
     const meta = document.querySelector('meta[name="description"]');
@@ -449,7 +451,7 @@ export default function About() {
                       className="flex items-center gap-3 group cursor-default"
                     >
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-background border border-border flex items-center justify-center group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:shadow-sm transition-all duration-300 flex-shrink-0">
-                        <s.icon style={{ color: s.color }} className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <s.icon style={{ color: s.name === "Next.js" ? (isDark ? "#ffffff" : "#111827") : s.color }} className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <span className="text-xs font-semibold text-foreground hidden sm:block">{s.name}</span>
                     </motion.div>

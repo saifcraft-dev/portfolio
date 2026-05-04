@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useDarkMode } from "@/hooks/use-dark-mode";
 import Hero from "@/components/Hero";
 import ProjectsGallery from "@/components/ProjectsGallery";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ const skillCategories = [
     dot: "bg-blue-500",
     skills: [
       { icon: SiReact, name: "React", color: "#61DAFB", level: "Expert" },
-      { icon: SiNextdotjs, name: "Next.js", color: "#ffffff", level: "Expert" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#111827", level: "Expert" },
       { icon: SiTypescript, name: "TypeScript", color: "#3178C6", level: "Expert" },
       { icon: SiTailwindcss, name: "Tailwind CSS", color: "#38BDF8", level: "Expert" },
     ],
@@ -230,6 +231,7 @@ const servicePreview = [
 ];
 
 export default function Home() {
+  const isDark = useDarkMode();
   useEffect(() => {
     document.title = "Saif Khan — Freelance Fullstack Developer | DevStudio | React · Node.js · TypeScript";
     const meta = document.querySelector('meta[name="description"]');
@@ -510,7 +512,7 @@ export default function Home() {
                         className="inline-flex items-center gap-1.5 bg-white/70 border border-border rounded-lg px-2.5 py-1.5 hover:border-primary/40 hover:bg-indigo-50/80 transition-all duration-150 cursor-default"
                         data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
                       >
-                        <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
+                        <tech.icon style={{ color: tech.name === "Next.js" ? (isDark ? "#ffffff" : "#111827") : tech.color }} className="w-3.5 h-3.5 shrink-0" />
                         <span className="text-xs font-medium text-gray-800">{tech.name}</span>
                         <span className={`text-[10px] font-semibold ml-0.5 ${
                           tech.level === "Expert" ? "text-primary" : "text-secondary"
