@@ -52,6 +52,7 @@ vite.config.ts           # Vite config — root: client/, port: 5000, host: 0.0.
 | `/faq` | 40+ Q&A accordion |
 | `/privacy-policy` | Privacy policy |
 | `/terms-of-service` | Terms of service |
+| `/profile` | Client profile page (requires login) — view orders, edit name, account details |
 | `/admin/login` | Firebase admin login |
 | `/admin/dashboard` | Admin dashboard (protected) |
 | `/admin/orders` | Orders management (protected) |

@@ -26,6 +26,7 @@ const ProjectsManagement = lazy(() => import("@/pages/admin/Projects"));
 const ServicesManagement = lazy(() => import("@/pages/admin/Services"));
 const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
 const AdminProtectedRoute = lazy(() => import("@/components/AdminProtectedRoute"));
+const ClientProfile = lazy(() => import("@/pages/ClientProfile"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function PageLoader() {
@@ -55,6 +56,7 @@ function Router() {
         <Route path="/faq" component={FAQ} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/profile" component={ClientProfile} />
 
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin">

@@ -162,6 +162,15 @@ export default function Header() {
                   )}
                   <DropdownMenuItem asChild>
                     <Link 
+                      href="/profile"
+                      className="flex items-center gap-2 cursor-pointer w-full"
+                    >
+                      <UserIcon className="w-4 h-4" />
+                      <span>My Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link 
                       href="/contact"
                       className="flex items-center gap-2 cursor-pointer w-full"
                     >
