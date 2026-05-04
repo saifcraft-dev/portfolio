@@ -29,3 +29,9 @@ id = "6qdZDPhxbM0gvvfoVDBAd"
 uri = "file://DevStudio_Site_Details.md"
 type = "text"
 title = "DevStudio — Full Site & Home Page Details (Updated)"
+
+[[outputs]]
+id = "CLH8nwmho6pkq9iVoNeKU"
+uri = "file://GITHUB_SETUP_GUIDE.md"
+type = "text"
+title = "GitHub Setup & Integration Guide — DevStudio"
