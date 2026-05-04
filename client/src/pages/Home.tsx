@@ -174,7 +174,7 @@ const servicePreview = [
   {
     icon: Globe,
     name: "Landing Page",
-    price: "$250 – $600",
+    price: "$500 – $1,200",
     time: "5–7 days",
     desc: "High-converting, pixel-perfect landing pages built to impress and rank.",
     features: ["Fully responsive design", "SEO-optimised markup", "Contact form & CTA", "Fast load times"],
@@ -185,7 +185,7 @@ const servicePreview = [
   {
     icon: Monitor,
     name: "Business Website",
-    price: "$700 – $1,800",
+    price: "$1,500 – $4,000",
     time: "2–3 weeks",
     desc: "Multi-page professional sites that build trust and generate real leads.",
     features: ["5–8 custom pages", "Google Analytics & maps", "Mobile-first layout", "CMS-ready content"],
@@ -196,7 +196,7 @@ const servicePreview = [
   {
     icon: Code2,
     name: "Custom Web App",
-    price: "$2,500 – $10,000+",
+    price: "$5,000 – $20,000+",
     time: "4–8 weeks",
     desc: "Full-stack applications built with React, Node.js & PostgreSQL — production-ready from day one.",
     features: ["Auth & user accounts", "Admin dashboard", "REST or GraphQL API", "Cloud deployed & CI/CD"],
@@ -208,7 +208,7 @@ const servicePreview = [
   {
     icon: Bot,
     name: "AI Feature Add-On",
-    price: "$600 – $4,000",
+    price: "$1,000 – $6,000",
     time: "1–3 weeks",
     desc: "Supercharge any existing product with intelligent AI-powered features.",
     features: ["AI chatbot integration", "Semantic search (RAG)", "Content generation", "OpenAI / LLM APIs"],
@@ -219,7 +219,7 @@ const servicePreview = [
   {
     icon: RefreshCcw,
     name: "Monthly Retainer",
-    price: "$250 – $1,000/mo",
+    price: "$500 – $2,000/mo",
     time: "Ongoing",
     desc: "Dedicated monthly support so your product keeps running at its best.",
     features: ["Bug fixes & updates", "Uptime monitoring", "Priority response", "Monthly reports"],
@@ -251,7 +251,7 @@ export default function Home() {
         "offers": {
           "@type": "Offer",
           "description": "Custom web application development",
-          "priceRange": "$250 - $10,000+"
+          "priceRange": "$500 - $20,000+"
         },
         "sameAs": [
           "https://github.com/saifkhan-dev",

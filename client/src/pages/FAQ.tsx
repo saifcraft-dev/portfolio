@@ -42,11 +42,11 @@ const faqs = [
     items: [
       {
         q: "How much does a typical project cost?",
-        a: "It depends on scope. A landing page starts at $250. A full business website typically runs $700–$1,800. A custom web application (React + Node.js + PostgreSQL) starts at $2,500 and goes up depending on complexity. See the full pricing breakdown on the Services page.",
+        a: "It depends on scope. A landing page starts at $500. A full business website typically runs $1,500–$4,000. A custom web application (React + Node.js + PostgreSQL) starts at $5,000 and goes up depending on complexity. See the full pricing breakdown on the Services page.",
       },
       {
         q: "Do you require a deposit?",
-        a: "Yes — always. For projects under $300, I collect 100% upfront. For larger projects, I collect 33–50% upfront before starting. This is standard practice and protects both of us. Serious clients respect payment terms; problematic ones push back on them — which is a useful early warning sign.",
+        a: "Yes — always. For projects under $500, I collect 100% upfront. For larger projects, I collect 33–50% upfront before starting. This is standard practice and protects both of us. Serious clients respect payment terms; problematic ones push back on them — which is a useful early warning sign.",
       },
       {
         q: "What payment methods do you accept?",
@@ -96,7 +96,7 @@ const faqs = [
       },
       {
         q: "Do you offer ongoing support after delivery?",
-        a: "Yes. All projects include 30 days of free post-launch support for bug fixes. After that, I offer monthly retainer packages starting at $250/month that cover bug fixes, updates, security patches, and priority response time.",
+        a: "Yes. All projects include 30 days of free post-launch support for bug fixes. After that, I offer monthly retainer packages starting at $500/month that cover bug fixes, updates, security patches, and priority response time.",
       },
       {
         q: "Will I own the code?",
