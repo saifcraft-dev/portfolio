@@ -1,5 +1,22 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "-VVl2sruPgvYIadSapauB"
+uri = "file://artifacts/mockup-sandbox/public/images/editorial-proj-1.png"
+type = "image"
+title = "Minimalist web app interface"
+
+[[generated]]
+id = "ReQE6FfnNgeZFv8Gs0dsX"
+uri = "file://artifacts/mockup-sandbox/public/images/editorial-proj-2.png"
+type = "image"
+title = "Minimalist dashboard interface"
+
+[[generated]]
+id = "iuNSMRE9vs8XLeR8hvrIL"
+uri = "file://artifacts/mockup-sandbox/public/images/editorial-proj-3.png"
+type = "image"
+title = "Minimalist mobile app interface"
 
 [[outputs]]
 id = "BYU6w0PyraWGP0o9NaiL5"
