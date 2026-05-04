@@ -262,7 +262,7 @@ export default function FAQ() {
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Mobile: wrap to 2 rows so all tabs are tap-accessible without swiping */}
           {/* Desktop: single row, no wrapping needed */}
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 py-3 sm:py-3.5">
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 py-3 sm:py-3.5">
 
             <button
               onClick={() => setActiveCategory("All")}
