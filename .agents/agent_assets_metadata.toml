@@ -35,3 +35,9 @@ id = "CLH8nwmho6pkq9iVoNeKU"
 uri = "file://GITHUB_SETUP_GUIDE.md"
 type = "text"
 title = "GitHub Setup & Integration Guide — DevStudio"
+
+[[outputs]]
+id = "6sAMBCCFtmSyS6yN4FXF7"
+uri = "file://GITHUB_PROFILE_GUIDE.md"
+type = "text"
+title = "Professional GitHub Profile Guide for Clients"
