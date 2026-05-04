@@ -451,7 +451,12 @@ export default function About() {
                       className="flex items-center gap-3 group cursor-default"
                     >
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-background border border-border flex items-center justify-center group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:shadow-sm transition-all duration-300 flex-shrink-0">
-                        <s.icon style={{ color: s.name === "Next.js" ? (isDark ? "#ffffff" : "#111827") : s.color }} className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <s.icon style={{ color:
+                          (s.name === "Next.js" || s.name === "Vercel") ? (isDark ? "#ffffff" : "#111827") :
+                          s.name === "Prisma" ? (isDark ? "#cbd5e0" : "#2D3748") :
+                          s.name === "PostgreSQL" ? (isDark ? "#76b5e8" : "#336791") :
+                          s.color
+                        }} className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <span className="text-xs font-semibold text-foreground hidden sm:block">{s.name}</span>
                     </motion.div>
