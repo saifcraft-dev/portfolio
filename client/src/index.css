@@ -251,13 +251,13 @@
     --popover-foreground:  220 18% 93%;
 
     --primary:             231 90% 63%;   /* ≈ #4D6EF5 — vivid cobalt on dark */
-    --primary-foreground:  232 30% 7%;
+    --primary-foreground:  0 0% 100%;
 
     --secondary:           174 80% 52%;   /* ≈ #1CD6C4 — bright teal */
     --secondary-foreground: 232 30% 7%;
 
     --accent:              262 82% 68%;   /* ≈ #9B6BF0 — violet glow */
-    --accent-foreground:   232 30% 7%;
+    --accent-foreground:   0 0% 100%;
 
     --muted:               232 22% 28%;   /* ≈ #374060 */
     --muted-foreground:    220 14% 68%;   /* ≈ #9BA3BC */
@@ -314,7 +314,7 @@
     --popover-foreground:  280 12% 93%;
 
     --primary:             270 82% 62%;   /* ≈ #9040EC — vivid plum on dark */
-    --primary-foreground:  280 25% 9%;
+    --primary-foreground:  0 0% 100%;
 
     --secondary:           270 60% 72%;
     --secondary-foreground: 280 25% 9%;
