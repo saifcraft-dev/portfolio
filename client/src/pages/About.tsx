@@ -50,7 +50,7 @@ const stackGroups = [
     bg: "bg-blue-500/8",
     skills: [
       { icon: SiReact,       name: "React",       color: "#61DAFB" },
-      { icon: SiNextdotjs,   name: "Next.js",     color: "#111827" },
+      { icon: SiNextdotjs,   name: "Next.js",     color: "#ffffff" },
       { icon: SiTypescript,  name: "TypeScript",  color: "#3178C6" },
       { icon: SiTailwindcss, name: "Tailwind",    color: "#38BDF8" },
     ],

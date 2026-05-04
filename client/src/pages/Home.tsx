@@ -24,7 +24,7 @@ const skillCategories = [
     dot: "bg-blue-500",
     skills: [
       { icon: SiReact, name: "React", color: "#61DAFB", level: "Expert" },
-      { icon: SiNextdotjs, name: "Next.js", color: "#111827", level: "Expert" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#ffffff", level: "Expert" },
       { icon: SiTypescript, name: "TypeScript", color: "#3178C6", level: "Expert" },
       { icon: SiTailwindcss, name: "Tailwind CSS", color: "#38BDF8", level: "Expert" },
     ],
