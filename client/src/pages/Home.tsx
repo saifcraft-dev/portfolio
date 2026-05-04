@@ -511,7 +511,7 @@ export default function Home() {
                         data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
                       >
                         <tech.icon style={{ color: tech.color }} className="w-3.5 h-3.5 shrink-0" />
-                        <span className="text-xs font-medium text-foreground">{tech.name}</span>
+                        <span className="text-xs font-medium text-gray-800">{tech.name}</span>
                         <span className={`text-[10px] font-semibold ml-0.5 ${
                           tech.level === "Expert" ? "text-primary" : "text-secondary"
                         }`}>
