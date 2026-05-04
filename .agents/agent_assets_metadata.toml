@@ -6,3 +6,9 @@ id = "BYU6w0PyraWGP0o9NaiL5"
 uri = "file://README.md"
 type = "text"
 title = "README.md - DevStudio"
+
+[[outputs]]
+id = "6qdZDPhxbM0gvvfoVDBAd"
+uri = "file://DevStudio_Site_Details.md"
+type = "text"
+title = "DevStudio — Full Site & Home Page Details"
