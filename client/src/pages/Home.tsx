@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import {
   Quote, Star, ArrowRight, Zap, Shield, Clock, HeartHandshake,
   ExternalLink, Globe, Monitor, Code2, Bot, RefreshCcw, Check,
-  Sparkles
+  Sparkles, TrendingUp, Users, Award
 } from "lucide-react";
 import {
   SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiTailwindcss,
@@ -77,21 +77,40 @@ const skillCategories = [
 const testimonials = [
   {
     name: "Sarah Mitchell",
-    role: "Founder, MedBook",
+    role: "Founder",
+    company: "MedBook",
     quote: "He built our patient booking system in 6 weeks. It reduced our front-desk workload by 60% and the code is clean enough that our own team can maintain it. Best investment we made.",
+    result: "60% less workload",
+    resultSub: "front-desk time saved",
     stars: 5,
+    initials: "SM",
+    color: "from-blue-500 to-cyan-500",
+    via: "Direct Client",
   },
   {
     name: "James Okonkwo",
-    role: "CEO, ShopLocal",
+    role: "CEO",
+    company: "ShopLocal",
     quote: "He replaced our Shopify store with a custom solution that loads 3x faster. We eliminated $300/month in fees and our conversion rate went up by 22%. I wish I'd done this sooner.",
+    result: "+22% conversions",
+    resultSub: "& $300/mo saved",
     stars: 5,
+    initials: "JO",
+    color: "from-emerald-500 to-teal-500",
+    via: "LinkedIn",
+    featured: true,
   },
   {
     name: "Priya Sharma",
-    role: "CTO, LaunchPad SaaS",
+    role: "CTO",
+    company: "LaunchPad SaaS",
     quote: "We went from idea to working MVP in under 8 weeks. He communicated clearly throughout, hit every milestone, and the code quality blew our in-house team away.",
+    result: "MVP in 8 weeks",
+    resultSub: "idea to production",
     stars: 5,
+    initials: "PS",
+    color: "from-violet-500 to-purple-500",
+    via: "Direct Client",
   },
 ];
 
@@ -603,50 +622,147 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS */}
-      <section id="testimonials" className="py-16 sm:py-24 bg-card/40 border-t border-border">
+      {/* 6. TESTIMONIALS / SOCIAL PROOF */}
+      <section id="testimonials" className="py-16 sm:py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
+            className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">Social Proof</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">What Clients Say</h2>
+            <div className="inline-flex items-center gap-2 bg-primary/8 border border-primary/15 rounded-full px-4 py-1.5 mb-5">
+              <Award className="w-3.5 h-3.5 text-primary" />
+              <p className="text-primary text-xs font-bold uppercase tracking-wider">Social Proof</p>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 px-2">
+              What Clients Say
+            </h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
-              Results-focused testimonials — not just "great work." Real problems solved, real outcomes delivered.
+              Not just "great work" — real problems solved, real numbers delivered.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          {/* Aggregate trust stats strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.1 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10"
+          >
+            {[
+              { icon: Star, value: "5.0 / 5", label: "Average rating", color: "text-amber-500", bg: "bg-amber-500/10" },
+              { icon: Users, value: "30+", label: "Happy clients", color: "text-blue-500", bg: "bg-blue-500/10" },
+              { icon: TrendingUp, value: "99%", label: "On-time delivery", color: "text-emerald-600", bg: "bg-emerald-500/10" },
+              { icon: HeartHandshake, value: "100%", label: "Would re-hire", color: "text-violet-500", bg: "bg-violet-500/10" },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-card border border-border rounded-2xl px-4 py-4 flex items-center gap-3">
+                <div className={`w-9 h-9 rounded-xl ${stat.bg} flex items-center justify-center shrink-0`}>
+                  <stat.icon className={`w-4.5 h-4.5 ${stat.color}`} style={{ width: 18, height: 18 }} />
+                </div>
+                <div>
+                  <p className="font-display font-bold text-foreground text-base leading-none">{stat.value}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">{stat.label}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Testimonial cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="bg-card border border-border rounded-2xl p-8 flex flex-col gap-6 hover:border-primary/30 transition-colors"
+                transition={{ delay: i * 0.1, duration: 0.45 }}
+                className={`relative bg-card border rounded-2xl flex flex-col overflow-hidden transition-all duration-300 group hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5 ${
+                  t.featured
+                    ? "border-primary/40 ring-1 ring-primary/15"
+                    : "border-border hover:border-primary/25"
+                }`}
                 data-testid={`card-testimonial-${i}`}
               >
-                <Quote className="w-8 h-8 text-primary/40" />
-                <p className="text-foreground leading-relaxed flex-1">{t.quote}</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-bold text-foreground text-sm">{t.name}</p>
-                    <p className="text-muted-foreground text-xs mt-0.5">{t.role}</p>
+                {/* Top gradient accent */}
+                <div className={`h-1 w-full bg-gradient-to-r ${t.color}`} />
+
+                <div className="p-5 sm:p-6 flex flex-col gap-5 flex-1">
+
+                  {/* Stars row */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-0.5">
+                      {Array.from({ length: t.stars }).map((_, s) => (
+                        <Star key={s} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider border border-border rounded-full px-2 py-0.5">
+                      via {t.via}
+                    </span>
                   </div>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: t.stars }).map((_, s) => (
-                      <Star key={s} className="w-4 h-4 fill-[hsl(var(--cta))] text-[hsl(var(--cta))]" />
-                    ))}
+
+                  {/* Quote */}
+                  <div className="relative flex-1">
+                    <Quote className="w-6 h-6 text-primary/20 absolute -top-1 -left-1" />
+                    <p className="text-sm text-foreground leading-relaxed pl-5 italic">
+                      "{t.quote}"
+                    </p>
+                  </div>
+
+                  {/* Result metric pill */}
+                  <div className={`inline-flex items-center gap-2 self-start bg-gradient-to-r ${t.color} rounded-xl px-3 py-2`}>
+                    <TrendingUp className="w-3.5 h-3.5 text-white shrink-0" />
+                    <div>
+                      <p className="text-white text-xs font-bold leading-none">{t.result}</p>
+                      <p className="text-white/80 text-[10px] leading-none mt-0.5">{t.resultSub}</p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-border pt-4">
+                    <div className="flex items-center gap-3">
+                      {/* Avatar */}
+                      <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center shrink-0`}>
+                        <span className="text-white text-xs font-bold">{t.initials}</span>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-foreground text-sm leading-none">{t.name}</p>
+                        <p className="text-muted-foreground text-[11px] mt-0.5">
+                          {t.role}, <span className="text-foreground/70 font-medium">{t.company}</span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom trust note */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center"
+          >
+            <div className="flex items-center gap-1.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">30+ clients</span> have trusted me with their products.{" "}
+              <Link href="/contact" className="text-primary hover:underline font-medium">
+                Become the next.
+              </Link>
+            </p>
+          </motion.div>
+
         </div>
       </section>
 
