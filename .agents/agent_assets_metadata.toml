@@ -41,3 +41,9 @@ id = "6sAMBCCFtmSyS6yN4FXF7"
 uri = "file://GITHUB_PROFILE_GUIDE.md"
 type = "text"
 title = "Professional GitHub Profile Guide — Fully Updated"
+
+[[outputs]]
+id = "q-hnhDY3Yvs80uSdwC-Uu"
+uri = "file://GITHUB_PROFILE_README.md"
+type = "text"
+title = "Your GitHub Profile README — Ready to Copy"
