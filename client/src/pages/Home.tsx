@@ -6,7 +6,8 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   Quote, Star, ArrowRight, Zap, Shield, Clock, HeartHandshake,
-  ExternalLink
+  ExternalLink, Globe, Monitor, Code2, Bot, RefreshCcw, Check,
+  Sparkles
 } from "lucide-react";
 import {
   SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiTailwindcss,
@@ -108,11 +109,62 @@ const platforms = [
 ];
 
 const servicePreview = [
-  { name: "Landing Page", price: "$250 – $600", time: "5–7 days", desc: "Fully responsive, SEO-optimised, with contact form and CTA." },
-  { name: "Business Website", price: "$700 – $1,800", time: "2–3 weeks", desc: "5–8 pages, Google Analytics, maps, mobile-first.", highlight: false },
-  { name: "Custom Web App", price: "$2,500 – $10,000+", time: "4–8 weeks", desc: "React + Node.js + PostgreSQL, auth, admin panel, deployed.", highlight: true },
-  { name: "AI Feature Add-On", price: "$600 – $4,000", time: "1–3 weeks", desc: "Chatbot, semantic search, AI generation — added to any app." },
-  { name: "Monthly Retainer", price: "$250 – $1,000/mo", time: "Ongoing", desc: "Bug fixes, updates, monitoring, priority response time." },
+  {
+    icon: Globe,
+    name: "Landing Page",
+    price: "$250 – $600",
+    time: "5–7 days",
+    desc: "High-converting, pixel-perfect landing pages built to impress and rank.",
+    features: ["Fully responsive design", "SEO-optimised markup", "Contact form & CTA", "Fast load times"],
+    color: "from-blue-500/10 to-cyan-500/5",
+    accent: "text-blue-500",
+    iconBg: "bg-blue-500/10",
+  },
+  {
+    icon: Monitor,
+    name: "Business Website",
+    price: "$700 – $1,800",
+    time: "2–3 weeks",
+    desc: "Multi-page professional sites that build trust and generate real leads.",
+    features: ["5–8 custom pages", "Google Analytics & maps", "Mobile-first layout", "CMS-ready content"],
+    color: "from-emerald-500/10 to-teal-500/5",
+    accent: "text-emerald-600",
+    iconBg: "bg-emerald-500/10",
+  },
+  {
+    icon: Code2,
+    name: "Custom Web App",
+    price: "$2,500 – $10,000+",
+    time: "4–8 weeks",
+    desc: "Full-stack applications built with React, Node.js & PostgreSQL — production-ready from day one.",
+    features: ["Auth & user accounts", "Admin dashboard", "REST or GraphQL API", "Cloud deployed & CI/CD"],
+    highlight: true,
+    color: "from-primary/10 to-accent/5",
+    accent: "text-primary",
+    iconBg: "bg-primary/10",
+  },
+  {
+    icon: Bot,
+    name: "AI Feature Add-On",
+    price: "$600 – $4,000",
+    time: "1–3 weeks",
+    desc: "Supercharge any existing product with intelligent AI-powered features.",
+    features: ["AI chatbot integration", "Semantic search (RAG)", "Content generation", "OpenAI / LLM APIs"],
+    color: "from-violet-500/10 to-purple-500/5",
+    accent: "text-violet-600",
+    iconBg: "bg-violet-500/10",
+  },
+  {
+    icon: RefreshCcw,
+    name: "Monthly Retainer",
+    price: "$250 – $1,000/mo",
+    time: "Ongoing",
+    desc: "Dedicated monthly support so your product keeps running at its best.",
+    features: ["Bug fixes & updates", "Uptime monitoring", "Priority response", "Monthly reports"],
+    color: "from-orange-500/10 to-amber-500/5",
+    accent: "text-orange-500",
+    iconBg: "bg-orange-500/10",
+  },
 ];
 
 export default function Home() {
@@ -412,8 +464,10 @@ export default function Home() {
       <ProjectsGallery />
 
       {/* 5. SERVICES PREVIEW */}
-      <section id="services" className="py-16 sm:py-24 border-t border-border">
+      <section id="services" className="py-16 sm:py-24 border-t border-border bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -421,51 +475,131 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-10 sm:mb-14"
           >
-            <p className="text-primary text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-5">What I Offer</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 sm:mb-5 px-2">Services & Pricing</h2>
+            <div className="inline-flex items-center gap-2 bg-primary/8 border border-primary/15 rounded-full px-4 py-1.5 mb-5">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <p className="text-primary text-xs font-bold uppercase tracking-wider">What I Offer</p>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 px-2">
+              Services & Pricing
+            </h2>
             <p className="text-sm sm:text-base text-muted-foreground px-2 leading-relaxed">
-              Fixed-scope packages. Clear deliverables. Transparent prices. No hourly surprises.
+              Fixed-scope packages with clear deliverables and transparent pricing.<br className="hidden sm:block" />
+              No hourly surprises. No hidden fees. Just results.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10">
+          {/* Cards grid — 2 cols on md, 3 on lg */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
             {servicePreview.map((s, i) => (
               <motion.div
                 key={s.name}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className={`rounded-2xl border p-6 flex flex-col gap-3 transition-colors ${
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+                className={`relative rounded-2xl border flex flex-col overflow-hidden transition-all duration-300 group ${
                   s.highlight
-                    ? "border-primary/60 bg-primary/5 relative"
-                    : "border-border bg-card hover:border-primary/30"
+                    ? "border-primary/50 shadow-lg shadow-primary/10 ring-1 ring-primary/20"
+                    : "border-border hover:border-primary/30 hover:shadow-md hover:shadow-primary/5 bg-card"
                 }`}
                 data-testid={`card-service-preview-${i}`}
               >
+                {/* Gradient top strip */}
+                <div className={`h-1.5 w-full bg-gradient-to-r ${
+                  s.highlight ? "from-primary via-accent to-secondary" : `${s.color.split(" ")[0].replace("from-", "from-")} to-transparent`
+                }`} />
+
+                {/* Most Popular badge */}
                 {s.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-primary text-primary-foreground text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" />
+                      Most Popular
+                    </span>
                   </div>
                 )}
-                <h3 className="font-display font-bold text-foreground text-sm">{s.name}</h3>
-                <p className="text-primary font-bold text-lg leading-tight">{s.price}</p>
-                <p className="text-xs text-muted-foreground">{s.time}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
+
+                <div className={`p-5 sm:p-6 flex flex-col gap-4 flex-1 ${s.highlight ? "bg-primary/3" : ""}`}>
+
+                  {/* Icon + Name */}
+                  <div className="flex items-start gap-3">
+                    <div className={`w-10 h-10 rounded-xl ${s.iconBg} flex items-center justify-center shrink-0`}>
+                      <s.icon className={`w-5 h-5 ${s.accent}`} />
+                    </div>
+                    <div className="pt-0.5">
+                      <h3 className="font-display font-bold text-foreground text-base leading-tight">{s.name}</h3>
+                      <p className={`text-[11px] font-semibold uppercase tracking-wide mt-0.5 ${s.accent} opacity-80`}>{s.time}</p>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+
+                  {/* Features list */}
+                  <ul className="flex flex-col gap-1.5 flex-1">
+                    {s.features.map((feat) => (
+                      <li key={feat} className="flex items-center gap-2 text-xs text-foreground/80">
+                        <span className={`w-4 h-4 rounded-full ${s.iconBg} flex items-center justify-center shrink-0`}>
+                          <Check className={`w-2.5 h-2.5 ${s.accent}`} />
+                        </span>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Divider + Price */}
+                  <div className="pt-3 border-t border-border mt-auto">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-0.5">Starting from</p>
+                        <p className={`font-display font-bold text-xl leading-none ${s.highlight ? "text-primary" : "text-foreground"}`}>{s.price}</p>
+                      </div>
+                      <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-transform group-hover:translate-x-0.5 ${
+                        s.highlight ? "border-primary/40 bg-primary/10" : "border-border bg-muted/50"
+                      }`}>
+                        <ArrowRight className={`w-3.5 h-3.5 ${s.highlight ? "text-primary" : "text-muted-foreground"}`} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="text-center">
-            <Button variant="outline" className="rounded-full border-border text-muted-foreground hover:text-foreground hover:border-primary/50 group" asChild>
+          {/* Bottom strip — guarantee + CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-card border border-border rounded-2xl px-5 sm:px-6 py-4 sm:py-5"
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+              {[
+                { icon: Shield, label: "Fixed-scope pricing", sub: "No hidden costs ever" },
+                { icon: Clock, label: "On-time delivery", sub: "Milestone-based progress" },
+                { icon: HeartHandshake, label: "Direct communication", sub: "You talk to the developer" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center shrink-0">
+                    <item.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-xs font-semibold text-foreground leading-none mb-0.5">{item.label}</p>
+                    <p className="text-[11px] text-muted-foreground">{item.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-5 shrink-0 group" asChild>
               <Link href="/services">
                 <span className="flex items-center gap-2">
-                  View Full Packages & Details
+                  View All Packages
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
