@@ -512,7 +512,7 @@ export default function Home() {
                         className="inline-flex items-center gap-1.5 bg-white/70 dark:bg-white/5 border border-border rounded-lg px-2.5 py-1.5 hover:border-primary/40 hover:bg-indigo-50/80 dark:hover:bg-white/10 transition-all duration-150 cursor-default"
                         data-testid={`badge-tech-${tech.name.toLowerCase().replace(/\s+/g, "-")}`}
                       >
-                        <tech.icon style={{ color: tech.name === "Next.js" ? (isDark ? "#ffffff" : "#111827") : tech.color }} className="w-3.5 h-3.5 shrink-0" />
+                        <tech.icon style={{ color: (tech.name === "Next.js" || tech.name === "Vercel") ? (isDark ? "#ffffff" : "#111827") : tech.color }} className="w-3.5 h-3.5 shrink-0" />
                         <span className="text-xs font-medium text-gray-800 dark:text-gray-100">{tech.name}</span>
                         <span className={`text-[10px] font-semibold ml-0.5 ${
                           tech.level === "Expert" ? "text-primary" : "text-secondary"
