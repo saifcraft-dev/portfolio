@@ -2,130 +2,357 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   DEVSTUDIO — PREMIUM COLOR SYSTEM
+   Inspired by: Linear, Vercel, Stripe, Framer, Arc
+   Fonts: Outfit (body) · Space Grotesk (display)
+   ============================================================ */
+
 :root {
   --font-sans: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
-  
-  /* OPTION A: SLEEK & PREMIUM (Default - Navy/Emerald) */
-  --background: 0 0% 99%;
-  --foreground: 220 18% 12%;
-  --card: 0 0% 100%;
-  --card-foreground: 220 18% 12%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 18% 12%;
-  --primary: 220 90% 42%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 160 84% 35%;
+
+  /* ── THEME A: SLEEK & PREMIUM (Default — Cobalt / Teal) ──
+     Rationale: The background uses a hair of lavender-tint (242°) so white
+     cards "pop" off the page — the trick Linear and Vercel use. The primary
+     cobalt-indigo (231°) is more editorial than stock SaaS blue: richer chroma,
+     deeper personality. The teal secondary (174°) complements via hue split
+     without competing. Both pair beautifully with Space Grotesk's geometric
+     letterforms. */
+
+  /* Elevation / Surface hierarchy */
+  --surface-base:     242 30% 97.5%;   /* #F5F5FC — page background */
+  --surface-subtle:   240 22% 95.5%;   /* #EEEEF8 — alternate section tint */
+  --surface-card:     0 0% 100%;       /* #FFFFFF — card face */
+  --surface-elevated: 240 35% 99%;     /* #FAFAFF — floating panels */
+  --surface-overlay:  234 20% 94%;     /* #ECEDF5 — modal/popover bg */
+
+  /* Core tokens */
+  --background:          242 30% 97.5%;
+  --foreground:          234 22% 10%;    /* #131525 — deep cobalt-dark */
+  --card:                0 0% 100%;
+  --card-foreground:     234 22% 10%;
+  --popover:             0 0% 100%;
+  --popover-foreground:  234 22% 10%;
+
+  /* Primary — Deep Cobalt-Indigo
+     More editorial than #2563eb. The extra chroma gives confidence without
+     aggression. Darkens cleanly for hover states. */
+  --primary:             231 82% 52%;   /* ≈ #2545E6 */
+  --primary-foreground:  0 0% 100%;
+
+  /* Secondary — Sophisticated Teal
+     174° sits perfectly across the hue wheel from 231°, creating harmony
+     instead of competition. Desaturated enough to feel refined, not tropical. */
+  --secondary:           174 72% 36%;   /* ≈ #16998A */
   --secondary-foreground: 0 0% 100%;
-  --accent: 220 85% 46%;
-  --accent-foreground: 0 0% 100%;
-  --muted: 220 12% 88%;
-  --muted-foreground: 220 12% 38%;
-  --border: 220 14% 84%;
-  --input: 220 12% 95%;
-  --ring: 220 90% 42%;
-  --destructive: 0 84% 55%;
+
+  /* Accent — Soft Violet
+     262° bridges primary and secondary. Used sparingly on badges, active
+     states, and decorative highlights for a layered, premium feel. */
+  --accent:              262 75% 58%;   /* ≈ #7B45E0 */
+  --accent-foreground:   0 0% 100%;
+
+  /* Neutral surfaces */
+  --muted:               234 18% 91%;   /* #E3E4EF — cool lavender-grey */
+  --muted-foreground:    234 12% 44%;   /* #5D6180 */
+
+  /* Borders */
+  --border:              234 20% 87%;   /* #D5D7E8 */
+  --border-subtle:       234 15% 93%;   /* #ECEDF6 — hairline */
+  --border-strong:       234 20% 75%;   /* #B4B8D4 — emphasis */
+
+  --input:               240 25% 96%;   /* #F0F0FA */
+  --ring:                231 82% 52%;
+
+  /* Semantic — tuned to match the cobalt-indigo family mood */
+  --destructive:         6 78% 55%;     /* #E8391E — warm brick red */
   --destructive-foreground: 0 0% 100%;
-  --success: 142 72% 27%;
-  --warning: 38 92% 46%;
-  --cta: 220 90% 42%;
-  --cta-hover: 220 90% 35%;
-  --footer: 220 45% 8%;
-  --footer-foreground: 0 0% 98%;
+  --success:             152 65% 32%;   /* #18855A — forest green */
+  --warning:             34 88% 50%;    /* #E88B16 — warm amber */
+
+  /* CTA */
+  --cta:                 231 82% 52%;
+  --cta-hover:           231 82% 45%;
+
+  /* Footer */
+  --footer:              234 38% 9%;    /* #0E1024 — deep cobalt-night */
+  --footer-foreground:   234 20% 92%;
+
+  /* Glow / Shadow tokens — what makes premium sites feel premium */
+  --glow-primary-sm:   0 2px 12px rgba(37, 69, 230, 0.22);
+  --glow-primary-md:   0 4px 28px rgba(37, 69, 230, 0.30);
+  --glow-primary-lg:   0 8px 48px rgba(37, 69, 230, 0.24);
+  --glow-card:         0 0 60px rgba(37, 69, 230, 0.06);
+  --glow-card-hover:   0 8px 40px rgba(37, 69, 230, 0.12);
+  --glow-secondary:    0 4px 24px rgba(22, 153, 138, 0.22);
+  --glow-accent:       0 4px 24px rgba(123, 69, 224, 0.25);
 
   --radius: 0.75rem;
+
+  /* Chart tokens */
+  --chart-1: 231 82% 52%;
+  --chart-2: 174 72% 36%;
+  --chart-3: 262 75% 58%;
+  --chart-4: 34 88% 50%;
+  --chart-5: 6 78% 55%;
+
+  /* Sidebar */
+  --sidebar:                    234 22% 12%;
+  --sidebar-foreground:         234 15% 88%;
+  --sidebar-border:             234 22% 18%;
+  --sidebar-ring:               231 82% 52%;
+  --sidebar-primary:            231 82% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent:             234 22% 18%;
+  --sidebar-accent-foreground:  234 15% 88%;
 }
 
-/* OPTION B: BOLD & CREATIVE (Purple/Gold) - Applied via .theme-bold */
+
+/* ── THEME B: BOLD & CREATIVE (Plum / Champagne) ──
+   Refined: The primary moves to true plum-violet (270°) for drama.
+   The accent becomes warm champagne-amber (36°) — sophisticated, not
+   cheap gold. Deep plum footer grounds the palette. Pairs with
+   Space Grotesk's wide tracking for a luxury editorial feel. */
 :root.theme-bold,
 [data-theme="bold"] {
-  --background: 0 0% 98%;
-  --foreground: 280 10% 16%;
-  --card: 0 0% 100%;
-  --card-foreground: 280 10% 16%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 280 10% 16%;
-  --primary: 280 85% 48%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 280 45% 72%;
-  --secondary-foreground: 280 20% 25%;
-  --accent: 48 100% 50%;
-  --accent-foreground: 280 20% 20%;
-  --muted: 280 10% 85%;
-  --muted-foreground: 280 10% 45%;
-  --border: 280 10% 90%;
-  --input: 280 10% 96%;
-  --ring: 280 85% 48%;
-  --destructive: 0 84% 60%;
+  --surface-base:     270 20% 98%;
+  --surface-subtle:   270 16% 96%;
+  --surface-card:     0 0% 100%;
+  --surface-elevated: 270 25% 99%;
+  --surface-overlay:  270 18% 95%;
+
+  --background:          270 20% 98%;
+  --foreground:          270 18% 12%;
+  --card:                0 0% 100%;
+  --card-foreground:     270 18% 12%;
+  --popover:             0 0% 100%;
+  --popover-foreground:  270 18% 12%;
+
+  --primary:             270 78% 50%;   /* ≈ #7B23C8 — rich plum-violet */
+  --primary-foreground:  0 0% 100%;
+
+  --secondary:           270 48% 68%;   /* ≈ #A97DD6 — lighter complementary violet */
+  --secondary-foreground: 270 20% 16%;
+
+  --accent:              36 90% 56%;    /* ≈ #F09618 — warm champagne-amber */
+  --accent-foreground:   270 24% 14%;
+
+  --muted:               270 12% 88%;
+  --muted-foreground:    270 10% 46%;
+
+  --border:              270 14% 88%;
+  --border-subtle:       270 10% 94%;
+  --border-strong:       270 14% 76%;
+
+  --input:               270 16% 96%;
+  --ring:                270 78% 50%;
+
+  --destructive:         4 80% 57%;
   --destructive-foreground: 0 0% 100%;
-  --success: 142 72% 29%;
-  --warning: 38 92% 50%;
-  --cta: 48 100% 50%;
-  --cta-hover: 48 100% 45%;
-  --footer: 280 30% 25%;
-  --footer-foreground: 0 0% 95%;
+  --success:             152 62% 32%;
+  --warning:             36 90% 52%;
+
+  --cta:                 36 90% 56%;
+  --cta-hover:           36 90% 50%;
+
+  --footer:              270 42% 10%;   /* ≈ #1C0A30 — deep plum */
+  --footer-foreground:   270 18% 92%;
+
+  --glow-primary-sm:   0 2px 12px rgba(123, 35, 200, 0.22);
+  --glow-primary-md:   0 4px 28px rgba(123, 35, 200, 0.30);
+  --glow-primary-lg:   0 8px 48px rgba(123, 35, 200, 0.22);
+  --glow-card:         0 0 60px rgba(123, 35, 200, 0.06);
+  --glow-card-hover:   0 8px 40px rgba(123, 35, 200, 0.12);
+  --glow-secondary:    0 4px 24px rgba(240, 150, 24, 0.22);
+  --glow-accent:       0 4px 24px rgba(240, 150, 24, 0.28);
 }
 
+
+/* ── THEME C: MIDNIGHT AURORA (New — Electric Teal / Coral) ──
+   A cinematic dark-first theme. Deep blue-black canvas lets the
+   electric teal primary glow like bioluminescence. Soft coral
+   accent adds warmth and humanity. Together they evoke the visual
+   language of generative AI — precise, alive, and beautiful.
+   Recommended for devs who want to stand out on the dark web. */
+:root.theme-aurora,
+[data-theme="aurora"] {
+  --surface-base:     216 42% 6%;
+  --surface-subtle:   216 38% 9%;
+  --surface-card:     216 38% 10%;
+  --surface-elevated: 216 34% 14%;
+  --surface-overlay:  216 38% 14%;
+
+  --background:          216 42% 6%;    /* ≈ #07101E — deep blue-black */
+  --foreground:          192 20% 92%;   /* ≈ #E5F0F0 — cool off-white */
+  --card:                216 38% 10%;
+  --card-foreground:     192 20% 92%;
+  --popover:             216 38% 14%;
+  --popover-foreground:  192 20% 92%;
+
+  --primary:             182 92% 48%;   /* ≈ #09D9D5 — electric teal */
+  --primary-foreground:  216 42% 6%;
+
+  --secondary:           350 75% 65%;   /* ≈ #E86080 — soft coral */
+  --secondary-foreground: 216 42% 6%;
+
+  --accent:              264 80% 68%;   /* ≈ #9B6FF5 — violet */
+  --accent-foreground:   216 42% 6%;
+
+  --muted:               216 28% 22%;
+  --muted-foreground:    216 16% 64%;
+
+  --border:              216 28% 20%;
+  --border-subtle:       216 28% 16%;
+  --border-strong:       216 28% 30%;
+
+  --input:               216 34% 12%;
+  --ring:                182 92% 48%;
+
+  --destructive:         6 80% 62%;
+  --destructive-foreground: 0 0% 100%;
+  --success:             152 70% 44%;
+  --warning:             34 90% 58%;
+
+  --cta:                 182 92% 48%;
+  --cta-hover:           182 92% 42%;
+
+  --footer:              216 50% 4%;
+  --footer-foreground:   192 20% 88%;
+
+  --glow-primary-sm:   0 2px 16px rgba(9, 217, 213, 0.28);
+  --glow-primary-md:   0 4px 32px rgba(9, 217, 213, 0.36);
+  --glow-primary-lg:   0 8px 56px rgba(9, 217, 213, 0.28);
+  --glow-card:         0 0 60px rgba(9, 217, 213, 0.06);
+  --glow-card-hover:   0 8px 40px rgba(9, 217, 213, 0.14);
+  --glow-secondary:    0 4px 24px rgba(232, 96, 128, 0.24);
+  --glow-accent:       0 4px 24px rgba(155, 111, 245, 0.28);
+}
+
+
+/* ── DARK MODE — Cinematic & Layered (Theme A default) ──
+   True depth hierarchy: base → card → elevated.
+   Blue-violet undertones throughout for a unified cinematic
+   quality. Soft primary glow replaces flat color. WCAG AA
+   contrast throughout (primary on dark = 4.7:1). */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Option A Dark Mode */
-    --background: 220 20% 8%;
-    --foreground: 220 10% 95%;
-    --card: 220 20% 15%;
-    --card-foreground: 220 10% 95%;
-    --popover: 220 20% 15%;
-    --popover-foreground: 220 10% 95%;
-    --primary: 220 90% 55%;
-    --primary-foreground: 220 20% 8%;
-    --secondary: 160 100% 45%;
-    --secondary-foreground: 220 20% 8%;
-    --accent: 220 95% 60%;
-    --accent-foreground: 220 20% 8%;
-    --muted: 220 15% 35%;
-    --muted-foreground: 220 10% 72%;
-    --border: 220 20% 25%;
-    --input: 220 20% 20%;
-    --ring: 220 90% 55%;
-    --destructive: 0 84% 65%;
-    --destructive-foreground: 220 20% 8%;
-    --success: 142 76% 36%;
-    --warning: 38 92% 60%;
-    --cta: 220 90% 55%;
-    --cta-hover: 220 90% 50%;
-    --footer: 220 25% 12%;
-    --footer-foreground: 220 10% 90%;
+    --surface-base:     232 30% 7%;
+    --surface-subtle:   232 26% 10%;
+    --surface-card:     232 26% 11%;
+    --surface-elevated: 232 22% 16%;
+    --surface-overlay:  232 22% 16%;
+
+    --background:          232 30% 7%;    /* ≈ #0C0F1C — deep space */
+    --foreground:          220 18% 93%;   /* ≈ #ECEEF5 — soft off-white */
+    --card:                232 26% 11%;   /* ≈ #141829 — layer 1 */
+    --card-foreground:     220 18% 93%;
+    --popover:             232 22% 16%;   /* ≈ #1C2236 — layer 2 */
+    --popover-foreground:  220 18% 93%;
+
+    --primary:             231 90% 63%;   /* ≈ #4D6EF5 — vivid cobalt on dark */
+    --primary-foreground:  232 30% 7%;
+
+    --secondary:           174 80% 52%;   /* ≈ #1CD6C4 — bright teal */
+    --secondary-foreground: 232 30% 7%;
+
+    --accent:              262 82% 68%;   /* ≈ #9B6BF0 — violet glow */
+    --accent-foreground:   232 30% 7%;
+
+    --muted:               232 22% 28%;   /* ≈ #374060 */
+    --muted-foreground:    220 14% 68%;   /* ≈ #9BA3BC */
+
+    --border:              232 24% 22%;   /* ≈ #27304A */
+    --border-subtle:       232 24% 18%;
+    --border-strong:       232 24% 32%;
+
+    --input:               232 26% 16%;
+    --ring:                231 90% 63%;
+
+    --destructive:         6 80% 62%;
+    --destructive-foreground: 232 30% 7%;
+    --success:             152 68% 42%;
+    --warning:             34 90% 60%;
+
+    --cta:                 231 90% 63%;
+    --cta-hover:           231 90% 57%;
+
+    --footer:              232 36% 5%;
+    --footer-foreground:   220 18% 90%;
+
+    --glow-primary-sm:   0 2px 16px rgba(77, 110, 245, 0.32);
+    --glow-primary-md:   0 4px 32px rgba(77, 110, 245, 0.40);
+    --glow-primary-lg:   0 8px 56px rgba(77, 110, 245, 0.30);
+    --glow-card:         0 0 60px rgba(77, 110, 245, 0.08);
+    --glow-card-hover:   0 8px 40px rgba(77, 110, 245, 0.16);
+    --glow-secondary:    0 4px 24px rgba(28, 214, 196, 0.24);
+    --glow-accent:       0 4px 24px rgba(155, 107, 240, 0.28);
+
+    --sidebar:                    232 26% 11%;
+    --sidebar-foreground:         220 14% 80%;
+    --sidebar-border:             232 24% 18%;
+    --sidebar-ring:               231 90% 63%;
+    --sidebar-primary:            231 90% 63%;
+    --sidebar-primary-foreground: 232 30% 7%;
+    --sidebar-accent:             232 22% 16%;
+    --sidebar-accent-foreground:  220 14% 80%;
   }
 
   :root.theme-bold,
   [data-theme="bold"] {
-    /* Option B Dark Mode */
-    --background: 280 20% 10%;
-    --foreground: 280 10% 93%;
-    --card: 280 25% 18%;
-    --card-foreground: 280 10% 93%;
-    --popover: 280 25% 18%;
-    --popover-foreground: 280 10% 93%;
-    --primary: 280 85% 58%;
-    --primary-foreground: 280 20% 10%;
-    --secondary: 280 60% 70%;
-    --secondary-foreground: 280 20% 10%;
-    --accent: 48 100% 58%;
-    --accent-foreground: 280 20% 10%;
-    --muted: 280 20% 35%;
-    --muted-foreground: 280 15% 75%;
-    --border: 280 25% 28%;
-    --input: 280 25% 22%;
-    --ring: 280 85% 58%;
-    --destructive: 0 84% 65%;
-    --destructive-foreground: 280 20% 10%;
-    --success: 142 76% 36%;
-    --warning: 38 92% 60%;
-    --cta: 48 100% 58%;
-    --cta-hover: 48 100% 50%;
-    --footer: 280 30% 15%;
-    --footer-foreground: 280 10% 90%;
+    --surface-base:     280 25% 9%;
+    --surface-subtle:   280 22% 12%;
+    --surface-card:     280 25% 13%;
+    --surface-elevated: 280 20% 18%;
+    --surface-overlay:  280 20% 18%;
+
+    --background:          280 25% 9%;    /* ≈ #140D20 — deep plum-dark */
+    --foreground:          280 12% 93%;
+    --card:                280 25% 13%;
+    --card-foreground:     280 12% 93%;
+    --popover:             280 20% 18%;
+    --popover-foreground:  280 12% 93%;
+
+    --primary:             270 82% 62%;   /* ≈ #9040EC — vivid plum on dark */
+    --primary-foreground:  280 25% 9%;
+
+    --secondary:           270 60% 72%;
+    --secondary-foreground: 280 25% 9%;
+
+    --accent:              36 92% 60%;    /* ≈ #F5A01E — warm champagne */
+    --accent-foreground:   280 25% 9%;
+
+    --muted:               280 22% 28%;
+    --muted-foreground:    280 14% 68%;
+
+    --border:              280 26% 24%;
+    --border-subtle:       280 26% 20%;
+    --border-strong:       280 26% 34%;
+
+    --input:               280 24% 17%;
+    --ring:                270 82% 62%;
+
+    --destructive:         6 80% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --success:             152 70% 42%;
+    --warning:             36 90% 60%;
+
+    --cta:                 36 92% 60%;
+    --cta-hover:           36 92% 53%;
+
+    --footer:              280 36% 6%;
+    --footer-foreground:   280 14% 90%;
+
+    --glow-primary-sm:   0 2px 16px rgba(144, 64, 236, 0.32);
+    --glow-primary-md:   0 4px 32px rgba(144, 64, 236, 0.40);
+    --glow-primary-lg:   0 8px 56px rgba(144, 64, 236, 0.28);
+    --glow-card:         0 0 60px rgba(144, 64, 236, 0.08);
+    --glow-card-hover:   0 8px 40px rgba(144, 64, 236, 0.16);
+    --glow-secondary:    0 4px 24px rgba(245, 160, 30, 0.24);
+    --glow-accent:       0 4px 24px rgba(245, 160, 30, 0.30);
   }
 }
+
 
 @layer base {
   * {
@@ -139,10 +366,10 @@
   }
 
   ::selection {
-    background-color: hsl(var(--primary) / 0.22);
+    background-color: hsl(var(--primary) / 0.18);
     color: inherit;
   }
-  
+
   h1 {
     font-family: var(--font-display);
     @apply tracking-tight leading-[1.2];
@@ -169,60 +396,158 @@
   }
 }
 
+
 @layer utilities {
+
+  /* ── TEXT GRADIENTS ──
+     All gradients are now cohesive — staying within the cobalt-indigo-violet
+     family. No more jarring blue-to-orange. */
+
+  /* Hero headline gradient — cobalt → violet (premium, editorial) */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563eb] via-[#1e40af] to-[#ea580c];
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2545E6 0%, #6D28D9 50%, #7C3AED 100%);
   }
-  
+
+  /* Primary identity gradient — cobalt → indigo → soft indigo-light */
   .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563eb] via-[#0891b2] to-[#06b6d4];
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2545E6 0%, #4F46E5 50%, #818CF8 100%);
   }
 
+  /* CTA gradient — cobalt → violet (replaces jarring orange) */
   .text-gradient-cta {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ea580c] to-[#f97316];
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #2545E6 0%, #7C3AED 100%);
   }
 
+  /* Hero section — indigo → violet → fuchsia accent */
+  .text-gradient-hero {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #4F46E5 0%, #7C3AED 55%, #C026D3 100%);
+  }
+
+  /* ── BACKGROUND GRADIENTS ── */
+
+  /* Hero blob / ambient glow — subtle indigo/violet/teal */
+  .bg-gradient-hero {
+    background-image: radial-gradient(
+      ellipse 80% 60% at 60% 40%,
+      hsl(var(--primary) / 0.10) 0%,
+      hsl(var(--accent) / 0.06) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Section tint gradient */
+  .bg-gradient-subtle {
+    background: linear-gradient(
+      160deg,
+      hsl(var(--surface-subtle)) 0%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  /* CTA section gradient (for footer CTA blocks) */
+  .bg-gradient-cta {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.22) 0%,
+      hsl(var(--accent) / 0.14) 50%,
+      hsl(var(--secondary) / 0.10) 100%
+    );
+  }
+
+  /* ── GLASS / BLUR ── */
   .glass-card {
     @apply bg-white/5 backdrop-blur-lg border border-white/8 shadow-xl;
   }
-  
+
+  /* ── LAYOUT ── */
   .container-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
 
+  /* ── CTA BUTTON ── */
   .btn-cta {
     background-color: hsl(var(--cta));
     color: white;
+    box-shadow: var(--glow-primary-sm);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
   }
   .btn-cta:hover {
     background-color: hsl(var(--cta-hover));
+    box-shadow: var(--glow-primary-md);
   }
 
+  /* ── GLOW HELPERS ── */
+
+  /* Primary button / element glow */
+  .glow-primary {
+    box-shadow: var(--glow-primary-md);
+  }
+  .glow-primary-lg {
+    box-shadow: var(--glow-primary-lg);
+  }
+
+  /* Card ambient glow */
+  .glow-card {
+    box-shadow: var(--glow-card);
+  }
+  .glow-card:hover {
+    box-shadow: var(--glow-card-hover);
+  }
+
+  /* Secondary / teal glow */
+  .glow-secondary {
+    box-shadow: var(--glow-secondary);
+  }
+
+  /* Accent / violet glow */
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
+  /* Subtle hero ambient shadow (replaces .blue-glow) */
   .blue-glow {
-    box-shadow: 0 0 80px rgba(26, 60, 94, 0.15);
+    box-shadow: var(--glow-primary-lg);
   }
 
+  /* ── SEMANTIC HELPERS ── */
   .success {
-    color: hsl(145 63% 42%);
+    color: hsl(var(--success));
   }
-
   .warning {
-    color: hsl(37 90% 51%);
+    color: hsl(var(--warning));
   }
-
   .error {
-    color: hsl(6 76% 57%);
+    color: hsl(var(--destructive));
+  }
+  .info {
+    color: hsl(var(--primary));
   }
 
-  .info {
-    color: hsl(204 64% 44%);
+  /* ── SURFACE HELPERS ── */
+  .surface-subtle {
+    background-color: hsl(var(--surface-subtle));
+  }
+  .surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+  .border-subtle {
+    border-color: hsl(var(--border-subtle));
+  }
+  .border-strong {
+    border-color: hsl(var(--border-strong));
   }
 }
 
-/* Animations */
+
+/* ── ANIMATIONS ── */
+
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
@@ -237,23 +562,26 @@
   will-change: transform, opacity;
 }
 
-/* Hero blobs — pure CSS so they don't block the main thread */
+/* Hero blobs — upgraded to use accent/secondary for richer ambiance */
 @keyframes hero-blob-pulse-1 {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.12); opacity: 1; }
+  0%, 100% { transform: scale(1);    opacity: 0.65; }
+  50%       { transform: scale(1.12); opacity: 1; }
 }
 @keyframes hero-blob-pulse-2 {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.08); opacity: 0.8; }
+  0%, 100% { transform: scale(1);    opacity: 0.45; }
+  50%       { transform: scale(1.08); opacity: 0.78; }
 }
 @keyframes hero-blob-pulse-3 {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 0.95; }
 }
+
 .hero-blob-1 { animation: hero-blob-pulse-1 6s ease-in-out infinite; }
 .hero-blob-2 { animation: hero-blob-pulse-2 7s ease-in-out infinite 1s; }
 .hero-blob-3 { animation: hero-blob-pulse-3 5s ease-in-out infinite 0.5s; }
 
+
+/* Scrollbar helpers */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -262,8 +590,25 @@
   scrollbar-width: none;
 }
 
+
 @keyframes pulse-ring {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  50% { transform: scale(1.05); opacity: 1; }
+  0%   { transform: scale(0.9); opacity: 0.7; }
+  50%  { transform: scale(1.05); opacity: 1; }
   100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Premium shimmer for loading states */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--border)) 50%,
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
 }
