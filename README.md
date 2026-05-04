@@ -31,19 +31,23 @@
 
 **DevStudio** is a professional portfolio and client services platform for **Saif Khan**, a Senior Fullstack Developer and AI Integration Specialist with 5+ years of experience. The site serves as both a showcase of completed work and a business portal where clients can explore services, view pricing, and submit project inquiries — all enhanced by an AI chatbot assistant powered by Google Gemini.
 
+The application is a **fully serverless, static frontend** built with React and Vite, using Firebase Firestore for real-time data and Firebase Authentication for secure admin access. No traditional backend server is required.
+
 ---
 
 ## Features & Pages
 
 ### Features
-- **AI Chatbot** — Floating assistant powered by Gemini 1.5/2.0 Flash, trained on a detailed knowledge base covering services, pricing, and process
+
+- **AI Chatbot** — Floating assistant powered by Google Gemini 1.5/2.0 Flash with up to 3 API key fallbacks, trained on a detailed knowledge base covering services, pricing, and process
 - **Project Portfolio** — Filterable gallery of completed projects with detailed case study pages
 - **Service Packages** — 5 structured tiers with clear pricing and timelines
 - **Contact / Lead Intake** — Client inquiry form for new project requests
 - **Admin Dashboard** — Protected area to manage orders, portfolio projects, and services
-- **Firebase Authentication** — Secure admin-only login
-- **Cloudinary Image Management** — Upload and host portfolio images
+- **Firebase Authentication** — Secure admin-only login (email/password + Google sign-in)
+- **Cloudinary Image Management** — Direct unsigned image uploads from the frontend
 - **Responsive Design** — Mobile-first with smooth Framer Motion animations
+- **Lazy Loading** — All pages are code-split and lazily loaded for fast initial load
 
 ### Public Pages
 
@@ -63,7 +67,7 @@
 
 | Route | Page |
 |---|---|
-| `/admin/login` | Login |
+| `/admin/login` | Login (email/password or Google) |
 | `/admin/dashboard` | Dashboard overview |
 | `/admin/orders` | Manage client orders |
 | `/admin/projects` | CRUD for portfolio items |
@@ -75,16 +79,18 @@
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18, TypeScript, Vite, Tailwind CSS |
-| Routing | Wouter |
+| Frontend | React 18, TypeScript, Vite 7 |
+| Styling | Tailwind CSS 3, shadcn/ui (Radix UI) |
+| Routing | Wouter 3 |
 | State / Data | TanStack Query v5 |
-| UI Components | Shadcn UI (Radix UI), Lucide React |
-| Animations | Framer Motion |
+| UI Components | Shadcn UI, Lucide React, React Icons |
+| Animations | Framer Motion 11 |
 | Forms | React Hook Form + Zod |
 | Database | Firebase Firestore |
-| Auth | Firebase Authentication |
+| Auth | Firebase Authentication (email/password + Google) |
 | AI | Google Gemini API (1.5 / 2.0 Flash) |
-| Images | Cloudinary |
+| Images | Cloudinary (unsigned direct upload) |
+| Hosting | Vercel (static) |
 
 ---
 
@@ -103,14 +109,14 @@ npm install
 
 **3. Set up environment variables**
 
-Copy the template below into a `.env` file and fill in your credentials.
+Copy the template below into a `.env` file (or configure via Replit Secrets) and fill in your credentials.
 
 **4. Start the development server**
 ```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`.
+The app will be available at `http://localhost:5000` (or via the Replit preview URL).
 
 **5. Build for production**
 ```bash
@@ -123,6 +129,8 @@ Output goes to the `dist/` directory, ready for deployment to Vercel.
 
 ## Environment Variables
 
+All variables are `VITE_` prefixed so they are accessible in the React frontend via `import.meta.env`.
+
 ```env
 # Firebase
 VITE_FIREBASE_API_KEY=
@@ -134,39 +142,101 @@ VITE_FIREBASE_APP_ID=
 
 # Google Gemini AI
 VITE_GEMINI_API_KEY=
-VITE_GEMINI_API_KEY_B=        # Optional fallback
-VITE_GEMINI_API_KEY_C=        # Optional fallback
+VITE_GEMINI_API_KEY_B=        # Optional fallback key
+VITE_GEMINI_API_KEY_C=        # Optional fallback key
 
 # Cloudinary
 VITE_CLOUDINARY_CLOUD_NAME=
 VITE_CLOUDINARY_UPLOAD_PRESET=devstudio_uploads
 
 # Admin
-VITE_ADMIN_EMAILS=
+VITE_ADMIN_EMAILS=            # Comma-separated list of admin email addresses
 ```
+
+> **Replit note:** Secrets are configured under `[userenv.shared]` in `.replit` or via the Secrets panel. Never commit real credentials to version control.
 
 ---
 
 ## Project Structure
 
 ```
+devstudio/
 ├── client/
-│   ├── src/
-│   │   ├── components/       # Shared UI components (ChatBot, Navbar, Footer, etc.)
-│   │   ├── pages/            # Route-level page components
-│   │   │   └── admin/        # Admin-only pages
-│   │   ├── lib/              # Firebase, Gemini, Cloudinary, queryClient
-│   │   └── hooks/            # Custom React hooks
-├── server/                   # Express server (image upload endpoint)
-├── shared/                   # Shared types and schema
-└── vercel.json               # Vercel deployment config
+│   ├── index.html
+│   ├── public/               # Static assets (favicon, team member images)
+│   └── src/
+│       ├── App.tsx            # Root app with providers and routing
+│       ├── main.tsx           # Vite entry point
+│       ├── index.css          # Global styles and Tailwind base
+│       ├── components/        # Shared UI components
+│       │   ├── ChatBot.tsx    # AI chatbot (Gemini-powered)
+│       │   ├── Header.tsx
+│       │   ├── Navbar.tsx
+│       │   ├── Footer.tsx
+│       │   ├── Hero.tsx
+│       │   ├── ProjectCard.tsx
+│       │   ├── ProjectsGallery.tsx
+│       │   ├── ServiceCard.tsx
+│       │   ├── ServicesSection.tsx
+│       │   ├── TeamSection.tsx
+│       │   ├── ContactForm.tsx
+│       │   ├── AdminProtectedRoute.tsx
+│       │   └── ui/            # shadcn/ui component library
+│       ├── context/
+│       │   └── AuthContext.tsx  # Firebase auth context and provider
+│       ├── hooks/             # Custom React hooks
+│       │   ├── use-orders.ts
+│       │   ├── use-projects.ts
+│       │   ├── use-services.ts
+│       │   ├── use-team.ts
+│       │   ├── useImageUpload.ts
+│       │   └── use-toast.ts
+│       ├── lib/
+│       │   ├── firebase/      # Firebase config, auth helpers, Firestore helpers
+│       │   ├── cloudinary.ts  # Cloudinary unsigned upload helper
+│       │   ├── gemini.ts      # Gemini AI client with key rotation
+│       │   ├── queryClient.ts # TanStack Query client
+│       │   └── utils.ts       # Utility functions (cn, etc.)
+│       ├── pages/             # Route-level page components
+│       │   ├── Home.tsx
+│       │   ├── Portfolio.tsx
+│       │   ├── ProjectDetail.tsx
+│       │   ├── Services.tsx
+│       │   ├── About.tsx
+│       │   ├── Contact.tsx
+│       │   ├── FAQ.tsx
+│       │   ├── PrivacyPolicy.tsx
+│       │   ├── TermsOfService.tsx
+│       │   ├── not-found.tsx
+│       │   └── admin/         # Admin-only pages (protected)
+│       │       ├── AdminLayout.tsx
+│       │       ├── Dashboard.tsx
+│       │       ├── Orders.tsx
+│       │       ├── Projects.tsx
+│       │       └── Services.tsx
+│       └── types/
+│           └── index.ts       # Shared TypeScript types
+├── vite.config.ts             # Vite config (port 5000, path aliases)
+├── tailwind.config.ts         # Tailwind configuration
+├── postcss.config.js          # PostCSS config
+├── tsconfig.json              # TypeScript config
+├── components.json            # shadcn/ui config
+├── firestore.rules            # Firestore security rules
+├── vercel.json                # Vercel deployment config
+└── package.json
 ```
 
 ---
 
 ## Deployment
 
-This project is optimized for **Vercel**. Push to your connected repository and Vercel will handle the build automatically using the configuration in `vercel.json`.
+This project is a **static frontend** optimized for **Vercel**. There is no backend server to maintain.
+
+1. Push to your connected GitHub repository
+2. Vercel will detect the Vite build and deploy automatically using `vercel.json`
+3. Set all environment variables in the Vercel project settings dashboard
+
+For Replit deployment, use the built-in **Publish** feature which builds and hosts the static output.
 
 ---
 
@@ -520,7 +590,7 @@ Aim for at least 3 streams within 3 years:
 | **VS Code** | Primary code editor | Free |
 | **GitHub** | Version control + code portfolio | Free |
 | **Replit** | Build and host fullstack apps | Free / Paid |
-| **Vercel** | Deploy React/Next.js apps | Free |
+| **Vercel** | Deploy React/Next.js/Vite apps | Free |
 | **Render** | Deploy Node.js backends | Free |
 | **Figma** | UI/UX design and mockups | Free |
 | **Postman** | API testing | Free |
