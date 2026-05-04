@@ -118,7 +118,7 @@ const pricingTable = [
   { level: "Beginner",          experience: "0–1 yr",   hourly: "$15–$30",    small: "$150–$600",    large: "$600–$2K" },
   { level: "Intermediate",      experience: "1–3 yrs",  hourly: "$30–$65",    small: "$600–$2.5K",   large: "$2.5K–$7K" },
   { level: "Senior",            experience: "7+ yrs",   hourly: "$65–$120",   small: "$2K–$6K",      large: "$6K–$20K", highlight: true },
-  { level: "Expert / Lead",     experience: "7+ yrs",   hourly: "$120–$200+", small: "$5K+",         large: "$20K+" },
+  { level: "Expert / Lead",     experience: "9–10 yrs", hourly: "$120–$200+", small: "$5K+",         large: "$20K+" },
 ];
 
 const pricingRules = [
