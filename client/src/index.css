@@ -237,65 +237,65 @@
    contrast throughout (primary on dark = 4.7:1). */
 @media (prefers-color-scheme: dark) {
   :root {
-    --surface-base:     232 30% 7%;
-    --surface-subtle:   232 26% 10%;
-    --surface-card:     232 26% 11%;
-    --surface-elevated: 232 22% 16%;
-    --surface-overlay:  232 22% 16%;
+    --surface-base:     0 0% 100%;
+    --surface-subtle:   240 22% 96%;
+    --surface-card:     0 0% 100%;
+    --surface-elevated: 240 35% 99%;
+    --surface-overlay:  234 20% 94%;
 
-    --background:          232 30% 7%;    /* ≈ #0C0F1C — deep space */
-    --foreground:          220 18% 93%;   /* ≈ #ECEEF5 — soft off-white */
-    --card:                232 26% 11%;   /* ≈ #141829 — layer 1 */
-    --card-foreground:     220 18% 93%;
-    --popover:             232 22% 16%;   /* ≈ #1C2236 — layer 2 */
-    --popover-foreground:  220 18% 93%;
+    --background:          0 0% 100%;      /* White background in dark mode */
+    --foreground:          234 22% 10%;    /* Dark text */
+    --card:                0 0% 100%;
+    --card-foreground:     234 22% 10%;
+    --popover:             0 0% 100%;
+    --popover-foreground:  234 22% 10%;
 
-    --primary:             231 90% 63%;   /* ≈ #4D6EF5 — vivid cobalt on dark */
-    --primary-foreground:  232 30% 7%;
+    --primary:             231 82% 52%;
+    --primary-foreground:  0 0% 100%;
 
-    --secondary:           174 80% 52%;   /* ≈ #1CD6C4 — bright teal */
-    --secondary-foreground: 232 30% 7%;
+    --secondary:           174 72% 36%;
+    --secondary-foreground: 0 0% 100%;
 
-    --accent:              262 82% 68%;   /* ≈ #9B6BF0 — violet glow */
-    --accent-foreground:   232 30% 7%;
+    --accent:              262 75% 58%;
+    --accent-foreground:   0 0% 100%;
 
-    --muted:               232 22% 28%;   /* ≈ #374060 */
-    --muted-foreground:    220 14% 68%;   /* ≈ #9BA3BC */
+    --muted:               234 18% 91%;
+    --muted-foreground:    234 12% 44%;
 
-    --border:              232 24% 22%;   /* ≈ #27304A */
-    --border-subtle:       232 24% 18%;
-    --border-strong:       232 24% 32%;
+    --border:              234 20% 87%;
+    --border-subtle:       234 15% 93%;
+    --border-strong:       234 20% 75%;
 
-    --input:               232 26% 16%;
-    --ring:                231 90% 63%;
+    --input:               240 25% 96%;
+    --ring:                231 82% 52%;
 
-    --destructive:         6 80% 62%;
-    --destructive-foreground: 232 30% 7%;
-    --success:             152 68% 42%;
-    --warning:             34 90% 60%;
+    --destructive:         6 78% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success:             152 65% 32%;
+    --warning:             34 88% 50%;
 
-    --cta:                 231 90% 63%;
-    --cta-hover:           231 90% 57%;
+    --cta:                 231 82% 52%;
+    --cta-hover:           231 82% 45%;
 
-    --footer:              232 36% 5%;
-    --footer-foreground:   220 18% 90%;
+    --footer:              234 38% 9%;
+    --footer-foreground:   234 20% 92%;
 
-    --glow-primary-sm:   0 2px 16px rgba(77, 110, 245, 0.32);
-    --glow-primary-md:   0 4px 32px rgba(77, 110, 245, 0.40);
-    --glow-primary-lg:   0 8px 56px rgba(77, 110, 245, 0.30);
-    --glow-card:         0 0 60px rgba(77, 110, 245, 0.08);
-    --glow-card-hover:   0 8px 40px rgba(77, 110, 245, 0.16);
-    --glow-secondary:    0 4px 24px rgba(28, 214, 196, 0.24);
-    --glow-accent:       0 4px 24px rgba(155, 107, 240, 0.28);
+    --glow-primary-sm:   0 2px 12px rgba(37, 69, 230, 0.22);
+    --glow-primary-md:   0 4px 28px rgba(37, 69, 230, 0.30);
+    --glow-primary-lg:   0 8px 48px rgba(37, 69, 230, 0.24);
+    --glow-card:         0 0 60px rgba(37, 69, 230, 0.06);
+    --glow-card-hover:   0 8px 40px rgba(37, 69, 230, 0.12);
+    --glow-secondary:    0 4px 24px rgba(22, 153, 138, 0.22);
+    --glow-accent:       0 4px 24px rgba(123, 69, 224, 0.25);
 
-    --sidebar:                    232 26% 11%;
-    --sidebar-foreground:         220 14% 80%;
-    --sidebar-border:             232 24% 18%;
-    --sidebar-ring:               231 90% 63%;
-    --sidebar-primary:            231 90% 63%;
-    --sidebar-primary-foreground: 232 30% 7%;
-    --sidebar-accent:             232 22% 16%;
-    --sidebar-accent-foreground:  220 14% 80%;
+    --sidebar:                    234 22% 12%;
+    --sidebar-foreground:         234 15% 88%;
+    --sidebar-border:             234 22% 18%;
+    --sidebar-ring:               231 82% 52%;
+    --sidebar-primary:            231 82% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent:             234 22% 18%;
+    --sidebar-accent-foreground:  234 15% 88%;
   }
 
   :root.theme-bold,
