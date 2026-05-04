@@ -179,7 +179,7 @@ export default function ChatBot() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 text-white" />
             </motion.span>
           ) : (
             <motion.span
@@ -189,7 +189,7 @@ export default function ChatBot() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <MessageCircle className="w-6 h-6" />
+              <MessageCircle className="w-6 h-6 text-white" />
             </motion.span>
           )}
         </AnimatePresence>
