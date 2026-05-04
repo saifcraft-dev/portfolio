@@ -1,73 +1,103 @@
-# DevStudio - Digital Agency Website
+# DevStudio — Saif Khan's Portfolio & Service Site
 
 ## Overview
-A portfolio website for a digital development studio called "DevStudio". Built with React, Vite, and Tailwind CSS. Features pages for Home, Services, Portfolio, About, Contact, and FAQ, plus a Firebase-backed admin dashboard.
+A serverless fullstack portfolio and service studio site for developer Saif Khan. Built with React + TypeScript + Vite, backed by Firebase (Firestore + Auth) for data storage and admin authentication.
 
-## Project Architecture
-- **Frontend**: React 18 with Vite, TypeScript, Tailwind CSS, shadcn/ui components
-- **Routing**: wouter for client-side routing
-- **State Management**: TanStack React Query
-- **Styling**: Tailwind CSS with shadcn/ui component library
-- **Auth**: Firebase Auth (email/password + Google) for admin login
-- **Database**: Firebase Firestore (projects, services, team, orders)
-- **Image Uploads**: Cloudinary (direct unsigned uploads from the frontend)
-- **Dev Server**: Vite on port 5000 (`npx vite`)
-- **Deployment**: Static frontend build (`npm run build` → `dist/public`) on Vercel
+## Architecture
+- **Frontend only** — no Node.js backend server. All data comes from Firebase Firestore directly.
+- **Entry point**: `client/index.html` → `client/src/main.tsx` → `client/src/App.tsx`
+- **Dev server**: Vite on port 5000
 
-## Project Structure
+## Tech Stack
+- **Framework**: React 18 + TypeScript
+- **Build tool**: Vite 7
+- **Styling**: Tailwind CSS v3 + shadcn/ui (Radix UI primitives)
+- **Routing**: wouter (lightweight React Router alternative)
+- **State / data fetching**: TanStack Query (React Query v5)
+- **Forms**: React Hook Form + Zod validation
+- **Animations**: Framer Motion
+- **Database**: Firebase Firestore (NoSQL)
+- **Auth**: Firebase Auth (email/password + Google)
+- **AI Chatbot**: Google Gemini API (multi-key fallback: gemini-2.5-flash → 2.5-flash-lite → 2.0-flash)
+- **Image uploads**: Cloudinary (unsigned upload preset)
+
+## Key Files & Directories
 ```
 client/
-  index.html           - Entry HTML with meta tags, OG tags, only 2 fonts (Outfit + Space Grotesk)
   src/
-    App.tsx            - Main app with routing; ChatBot is lazy-loaded
-    main.tsx           - Entry point
-    index.css          - Global styles (no @import, fonts loaded via <link>)
-    components/        - Reusable components (Hero, Header, Footer, ProjectCard, ChatBot)
-    components/ui/     - shadcn/ui components
-    context/           - AuthContext for Firebase auth
-    hooks/             - Custom hooks (use-orders, use-projects, use-services, use-team)
-    lib/firebase/      - Firebase config, auth, firestore helpers
-    lib/cloudinary.ts  - Cloudinary upload helper
-    lib/queryClient.ts - TanStack React Query client
-    lib/utils.ts       - Utility functions
-    pages/             - Page components (Home, Services, Portfolio, About, Contact, FAQ)
-    pages/admin/       - Admin dashboard pages (Dashboard, Orders, Projects, Services)
-    types/             - TypeScript type definitions
-vite.config.ts         - Vite config (port 5000, code-splitting with manualChunks)
-tailwind.config.ts     - Tailwind config (includes display font family)
-vercel.json            - Vercel config with caching and security headers
+    App.tsx              # Root component + routing
+    pages/               # Page components (Home, Portfolio, Services, About, Contact, FAQ, admin/*)
+    components/          # Shared UI components (Header, Footer, ChatBot, etc.)
+    context/AuthContext.tsx  # Firebase auth state provider
+    lib/
+      firebase/config.ts     # Firebase initialization
+      firebase/auth.ts       # Auth helpers (signIn, signOut, isAdmin)
+      firebase/firestore.ts  # Firestore CRUD helpers + local fallbacks
+      gemini.ts              # Gemini AI chatbot logic + site knowledge base
+      cloudinary.ts          # Image upload helper
+    hooks/               # Custom hooks (use-projects, use-services, use-orders, use-team)
+    types/index.ts       # TypeScript interfaces (Project, Service, Order, TeamMember)
+vite.config.ts           # Vite config — root: client/, port: 5000, host: 0.0.0.0
 ```
 
-## Performance Optimizations Applied
-- **Font loading**: Reduced from 30+ Google Font families → only Outfit + Space Grotesk (used by the app)
-- **CLS fixes**: Added explicit width/height to all images, fixed layout shifts
-- **TBT reduction**: Replaced Framer Motion infinite animations (blobs, floating cards) with pure CSS `@keyframes`
-- **Lazy loading**: ChatBot component lazy-loaded with Suspense boundary
-- **Code splitting**: Vite `manualChunks` splits vendor code (react, firebase, framer-motion, icons)
-- **Hero blobs**: CSS-only animations with `will-change: transform, opacity`
-- **SEO**: Full OG/Twitter meta tags, JSON-LD structured data, canonical URL, per-page descriptions
-- **Security**: Caching headers and security headers in vercel.json
+## Routes
+| Path | Description |
+|------|-------------|
+| `/` | Homepage — hero, stats, testimonials, tech stack |
+| `/services` | Service packages with pricing |
+| `/portfolio` | Project gallery with filters |
+| `/portfolio/:id` | Individual project detail |
+| `/about` | Bio and story |
+| `/contact` | Contact form |
+| `/faq` | 40+ Q&A accordion |
+| `/privacy-policy` | Privacy policy |
+| `/terms-of-service` | Terms of service |
+| `/admin/login` | Firebase admin login |
+| `/admin/dashboard` | Admin dashboard (protected) |
+| `/admin/orders` | Orders management (protected) |
+| `/admin/projects` | Projects management (protected) |
+| `/admin/services` | Services management (protected) |
 
-## Running the Project
-- Development: `npx vite` (Vite dev server on port 5000)
-- Build: `npm run build` (outputs frontend to dist/public)
+## Environment Variables (shared)
+All configured in Replit environment:
 
-## Environment Variables
-All configured in `.replit` under `[userenv.shared]`:
+| Key | Purpose |
+|-----|---------|
+| `VITE_FIREBASE_API_KEY` | Firebase project API key |
+| `VITE_FIREBASE_AUTH_DOMAIN` | Firebase auth domain |
+| `VITE_FIREBASE_PROJECT_ID` | Firebase project ID |
+| `VITE_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID |
+| `VITE_FIREBASE_APP_ID` | Firebase app ID |
+| `VITE_ADMIN_EMAILS` | Comma-separated admin email whitelist |
+| `VITE_GEMINI_API_KEY` | Primary Gemini API key |
+| `VITE_GEMINI_API_KEY_B` | Fallback Gemini key #2 |
+| `VITE_GEMINI_API_KEY_C` | Fallback Gemini key #3 |
+| `VITE_CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name (server-side ref) |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
 
-### Firebase Configuration
-- `VITE_FIREBASE_API_KEY`
-- `VITE_FIREBASE_AUTH_DOMAIN`
-- `VITE_FIREBASE_PROJECT_ID`
-- `VITE_FIREBASE_STORAGE_BUCKET`
-- `VITE_FIREBASE_MESSAGING_SENDER_ID`
-- `VITE_FIREBASE_APP_ID`
-- `VITE_ADMIN_EMAILS` - Comma-separated list of admin email addresses
+## Running the App
+```bash
+npm run dev      # Start dev server (port 5000)
+npm run build    # Build for production → dist/public
+npm run check    # TypeScript type check
+```
 
-### Cloudinary Configuration
-- `VITE_CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
+## Admin Access
+- Navigate to `/admin/login`
+- Sign in with a Firebase account whose email is in `VITE_ADMIN_EMAILS` or has `role: "admin"` in Firestore `users` collection
+- Admin can manage Projects, Services, and Orders via the dashboard
 
-> **Note**: All `VITE_` prefixed variables are accessible in the React frontend via `import.meta.env`.
+## Firebase Firestore Collections
+- `projects` — portfolio projects
+- `services` — service offerings
+- `orders` — client orders
+- `team` — team members
+- `users` — user records (used for admin role check)
+
+## Notes
+- Firestore has local fallback data for `services` and `team` if the collections are empty
+- Gemini chatbot uses a multi-key/multi-model fallback strategy for reliability
+- All `VITE_` prefixed env vars are embedded into the client bundle by Vite at build time
