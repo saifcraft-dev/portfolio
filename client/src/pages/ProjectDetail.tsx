@@ -100,9 +100,10 @@ export default function ProjectDetail() {
           </motion.div>
 
           {/* Layered overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#08091a] via-[#08091a]/65 to-[#08091a]/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/75 via-[#08091a]/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[#08091a]/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08091a] via-[#08091a]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/85 via-[#08091a]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/60 via-[#08091a]/10 to-transparent" />
 
           {/* Top-right category badge */}
           <motion.div
