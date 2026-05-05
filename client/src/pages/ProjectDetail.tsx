@@ -83,9 +83,9 @@ export default function ProjectDetail() {
           HERO — cinematic full-width with layered overlays
       ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative w-full h-[44vh] sm:h-[56vh] lg:h-[66vh] min-h-[300px] max-h-[640px]">
+        <div className="relative w-full flex flex-col">
 
-          {/* Background image with subtle zoom-out */}
+          {/* Background image — absolute fill */}
           <motion.div
             initial={{ scale: 1.07 }}
             animate={{ scale: 1 }}
@@ -103,41 +103,25 @@ export default function ProjectDetail() {
           <div className="absolute inset-0 bg-[#08091a]/50" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#08091a] via-[#08091a]/70 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/85 via-[#08091a]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/60 via-[#08091a]/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/55 via-transparent to-transparent" />
 
-          {/* Breadcrumb — anchored to top */}
-          <div className="absolute inset-x-0 top-0 px-4 sm:px-8 lg:px-14 xl:px-20 pt-5 sm:pt-6">
-            <div className="max-w-7xl mx-auto">
-              <motion.div {...fadeIn(0.05)}>
-                <Link href="/portfolio">
-                  <button
-                    className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/75 transition-colors text-xs font-medium group"
-                    data-testid="link-back-portfolio"
-                  >
-                    <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                    <span>Portfolio</span>
-                    <span className="text-white/20 mx-0.5">/</span>
-                    <span className="text-white/50 truncate max-w-[140px] sm:max-w-xs">{project.title}</span>
-                  </button>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
+          {/* All hero content stacked naturally */}
+          <div className="relative z-10 px-4 sm:px-8 lg:px-14 xl:px-20 pt-5 sm:pt-6 pb-8 sm:pb-11 lg:pb-13 max-w-7xl mx-auto w-full">
 
-          {/* Status chip — desktop only */}
-          <motion.div
-            {...scaleIn(0.9)}
-            className={`hidden sm:flex absolute bottom-7 right-7 items-center gap-2 backdrop-blur-xl bg-black/25 border rounded-full px-4 py-2 ${isCompleted ? "border-emerald-500/30" : "border-sky-400/30"}`}
-          >
-            {isCompleted
-              ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-              : <Clock className="h-3.5 w-3.5 text-sky-400" />}
-            <span className="text-xs text-white/80 font-semibold">{isCompleted ? completedLabel : "In Progress"}</span>
-          </motion.div>
-
-          {/* Hero content — bottom left */}
-          <div className="absolute inset-x-0 bottom-0 px-4 sm:px-8 lg:px-14 xl:px-20 pb-7 sm:pb-10 lg:pb-12">
-            <div className="max-w-7xl mx-auto">
+            {/* Breadcrumb */}
+            <motion.div {...fadeIn(0.05)} className="mb-5 sm:mb-7">
+              <Link href="/portfolio">
+                <button
+                  className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/75 transition-colors text-xs font-medium group"
+                  data-testid="link-back-portfolio"
+                >
+                  <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
+                  <span>Portfolio</span>
+                  <span className="text-white/20 mx-0.5">/</span>
+                  <span className="text-white/50 truncate max-w-[140px] sm:max-w-xs">{project.title}</span>
+                </button>
+              </Link>
+            </motion.div>
 
               {/* Status badges row */}
               <motion.div {...fadeUp(0.12)} className="flex flex-wrap gap-2 mb-3 sm:mb-4">
@@ -166,7 +150,7 @@ export default function ProjectDetail() {
               {/* Short desc — hide on tiny screens to save space */}
               <motion.p
                 {...fadeUp(0.28)}
-                className="hidden sm:block text-sm sm:text-base lg:text-lg text-white/50 leading-relaxed max-w-2xl mb-6 sm:mb-8"
+                className="hidden sm:block text-sm sm:text-base lg:text-lg text-white/50 leading-relaxed max-w-2xl mb-6 sm:mb-7"
               >
                 {project.description}
               </motion.p>
@@ -196,7 +180,6 @@ export default function ProjectDetail() {
                   </a>
                 )}
               </motion.div>
-            </div>
           </div>
         </div>
       </section>
