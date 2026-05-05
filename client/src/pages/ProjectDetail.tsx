@@ -105,15 +105,6 @@ export default function ProjectDetail() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/85 via-[#08091a]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/60 via-[#08091a]/10 to-transparent" />
 
-          {/* Top-right category badge */}
-          <motion.div
-            {...scaleIn(0.7)}
-            className="absolute top-4 right-4 sm:top-7 sm:right-7 flex items-center gap-2 backdrop-blur-xl bg-white/8 border border-white/12 rounded-full px-3 py-1.5"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] sm:text-[11px] text-white/75 font-bold tracking-widest uppercase">{project.category}</span>
-          </motion.div>
-
           {/* Status chip — desktop only */}
           <motion.div
             {...scaleIn(0.9)}
