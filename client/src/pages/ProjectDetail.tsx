@@ -395,20 +395,6 @@ export default function ProjectDetail() {
           {/* ── MAIN CONTENT ──────────────────────────────── */}
           <main className="flex-1 min-w-0">
 
-            {/* Lead quote with left accent bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease }}
-              className="relative pl-4 sm:pl-6 mb-10 sm:mb-12"
-            >
-              <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10" />
-              <p className="text-base sm:text-lg lg:text-xl text-foreground font-medium leading-[1.85]">
-                {project.description}
-              </p>
-            </motion.div>
-
             {/* About section */}
             <ContentSection title="About the Project" icon={<Code2 className="h-4 w-4 text-primary" />}>
               <div className="space-y-4">
