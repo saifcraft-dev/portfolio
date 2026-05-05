@@ -259,17 +259,18 @@ export default function ProjectDetail() {
                       <div className="min-w-0 flex-1">
                         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.18em] font-black mb-2">Tech Stack</p>
                         <div className="flex flex-wrap gap-1.5">
-                          {project.technologies.slice(0, 6).map((tech) => (
+                          {project.technologies.slice(0, 5).map((tech) => (
                             <span
                               key={tech}
-                              className="text-[10px] sm:text-xs bg-primary/8 text-primary border border-primary/20 rounded-full px-2.5 py-0.5 font-semibold"
+                              className="text-[10px] sm:text-xs bg-primary/8 text-primary border border-primary/20 rounded-full px-2.5 py-0.5 font-semibold whitespace-nowrap"
+                              title={tech}
                             >
-                              {tech}
+                              {tech.length > 16 ? tech.slice(0, 14) + "…" : tech}
                             </span>
                           ))}
-                          {project.technologies.length > 6 && (
-                            <span className="text-[10px] sm:text-xs bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-0.5 font-medium">
-                              +{project.technologies.length - 6} more
+                          {project.technologies.length > 5 && (
+                            <span className="text-[10px] sm:text-xs bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-0.5 font-medium whitespace-nowrap">
+                              +{project.technologies.length - 5} more
                             </span>
                           )}
                         </div>
