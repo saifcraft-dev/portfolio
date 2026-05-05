@@ -1,14 +1,15 @@
 import { useRoute, Link } from "wouter";
 import { useProject } from "@/hooks/use-projects";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft, ExternalLink, Github, Calendar, Tag,
   Star, CheckCircle2, Clock, Code2, ArrowUpRight,
-  Layers, Zap, Globe
+  Layers, Zap, Globe, ChevronDown, MessageSquare,
+  Sparkles, Box
 } from "lucide-react";
+import { useState } from "react";
 
-/* ── animation presets ── */
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = (delay = 0, distance = 24) => ({
@@ -29,11 +30,10 @@ const scaleIn = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease },
 });
 
-/* ═══════════════════════════════════════════════════════ */
-
 export default function ProjectDetail() {
   const [, params] = useRoute("/portfolio/:id");
   const { data: project, isLoading } = useProject(params?.id || "");
+  const [mobileMetaOpen, setMobileMetaOpen] = useState(false);
 
   if (isLoading) {
     return (
@@ -73,23 +73,23 @@ export default function ProjectDetail() {
   const isCompleted = !!project.completedDate;
   const completedLabel = isCompleted
     ? new Date(project.completedDate).toLocaleDateString("en-US", { year: "numeric", month: "long" })
-    : "Ongoing";
+    : "In Progress";
   const paragraphs = (project.longDescription || project.description).split("\n").filter(Boolean);
 
   return (
     <div className="min-h-screen bg-background">
 
-      {/* ══════════════════════════════════════════════════════
-          HERO — cinematic full-width image with overlay
-      ══════════════════════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════════════════════
+          HERO — cinematic full-width with layered overlays
+      ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden">
+        <div className="relative w-full h-[50vh] sm:h-[62vh] lg:h-[74vh] min-h-[320px] max-h-[700px]">
 
-        {/* Background image */}
-        <div className="relative w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] min-h-[360px] max-h-[720px]">
+          {/* Background image with subtle zoom-out */}
           <motion.div
-            initial={{ scale: 1.06 }}
+            initial={{ scale: 1.07 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
+            transition={{ duration: 2, ease: "easeOut" }}
             className="absolute inset-0"
           >
             <img
@@ -99,92 +99,92 @@ export default function ProjectDetail() {
             />
           </motion.div>
 
-          {/* Multi-layer overlays for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d1a] via-[#0b0d1a]/60 to-[#0b0d1a]/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0d1a]/70 via-transparent to-transparent" />
+          {/* Layered overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08091a] via-[#08091a]/65 to-[#08091a]/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/75 via-[#08091a]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/30 via-transparent to-transparent" />
 
-          {/* Floating badge — top right */}
+          {/* Top-right category badge */}
           <motion.div
-            {...scaleIn(0.8)}
-            className="absolute top-6 right-6 sm:top-8 sm:right-8 flex items-center gap-2 backdrop-blur-xl bg-black/30 border border-white/10 rounded-full px-3 py-1.5 sm:px-4 sm:py-2"
+            {...scaleIn(0.7)}
+            className="absolute top-4 right-4 sm:top-7 sm:right-7 flex items-center gap-2 backdrop-blur-xl bg-white/8 border border-white/12 rounded-full px-3 py-1.5"
           >
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] sm:text-xs text-white/80 font-semibold tracking-wide">{project.category}</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[10px] sm:text-[11px] text-white/75 font-bold tracking-widest uppercase">{project.category}</span>
           </motion.div>
 
-          {/* Status chip — bottom right (desktop) */}
+          {/* Status chip — desktop only */}
           <motion.div
-            {...scaleIn(0.95)}
-            className={`hidden sm:flex absolute bottom-8 right-8 items-center gap-2 backdrop-blur-xl bg-black/30 border rounded-full px-4 py-2 ${isCompleted ? "border-emerald-500/30" : "border-sky-400/30"}`}
+            {...scaleIn(0.9)}
+            className={`hidden sm:flex absolute bottom-7 right-7 items-center gap-2 backdrop-blur-xl bg-black/25 border rounded-full px-4 py-2 ${isCompleted ? "border-emerald-500/30" : "border-sky-400/30"}`}
           >
             {isCompleted
               ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-              : <Clock className="h-3.5 w-3.5 text-sky-400" />
-            }
+              : <Clock className="h-3.5 w-3.5 text-sky-400" />}
             <span className="text-xs text-white/80 font-semibold">{isCompleted ? completedLabel : "In Progress"}</span>
           </motion.div>
 
-          {/* Hero text overlay — bottom left */}
-          <div className="absolute inset-x-0 bottom-0 px-5 sm:px-10 lg:px-16 xl:px-24 pb-10 sm:pb-14 lg:pb-16">
+          {/* Hero content — bottom left */}
+          <div className="absolute inset-x-0 bottom-0 px-4 sm:px-8 lg:px-14 xl:px-20 pb-8 sm:pb-12 lg:pb-14">
             <div className="max-w-7xl mx-auto">
 
-              {/* Back nav */}
-              <motion.div {...fadeIn(0.05)} className="mb-5 sm:mb-6">
+              {/* Breadcrumb */}
+              <motion.div {...fadeIn(0.05)} className="mb-4 sm:mb-5">
                 <Link href="/portfolio">
                   <button
-                    className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/80 transition-colors duration-200 text-xs font-medium group"
+                    className="inline-flex items-center gap-1.5 text-white/35 hover:text-white/70 transition-colors text-xs font-medium group"
                     data-testid="link-back-portfolio"
                   >
                     <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
                     <span>Portfolio</span>
                     <span className="text-white/20 mx-0.5">/</span>
-                    <span className="text-white/55 truncate max-w-[160px]">{project.title}</span>
+                    <span className="text-white/50 truncate max-w-[140px] sm:max-w-xs">{project.title}</span>
                   </button>
                 </Link>
               </motion.div>
 
-              {/* Badges */}
-              <motion.div {...fadeUp(0.1)} className="flex flex-wrap gap-2 mb-4 sm:mb-5">
-                <StatusBadge color="primary">{project.category}</StatusBadge>
+              {/* Status badges row */}
+              <motion.div {...fadeUp(0.12)} className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                <HeroBadge color="primary">{project.category}</HeroBadge>
                 {project.featured && (
-                  <StatusBadge color="amber">
+                  <HeroBadge color="amber">
                     <Star className="w-2.5 h-2.5 fill-current mr-1" /> Featured
-                  </StatusBadge>
+                  </HeroBadge>
                 )}
-                <StatusBadge color={isCompleted ? "emerald" : "sky"}>
+                <HeroBadge color={isCompleted ? "emerald" : "sky"}>
                   {isCompleted
                     ? <><CheckCircle2 className="w-2.5 h-2.5 mr-1" /> Completed</>
-                    : <><Clock className="w-2.5 h-2.5 mr-1" /> In Progress</>
-                  }
-                </StatusBadge>
+                    : <><Clock className="w-2.5 h-2.5 mr-1" /> In Progress</>}
+                </HeroBadge>
               </motion.div>
 
               {/* Title */}
               <motion.h1
-                {...fadeUp(0.18)}
+                {...fadeUp(0.2)}
                 className="font-display font-bold text-white leading-[1.05] tracking-tight mb-3 sm:mb-4"
-                style={{ fontSize: "clamp(1.75rem, 5vw, 3.75rem)" }}
+                style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)" }}
               >
                 {project.title}
               </motion.h1>
 
-              {/* Short description */}
+              {/* Short desc — hide on tiny screens to save space */}
               <motion.p
-                {...fadeUp(0.26)}
-                className="text-sm sm:text-base lg:text-lg text-white/55 leading-relaxed max-w-2xl mb-6 sm:mb-8"
+                {...fadeUp(0.28)}
+                className="hidden sm:block text-sm sm:text-base lg:text-lg text-white/50 leading-relaxed max-w-2xl mb-6 sm:mb-8"
               >
                 {project.description}
               </motion.p>
 
-              {/* CTA buttons */}
-              <motion.div {...fadeUp(0.33)} className="flex flex-wrap gap-3">
+              {/* CTA row */}
+              <motion.div {...fadeUp(0.35)} className="flex flex-wrap gap-2.5 sm:gap-3">
                 {project.projectUrl && (
                   <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" data-testid="button-live-demo">
                     <Button
                       size="lg"
-                      className="h-11 sm:h-12 px-5 sm:px-7 rounded-xl text-sm font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/40 transition-all"
+                      className="h-10 sm:h-12 px-4 sm:px-7 rounded-xl text-xs sm:text-sm font-bold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/40"
                     >
-                      <Globe className="mr-2 h-4 w-4" /> View Live Project
+                      <Globe className="mr-1.5 sm:mr-2 h-4 w-4" />
+                      <span>Live Project</span>
                     </Button>
                   </a>
                 )}
@@ -192,9 +192,10 @@ export default function ProjectDetail() {
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" data-testid="button-github-repo">
                     <Button
                       size="lg"
-                      className="h-11 sm:h-12 px-5 sm:px-7 rounded-xl text-sm font-bold border border-white/15 text-white hover:bg-white/10 hover:border-white/30 transition-all bg-white/5 backdrop-blur-sm"
+                      className="h-10 sm:h-12 px-4 sm:px-7 rounded-xl text-xs sm:text-sm font-bold border border-white/15 text-white hover:bg-white/10 hover:border-white/30 bg-white/6 backdrop-blur-sm"
                     >
-                      <Github className="mr-2 h-4 w-4" /> Source Code
+                      <Github className="mr-1.5 sm:mr-2 h-4 w-4" />
+                      <span>Source Code</span>
                     </Button>
                   </a>
                 )}
@@ -204,20 +205,22 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          STATS STRIP — quick-glance metadata bar
-      ══════════════════════════════════════════════════════ */}
-      <div className="border-y border-border bg-card/60 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 xl:px-24">
+      {/* ═══════════════════════════════════════════════════════
+          STATS STRIP — horizontally scrollable on mobile
+      ═══════════════════════════════════════════════════════ */}
+      <div className="border-y border-border bg-card/70 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            className="flex items-center flex-wrap gap-0 divide-x divide-border"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex items-stretch overflow-x-auto scrollbar-hide divide-x divide-border"
           >
             <StatPill icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
             <StatPill
-              icon={isCompleted ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> : <Clock className="h-3.5 w-3.5 text-sky-500" />}
+              icon={isCompleted
+                ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                : <Clock className="h-3.5 w-3.5 text-sky-500" />}
               label={isCompleted ? "Completed" : "Status"}
               value={completedLabel}
             />
@@ -225,60 +228,128 @@ export default function ProjectDetail() {
               <StatPill icon={<Layers className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
             )}
             {project.featured && (
-              <StatPill icon={<Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />} label="Recognition" value="Featured Project" />
+              <StatPill icon={<Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />} label="Recognition" value="Featured" />
             )}
           </motion.div>
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════
-          BODY
-      ══════════════════════════════════════════════════════ */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 py-12 sm:py-16 lg:py-20">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 xl:gap-16">
+      {/* ═══════════════════════════════════════════════════════
+          MOBILE: Short description below hero
+      ═══════════════════════════════════════════════════════ */}
+      <div className="sm:hidden px-4 py-5 border-b border-border bg-card/40">
+        <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+      </div>
 
-          {/* ── SIDEBAR ────────────────────────────────────── */}
-          <aside className="w-full lg:w-[280px] xl:w-[300px] shrink-0 order-first lg:order-last">
+      {/* ═══════════════════════════════════════════════════════
+          MOBILE: Collapsible Meta Card
+      ═══════════════════════════════════════════════════════ */}
+      <div className="lg:hidden px-4 sm:px-8 pt-5 pb-2">
+        <button
+          onClick={() => setMobileMetaOpen(v => !v)}
+          className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl border border-border bg-card shadow-sm text-sm font-semibold text-foreground"
+          data-testid="button-mobile-meta-toggle"
+        >
+          <div className="flex items-center gap-2">
+            <Box className="h-4 w-4 text-primary" />
+            <span>Project Details</span>
+          </div>
+          <motion.div animate={{ rotate: mobileMetaOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          </motion.div>
+        </button>
+
+        <AnimatePresence>
+          {mobileMetaOpen && (
             <motion.div
-              initial={{ opacity: 0, x: 16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease }}
-              className="lg:sticky lg:top-24 flex flex-col gap-4"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
             >
-
-              {/* Meta card */}
-              <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
+              <div className="mt-2 rounded-xl border border-border bg-card overflow-hidden shadow-sm">
                 <div className="h-[3px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
-
                 <div className="divide-y divide-border">
-                  <SidebarRow
-                    icon={<Tag className="h-3.5 w-3.5 text-primary" />}
-                    label="Category"
-                    value={project.category}
-                  />
+                  <SidebarRow icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
                   <SidebarRow
                     icon={<Calendar className="h-3.5 w-3.5 text-primary" />}
                     label={isCompleted ? "Completed" : "Status"}
                     value={completedLabel}
                     suffix={isCompleted
                       ? <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                      : <Clock className="h-4 w-4 text-sky-500" />
-                    }
+                      : <Clock className="h-4 w-4 text-sky-500" />}
                   />
                   {project.technologies?.length > 0 && (
-                    <SidebarRow
-                      icon={<Code2 className="h-3.5 w-3.5 text-primary" />}
-                      label="Tech Stack"
-                      value={`${project.technologies.length} Technologies`}
-                    />
+                    <SidebarRow icon={<Code2 className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
                   )}
                   {project.featured && (
-                    <SidebarRow
-                      icon={<Zap className="h-3.5 w-3.5 text-amber-500" />}
-                      label="Recognition"
-                      value="Featured Project"
-                    />
+                    <SidebarRow icon={<Zap className="h-3.5 w-3.5 text-amber-500" />} label="Recognition" value="Featured Project" />
+                  )}
+                </div>
+                {(project.projectUrl || project.githubUrl) && (
+                  <div className="p-3 flex flex-col gap-2 bg-muted/20">
+                    {project.projectUrl && (
+                      <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" className="w-full rounded-xl font-bold bg-primary hover:bg-primary/90">
+                          <ExternalLink className="mr-2 h-3.5 w-3.5" /> View Live Project
+                        </Button>
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="sm" className="w-full rounded-xl font-bold">
+                          <Github className="mr-2 h-3.5 w-3.5" /> Source Code
+                        </Button>
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          BODY — sidebar + main
+      ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-20 py-8 sm:py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+
+          {/* ── SIDEBAR (desktop only) ─────────────────────── */}
+          <aside className="hidden lg:block w-[268px] xl:w-[290px] shrink-0">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.2, ease }}
+              className="sticky top-24 flex flex-col gap-4"
+            >
+              {/* Meta card */}
+              <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
+                <div className="h-[3px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+
+                {/* Project image thumbnail */}
+                <div className="relative h-36 overflow-hidden">
+                  <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                </div>
+
+                <div className="divide-y divide-border">
+                  <SidebarRow icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
+                  <SidebarRow
+                    icon={<Calendar className="h-3.5 w-3.5 text-primary" />}
+                    label={isCompleted ? "Completed" : "Status"}
+                    value={completedLabel}
+                    suffix={isCompleted
+                      ? <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                      : <Clock className="h-4 w-4 text-sky-500" />}
+                  />
+                  {project.technologies?.length > 0 && (
+                    <SidebarRow icon={<Code2 className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
+                  )}
+                  {project.featured && (
+                    <SidebarRow icon={<Zap className="h-3.5 w-3.5 text-amber-500" />} label="Recognition" value="Featured Project" />
                   )}
                 </div>
 
@@ -302,11 +373,14 @@ export default function ProjectDetail() {
                 )}
               </div>
 
-              {/* Contact nudge card */}
+              {/* Contact nudge */}
               <div className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/8 via-primary/4 to-transparent p-5 overflow-hidden relative">
-                <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
-                <p className="text-sm font-bold text-foreground mb-1 relative">Like what you see?</p>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-4 relative">
+                <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-primary/12 blur-2xl pointer-events-none" />
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-bold text-foreground">Like what you see?</p>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
                   Let's build something amazing together for your next project.
                 </p>
                 <Link href="/contact">
@@ -315,23 +389,22 @@ export default function ProjectDetail() {
                   </Button>
                 </Link>
               </div>
-
             </motion.div>
           </aside>
 
-          {/* ── MAIN CONTENT ─────────────────────────────── */}
-          <main className="flex-1 min-w-0 order-last lg:order-first">
+          {/* ── MAIN CONTENT ──────────────────────────────── */}
+          <main className="flex-1 min-w-0">
 
-            {/* Lead quote */}
+            {/* Lead quote with left accent bar */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, ease }}
-              className="relative pl-5 sm:pl-6 mb-12 sm:mb-14"
+              className="relative pl-4 sm:pl-6 mb-10 sm:mb-12"
             >
               <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10" />
-              <p className="text-base sm:text-lg lg:text-xl text-foreground font-medium leading-[1.8]">
+              <p className="text-base sm:text-lg lg:text-xl text-foreground font-medium leading-[1.85]">
                 {project.description}
               </p>
             </motion.div>
@@ -345,8 +418,8 @@ export default function ProjectDetail() {
                     initial={{ opacity: 0, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.05 }}
-                    className="text-sm sm:text-base text-muted-foreground leading-[1.95]"
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    className="text-sm sm:text-base text-muted-foreground leading-[2]"
                   >
                     {para}
                   </motion.p>
@@ -361,10 +434,10 @@ export default function ProjectDetail() {
                   {project.technologies.map((tech, i) => (
                     <motion.div
                       key={tech}
-                      initial={{ opacity: 0, scale: 0.82, y: 6 }}
+                      initial={{ opacity: 0, scale: 0.8, y: 6 }}
                       whileInView={{ opacity: 1, scale: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.32, delay: i * 0.04 }}
+                      transition={{ duration: 0.3, delay: i * 0.04 }}
                       data-testid={`tech-chip-${i}`}
                     >
                       <TechChip label={tech} />
@@ -374,32 +447,29 @@ export default function ProjectDetail() {
               </ContentSection>
             )}
 
-            {/* CTA section */}
+            {/* CTA Banner */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, ease }}
-              className="mt-12 sm:mt-14 rounded-2xl sm:rounded-3xl overflow-hidden relative"
+              className="mt-10 sm:mt-12 rounded-2xl sm:rounded-3xl overflow-hidden relative"
             >
-              {/* Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
               <div className="absolute inset-0 border border-primary/12 rounded-2xl sm:rounded-3xl" />
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/50 via-primary/30 to-transparent" />
-
-              {/* Decorative blob */}
               <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
 
-              <div className="relative p-7 sm:p-9 lg:p-10">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
+              <div className="relative p-5 sm:p-8 lg:p-10">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10">
                   <div className="flex-1 min-w-0">
                     <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.2em] px-2.5 py-1 rounded-full mb-3">
                       <Zap className="h-3 w-3" /> Work Together
                     </div>
-                    <h3 className="text-xl sm:text-2xl lg:text-[1.6rem] font-display font-bold text-foreground mb-2 leading-snug">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-2 leading-snug">
                       Interested in collaborating?
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Let's turn your idea into a polished product. Reach out and start a conversation.
                     </p>
                   </div>
@@ -407,7 +477,7 @@ export default function ProjectDetail() {
                     <Link href="/contact">
                       <Button
                         size="lg"
-                        className="w-full sm:w-44 h-11 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-md shadow-primary/25"
+                        className="h-11 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-md shadow-primary/25 px-5 sm:w-44"
                         data-testid="button-contact-cta"
                       >
                         Get in Touch <ArrowUpRight className="ml-1.5 h-4 w-4" />
@@ -417,7 +487,7 @@ export default function ProjectDetail() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="w-full sm:w-44 h-11 rounded-xl font-bold text-sm border-border hover:border-primary/30 hover:bg-muted/40"
+                        className="h-11 rounded-xl font-bold text-sm border-border hover:border-primary/30 hover:bg-muted/40 px-5 sm:w-44"
                         data-testid="link-more-projects"
                       >
                         More Projects
@@ -431,21 +501,51 @@ export default function ProjectDetail() {
           </main>
         </div>
       </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          MOBILE STICKY BOTTOM BAR
+      ═══════════════════════════════════════════════════════ */}
+      {(project.projectUrl || project.githubUrl) && (
+        <div className="lg:hidden sticky bottom-0 z-50 border-t border-border bg-card/95 backdrop-blur-md px-4 py-3 flex gap-2.5 shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
+          {project.projectUrl && (
+            <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="flex-1" data-testid="button-live-demo-mobile">
+              <Button className="w-full h-11 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-sm shadow-primary/20">
+                <Globe className="mr-2 h-4 w-4" /> Live Project
+              </Button>
+            </a>
+          )}
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={project.projectUrl ? "w-12 shrink-0" : "flex-1"} data-testid="button-github-mobile">
+              <Button variant="outline" className={`h-11 rounded-xl font-bold border-border ${project.projectUrl ? "w-12 p-0" : "w-full"}`}>
+                {project.projectUrl
+                  ? <Github className="h-4 w-4" />
+                  : <><Github className="mr-2 h-4 w-4" /> Source Code</>}
+              </Button>
+            </a>
+          )}
+          <Link href="/contact" className="w-12 shrink-0">
+            <Button variant="outline" className="w-12 h-11 rounded-xl p-0 border-border" data-testid="button-contact-mobile">
+              <MessageSquare className="h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      )}
+
     </div>
   );
 }
 
-/* ── Sub-components ─────────────────────────────────────── */
+/* ── Sub-components ─────────────────────────────────────────── */
 
-function StatusBadge({ children, color }: { children: React.ReactNode; color: "primary" | "amber" | "emerald" | "sky" }) {
+function HeroBadge({ children, color }: { children: React.ReactNode; color: "primary" | "amber" | "emerald" | "sky" }) {
   const styles = {
-    primary: "bg-primary/90 text-white shadow-primary/30 border-primary/20",
-    amber:   "bg-amber-500/90 text-white shadow-amber-500/30 border-amber-400/20",
-    emerald: "bg-emerald-500/90 text-white shadow-emerald-500/30 border-emerald-400/20",
-    sky:     "bg-sky-500/90 text-white shadow-sky-500/30 border-sky-400/20",
+    primary: "bg-primary/90 text-white border-primary/20 shadow-primary/25",
+    amber:   "bg-amber-500/90 text-white border-amber-400/20 shadow-amber-500/25",
+    emerald: "bg-emerald-500/90 text-white border-emerald-400/20 shadow-emerald-500/25",
+    sky:     "bg-sky-500/90 text-white border-sky-400/20 shadow-sky-500/25",
   };
   return (
-    <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase shadow-lg border backdrop-blur-sm ${styles[color]}`}>
+    <span className={`inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold tracking-[0.12em] uppercase shadow-md border backdrop-blur-sm ${styles[color]}`}>
       {children}
     </span>
   );
@@ -453,14 +553,11 @@ function StatusBadge({ children, color }: { children: React.ReactNode; color: "p
 
 function StatPill({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="flex items-center gap-2.5 px-5 sm:px-7 py-4 sm:py-5 first:pl-0 last:pr-0">
+    <div className="flex items-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3.5 sm:py-5 first:pl-0 last:pr-0 shrink-0">
       <span className="shrink-0">{icon}</span>
-      <div className="hidden xs:block">
-        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-muted-foreground leading-none mb-0.5">{label}</p>
+      <div>
+        <p className="text-[9px] font-black uppercase tracking-[0.18em] text-muted-foreground leading-none mb-0.5 hidden sm:block">{label}</p>
         <p className="text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">{value}</p>
-      </div>
-      <div className="xs:hidden">
-        <p className="text-xs font-semibold text-foreground whitespace-nowrap">{value}</p>
       </div>
     </div>
   );
@@ -468,7 +565,7 @@ function StatPill({ icon, label, value }: { icon: React.ReactNode; label: string
 
 function SidebarRow({ icon, label, value, suffix }: { icon: React.ReactNode; label: string; value: string; suffix?: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3.5 px-4 py-3.5">
+    <div className="flex items-center gap-3 px-4 py-3.5">
       <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center shrink-0 border border-primary/10">
         {icon}
       </div>
@@ -488,13 +585,13 @@ function ContentSection({ title, icon, children }: { title: string; icon: React.
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="mb-12 sm:mb-14"
+      className="mb-10 sm:mb-12"
     >
-      <div className="flex items-center gap-2.5 mb-6 sm:mb-7">
+      <div className="flex items-center gap-2.5 mb-5 sm:mb-6">
         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/15">
           {icon}
         </div>
-        <h2 className="text-lg sm:text-xl font-display font-bold text-foreground tracking-tight">{title}</h2>
+        <h2 className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground tracking-tight">{title}</h2>
       </div>
       {children}
     </motion.section>
@@ -503,11 +600,11 @@ function ContentSection({ title, icon, children }: { title: string; icon: React.
 
 function TechChip({ label }: { label: string }) {
   return (
-    <div className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 bg-card border border-border rounded-xl hover:border-primary/40 hover:bg-primary/4 hover:shadow-sm transition-all duration-200 cursor-default">
-      <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-md bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-        <Code2 className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary" />
+    <div className="group inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 bg-card border border-border rounded-lg sm:rounded-xl hover:border-primary/40 hover:bg-primary/4 hover:shadow-sm transition-all duration-200 cursor-default">
+      <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-md bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+        <Code2 className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-primary" />
       </div>
-      <span className="text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">{label}</span>
+      <span className="text-[11px] sm:text-xs font-semibold text-foreground whitespace-nowrap">{label}</span>
     </div>
   );
 }
