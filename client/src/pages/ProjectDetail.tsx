@@ -296,81 +296,6 @@ export default function ProjectDetail() {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-20 py-8 sm:py-12 lg:py-16">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
 
-          {/* ── SIDEBAR (desktop only) ─────────────────────── */}
-          <aside className="hidden lg:block w-[268px] xl:w-[290px] shrink-0">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.2, ease }}
-              className="sticky top-24 flex flex-col gap-4"
-            >
-              {/* Meta card */}
-              <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
-                <div className="h-[3px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
-
-                {/* Project image thumbnail */}
-                <div className="relative h-36 overflow-hidden">
-                  <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
-                </div>
-
-                <div className="divide-y divide-border">
-                  <SidebarRow icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
-                  <SidebarRow
-                    icon={<Calendar className="h-3.5 w-3.5 text-primary" />}
-                    label={isCompleted ? "Completed" : "Status"}
-                    value={completedLabel}
-                    suffix={isCompleted
-                      ? <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                      : <Clock className="h-4 w-4 text-sky-500" />}
-                  />
-                  {project.technologies?.length > 0 && (
-                    <SidebarRow icon={<Code2 className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
-                  )}
-                  {project.featured && (
-                    <SidebarRow icon={<Zap className="h-3.5 w-3.5 text-amber-500" />} label="Recognition" value="Featured Project" />
-                  )}
-                </div>
-
-                {(project.projectUrl || project.githubUrl) && (
-                  <div className="p-4 flex flex-col gap-2.5 bg-muted/20">
-                    {project.projectUrl && (
-                      <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" data-testid="button-live-demo-sidebar">
-                        <Button size="lg" className="w-full h-11 rounded-xl text-sm font-bold bg-primary hover:bg-primary/90 shadow-md shadow-primary/20">
-                          <ExternalLink className="mr-2 h-4 w-4" /> View Live Project
-                        </Button>
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" data-testid="button-github-sidebar">
-                        <Button variant="outline" size="lg" className="w-full h-11 rounded-xl text-sm font-bold border-border hover:border-primary/40 hover:bg-muted/50">
-                          <Github className="mr-2 h-4 w-4" /> Source Code
-                        </Button>
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* Contact nudge */}
-              <div className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/8 via-primary/4 to-transparent p-5 overflow-hidden relative">
-                <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-primary/12 blur-2xl pointer-events-none" />
-                <div className="flex items-center gap-2 mb-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  <p className="text-sm font-bold text-foreground">Like what you see?</p>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                  Let's build something amazing together for your next project.
-                </p>
-                <Link href="/contact">
-                  <Button size="sm" className="w-full rounded-xl text-xs font-bold bg-primary hover:bg-primary/90" data-testid="button-sidebar-contact">
-                    Get in Touch <ArrowUpRight className="ml-1 h-3 w-3" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          </aside>
-
           {/* ── MAIN CONTENT ──────────────────────────────── */}
           <main className="flex-1 min-w-0">
 
@@ -464,6 +389,82 @@ export default function ProjectDetail() {
             </motion.div>
 
           </main>
+
+          {/* ── SIDEBAR (desktop only) ─────────────────────── */}
+          <aside className="hidden lg:block w-[268px] xl:w-[290px] shrink-0">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.2, ease }}
+              className="sticky top-24 flex flex-col gap-4"
+            >
+              {/* Meta card */}
+              <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
+                <div className="h-[3px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+
+                {/* Project image thumbnail */}
+                <div className="relative h-36 overflow-hidden">
+                  <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                </div>
+
+                <div className="divide-y divide-border">
+                  <SidebarRow icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
+                  <SidebarRow
+                    icon={<Calendar className="h-3.5 w-3.5 text-primary" />}
+                    label={isCompleted ? "Completed" : "Status"}
+                    value={completedLabel}
+                    suffix={isCompleted
+                      ? <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                      : <Clock className="h-4 w-4 text-sky-500" />}
+                  />
+                  {project.technologies?.length > 0 && (
+                    <SidebarRow icon={<Code2 className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
+                  )}
+                  {project.featured && (
+                    <SidebarRow icon={<Zap className="h-3.5 w-3.5 text-amber-500" />} label="Recognition" value="Featured Project" />
+                  )}
+                </div>
+
+                {(project.projectUrl || project.githubUrl) && (
+                  <div className="p-4 flex flex-col gap-2.5 bg-muted/20">
+                    {project.projectUrl && (
+                      <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" data-testid="button-live-demo-sidebar">
+                        <Button size="lg" className="w-full h-11 rounded-xl text-sm font-bold bg-primary hover:bg-primary/90 shadow-md shadow-primary/20">
+                          <ExternalLink className="mr-2 h-4 w-4" /> View Live Project
+                        </Button>
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" data-testid="button-github-sidebar">
+                        <Button variant="outline" size="lg" className="w-full h-11 rounded-xl text-sm font-bold border-border hover:border-primary/40 hover:bg-muted/50">
+                          <Github className="mr-2 h-4 w-4" /> Source Code
+                        </Button>
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Contact nudge */}
+              <div className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/8 via-primary/4 to-transparent p-5 overflow-hidden relative">
+                <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-primary/12 blur-2xl pointer-events-none" />
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-bold text-foreground">Like what you see?</p>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                  Let's build something amazing together for your next project.
+                </p>
+                <Link href="/contact">
+                  <Button size="sm" className="w-full rounded-xl text-xs font-bold bg-primary hover:bg-primary/90" data-testid="button-sidebar-contact">
+                    Get in Touch <ArrowUpRight className="ml-1 h-3 w-3" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          </aside>
+
         </div>
       </div>
 
