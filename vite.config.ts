@@ -3,9 +3,98 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
+const MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"];
+const RETRIABLE = new Set([429, 401, 403, 500, 502, 503, 504]);
+
+function getServerKeys(): string[] {
+  return [
+    process.env.GEMINI_API_KEY,
+    process.env.GEMINI_API_KEY_B,
+    process.env.GEMINI_API_KEY_C,
+  ].filter(Boolean) as string[];
+}
+
 export default defineConfig({
   base: "/",
   plugins: [
+    {
+      name: "gemini-proxy",
+      configureServer(server) {
+        server.middlewares.use("/api/chat", async (req: any, res: any) => {
+          if (req.method !== "POST") {
+            res.statusCode = 405;
+            res.end("Method Not Allowed");
+            return;
+          }
+
+          let raw = "";
+          req.on("data", (chunk: any) => (raw += chunk));
+          req.on("end", async () => {
+            try {
+              const { history, message, systemInstruction } = JSON.parse(raw);
+              const keys = getServerKeys();
+
+              if (keys.length === 0) {
+                res.statusCode = 500;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ error: "No Gemini API key configured on the server. Please set GEMINI_API_KEY." }));
+                return;
+              }
+
+              let lastError = "Unknown error";
+
+              for (const key of keys) {
+                for (const model of MODELS) {
+                  const geminiRes = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        systemInstruction: { parts: [{ text: systemInstruction }] },
+                        contents: [
+                          ...history,
+                          { role: "user", parts: [{ text: message }] },
+                        ],
+                        generationConfig: { temperature: 0.7, maxOutputTokens: 1024 },
+                      }),
+                    }
+                  );
+
+                  if (geminiRes.ok) {
+                    const data = await geminiRes.json();
+                    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) {
+                      res.setHeader("Content-Type", "application/json");
+                      res.end(JSON.stringify({ text }));
+                      return;
+                    }
+                  }
+
+                  const errData = await geminiRes.json().catch(() => ({}));
+                  lastError = (errData as any)?.error?.message || `HTTP ${geminiRes.status}`;
+
+                  if (!RETRIABLE.has(geminiRes.status)) {
+                    res.statusCode = geminiRes.status;
+                    res.setHeader("Content-Type", "application/json");
+                    res.end(JSON.stringify({ error: lastError }));
+                    return;
+                  }
+                }
+              }
+
+              res.statusCode = 503;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({ error: lastError }));
+            } catch (err) {
+              res.statusCode = 500;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({ error: String(err) }));
+            }
+          });
+        });
+      },
+    },
     react(),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&

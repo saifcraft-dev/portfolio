@@ -1,27 +1,3 @@
-// Models in order of preference
-const MODELS = [
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-  "gemini-2.0-flash",
-];
-
-// Errors that trigger fallback to next key/model
-const RETRIABLE_ERRORS = new Set([429, 401, 403, 500, 502, 503, 504]);
-
-// Hard errors that stop immediately
-const STOP_ERRORS = new Set([400]);
-
-function getKeys(): string[] {
-  const keys = [
-    import.meta.env.VITE_GEMINI_API_KEY,
-    import.meta.env.VITE_GEMINI_API_KEY_B,
-    import.meta.env.VITE_GEMINI_API_KEY_C,
-  ].filter(Boolean);
-  
-  console.log("[Gemini] Keys loaded:", keys.length);
-  return keys;
-}
-
 export const SITE_KNOWLEDGE_BASE = `
 ## DEVSTUDIO - Saif Khan's Portfolio & Service Site
 ### Complete Site Knowledge Base
@@ -263,7 +239,6 @@ export const SITE_KNOWLEDGE_BASE = `
 - Confident in expertise but humble about learning
 `;
 
-// Enhanced system prompt for AI chatbot
 export function buildChatbotPrompt(): string {
   return `You are Saif Khan's intelligent AI assistant on his developer portfolio (SaifCraft). Your primary goal is to help visitors understand his services, expertise, pricing, and how to hire him. You're warm, professional, helpful, and direct.
 
@@ -319,123 +294,21 @@ export async function geminiChat(
   userMessage: string,
   systemInstruction: string
 ): Promise<string> {
-  const keys = getKeys();
-  if (keys.length === 0) {
-    throw new Error("No Gemini API keys configured.");
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ history, message: userMessage, systemInstruction }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data?.error || `Server error: ${response.status}`);
   }
 
-  let lastError: Error | null = null;
-
-  // Loop through each key
-  for (let keyIndex = 0; keyIndex < keys.length; keyIndex++) {
-    const key = keys[keyIndex];
-    const keyLabel = `Key #${keyIndex + 1}`;
-
-    // For each key, try all models
-    for (let modelIndex = 0; modelIndex < MODELS.length; modelIndex++) {
-      const model = MODELS[modelIndex];
-
-      try {
-        const body = {
-          systemInstruction: {
-            parts: [{ text: systemInstruction }],
-          },
-          contents: [
-            ...history,
-            { role: "user", parts: [{ text: userMessage }] },
-          ],
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 1024,
-          },
-        };
-
-        console.log(
-          `[Gemini Fallback] Trying ${keyLabel} with ${model}...`
-        );
-
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          }
-        );
-
-        const statusCode = response.status;
-        console.log(`[Gemini Fallback] ${keyLabel} + ${model} → Status ${statusCode}`);
-
-        // Success!
-        if (response.ok) {
-          const data = await response.json();
-          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (text) {
-            console.log(
-              `[Gemini Fallback] ✅ SUCCESS on ${keyLabel} + ${model}`
-            );
-            return text;
-          }
-        }
-
-        // Parse error response
-        const responseData = await response.json().catch(() => ({}));
-        const errorMsg =
-          responseData?.error?.message || `HTTP ${statusCode}`;
-
-        // Hard error: Stop immediately (400 Bad Request)
-        if (STOP_ERRORS.has(statusCode)) {
-          console.error(
-            `[Gemini Fallback] ❌ HARD ERROR (${statusCode}): ${errorMsg}`
-          );
-          throw new Error(`${statusCode}: ${errorMsg}`);
-        }
-
-        // Retriable error: Log and continue to next model/key
-        if (RETRIABLE_ERRORS.has(statusCode)) {
-          console.log(
-            `[Gemini Fallback] ⚠️ Retriable error on ${keyLabel} (${statusCode}): ${errorMsg}`
-          );
-          lastError = new Error(`${statusCode}: ${errorMsg}`);
-          continue; // Try next model
-        }
-
-        // Unknown status: Log and continue
-        console.log(
-          `[Gemini Fallback] ⚠️ Unexpected status ${statusCode}, trying next model`
-        );
-        lastError = new Error(`${statusCode}: ${errorMsg}`);
-      } catch (err: unknown) {
-        const errMsg = err instanceof Error ? err.message : String(err);
-
-        // Hard errors from request itself - stop immediately
-        if (errMsg.includes("400") || errMsg.includes("Bad request")) {
-          console.error(`[Gemini Fallback] ❌ HARD ERROR: ${errMsg}`);
-          throw err;
-        }
-
-        // Network errors or retriable errors - continue
-        console.log(
-          `[Gemini Fallback] ⚠️ ${keyLabel} + ${model} failed: ${errMsg}`
-        );
-        lastError = err instanceof Error ? err : new Error(errMsg);
-      }
-    }
-
-    // All models failed for this key, moving to next key
-    console.log(
-      `[Gemini Fallback] ${keyLabel} exhausted all models. Trying next key...`
-    );
+  if (!data?.text) {
+    throw new Error("No response received from AI.");
   }
 
-  // All keys and models exhausted
-  console.error(
-    "[Gemini Fallback] ❌ All Gemini API keys and models are unavailable."
-  );
-  throw (
-    lastError ||
-    new Error(
-      "All Gemini API keys and models are currently unavailable. Please try again shortly."
-    )
-  );
+  return data.text;
 }
