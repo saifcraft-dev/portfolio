@@ -119,6 +119,16 @@ export default function ChatBot() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  function getFriendlyError(raw: string): string {
+    if (raw.includes("quota") || raw.includes("429") || raw.includes("rate") || raw.includes("limit")) {
+      return "I'm temporarily unavailable due to high demand. Please reach out directly — Saif replies within 24 hours!\n\n📧 contact@saifcraft.com\n💬 WhatsApp: +92 318 8055850";
+    }
+    if (raw.includes("API key") || raw.includes("403") || raw.includes("401")) {
+      return "I'm having a configuration issue right now. Please contact Saif directly:\n\n📧 contact@saifcraft.com\n💬 WhatsApp: +92 318 8055850";
+    }
+    return "Something went wrong on my end. You can reach Saif directly:\n\n📧 contact@saifcraft.com\n💬 WhatsApp: +92 318 8055850";
+  }
+
   async function handleSend() {
     const text = input.trim();
     if (!text || loading) return;
@@ -137,16 +147,13 @@ export default function ChatBot() {
           parts: [{ text: m.content }],
         }));
 
-      console.log("[ChatBot] Sending message to Gemini...");
       const reply = await geminiChat(history, text, buildChatbotPrompt());
-      console.log("[ChatBot] Got response!");
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
       setError(null);
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Something went wrong.";
-      console.error("[ChatBot] Error:", message);
-      setError(message);
+      const raw = err instanceof Error ? err.message : "Something went wrong.";
+      const friendly = getFriendlyError(raw);
+      setMessages((prev) => [...prev, { role: "assistant", content: friendly }]);
     } finally {
       setLoading(false);
     }
@@ -276,12 +283,6 @@ export default function ChatBot() {
                     <Loader2 className="w-4 h-4 text-primary animate-spin" />
                     <span className="text-sm text-muted-foreground">Thinking…</span>
                   </div>
-                </div>
-              )}
-
-              {error && (
-                <div className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-3 py-2 animate-in fade-in duration-200">
-                  {error}
                 </div>
               )}
 
