@@ -3,22 +3,17 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-const MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"];
-const RETRIABLE = new Set([429, 401, 403, 500, 502, 503, 504]);
-
-function getServerKeys(): string[] {
-  return [
-    process.env.GEMINI_API_KEY,
-    process.env.GEMINI_API_KEY_B,
-    process.env.GEMINI_API_KEY_C,
-  ].filter(Boolean) as string[];
-}
+const GROQ_MODELS = [
+  "llama-3.3-70b-versatile",
+  "llama-3.1-8b-instant",
+  "gemma2-9b-it",
+];
 
 export default defineConfig({
   base: "/",
   plugins: [
     {
-      name: "gemini-proxy",
+      name: "groq-proxy",
       configureServer(server) {
         server.middlewares.use("/api/chat", async (req: any, res: any) => {
           if (req.method !== "POST") {
@@ -32,38 +27,49 @@ export default defineConfig({
           req.on("end", async () => {
             try {
               const { history, message, systemInstruction } = JSON.parse(raw);
-              const keys = getServerKeys();
+              const apiKey = process.env.GROQ_API_KEY;
 
-              if (keys.length === 0) {
+              if (!apiKey) {
                 res.statusCode = 500;
                 res.setHeader("Content-Type", "application/json");
-                res.end(JSON.stringify({ error: "No Gemini API key configured on the server. Please set GEMINI_API_KEY." }));
+                res.end(JSON.stringify({ error: "No GROQ_API_KEY configured on the server." }));
                 return;
               }
 
+              // Convert chat history to OpenAI-compatible format
+              const messages = [
+                { role: "system", content: systemInstruction },
+                ...history.map((m: any) => ({
+                  role: m.role === "model" ? "assistant" : "user",
+                  content: m.parts?.[0]?.text ?? "",
+                })),
+                { role: "user", content: message },
+              ];
+
               let lastError = "Unknown error";
 
-              for (const key of keys) {
-                for (const model of MODELS) {
-                  const geminiRes = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+              for (const model of GROQ_MODELS) {
+                try {
+                  const groqRes = await fetch(
+                    "https://api.groq.com/openai/v1/chat/completions",
                     {
                       method: "POST",
-                      headers: { "Content-Type": "application/json" },
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${apiKey}`,
+                      },
                       body: JSON.stringify({
-                        systemInstruction: { parts: [{ text: systemInstruction }] },
-                        contents: [
-                          ...history,
-                          { role: "user", parts: [{ text: message }] },
-                        ],
-                        generationConfig: { temperature: 0.7, maxOutputTokens: 1024 },
+                        model,
+                        messages,
+                        temperature: 0.7,
+                        max_tokens: 1024,
                       }),
                     }
                   );
 
-                  if (geminiRes.ok) {
-                    const data = await geminiRes.json();
-                    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                  if (groqRes.ok) {
+                    const data = await groqRes.json();
+                    const text = data?.choices?.[0]?.message?.content;
                     if (text) {
                       res.setHeader("Content-Type", "application/json");
                       res.end(JSON.stringify({ text }));
@@ -71,15 +77,18 @@ export default defineConfig({
                     }
                   }
 
-                  const errData = await geminiRes.json().catch(() => ({}));
-                  lastError = (errData as any)?.error?.message || `HTTP ${geminiRes.status}`;
+                  const errData = await groqRes.json().catch(() => ({}));
+                  lastError = (errData as any)?.error?.message || `HTTP ${groqRes.status}`;
 
-                  if (!RETRIABLE.has(geminiRes.status)) {
-                    res.statusCode = geminiRes.status;
+                  // Only retry on rate limits or server errors
+                  if (![429, 500, 502, 503, 504].includes(groqRes.status)) {
+                    res.statusCode = groqRes.status;
                     res.setHeader("Content-Type", "application/json");
                     res.end(JSON.stringify({ error: lastError }));
                     return;
                   }
+                } catch (fetchErr) {
+                  lastError = String(fetchErr);
                 }
               }
 
