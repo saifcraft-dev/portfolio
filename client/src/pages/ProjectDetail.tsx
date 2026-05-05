@@ -83,7 +83,7 @@ export default function ProjectDetail() {
           HERO — cinematic full-width with layered overlays
       ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative w-full h-[50vh] sm:h-[62vh] lg:h-[74vh] min-h-[320px] max-h-[700px]">
+        <div className="relative w-full h-[44vh] sm:h-[56vh] lg:h-[66vh] min-h-[300px] max-h-[640px]">
 
           {/* Background image with subtle zoom-out */}
           <motion.div
@@ -105,6 +105,25 @@ export default function ProjectDetail() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#08091a]/85 via-[#08091a]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#08091a]/60 via-[#08091a]/10 to-transparent" />
 
+          {/* Breadcrumb — anchored to top */}
+          <div className="absolute inset-x-0 top-0 px-4 sm:px-8 lg:px-14 xl:px-20 pt-5 sm:pt-6">
+            <div className="max-w-7xl mx-auto">
+              <motion.div {...fadeIn(0.05)}>
+                <Link href="/portfolio">
+                  <button
+                    className="inline-flex items-center gap-1.5 text-white/40 hover:text-white/75 transition-colors text-xs font-medium group"
+                    data-testid="link-back-portfolio"
+                  >
+                    <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
+                    <span>Portfolio</span>
+                    <span className="text-white/20 mx-0.5">/</span>
+                    <span className="text-white/50 truncate max-w-[140px] sm:max-w-xs">{project.title}</span>
+                  </button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+
           {/* Status chip — desktop only */}
           <motion.div
             {...scaleIn(0.9)}
@@ -117,23 +136,8 @@ export default function ProjectDetail() {
           </motion.div>
 
           {/* Hero content — bottom left */}
-          <div className="absolute inset-x-0 bottom-0 px-4 sm:px-8 lg:px-14 xl:px-20 pb-8 sm:pb-12 lg:pb-14">
+          <div className="absolute inset-x-0 bottom-0 px-4 sm:px-8 lg:px-14 xl:px-20 pb-7 sm:pb-10 lg:pb-12">
             <div className="max-w-7xl mx-auto">
-
-              {/* Breadcrumb */}
-              <motion.div {...fadeIn(0.05)} className="mb-4 sm:mb-5">
-                <Link href="/portfolio">
-                  <button
-                    className="inline-flex items-center gap-1.5 text-white/35 hover:text-white/70 transition-colors text-xs font-medium group"
-                    data-testid="link-back-portfolio"
-                  >
-                    <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                    <span>Portfolio</span>
-                    <span className="text-white/20 mx-0.5">/</span>
-                    <span className="text-white/50 truncate max-w-[140px] sm:max-w-xs">{project.title}</span>
-                  </button>
-                </Link>
-              </motion.div>
 
               {/* Status badges row */}
               <motion.div {...fadeUp(0.12)} className="flex flex-wrap gap-2 mb-3 sm:mb-4">
