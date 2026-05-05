@@ -86,8 +86,8 @@ Upon termination, the client is responsible for payment of all work completed up
     title: "Contact",
     body: `For questions about these Terms of Service, please contact us:
 
-**Email:** saif@devstudio.com
-**Website:** devstudio.com/contact`,
+**Email:** saif@saifcraft.com
+**Website:** saifcraft.com/contact`,
   },
 ];
 

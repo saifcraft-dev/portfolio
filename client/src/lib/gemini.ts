@@ -32,7 +32,7 @@ export const SITE_KNOWLEDGE_BASE = `
 - **Experience**: 7+ years fullstack development | 2 years AI integration & vibe coding
 - **Location**: Pakistan (works remotely worldwide)
 - **Direct Contact**: WhatsApp +92 318 8055850
-- **Email**: saif@devstudio.com
+- **Email**: saif@saifcraft.com
 - **Response Time**: Within 24 hours
 - **Approach**: Direct developer access (no project managers)
 
@@ -146,7 +146,7 @@ export const SITE_KNOWLEDGE_BASE = `
 - EACH PROJECT has details page with problem solved, solution built, tech stack, results
 
 ### CONTACT INFORMATION
-- **Email**: saif@devstudio.com or hello@devstudio.com
+- **Email**: saif@saifcraft.com or hello@saifcraft.com
 - **WhatsApp**: https://wa.me/923188055850 (+92 318 8055850)
 - **Response Time**: Within 24 hours guaranteed
 - **Work Style**: 100% remote, timezone-flexible, works with global teams
@@ -235,7 +235,7 @@ export const SITE_KNOWLEDGE_BASE = `
 - If asking about **timeline**: Mention typical timelines (Landing Page 5–7 days, Website 2–3 weeks, Web App 4–8 weeks, AI features 1–3 weeks)
 - If asking about **specific service**: Describe the 5 packages with exact pricing, revisions, deliverables from knowledge base
 - If asking about **specific page**: Direct them to the relevant URL with clear description of what's there
-- If asking about **contact**: Share email (saif@devstudio.com), WhatsApp link (+92 318 8055850), mention 24-hour response
+- If asking about **contact**: Share email (saif@saifcraft.com), WhatsApp link (+92 318 8055850), mention 24-hour response
 - If they want a **quote**: Direct to /contact form or WhatsApp for fastest response
 - If **technical questions**: Explain full tech stack, mention 7+ years experience, offer discovery call
 - If **concerns about trust**: Point to /portfolio, testimonials on /home, FAQ answers on /faq, public profiles, references available

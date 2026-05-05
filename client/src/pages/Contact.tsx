@@ -31,7 +31,7 @@ const fadeUp = {
 };
 
 const contactDetails = [
-  { icon: Mail,     label: "Email",         value: "saif@devstudio.com",       href: "mailto:saif@devstudio.com" },
+  { icon: Mail,     label: "Email",         value: "saif@saifcraft.com",       href: "mailto:saif@saifcraft.com" },
   { icon: Clock,    label: "Response Time", value: "Within 24 hours",           href: null },
   { icon: Github,   label: "GitHub",        value: "github.com/devstudio",      href: "#" },
   { icon: Linkedin, label: "LinkedIn",      value: "linkedin.com/in/devstudio", href: "#" },

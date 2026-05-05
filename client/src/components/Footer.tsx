@@ -63,7 +63,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-white/70">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
-                <span>hello@devstudio.com</span>
+                <span>hello@saifcraft.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <SiWhatsapp className="w-4 h-4 text-primary shrink-0" />

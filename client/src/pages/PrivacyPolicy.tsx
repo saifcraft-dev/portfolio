@@ -55,7 +55,7 @@ You may request deletion of your personal data at any time by contacting us at t
 • Request deletion of your data ("right to be forgotten").
 • Withdraw consent for communications at any time.
 
-To exercise any of these rights, please contact us at saif@devstudio.com and we will respond within 30 days.`,
+To exercise any of these rights, please contact us at saif@saifcraft.com and we will respond within 30 days.`,
   },
   {
     title: "Security",
@@ -69,8 +69,8 @@ To exercise any of these rights, please contact us at saif@devstudio.com and we 
     title: "Contact",
     body: `If you have any questions about this Privacy Policy, please contact us:
 
-**Email:** saif@devstudio.com
-**Website:** devstudio.com/contact`,
+**Email:** saif@saifcraft.com
+**Website:** saifcraft.com/contact`,
   },
 ];
 
