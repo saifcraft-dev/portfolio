@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   ArrowLeft, ExternalLink, Github, Calendar, Tag,
   Star, CheckCircle2, Clock, Code2, ArrowUpRight,
-  Layers, Zap, Globe, ChevronDown, MessageSquare,
+  Layers, Zap, Globe, ChevronDown,
   Sparkles, Box
 } from "lucide-react";
 import { useState } from "react";
@@ -467,34 +467,6 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════════════════════
-          MOBILE STICKY BOTTOM BAR
-      ═══════════════════════════════════════════════════════ */}
-      {(project.projectUrl || project.githubUrl) && (
-        <div className="lg:hidden sticky bottom-0 z-50 border-t border-border bg-card/95 backdrop-blur-md px-4 py-3 flex gap-2.5 shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
-          {project.projectUrl && (
-            <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="flex-1" data-testid="button-live-demo-mobile">
-              <Button className="w-full h-11 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-sm shadow-primary/20">
-                <Globe className="mr-2 h-4 w-4" /> Live Project
-              </Button>
-            </a>
-          )}
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={project.projectUrl ? "w-12 shrink-0" : "flex-1"} data-testid="button-github-mobile">
-              <Button variant="outline" className={`h-11 rounded-xl font-bold border-border ${project.projectUrl ? "w-12 p-0" : "w-full"}`}>
-                {project.projectUrl
-                  ? <Github className="h-4 w-4" />
-                  : <><Github className="mr-2 h-4 w-4" /> Source Code</>}
-              </Button>
-            </a>
-          )}
-          <Link href="/contact" className="w-12 shrink-0">
-            <Button variant="outline" className="w-12 h-11 rounded-xl p-0 border-border" data-testid="button-contact-mobile">
-              <MessageSquare className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
-      )}
 
     </div>
   );
