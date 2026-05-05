@@ -65,7 +65,7 @@ export default function Login() {
           <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-primary mb-2">
             <span className="text-primary-foreground font-bold text-lg">&lt;/&gt;</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">DevStudio Admin</h1>
+          <h1 className="text-2xl font-bold tracking-tight">SaifCraft Admin</h1>
           <p className="text-sm text-muted-foreground">Sign in to manage your site</p>
         </div>
 

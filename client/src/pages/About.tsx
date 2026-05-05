@@ -157,7 +157,7 @@ function SectionHeading({ label, title, subtitle }: { label: string; title: stri
 export default function About() {
   const isDark = useDarkMode();
   useEffect(() => {
-    document.title = "About Saif Khan — Senior Fullstack Developer | DevStudio";
+    document.title = "About Saif Khan — Senior Fullstack Developer | SaifCraft";
     const meta = document.querySelector('meta[name="description"]');
     if (meta)
       meta.setAttribute(

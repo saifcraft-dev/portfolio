@@ -45,7 +45,7 @@ const nextSteps = [
 
 export default function Contact() {
   useEffect(() => {
-    document.title = "Contact Saif Khan — Hire a Fullstack Developer | DevStudio";
+    document.title = "Contact Saif Khan — Hire a Fullstack Developer | SaifCraft";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Ready to build your web app? Get in touch with Saif Khan for a free consultation. Fixed-scope pricing, clear timelines, direct communication.");
   }, []);

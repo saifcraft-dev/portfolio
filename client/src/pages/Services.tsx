@@ -143,7 +143,7 @@ const fadeUp = {
 
 export default function Services() {
   useEffect(() => {
-    document.title = "Services & Pricing — Saif Khan | DevStudio";
+    document.title = "Services & Pricing — Saif Khan | SaifCraft";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Fixed-scope packages for landing pages, business websites, custom web apps, AI features, and monthly retainers. Clear pricing, no hourly surprises.");
   }, []);

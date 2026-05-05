@@ -233,7 +233,7 @@ const servicePreview = [
 export default function Home() {
   const isDark = useDarkMode();
   useEffect(() => {
-    document.title = "Saif Khan — Freelance Fullstack Developer | DevStudio | React · Node.js · TypeScript";
+    document.title = "Saif Khan — Freelance Fullstack Developer | SaifCraft | React · Node.js · TypeScript";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "I'm Saif Khan, a freelance fullstack developer. I help startups and businesses build fast, custom web applications — on time, within budget, with clean code you can maintain.");
 

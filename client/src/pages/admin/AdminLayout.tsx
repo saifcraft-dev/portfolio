@@ -93,7 +93,7 @@ export function AdminSidebar() {
             <span className="text-primary-foreground text-xs font-bold">&lt;/&gt;</span>
           </div>
           <div className="flex flex-col min-w-0 group-data-[collapsible=icon]:hidden">
-            <span className="font-semibold text-sm truncate">DevStudio</span>
+            <span className="font-semibold text-sm truncate">SaifCraft</span>
             <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Admin Panel</span>
           </div>
         </div>

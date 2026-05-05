@@ -10,13 +10,13 @@ const fadeUp = {
 const sections = [
   {
     title: "Acceptance of Terms",
-    body: `By accessing this website or engaging DevStudio (operated by Saif Khan) for any services, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use this website or engage our services.
+    body: `By accessing this website or engaging SaifCraft (operated by Saif Khan) for any services, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use this website or engage our services.
 
 These terms apply to all visitors, clients, and anyone else who accesses or uses the website.`,
   },
   {
     title: "Services",
-    body: `DevStudio provides freelance web development, UI/UX design, and related digital services. The specific scope, deliverables, timeline, and pricing for any project will be outlined in a separate written agreement or proposal provided prior to commencing work.
+    body: `SaifCraft provides freelance web development, UI/UX design, and related digital services. The specific scope, deliverables, timeline, and pricing for any project will be outlined in a separate written agreement or proposal provided prior to commencing work.
 
 We reserve the right to refuse service to anyone for any reason at any time.`,
   },
@@ -35,7 +35,7 @@ Invoices are due within the timeframe specified in the project agreement. Late p
     title: "Intellectual Property",
     body: `Upon receipt of final payment in full, the client receives full ownership of the custom code, designs, and assets created specifically for their project, unless otherwise agreed in writing.
 
-DevStudio retains the right to display the completed work in its portfolio and for promotional purposes unless the client requests confidentiality in writing prior to project commencement.
+SaifCraft retains the right to display the completed work in its portfolio and for promotional purposes unless the client requests confidentiality in writing prior to project commencement.
 
 Third-party assets (fonts, stock images, open-source libraries) remain subject to their respective licences and are the client's responsibility to maintain after handoff.`,
   },
@@ -48,17 +48,17 @@ Third-party assets (fonts, stock images, open-source libraries) remain subject t
 • Provide timely feedback during review periods. Delays in feedback may result in timeline extensions.
 • Ensure you have legal rights to any content, images, or materials you provide.
 
-DevStudio is not liable for project delays caused by incomplete or late client input.`,
+SaifCraft is not liable for project delays caused by incomplete or late client input.`,
   },
   {
     title: "Limitation of Liability",
-    body: `DevStudio's total liability for any claim arising out of or related to these terms or any project engagement shall not exceed the total fees paid by the client for the specific project giving rise to the claim.
+    body: `SaifCraft's total liability for any claim arising out of or related to these terms or any project engagement shall not exceed the total fees paid by the client for the specific project giving rise to the claim.
 
 We are not liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities, even if we have been advised of the possibility of such damages.`,
   },
   {
     title: "Warranty & Support",
-    body: `DevStudio warrants that delivered work will function materially as described in the agreed scope for 30 days following final delivery. During this period, we will fix bugs in our own code at no additional charge.
+    body: `SaifCraft warrants that delivered work will function materially as described in the agreed scope for 30 days following final delivery. During this period, we will fix bugs in our own code at no additional charge.
 
 This warranty does not cover issues arising from client modifications, third-party service outages, hosting provider issues, or changes made after handoff. Ongoing support and maintenance beyond the warranty period is available under a separate retainer agreement.`,
   },
@@ -139,7 +139,7 @@ export default function TermsOfService() {
             </h1>
 
             <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-2">
-              The rules and expectations that govern working with DevStudio.
+              The rules and expectations that govern working with SaifCraft.
             </p>
 
             <p className="mt-3 sm:mt-4 text-xs text-muted-foreground/70">Last updated: May 2026</p>

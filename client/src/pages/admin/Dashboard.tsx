@@ -124,7 +124,7 @@ export default function AdminDashboard() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Dashboard Overview</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Welcome back — here's what's happening with DevStudio.
+            Welcome back — here's what's happening with SaifCraft.
           </p>
         </div>
         <div className="flex items-center gap-2">

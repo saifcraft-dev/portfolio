@@ -16,7 +16,7 @@ export default function Footer() {
                   <Code2 className="text-white w-4 h-4" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-white">
-                  DevStudio
+                  SaifCraft
                 </span>
               </div>
             </Link>
@@ -78,7 +78,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/15 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/55">
-          <p>&copy; {currentYear} Saif Khan / DevStudio. All rights reserved.</p>
+          <p>&copy; {currentYear} Saif Khan / SaifCraft. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/faq"><span className="hover:text-white transition-colors cursor-pointer">FAQ</span></Link>
             <Link href="/privacy-policy"><span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span></Link>

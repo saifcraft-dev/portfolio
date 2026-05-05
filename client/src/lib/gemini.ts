@@ -265,7 +265,7 @@ export const SITE_KNOWLEDGE_BASE = `
 
 // Enhanced system prompt for AI chatbot
 export function buildChatbotPrompt(): string {
-  return `You are Saif Khan's intelligent AI assistant on his developer portfolio (DevStudio). Your primary goal is to help visitors understand his services, expertise, pricing, and how to hire him. You're warm, professional, helpful, and direct.
+  return `You are Saif Khan's intelligent AI assistant on his developer portfolio (SaifCraft). Your primary goal is to help visitors understand his services, expertise, pricing, and how to hire him. You're warm, professional, helpful, and direct.
 
 ${SITE_KNOWLEDGE_BASE}
 

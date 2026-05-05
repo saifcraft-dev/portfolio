@@ -90,7 +90,7 @@ export default function Header() {
               <Code2 className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold font-display tracking-tight hidden sm:inline-block">
-              DevStudio
+              SaifCraft
             </span>
           </Link>
 
@@ -209,7 +209,7 @@ export default function Header() {
                   {/* Mobile Header */}
                   <div className="flex items-center gap-2 px-6 py-4 border-b">
                     <Code2 className="w-5 h-5 text-primary" />
-                    <span className="font-bold text-sm">DevStudio</span>
+                    <span className="font-bold text-sm">SaifCraft</span>
                   </div>
 
                   {/* Mobile Nav */}

@@ -170,12 +170,12 @@ export default function ClientProfile() {
   const [savingName, setSavingName] = useState(false);
 
   useEffect(() => {
-    document.title = "My Profile — DevStudio";
+    document.title = "My Profile — SaifCraft";
     const meta = document.querySelector('meta[name="description"]');
     if (meta)
       meta.setAttribute(
         "content",
-        "View and manage your DevStudio client profile, track your project orders, and update your account details."
+        "View and manage your SaifCraft client profile, track your project orders, and update your account details."
       );
   }, []);
 
@@ -472,7 +472,7 @@ export default function ClientProfile() {
           >
             <div>
               <h2 className="text-xl font-display font-bold text-foreground">My Project Inquiries</h2>
-              <p className="text-sm text-muted-foreground mt-0.5">All the projects you've submitted through DevStudio</p>
+              <p className="text-sm text-muted-foreground mt-0.5">All the projects you've submitted through SaifCraft</p>
             </div>
             <Button
               asChild
@@ -530,7 +530,7 @@ export default function ClientProfile() {
 
         {/* ── Quick Links ── */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={5}>
-          <h2 className="text-xl font-display font-bold text-foreground mb-5">Explore DevStudio</h2>
+          <h2 className="text-xl font-display font-bold text-foreground mb-5">Explore SaifCraft</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
@@ -635,7 +635,7 @@ export default function ClientProfile() {
           <div className="bg-destructive/5 border border-destructive/20 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-sm font-bold text-foreground">Sign Out</h3>
-              <p className="text-sm text-muted-foreground mt-0.5">Log out of your DevStudio account.</p>
+              <p className="text-sm text-muted-foreground mt-0.5">Log out of your SaifCraft account.</p>
             </div>
             <Button
               variant="outline"

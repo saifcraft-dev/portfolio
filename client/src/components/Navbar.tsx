@@ -41,7 +41,7 @@ export function Navbar() {
             <Code2 className="text-white w-5 h-5" />
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-foreground">
-            DevStudio
+            SaifCraft
           </span>
         </Link>
 

@@ -122,7 +122,7 @@ export default function PrivacyPolicy() {
             </h1>
 
             <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-2">
-              How DevStudio collects, uses, and protects your personal information.
+              How SaifCraft collects, uses, and protects your personal information.
             </p>
 
             <p className="mt-3 sm:mt-4 text-xs text-muted-foreground/70">Last updated: May 2026</p>

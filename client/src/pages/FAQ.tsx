@@ -176,7 +176,7 @@ export default function FAQ() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    document.title = "FAQ — Saif Khan | DevStudio | Freelance Fullstack Developer";
+    document.title = "FAQ — Saif Khan | SaifCraft | Freelance Fullstack Developer";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Answers to the most common questions about working with Saif Khan — pricing, contracts, payment, process, and delivery.");
   }, []);
