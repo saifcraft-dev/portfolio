@@ -184,34 +184,6 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          STATS STRIP — horizontally scrollable on mobile
-      ═══════════════════════════════════════════════════════ */}
-      <div className="border-y border-border bg-card/70 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-stretch overflow-x-auto scrollbar-hide divide-x divide-border"
-          >
-            <StatPill icon={<Tag className="h-3.5 w-3.5 text-primary" />} label="Category" value={project.category} />
-            <StatPill
-              icon={isCompleted
-                ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                : <Clock className="h-3.5 w-3.5 text-sky-500" />}
-              label={isCompleted ? "Completed" : "Status"}
-              value={completedLabel}
-            />
-            {project.technologies?.length > 0 && (
-              <StatPill icon={<Layers className="h-3.5 w-3.5 text-primary" />} label="Tech Stack" value={`${project.technologies.length} Technologies`} />
-            )}
-            {project.featured && (
-              <StatPill icon={<Star className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />} label="Recognition" value="Featured" />
-            )}
-          </motion.div>
-        </div>
-      </div>
 
       {/* ═══════════════════════════════════════════════════════
           MOBILE: Short description below hero
