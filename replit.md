@@ -46,6 +46,7 @@ Firestore collections: `projects`, `services`, `orders`, `team`, `users`
 - **Dual API layer** — `/api/chat` is served by Vite middleware in dev and by `api/chat.ts` Vercel serverless function in production
 - **Multi-key Groq rotation** — reads `GROQ_API_KEY` through `GROQ_API_KEY_5`; on 429 rate-limit switches to next key; per-key tries all 3 models before giving up
 - **Admin auth** via Firebase email/password; admin whitelist via `VITE_ADMIN_EMAILS` env var or Firestore `users` collection `role: "admin"`
+- **Admin routes are fully isolated** — public Header/Footer not rendered for `/admin/*`; separate Router branch in App.tsx
 - **Firestore local fallbacks** for `services` and `team` if collections are empty
 - **No separate Express backend** — all server logic is either Vite middleware (dev) or Vercel functions (prod)
 
@@ -53,7 +54,7 @@ Firestore collections: `projects`, `services`, `orders`, `team`, `users`
 - Public pages: Home, Services (with pricing), Portfolio (filterable gallery + detail pages), About, FAQ, Contact
 - Contact form saves leads as Firestore "orders" for admin review
 - Client profile page (`/profile`) shows their submitted inquiries
-- Admin dashboard (`/admin/*`) — manage projects, services, orders (Firebase-protected)
+- Admin dashboard (`/admin/*`) — manage projects, services, orders (Firebase-protected); Team section removed (solo freelancer)
 - AI chatbot with full site knowledge base, responds via Groq LLM
 
 ## User preferences

@@ -37,33 +37,16 @@ function PageLoader() {
   );
 }
 
-function Router() {
-  const [location] = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
+function AdminRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/portfolio" component={Portfolio} />
-        <Route path="/portfolio/:id" component={ProjectDetail} />
-        <Route path="/services" component={Services} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/faq" component={FAQ} />
-        <Route path="/privacy-policy" component={PrivacyPolicy} />
-        <Route path="/terms-of-service" component={TermsOfService} />
-        <Route path="/profile" component={ClientProfile} />
-
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin">
           <Redirect to="/admin/dashboard" />
         </Route>
         <Route path="/admin/:rest*">
-          {(params) => (
+          {() => (
             <AdminProtectedRoute>
               <AdminLayout>
                 <Switch>
@@ -85,11 +68,55 @@ function Router() {
             </AdminProtectedRoute>
           )}
         </Route>
-
         <Route component={NotFound} />
       </Switch>
     </Suspense>
   );
+}
+
+function PublicRoutes() {
+  return (
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <Header />
+      <main className="flex-1">
+        <Suspense fallback={<PageLoader />}>
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/portfolio" component={Portfolio} />
+            <Route path="/portfolio/:id" component={ProjectDetail} />
+            <Route path="/services" component={Services} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/terms-of-service" component={TermsOfService} />
+            <Route path="/profile" component={ClientProfile} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </main>
+      <Footer />
+      <Suspense fallback={null}>
+        <ChatBot />
+      </Suspense>
+    </div>
+  );
+}
+
+function Router() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  const isAdmin = location.startsWith("/admin");
+
+  if (isAdmin) {
+    return <AdminRoutes />;
+  }
+
+  return <PublicRoutes />;
 }
 
 export default function App() {
@@ -97,16 +124,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <TooltipProvider>
-          <div className="min-h-screen flex flex-col bg-background text-foreground">
-            <Header />
-            <main className="flex-1">
-              <Router />
-            </main>
-            <Footer />
-            <Suspense fallback={null}>
-              <ChatBot />
-            </Suspense>
-          </div>
+          <Router />
           <Toaster />
         </TooltipProvider>
       </AuthProvider>

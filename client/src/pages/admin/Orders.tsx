@@ -1,21 +1,5 @@
 import { useState, useMemo } from "react";
 import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from "@/components/ui/table";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
-import { 
   Dialog, 
   DialogContent, 
   DialogDescription, 
@@ -30,33 +14,42 @@ import { useOrders, useUpdateOrder } from "@/hooks/use-orders";
 import { Order } from "@/types";
 import { 
   MoreHorizontal, Eye, Clock, CheckCircle2, XCircle, AlertCircle, 
-  Search, ShoppingBag, Mail, Calendar, DollarSign, Tag
+  Search, ShoppingBag, Mail, Calendar, DollarSign, Tag, Filter
 } from "lucide-react";
 import { format } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const statusIcons = {
-  pending: Clock,
-  "in-progress": AlertCircle,
-  completed: CheckCircle2,
-  cancelled: XCircle,
+const statusConfig: Record<string, { label: string; dot: string; badge: string; icon: React.ElementType }> = {
+  pending:     { label: "Pending",     dot: "bg-amber-400",   badge: "bg-amber-50 text-amber-700 border-amber-200",   icon: Clock },
+  "in-progress": { label: "In Progress", dot: "bg-blue-500",    badge: "bg-blue-50 text-blue-700 border-blue-200",       icon: AlertCircle },
+  completed:   { label: "Completed",   dot: "bg-emerald-500", badge: "bg-emerald-50 text-emerald-700 border-emerald-200", icon: CheckCircle2 },
+  cancelled:   { label: "Cancelled",   dot: "bg-red-400",     badge: "bg-red-50 text-red-700 border-red-200",          icon: XCircle },
 };
 
-const statusColors: Record<string, string> = {
-  pending: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-  "in-progress": "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  completed: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-  cancelled: "bg-red-500/10 text-red-600 border-red-500/20",
-};
-
-const priorityColors: Record<string, string> = {
-  high: "bg-red-500/10 text-red-600 border-red-500/20",
-  medium: "bg-orange-500/10 text-orange-600 border-orange-500/20",
-  low: "bg-slate-500/10 text-slate-600 border-slate-500/20",
+const priorityConfig: Record<string, { badge: string }> = {
+  high:   { badge: "bg-red-50 text-red-600 border-red-200" },
+  medium: { badge: "bg-orange-50 text-orange-600 border-orange-200" },
+  low:    { badge: "bg-slate-50 text-slate-500 border-slate-200" },
 };
 
 const statusTabs = ["all", "pending", "in-progress", "completed", "cancelled"] as const;
 type StatusTab = typeof statusTabs[number];
+
+const tabLabels: Record<string, string> = {
+  all: "All",
+  pending: "Pending",
+  "in-progress": "In Progress",
+  completed: "Completed",
+  cancelled: "Cancelled",
+};
 
 export default function OrdersManagement() {
   const { data: orders, isLoading } = useOrders();
@@ -85,7 +78,7 @@ export default function OrdersManagement() {
   }, [orders, activeTab, search]);
 
   const counts = useMemo(() => {
-    if (!orders) return {};
+    if (!orders) return {} as Record<string, number>;
     const o = orders as Order[];
     return {
       all: o.length,
@@ -98,19 +91,19 @@ export default function OrdersManagement() {
 
   if (isLoading) {
     return (
-      <div className="p-6 space-y-4 max-w-7xl mx-auto">
-        <div className="flex items-center justify-between">
-          <Skeleton className="h-8 w-52" />
-          <Skeleton className="h-8 w-24" />
+      <div className="p-6 space-y-5 max-w-7xl mx-auto">
+        <Skeleton className="h-8 w-52" />
+        <div className="flex gap-2">
+          {[1,2,3,4,5].map(i => <Skeleton key={i} className="h-8 w-24 rounded-lg" />)}
         </div>
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-[400px] w-full rounded-xl" />
+        <Skeleton className="h-[400px] w-full rounded-2xl" />
       </div>
     );
   }
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
+      {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Orders</h1>
@@ -118,37 +111,56 @@ export default function OrdersManagement() {
             Manage and track all client service requests.
           </p>
         </div>
-        <Badge variant="outline" className="px-3 py-1.5 text-sm font-medium">
-          {orders?.length || 0} Total
-        </Badge>
+        <div className="flex items-center gap-2 flex-wrap">
+          {Object.entries(statusConfig).map(([key, cfg]) => {
+            const count = counts[key as keyof typeof counts] || 0;
+            if (key === "pending" && count > 0) {
+              return (
+                <div key={key} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200">
+                  <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                  <span className="text-xs font-semibold text-amber-700">{count} pending</span>
+                </div>
+              );
+            }
+            return null;
+          })}
+          <Badge variant="outline" className="px-3 py-1.5 text-sm font-medium">
+            {orders?.length || 0} Total
+          </Badge>
+        </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1 max-w-sm">
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+        <div className="relative flex-shrink-0 w-full sm:w-64">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
           <Input
-            placeholder="Search by name, email or service…"
+            placeholder="Search name, email, service…"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="pl-9 h-9"
+            className="pl-9 h-9 bg-white"
             data-testid="input-order-search"
           />
         </div>
         <div className="flex gap-1.5 flex-wrap">
+          <Filter className="h-4 w-4 text-muted-foreground mt-2.5 flex-shrink-0" />
           {statusTabs.map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               data-testid={`filter-${tab}`}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors border ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 border ${
                 activeTab === tab
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background text-muted-foreground border-border hover:border-foreground/30"
+                  ? "bg-primary text-white border-primary shadow-sm"
+                  : "bg-white text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
               }`}
+              style={activeTab === tab ? { boxShadow: "0 2px 8px rgba(37,69,230,0.25)" } : {}}
             >
-              {tab === "all" ? "All" : tab}
+              {tabLabels[tab]}
               {counts[tab as keyof typeof counts] !== undefined && (
-                <span className={`ml-1.5 px-1 rounded text-[10px] ${activeTab === tab ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
+                <span className={`ml-1.5 px-1.5 rounded-full text-[10px] font-semibold ${
+                  activeTab === tab ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
+                }`}>
                   {counts[tab as keyof typeof counts]}
                 </span>
               )}
@@ -157,188 +169,193 @@ export default function OrdersManagement() {
         </div>
       </div>
 
-      <div className="border rounded-xl bg-card overflow-hidden shadow-sm">
-        <Table>
-          <TableHeader>
-            <TableRow className="hover:bg-transparent">
-              <TableHead className="pl-4">Client</TableHead>
-              <TableHead>Service</TableHead>
-              <TableHead className="hidden md:table-cell">Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="hidden sm:table-cell">Priority</TableHead>
-              <TableHead className="text-right pr-4">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={6} className="py-16 text-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <ShoppingBag className="h-8 w-8 text-muted-foreground/30" />
-                    <p className="text-sm font-medium text-muted-foreground">
-                      {search || activeTab !== "all" ? "No orders match your filters." : "No orders yet."}
-                    </p>
-                    {(search || activeTab !== "all") && (
-                      <Button variant="ghost" size="sm" className="text-xs h-7" onClick={() => { setSearch(""); setActiveTab("all"); }}>
-                        Clear filters
-                      </Button>
-                    )}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ) : (
-              filtered.map((order: Order) => {
-                const StatusIcon = statusIcons[order.status] || Clock;
-                return (
-                  <TableRow key={order.id} className="group hover:bg-muted/40">
-                    <TableCell className="pl-4">
-                      <div className="flex flex-col">
-                        <span className="font-medium text-sm">{order.clientName}</span>
-                        <span className="text-xs text-muted-foreground">{order.clientEmail}</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary" className="font-normal text-xs">{order.serviceType}</Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      <span className="text-sm text-muted-foreground">
-                        {(() => {
-                          if (!order.createdAt) return "N/A";
-                          const d = new Date(order.createdAt);
-                          return isNaN(d.getTime()) ? "N/A" : format(d, "MMM dd, yyyy");
-                        })()}
+      {/* Table Card */}
+      <div className="bg-white rounded-2xl border border-border/60 shadow-sm overflow-hidden">
+        {/* Table Header */}
+        <div className="grid grid-cols-[1fr_1fr_auto_auto_auto] gap-4 px-5 py-3 border-b border-border/60 bg-muted/20">
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Client</span>
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Service</span>
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hidden md:block">Date</span>
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Status</span>
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide text-right">Actions</span>
+        </div>
+
+        {/* Rows */}
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center px-4">
+            <div className="h-14 w-14 rounded-2xl bg-muted flex items-center justify-center mb-4">
+              <ShoppingBag className="h-6 w-6 text-muted-foreground/30" />
+            </div>
+            <p className="text-sm font-semibold text-muted-foreground">
+              {search || activeTab !== "all" ? "No orders match your filters." : "No orders yet."}
+            </p>
+            <p className="text-xs text-muted-foreground/60 mt-1 max-w-xs">
+              {search || activeTab !== "all"
+                ? "Try adjusting your search or filter."
+                : "When clients submit inquiries through your contact form, they'll appear here."}
+            </p>
+            {(search || activeTab !== "all") && (
+              <Button variant="outline" size="sm" className="mt-4 h-8 text-xs" onClick={() => { setSearch(""); setActiveTab("all"); }}>
+                Clear filters
+              </Button>
+            )}
+          </div>
+        ) : (
+          <div className="divide-y divide-border/50">
+            {filtered.map((order: Order) => {
+              const cfg = statusConfig[order.status] || statusConfig.pending;
+              const StatusIcon = cfg.icon;
+              return (
+                <div key={order.id} className="grid grid-cols-[1fr_1fr_auto_auto_auto] gap-4 px-5 py-4 items-center hover:bg-muted/20 transition-colors group">
+                  {/* Client */}
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[11px] font-bold text-primary">
+                        {order.clientName?.charAt(0)?.toUpperCase() || "?"}
                       </span>
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={`text-xs ${statusColors[order.status] || ""}`}>
-                        <StatusIcon className="mr-1 h-3 w-3" />
-                        {order.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge variant="outline" className={`text-xs font-normal capitalize ${priorityColors[order.priority] || ""}`}>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-medium text-sm truncate">{order.clientName}</p>
+                      <p className="text-xs text-muted-foreground truncate">{order.clientEmail}</p>
+                    </div>
+                  </div>
+
+                  {/* Service */}
+                  <div>
+                    <Badge variant="secondary" className="font-normal text-xs">{order.serviceType}</Badge>
+                    {order.priority && (
+                      <Badge variant="outline" className={`ml-1.5 text-[10px] font-normal capitalize ${priorityConfig[order.priority]?.badge || ""}`}>
                         {order.priority}
                       </Badge>
-                    </TableCell>
-                    <TableCell className="text-right pr-4">
-                      <div className="flex items-center justify-end gap-1">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button size="icon" variant="ghost" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity" data-testid={`button-view-order-${order.id}`}>
-                              <Eye className="h-4 w-4" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-2xl">
-                            <DialogHeader>
-                              <DialogTitle>Order Details</DialogTitle>
-                              <DialogDescription>
-                                Full request from <strong>{order.clientName}</strong>
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="space-y-4 py-2">
-                              <div className="grid grid-cols-2 gap-3">
-                                <div className="p-3 rounded-lg bg-muted/50 space-y-0.5">
-                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                                    <Mail className="h-3 w-3" /> Client
-                                  </div>
-                                  <p className="text-sm font-medium">{order.clientName}</p>
-                                  <p className="text-xs text-muted-foreground">{order.clientEmail}</p>
-                                </div>
-                                <div className="p-3 rounded-lg bg-muted/50 space-y-0.5">
-                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                                    <Calendar className="h-3 w-3" /> Timeline
-                                  </div>
-                                  <p className="text-sm font-medium">{order.timeline || "Not specified"}</p>
-                                </div>
-                                <div className="p-3 rounded-lg bg-muted/50 space-y-0.5">
-                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                                    <DollarSign className="h-3 w-3" /> Budget
-                                  </div>
-                                  <p className="text-sm font-medium">{order.budget || "Not specified"}</p>
-                                </div>
-                                <div className="p-3 rounded-lg bg-muted/50 space-y-0.5">
-                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                                    <Tag className="h-3 w-3" /> Service
-                                  </div>
-                                  <p className="text-sm font-medium">{order.serviceType}</p>
-                                </div>
+                    )}
+                  </div>
+
+                  {/* Date */}
+                  <span className="text-xs text-muted-foreground hidden md:block whitespace-nowrap">
+                    {(() => {
+                      if (!order.createdAt) return "—";
+                      const d = new Date(order.createdAt);
+                      return isNaN(d.getTime()) ? "—" : format(d, "MMM dd, yyyy");
+                    })()}
+                  </span>
+
+                  {/* Status */}
+                  <div>
+                    <Badge className={`text-xs border font-medium flex items-center gap-1 w-fit ${cfg.badge}`} variant="outline">
+                      <div className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
+                      {cfg.label}
+                    </Badge>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-1 justify-end">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button size="icon" variant="ghost" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity" data-testid={`button-view-order-${order.id}`}>
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-lg">
+                        <DialogHeader>
+                          <DialogTitle>Order Details</DialogTitle>
+                          <DialogDescription>
+                            Full request from <strong>{order.clientName}</strong>
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-3 py-1">
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="p-3 rounded-xl bg-muted/40 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
+                                <Mail className="h-3 w-3" /> Client
                               </div>
-                              <div className="p-3 rounded-lg bg-muted/50">
-                                <p className="text-xs text-muted-foreground mb-1.5">Project Description</p>
-                                <p className="text-sm leading-relaxed">
-                                  {order.projectDescription || <span className="italic text-muted-foreground">No description provided.</span>}
-                                </p>
-                              </div>
-                              <div className="flex items-center justify-between pt-1">
-                                <div className="flex gap-2">
-                                  <Badge className={statusColors[order.status] || ""}>
-                                    <StatusIcon className="mr-1 h-3 w-3" />
-                                    {order.status}
-                                  </Badge>
-                                  <Badge variant="outline" className={`capitalize ${priorityColors[order.priority] || ""}`}>
-                                    {order.priority} priority
-                                  </Badge>
-                                </div>
-                              </div>
+                              <p className="text-sm font-semibold">{order.clientName}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">{order.clientEmail}</p>
                             </div>
-                          </DialogContent>
-                        </Dialog>
+                            <div className="p-3 rounded-xl bg-muted/40 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
+                                <Calendar className="h-3 w-3" /> Timeline
+                              </div>
+                              <p className="text-sm font-semibold">{order.timeline || "Not specified"}</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-muted/40 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
+                                <DollarSign className="h-3 w-3" /> Budget
+                              </div>
+                              <p className="text-sm font-semibold">{order.budget || "Not specified"}</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-muted/40 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
+                                <Tag className="h-3 w-3" /> Service
+                              </div>
+                              <p className="text-sm font-semibold">{order.serviceType}</p>
+                            </div>
+                          </div>
+                          <div className="p-3 rounded-xl bg-muted/40 border border-border/60">
+                            <p className="text-xs text-muted-foreground mb-2">Project Description</p>
+                            <p className="text-sm leading-relaxed">
+                              {order.projectDescription || <span className="italic text-muted-foreground">No description provided.</span>}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 pt-1">
+                            <Badge className={`border text-xs ${cfg.badge}`} variant="outline">
+                              <div className={`h-1.5 w-1.5 rounded-full mr-1.5 ${cfg.dot}`} />
+                              {cfg.label}
+                            </Badge>
+                            {order.priority && (
+                              <Badge variant="outline" className={`text-xs capitalize ${priorityConfig[order.priority]?.badge || ""}`}>
+                                {order.priority} priority
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
 
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button size="icon" variant="ghost" className="h-8 w-8" data-testid={`button-order-actions-${order.id}`}>
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-44">
-                            <DropdownMenuLabel className="text-xs">Update Status</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem 
-                              onClick={() => handleStatusUpdate(order.id, "pending")}
-                              disabled={order.status === "pending"}
-                              className="text-xs"
-                            >
-                              <Clock className="mr-2 h-3 w-3" /> Mark Pending
-                            </DropdownMenuItem>
-                            <DropdownMenuItem 
-                              onClick={() => handleStatusUpdate(order.id, "in-progress")}
-                              disabled={order.status === "in-progress"}
-                              className="text-xs"
-                            >
-                              <AlertCircle className="mr-2 h-3 w-3" /> Mark In Progress
-                            </DropdownMenuItem>
-                            <DropdownMenuItem 
-                              onClick={() => handleStatusUpdate(order.id, "completed")}
-                              disabled={order.status === "completed"}
-                              className="text-xs"
-                            >
-                              <CheckCircle2 className="mr-2 h-3 w-3" /> Mark Completed
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem 
-                              onClick={() => handleStatusUpdate(order.id, "cancelled")}
-                              disabled={order.status === "cancelled"}
-                              className="text-xs text-destructive focus:text-destructive"
-                            >
-                              <XCircle className="mr-2 h-3 w-3" /> Cancel Order
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                );
-              })
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button size="icon" variant="ghost" className="h-8 w-8" data-testid={`button-order-actions-${order.id}`}>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-48">
+                        <DropdownMenuLabel className="text-xs font-semibold">Update Status</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "pending")} disabled={order.status === "pending"} className="text-xs">
+                          <Clock className="mr-2 h-3.5 w-3.5 text-amber-500" /> Mark Pending
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "in-progress")} disabled={order.status === "in-progress"} className="text-xs">
+                          <AlertCircle className="mr-2 h-3.5 w-3.5 text-blue-500" /> Mark In Progress
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "completed")} disabled={order.status === "completed"} className="text-xs">
+                          <CheckCircle2 className="mr-2 h-3.5 w-3.5 text-emerald-500" /> Mark Completed
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => handleStatusUpdate(order.id, "cancelled")} disabled={order.status === "cancelled"} className="text-xs text-destructive focus:text-destructive">
+                          <XCircle className="mr-2 h-3.5 w-3.5" /> Cancel Order
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Footer */}
+        {filtered.length > 0 && (
+          <div className="px-5 py-3 border-t border-border/60 bg-muted/10 flex items-center justify-between">
+            <p className="text-xs text-muted-foreground">
+              Showing <strong>{filtered.length}</strong> of <strong>{orders?.length || 0}</strong> orders
+            </p>
+            {(search || activeTab !== "all") && (
+              <Button variant="ghost" size="sm" className="text-xs h-7" onClick={() => { setSearch(""); setActiveTab("all"); }}>
+                Clear filters
+              </Button>
             )}
-          </TableBody>
-        </Table>
+          </div>
+        )}
       </div>
-
-      {filtered.length > 0 && (
-        <p className="text-xs text-muted-foreground text-right">
-          Showing {filtered.length} of {orders?.length || 0} orders
-        </p>
-      )}
     </div>
   );
 }
