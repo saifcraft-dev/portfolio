@@ -1,9 +1,13 @@
 import { Link } from "wouter";
 import { Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
+import { useDarkMode } from "@/hooks/use-dark-mode";
+import logoLight from "@assets/ChatGPT_Image_May_6,_2026,_10_12_48_AM_1778045218753.png";
+import logoDark from "@assets/ChatGPT_Image_May_6,_2026,_10_24_19_AM_1778045228982.png";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const isDark = useDarkMode();
 
   return (
     <footer className="bg-[hsl(var(--footer))] pt-20 pb-10 border-t border-white/10">
@@ -13,7 +17,7 @@ export default function Footer() {
             <Link href="/">
               <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
                 <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
-                  <img src="/logo.png" alt="SaifCraft Logo" className="w-full h-full object-contain" />
+                  <img src={isDark ? logoDark : logoLight} alt="SaifCraft Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-white">
                   SaifCraft

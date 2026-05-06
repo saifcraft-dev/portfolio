@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Link } from "wouter";
 import { Menu, LogIn, User as UserIcon, LayoutDashboard, LogOut, ArrowRight } from "lucide-react";
+import logoLight from "@assets/ChatGPT_Image_May_6,_2026,_10_12_48_AM_1778045218753.png";
+import logoDark from "@assets/ChatGPT_Image_May_6,_2026,_10_24_19_AM_1778045228982.png";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/context/AuthContext";
 import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { useDarkMode } from "@/hooks/use-dark-mode";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -33,6 +36,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAdmin } = useAuth();
   const { toast } = useToast();
+  const isDark = useDarkMode();
+  const logo = isDark ? logoDark : logoLight;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,12 +91,7 @@ export default function Header() {
         <div className="h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center group-hover:opacity-90 transition-opacity duration-300">
-              <img src="/logo.png" alt="SaifCraft Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-xl font-bold font-display tracking-tight hidden sm:inline-block">
-              SaifCraft
-            </span>
+            <img src={logo} alt="SaifCraft Logo" className="h-9 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -208,8 +208,7 @@ export default function Header() {
                 <div className="flex flex-col h-full">
                   {/* Mobile Header */}
                   <div className="flex items-center gap-2 px-6 py-4 border-b">
-                    <img src="/logo.png" alt="SaifCraft Logo" className="w-6 h-6 object-contain" />
-                    <span className="font-bold text-sm">SaifCraft</span>
+                    <img src={logo} alt="SaifCraft Logo" className="h-7 w-auto object-contain" />
                   </div>
 
                   {/* Mobile Nav */}
