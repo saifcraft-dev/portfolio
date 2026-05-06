@@ -258,7 +258,7 @@ export default function About() {
                 <div className="absolute -inset-3 bg-primary/10 blur-3xl rounded-full -z-10" />
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border shadow-2xl aspect-[3/4]">
                   <img
-                    src="https://res.cloudinary.com/de2wrwg6e/image/upload/v1778028902/ChatGPT_Image_Apr_22_2026_10_55_27_PM_cdkle2.png"
+                    src="https://res.cloudinary.com/de2wrwg6e/image/upload/v1778029685/ChatGPT_Image_May_6_2026_06_07_30_AM_wgfcfr.png"
                     alt="Saif Khan — Senior Fullstack Developer"
                     className="w-full h-full object-cover object-top"
                   />
