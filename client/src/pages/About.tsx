@@ -337,19 +337,13 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2 space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
               <p>
-                I'm a self-driven fullstack developer with{" "}
-                <strong className="text-foreground font-semibold">7+ years of experience</strong>{" "}
-                building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
+                I'm a self-driven fullstack developer with <strong className="text-foreground font-semibold">7+ years of experience</strong> building web applications from scratch. I've worked with early-stage startups, small businesses, and growing companies — always focused on writing clean code that actually solves the problem.
               </p>
               <p>
-                I specialize in{" "}
-                <strong className="text-foreground font-semibold">React, Node.js, TypeScript, and PostgreSQL</strong>.
-                Over the past 2 years, I've integrated AI into production projects — semantic search, chatbots, content generation, and recommendation engines.
+                I specialize in <strong className="text-foreground font-semibold">React, Node.js, TypeScript, and PostgreSQL</strong>. Over the past 2 years, I've integrated AI into production projects — semantic search, chatbots, content generation, and recommendation engines.
               </p>
               <p>
-                When you hire me, you're not handing your project off to a project manager.{" "}
-                <strong className="text-foreground font-semibold">You talk directly to the developer doing the work.</strong>{" "}
-                Fast replies, clear updates, honest timelines.
+                When you hire me, you're not handing your project off to a project manager. <strong className="text-foreground font-semibold">You talk directly to the developer doing the work.</strong> Fast replies, clear updates, honest timelines.
               </p>
             </div>
 
