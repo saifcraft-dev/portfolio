@@ -471,7 +471,7 @@ export default function About() {
         <div>
           <SectionHeading label="Career" title="Experience" />
           <div className="relative max-w-3xl mx-auto">
-            <div className="hidden sm:block absolute left-[140px] top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent" />
+            <div className="hidden sm:block absolute left-[175px] top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent" />
             <div className="space-y-6 sm:space-y-8">
               {timeline.map((item, i) => (
                 <motion.div
@@ -481,14 +481,14 @@ export default function About() {
                   whileInView="show"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="flex flex-col sm:flex-row gap-3 sm:gap-8"
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-6"
                 >
                   {/* Year */}
-                  <div className="sm:w-[140px] sm:text-right shrink-0 flex sm:flex-col sm:items-end gap-2">
-                    <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-primary/20">
+                  <div className="sm:w-[175px] sm:text-right shrink-0 flex sm:flex-col sm:items-end gap-2">
+                    <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-primary/20 whitespace-nowrap">
                       {item.year}
                     </span>
-                    <span className="text-[10px] text-muted-foreground font-medium sm:mt-1">{item.type}</span>
+                    <span className="text-[10px] text-muted-foreground font-medium sm:mt-1 whitespace-nowrap">{item.type}</span>
                   </div>
 
                   {/* Dot */}
