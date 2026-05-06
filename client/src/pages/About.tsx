@@ -256,11 +256,11 @@ export default function About() {
               {/* Photo */}
               <div className="relative">
                 <div className="absolute -inset-3 bg-primary/10 blur-3xl rounded-full -z-10" />
-                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border shadow-2xl aspect-[4/3]">
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border shadow-2xl aspect-[3/4]">
                   <img
-                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200"
+                    src="https://res.cloudinary.com/de2wrwg6e/image/upload/v1778028902/ChatGPT_Image_Apr_22_2026_10_55_27_PM_cdkle2.png"
                     alt="Saif Khan — Senior Fullstack Developer"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
 
