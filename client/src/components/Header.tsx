@@ -89,7 +89,9 @@ export default function Header() {
             <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center group-hover:opacity-90 transition-opacity duration-300">
               <img src="/logo.png" alt="SaifCraft Logo" className="w-full h-full object-contain" />
             </div>
-            <img src="/sitename.png" alt="SaifCraft" className="h-6 w-auto hidden sm:block" />
+            <span className="text-xl font-bold font-display tracking-tight hidden sm:inline-block">
+              SaifCraft
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -207,7 +209,7 @@ export default function Header() {
                   {/* Mobile Header */}
                   <div className="flex items-center gap-2 px-6 py-4 border-b">
                     <img src="/logo.png" alt="SaifCraft Logo" className="w-6 h-6 object-contain" />
-                    <img src="/sitename.png" alt="SaifCraft" className="h-4 w-auto" />
+                    <span className="font-bold text-sm">SaifCraft</span>
                   </div>
 
                   {/* Mobile Nav */}

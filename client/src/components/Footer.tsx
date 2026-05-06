@@ -15,7 +15,9 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
                   <img src="/logo.png" alt="SaifCraft Logo" className="w-full h-full object-contain" />
                 </div>
-                <img src="/sitename.png" alt="SaifCraft" className="h-5 w-auto brightness-0 invert" />
+                <span className="font-display font-bold text-xl tracking-tight text-white">
+                  SaifCraft
+                </span>
               </div>
             </Link>
             <p className="text-white/75 text-sm leading-relaxed mb-6">
