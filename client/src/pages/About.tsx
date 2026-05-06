@@ -4,10 +4,9 @@ import { useDarkMode } from "@/hooks/use-dark-mode";
 import {
   Github, Linkedin, Twitter, Target, Lightbulb, Clock,
   ArrowRight, CheckCircle2, Zap, Users, Award, Code2,
-  MapPin, Mail, MessageSquare, Download, Briefcase,
+  MapPin, Mail, MessageSquare, Briefcase,
   Star, Quote,
 } from "lucide-react";
-import { generateResume } from "@/lib/generateResume";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
@@ -281,15 +280,6 @@ export default function About() {
                 </Button>
                 <Button asChild variant="outline" size="lg" className="rounded-full px-7 h-11 font-bold border-border hover:border-primary/40">
                   <Link href="/portfolio">View My Work</Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="rounded-full px-5 h-11 font-bold text-muted-foreground hover:text-foreground"
-                  onClick={() => generateResume()}
-                  aria-label="Download Resume"
-                >
-                  <Download className="mr-2 w-4 h-4" /> Resume
                 </Button>
               </div>
 
