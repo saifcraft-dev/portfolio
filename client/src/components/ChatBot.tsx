@@ -125,7 +125,7 @@ export default function ChatBot() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
-
+  const chatWindowRef = useRef<HTMLDivElement>(null);
 
   // Lock body scroll on mobile when open
   useEffect(() => {
@@ -147,6 +147,40 @@ export default function ChatBot() {
         window.scrollTo(0, scrollY);
       };
     }
+  }, [open]);
+
+  // Resize chat window to stay above the virtual keyboard on mobile
+  useEffect(() => {
+    if (!open) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    const update = () => {
+      const el = chatWindowRef.current;
+      if (!el) return;
+      // Only apply on mobile (below sm breakpoint = 640px)
+      if (window.innerWidth >= 640) {
+        el.style.height = "";
+        el.style.top = "";
+        return;
+      }
+      el.style.height = `${vv.height}px`;
+      el.style.top = `${vv.offsetTop}px`;
+    };
+
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    update();
+
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+      const el = chatWindowRef.current;
+      if (el) {
+        el.style.height = "";
+        el.style.top = "";
+      }
+    };
   }, [open]);
 
   // Auto-resize textarea
@@ -248,6 +282,7 @@ export default function ChatBot() {
 
             <motion.div
               key="chatwindow"
+              ref={chatWindowRef}
               initial={{ opacity: 0, y: 20, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.96 }}
