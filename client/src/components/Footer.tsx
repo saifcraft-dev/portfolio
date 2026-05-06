@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Code2, Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
+import { Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 export default function Footer() {
@@ -12,8 +12,8 @@ export default function Footer() {
           <div className="col-span-1">
             <Link href="/">
               <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <Code2 className="text-white w-4 h-4" />
+                <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
+                  <img src="/logo.png" alt="SaifCraft Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="font-display font-bold text-xl tracking-tight text-white">
                   SaifCraft
