@@ -8,7 +8,7 @@ npm run dev      # Start dev server on port 5000
 npm run build    # Build for production → dist/public
 npm run check    # TypeScript type check
 ```
-Required env vars: see Replit Secrets tab — `GROQ_API_KEY` (chatbot), `VITE_FIREBASE_*` (auth + data), `VITE_ADMIN_EMAILS`, `VITE_CLOUDINARY_CLOUD_NAME`.
+Required env vars: `GROQ_API_KEY` (+ optionally `GROQ_API_KEY_2` … `GROQ_API_KEY_5`), `VITE_FIREBASE_*`, `VITE_ADMIN_EMAILS`, `VITE_CLOUDINARY_CLOUD_NAME`.
 
 ## Stack
 - **Frontend:** React 18, TypeScript, Vite 7
@@ -18,7 +18,7 @@ Required env vars: see Replit Secrets tab — `GROQ_API_KEY` (chatbot), `VITE_FI
 - **Forms:** React Hook Form + Zod
 - **Animations:** Framer Motion
 - **Auth & DB:** Firebase Auth + Firestore
-- **AI chatbot:** Groq API (via Vite server middleware at `/api/chat`)
+- **AI chatbot:** Groq API — dev via Vite middleware, prod via `api/chat.ts` Vercel function
 - **Image uploads:** Cloudinary (unsigned preset)
 
 ## Where things live
@@ -36,15 +36,18 @@ client/src/
     cloudinary.ts            # Image upload helper
   hooks/                     # use-projects, use-services, use-orders, use-team
   types/index.ts             # Project, Service, Order, TeamMember interfaces
-vite.config.ts               # Vite config — port 5000, /api/chat Groq middleware
+api/chat.ts                  # Vercel serverless function — Groq proxy with multi-key rotation
+vite.config.ts               # Vite config — port 5000, /api/chat Groq middleware (dev only)
+vercel.json                  # Vercel deploy config — routes /api/chat → serverless fn, SPA fallback
 ```
 Firestore collections: `projects`, `services`, `orders`, `team`, `users`
 
 ## Architecture decisions
-- **No separate backend** — all server logic lives in Vite dev middleware (`/api/chat`); Firebase SDKs run client-side
-- **Groq replaces Gemini** at the server level: frontend calls `/api/chat`, Vite middleware proxies to Groq with model fallback chain
+- **Dual API layer** — `/api/chat` is served by Vite middleware in dev and by `api/chat.ts` Vercel serverless function in production
+- **Multi-key Groq rotation** — reads `GROQ_API_KEY` through `GROQ_API_KEY_5`; on 429 rate-limit switches to next key; per-key tries all 3 models before giving up
 - **Admin auth** via Firebase email/password; admin whitelist via `VITE_ADMIN_EMAILS` env var or Firestore `users` collection `role: "admin"`
 - **Firestore local fallbacks** for `services` and `team` if collections are empty
+- **No separate Express backend** — all server logic is either Vite middleware (dev) or Vercel functions (prod)
 
 ## Product
 - Public pages: Home, Services (with pricing), Portfolio (filterable gallery + detail pages), About, FAQ, Contact
@@ -60,10 +63,7 @@ Firestore collections: `projects`, `services`, `orders`, `team`, `users`
 ## Gotchas
 - `npm run dev` uses local `vite` binary (not `npx vite`) to avoid interactive upgrade prompts
 - `VITE_*` env vars are embedded into the client bundle at build time — never put true secrets in `VITE_` vars
-- `GROQ_API_KEY` is server-only (used in Vite middleware), never exposed to the client
+- `GROQ_API_KEY` and siblings are server-only — never prefix with `VITE_`
 - Cloudinary uses unsigned upload preset — no server-side secret needed for uploads
-- The `env` file at root is cleared; all secrets live in Replit Secrets
-
-## Gotchas
 - Build output goes to `dist/public` (configured in vite.config.ts)
-- Deployment run command: `node ./dist/index.cjs` (needs a server wrapper if deploying — currently static-only via `dist/public`)
+- On Vercel, set all `GROQ_API_KEY_*` vars in Project Settings → Environment Variables
