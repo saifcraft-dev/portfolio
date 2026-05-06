@@ -7,6 +7,7 @@ import {
   MapPin, Mail, MessageSquare, Download, Briefcase,
   Star, Quote,
 } from "lucide-react";
+import { generateResume } from "@/lib/generateResume";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
@@ -281,10 +282,14 @@ export default function About() {
                 <Button asChild variant="outline" size="lg" className="rounded-full px-7 h-11 font-bold border-border hover:border-primary/40">
                   <Link href="/portfolio">View My Work</Link>
                 </Button>
-                <Button asChild variant="ghost" size="lg" className="rounded-full px-5 h-11 font-bold text-muted-foreground hover:text-foreground">
-                  <a href="#" aria-label="Download Resume">
-                    <Download className="mr-2 w-4 h-4" /> Resume
-                  </a>
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  className="rounded-full px-5 h-11 font-bold text-muted-foreground hover:text-foreground"
+                  onClick={generateResume}
+                  aria-label="Download Resume"
+                >
+                  <Download className="mr-2 w-4 h-4" /> Resume
                 </Button>
               </div>
 
