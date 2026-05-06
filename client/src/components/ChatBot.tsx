@@ -158,7 +158,7 @@ export default function ChatBot() {
     {
       role: "assistant",
       content:
-        "Hi! I'm Saif's AI assistant. I can tell you about his services, pricing, portfolio, or anything else on this site. What would you like to know?",
+        "Hey! 👋 I know everything about Saif and his work — services, pricing, past projects, how he works, all of it. What's on your mind?",
     },
   ]);
   const [input, setInput] = useState("");
