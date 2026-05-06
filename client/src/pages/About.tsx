@@ -470,9 +470,12 @@ export default function About() {
         {/* ── Experience Timeline ── */}
         <div>
           <SectionHeading label="Career" title="Experience" />
+
           <div className="relative max-w-3xl mx-auto">
-            <div className="hidden sm:block absolute left-[140px] top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent" />
-            <div className="space-y-6 sm:space-y-8">
+            {/* Vertical line — sits between left col and right col on desktop */}
+            <div className="hidden sm:block absolute left-[172px] top-2 bottom-2 w-px bg-border z-0" />
+
+            <div className="space-y-8 sm:space-y-10">
               {timeline.map((item, i) => (
                 <motion.div
                   key={i}
@@ -481,33 +484,38 @@ export default function About() {
                   whileInView="show"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="flex flex-col sm:flex-row gap-3 sm:gap-8"
+                  className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0"
                 >
-                  {/* Year */}
-                  <div className="sm:w-[140px] sm:text-right shrink-0 flex sm:flex-col sm:items-end gap-2">
-                    <span className="inline-block bg-primary/10 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-primary/20">
+                  {/* Left: year + type */}
+                  <div className="sm:w-[160px] shrink-0 flex sm:flex-col sm:items-end sm:pr-6 gap-2 sm:gap-1.5 sm:pt-1">
+                    <span className="inline-block bg-primary text-primary-foreground text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
                       {item.year}
                     </span>
-                    <span className="text-[10px] text-muted-foreground font-medium sm:mt-1">{item.type}</span>
+                    <span className="text-[11px] text-muted-foreground font-medium">{item.type}</span>
                   </div>
 
-                  {/* Dot */}
-                  <div className="hidden sm:flex w-4 shrink-0 items-start justify-center pt-1.5 -ml-2">
-                    <div className="w-3.5 h-3.5 rounded-full border-2 border-primary bg-background z-10 shadow-sm shadow-primary/30" />
+                  {/* Dot — centered on the line */}
+                  <div className="hidden sm:flex w-[24px] shrink-0 items-start justify-center pt-2 z-10">
+                    <div className="w-4 h-4 rounded-full border-2 border-primary bg-background shadow-sm" />
                   </div>
 
-                  {/* Content */}
-                  <div className="flex-1 bg-card border border-border rounded-2xl p-5 hover:border-primary/30 hover:shadow-sm transition-all duration-200 group">
-                    <h3 className="font-display font-bold text-foreground text-sm sm:text-base mb-1.5 group-hover:text-primary transition-colors">
-                      {item.role}
-                    </h3>
-                    <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3">{item.desc}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.tags.map(tag => (
-                        <Badge key={tag} variant="secondary" className="text-[10px] font-normal px-2 py-0.5">
-                          {tag}
-                        </Badge>
-                      ))}
+                  {/* Right: card */}
+                  <div className="flex-1 sm:pl-6">
+                    <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 hover:border-primary/30 hover:shadow-md hover:shadow-primary/5 transition-all duration-300">
+                      <h3 className="font-display font-bold text-foreground text-sm sm:text-base mb-2">
+                        {item.role}
+                      </h3>
+                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4">{item.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {item.tags.map(tag => (
+                          <span
+                            key={tag}
+                            className="inline-block bg-primary text-primary-foreground text-[11px] font-semibold px-3 py-1 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
