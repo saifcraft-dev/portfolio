@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="col-span-1">
             <Link href="/">
               <div className="mb-6 cursor-pointer">
-                <img src={isDark ? logoDark : logoLight} alt="SaifCraft Logo" className="h-9 w-auto object-contain" />
+                <img src={logoDark} alt="SaifCraft Logo" className="h-9 w-auto object-contain" />
               </div>
             </Link>
             <p className="text-white/75 text-sm leading-relaxed mb-6">
