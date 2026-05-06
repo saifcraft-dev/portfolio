@@ -253,23 +253,20 @@ export default function ChatBot() {
               exit={{ opacity: 0, y: 20, scale: 0.96 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               className={[
-                // Mobile: slide up from bottom, takes most of the screen
+                // Mobile: true full-screen, covers header and everything
                 "fixed z-[60] flex flex-col bg-background overflow-hidden",
-                // Mobile layout
-                "bottom-0 left-0 right-0 rounded-t-3xl",
-                "h-[92svh]",
+                "inset-0",
                 // Tablet / desktop: floating panel
-                "sm:bottom-24 sm:right-6 sm:left-auto sm:rounded-2xl",
+                "sm:inset-auto sm:bottom-24 sm:right-6 sm:rounded-2xl",
                 "sm:h-[560px] sm:w-[380px]",
                 "sm:border sm:border-border sm:shadow-2xl",
               ].join(" ")}
             >
               {/* ── Header ── */}
-              <div className="flex items-center justify-between gap-3 px-4 py-3.5 bg-primary text-primary-foreground shrink-0 rounded-t-3xl sm:rounded-t-2xl"
+              <div className="flex items-center justify-between gap-3 px-4 py-3.5 bg-primary text-primary-foreground shrink-0 sm:rounded-t-2xl"
                 style={{ paddingTop: "max(0.875rem, env(safe-area-inset-top))" }}
               >
-                {/* Drag handle on mobile */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-white/30 sm:hidden" />
+                {/* No drag handle — it's full screen now */}
 
                 <div className="flex items-center gap-3 min-w-0 flex-1">
                   <div className="relative shrink-0">
