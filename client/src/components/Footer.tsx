@@ -15,13 +15,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1">
             <Link href="/">
-              <div className="flex items-center space-x-2.5 mb-6 cursor-pointer">
-                <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
-                  <img src={isDark ? logoDark : logoLight} alt="SaifCraft Logo" className="w-full h-full object-contain" />
-                </div>
-                <span className="font-display font-bold text-xl tracking-tight text-white">
-                  SaifCraft
-                </span>
+              <div className="mb-6 cursor-pointer">
+                <img src={isDark ? logoDark : logoLight} alt="SaifCraft Logo" className="h-9 w-auto object-contain" />
               </div>
             </Link>
             <p className="text-white/75 text-sm leading-relaxed mb-6">
