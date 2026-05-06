@@ -597,6 +597,15 @@
   100% { transform: scale(0.9); opacity: 0.7; }
 }
 
+/* Hide scrollbar utility (used in horizontal chip scroll) */
+.scrollbar-none {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari/Opera */
+}
+
 /* Premium shimmer for loading states */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
