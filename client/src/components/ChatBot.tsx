@@ -8,14 +8,6 @@ interface Message {
   content: string;
 }
 
-const QUICK_REPLIES = [
-  "What services & prices are available?",
-  "How do I start a project?",
-  "What's included in a Custom Web App?",
-  "Do you offer AI integration?",
-  "What do clients receive at the end?",
-  "How does payment work?",
-];
 
 function parseInline(text: string): React.ReactNode[] {
   const parts = text.split(/(\*\*[^*\n]+\*\*|\*[^*\n]+\*)/g);
@@ -134,7 +126,6 @@ export default function ChatBot() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
 
-  const showQuickReplies = messages.length === 1 && !loading;
 
   // Lock body scroll on mobile when open
   useEffect(() => {
@@ -344,32 +335,6 @@ export default function ChatBot() {
                     </div>
                   </motion.div>
                 ))}
-
-                {/* ── Quick reply chips — horizontal scroll on mobile ── */}
-                <AnimatePresence>
-                  {showQuickReplies && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2, delay: 0.1 }}
-                      className="pl-9"
-                    >
-                      {/* Scroll container */}
-                      <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 snap-x snap-mandatory scrollbar-none">
-                        {QUICK_REPLIES.map((q) => (
-                          <button
-                            key={q}
-                            onClick={() => sendMessage(q)}
-                            className="text-xs whitespace-nowrap px-3 py-2 rounded-full border border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 active:scale-95 transition-all font-medium shrink-0 snap-start touch-manipulation"
-                          >
-                            {q}
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
 
                 {/* ── Typing indicator ── */}
                 <AnimatePresence>
