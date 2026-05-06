@@ -170,49 +170,109 @@ export default function About() {
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-24 pb-0 sm:pt-32">
+      <section className="relative overflow-hidden pt-20 pb-0 sm:pt-28">
+        {/* Background blobs */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-32 -right-20 h-[520px] w-[520px] rounded-full bg-primary/8 blur-3xl" />
-          <div className="absolute top-20 -left-16 h-[320px] w-[320px] rounded-full bg-secondary/6 blur-3xl" />
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/6 blur-3xl" />
+          <div className="absolute bottom-0 -right-20 h-[300px] w-[300px] rounded-full bg-secondary/6 blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center pb-16 sm:pb-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 lg:gap-16 items-center pb-16 sm:pb-20">
 
-            {/* ── Left: Text ── */}
+            {/* ── Left: Photo ── */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="relative mx-auto lg:mx-0 w-full max-w-sm"
             >
-              <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full mb-5">
+              {/* Decorative accent block */}
+              <div className="absolute -bottom-4 -right-4 w-full h-full rounded-3xl bg-primary/15 -z-10" />
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-2xl bg-primary/10 -z-10" />
+
+              {/* Photo */}
+              <div className="relative rounded-3xl overflow-hidden border border-border/60 shadow-2xl shadow-primary/10 aspect-[3/4]">
+                <img
+                  src="https://res.cloudinary.com/de2wrwg6e/image/upload/v1778032828/khjghjfgjhfgh_lnkk4d.png"
+                  alt="Saif Khan — Senior Fullstack Developer"
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              </div>
+
+              {/* Availability badge — bottom of photo */}
+              <div className="absolute bottom-5 left-4 right-4 bg-background/95 backdrop-blur-md border border-border/60 rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3">
+                <span className="relative flex h-3 w-3 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+                </span>
+                <div>
+                  <p className="text-sm font-bold text-foreground leading-none">Available for Projects</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">Starting June 2026</p>
+                </div>
+              </div>
+
+              {/* Floating experience badge — top right */}
+              <div className="absolute -top-3 -right-3 bg-primary text-primary-foreground rounded-2xl px-3.5 py-2 shadow-lg shadow-primary/25 text-center">
+                <p className="text-lg font-black leading-none">7+</p>
+                <p className="text-[10px] font-semibold uppercase tracking-wide opacity-90 leading-none mt-0.5">Years</p>
+              </div>
+            </motion.div>
+
+            {/* ── Right: Text ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex flex-col"
+            >
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full w-fit mb-5">
                 About Me
               </span>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground mb-4 leading-tight tracking-tight">
-                Hi, I'm{" "}
-                <span className="text-primary">Saif Khan</span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-black text-foreground mb-2 leading-[1.05] tracking-tight">
+                Saif Khan
               </h1>
-
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-lg">
-                Senior Fullstack Developer with <strong className="text-foreground font-semibold">7+ years</strong> building fast, production-ready web apps for startups and growing businesses worldwide.
+              <p className="text-base sm:text-lg font-semibold text-primary mb-5">
+                Senior Fullstack Developer &amp; AI Integration Specialist
               </p>
 
-              <ul className="space-y-2.5 mb-8">
-                {[
-                  "End-to-end fullstack development",
-                  "AI integration & LLM-powered features",
-                  "Production-ready, maintainable code",
-                  "Direct communication, no middlemen",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-7 max-w-lg">
+                I build fast, production-ready web apps for startups and growing businesses worldwide. Over <strong className="text-foreground font-semibold">7 years</strong> of hands-on experience — clean code, honest timelines, and direct communication every step of the way.
+              </p>
 
-              <div className="flex flex-wrap gap-3 mb-8">
+              {/* Inline stat chips */}
+              <div className="flex flex-wrap gap-2.5 mb-7">
+                {[
+                  { value: "48+", label: "Projects" },
+                  { value: "29+", label: "Clients" },
+                  { value: "94%", label: "Satisfaction" },
+                  { value: "24h", label: "Response" },
+                ].map(({ value, label }) => (
+                  <div key={label} className="flex items-center gap-2 bg-card border border-border rounded-xl px-3.5 py-2 hover:border-primary/30 transition-colors">
+                    <span className="text-sm font-black text-primary">{value}</span>
+                    <span className="text-xs text-muted-foreground font-medium">{label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Info row */}
+              <div className="flex flex-wrap gap-x-5 gap-y-2 mb-8 text-sm text-muted-foreground">
+                {[
+                  { Icon: MapPin,    text: "Remote — Global" },
+                  { Icon: Briefcase, text: "Freelance / Contract" },
+                  { Icon: Mail,      text: "contact@saifcraft.com" },
+                ].map(({ Icon, text }) => (
+                  <span key={text} className="flex items-center gap-1.5">
+                    <Icon className="w-4 h-4 text-primary/70 shrink-0" />
+                    {text}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-3 mb-7">
                 <Button asChild size="lg" className="rounded-full px-7 h-11 font-bold shadow-md shadow-primary/20">
                   <Link href="/contact">
                     Hire Me <ArrowRight className="ml-2 w-4 h-4" />
@@ -228,7 +288,8 @@ export default function About() {
                 </Button>
               </div>
 
-              <div className="flex items-center gap-3">
+              {/* Socials */}
+              <div className="flex items-center gap-2.5">
                 {[
                   { href: "#", Icon: Github,   label: "GitHub"   },
                   { href: "#", Icon: Linkedin, label: "LinkedIn" },
@@ -246,58 +307,6 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* ── Right: Photo + Profile Card ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col gap-5"
-            >
-              {/* Photo */}
-              <div className="relative max-w-xs mx-auto lg:mx-0">
-                <div className="absolute -inset-3 bg-primary/10 blur-3xl rounded-full -z-10" />
-                <div className="relative rounded-2xl overflow-hidden border border-border shadow-2xl aspect-[4/5]">
-                  <img
-                    src="https://res.cloudinary.com/de2wrwg6e/image/upload/v1778032828/khjghjfgjhfgh_lnkk4d.png"
-                    alt="Saif Khan — Senior Fullstack Developer"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-
-                  {/* Availability badge */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:bottom-4 sm:w-auto bg-background/95 backdrop-blur-md border border-border/60 rounded-2xl px-4 py-2.5 shadow-xl flex items-center gap-2.5">
-                    <span className="relative flex h-2.5 w-2.5 shrink-0">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                    </span>
-                    <div>
-                      <p className="text-xs font-bold text-foreground leading-none">Available for Projects</p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">Starting June 2026</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick-info card */}
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: MapPin,        label: "Location",      value: "Remote — Global" },
-                  { icon: Clock,         label: "Response Time",  value: "< 24 hours" },
-                  { icon: Briefcase,     label: "Experience",     value: "7+ Years" },
-                  { icon: MessageSquare, label: "Communication",  value: "Direct & Clear" },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors">
-                    <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-4 w-4 text-primary" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">{label}</p>
-                      <p className="text-xs font-semibold text-foreground truncate">{value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
