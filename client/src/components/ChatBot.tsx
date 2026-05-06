@@ -9,10 +9,12 @@ interface Message {
 }
 
 const QUICK_REPLIES = [
-  "What services do you offer?",
-  "How much does a web app cost?",
-  "How do I get started?",
-  "Can I see your portfolio?",
+  "What services & prices are available?",
+  "How do I start a project?",
+  "What's included in a Custom Web App?",
+  "Do you offer AI integration?",
+  "What do clients receive at the end?",
+  "How does payment work?",
 ];
 
 function parseInline(text: string): React.ReactNode[] {
