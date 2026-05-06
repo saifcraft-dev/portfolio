@@ -9,6 +9,16 @@ const GROQ_MODELS = [
   "gemma2-9b-it",
 ];
 
+function getGroqKeys(): string[] {
+  return [
+    process.env.GROQ_API_KEY,
+    process.env.GROQ_API_KEY_2,
+    process.env.GROQ_API_KEY_3,
+    process.env.GROQ_API_KEY_4,
+    process.env.GROQ_API_KEY_5,
+  ].filter((k): k is string => typeof k === "string" && k.trim().length > 0);
+}
+
 export default defineConfig({
   base: "/",
   plugins: [
@@ -27,12 +37,12 @@ export default defineConfig({
           req.on("end", async () => {
             try {
               const { history, message, systemInstruction } = JSON.parse(raw);
-              const apiKey = process.env.GROQ_API_KEY;
 
-              if (!apiKey) {
+              const apiKeys = getGroqKeys();
+              if (apiKeys.length === 0) {
                 res.statusCode = 500;
                 res.setHeader("Content-Type", "application/json");
-                res.end(JSON.stringify({ error: "No GROQ_API_KEY configured on the server." }));
+                res.end(JSON.stringify({ error: "No Groq API key configured. Add GROQ_API_KEY to Secrets." }));
                 return;
               }
 
@@ -47,54 +57,75 @@ export default defineConfig({
               ];
 
               let lastError = "Unknown error";
+              let responded = false;
 
-              for (const model of GROQ_MODELS) {
-                try {
-                  const groqRes = await fetch(
-                    "https://api.groq.com/openai/v1/chat/completions",
-                    {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${apiKey}`,
-                      },
-                      body: JSON.stringify({
-                        model,
-                        messages,
-                        temperature: 0.7,
-                        max_tokens: 1024,
-                      }),
+              // Outer loop: try each API key in order
+              for (let ki = 0; ki < apiKeys.length && !responded; ki++) {
+                const apiKey = apiKeys[ki];
+                let keyRateLimited = false;
+
+                // Inner loop: try each model with the current key
+                for (const model of GROQ_MODELS) {
+                  if (keyRateLimited) break;
+
+                  try {
+                    const groqRes = await fetch(
+                      "https://api.groq.com/openai/v1/chat/completions",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization: `Bearer ${apiKey}`,
+                        },
+                        body: JSON.stringify({
+                          model,
+                          messages,
+                          temperature: 0.7,
+                          max_tokens: 1024,
+                        }),
+                      }
+                    );
+
+                    if (groqRes.ok) {
+                      const data = await groqRes.json();
+                      const text = data?.choices?.[0]?.message?.content;
+                      if (text) {
+                        res.setHeader("Content-Type", "application/json");
+                        res.end(JSON.stringify({ text, _key: ki + 1, _model: model }));
+                        responded = true;
+                        break;
+                      }
                     }
-                  );
 
-                  if (groqRes.ok) {
-                    const data = await groqRes.json();
-                    const text = data?.choices?.[0]?.message?.content;
-                    if (text) {
+                    const errData = await groqRes.json().catch(() => ({}));
+                    lastError = (errData as any)?.error?.message || `HTTP ${groqRes.status}`;
+
+                    if (groqRes.status === 429) {
+                      // Rate limited — move to the next key entirely
+                      console.warn(`[groq-proxy] Key #${ki + 1} rate-limited on model ${model}. Trying next key...`);
+                      keyRateLimited = true;
+                    } else if ([500, 502, 503, 504].includes(groqRes.status)) {
+                      // Server error — try next model with same key
+                      console.warn(`[groq-proxy] Key #${ki + 1} / model ${model} server error ${groqRes.status}. Trying next model...`);
+                    } else {
+                      // Non-retryable error (e.g. 400 bad request, 401 invalid key)
+                      res.statusCode = groqRes.status;
                       res.setHeader("Content-Type", "application/json");
-                      res.end(JSON.stringify({ text }));
-                      return;
+                      res.end(JSON.stringify({ error: lastError }));
+                      responded = true;
+                      break;
                     }
+                  } catch (fetchErr) {
+                    lastError = String(fetchErr);
                   }
-
-                  const errData = await groqRes.json().catch(() => ({}));
-                  lastError = (errData as any)?.error?.message || `HTTP ${groqRes.status}`;
-
-                  // Only retry on rate limits or server errors
-                  if (![429, 500, 502, 503, 504].includes(groqRes.status)) {
-                    res.statusCode = groqRes.status;
-                    res.setHeader("Content-Type", "application/json");
-                    res.end(JSON.stringify({ error: lastError }));
-                    return;
-                  }
-                } catch (fetchErr) {
-                  lastError = String(fetchErr);
                 }
               }
 
-              res.statusCode = 503;
-              res.setHeader("Content-Type", "application/json");
-              res.end(JSON.stringify({ error: lastError }));
+              if (!responded) {
+                res.statusCode = 503;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ error: `All ${apiKeys.length} key(s) exhausted. Last error: ${lastError}` }));
+              }
             } catch (err) {
               res.statusCode = 500;
               res.setHeader("Content-Type", "application/json");
