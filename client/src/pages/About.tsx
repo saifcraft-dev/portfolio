@@ -286,7 +286,7 @@ export default function About() {
                   variant="ghost"
                   size="lg"
                   className="rounded-full px-5 h-11 font-bold text-muted-foreground hover:text-foreground"
-                  onClick={generateResume}
+                  onClick={() => generateResume()}
                   aria-label="Download Resume"
                 >
                   <Download className="mr-2 w-4 h-4" /> Resume
