@@ -82,7 +82,7 @@ const stackGroups = [
 
 const timeline = [
   {
-    year: "2026–Now",
+    year: "2024–2026",
     role: "Senior Fullstack + AI Developer",
     type: "Freelance / Remote",
     desc: "Building AI-integrated web products — chatbots, semantic search, content engines — for startups globally.",
