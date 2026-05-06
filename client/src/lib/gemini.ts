@@ -266,10 +266,10 @@ Backend & DB: Node.js, PostgreSQL, MongoDB, GraphQL
 AI & Cloud:   AI/LLMs (OpenAI), Firebase, Docker, Git/CI
 
 Experience Timeline:
-2024–Now: Senior Fullstack + AI Developer (Freelance/Remote)
+2026–Now: Senior Fullstack + AI Developer (Freelance/Remote)
   → Building AI-integrated web products — chatbots, semantic search, content
     engines — for startups globally. Tags: AI, React, Node.js, LLMs
-2021–2024: Fullstack Developer (Contract)
+2021–2026: Fullstack Developer (Contract)
   → Led end-to-end development of SaaS platforms and e-commerce products for
     clients across US, UK, and Pakistan. Tags: SaaS, E-Commerce, PostgreSQL
 2018–2021: Frontend Developer (Agency)

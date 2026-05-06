@@ -89,7 +89,7 @@ const timeline = [
     tags: ["AI", "React", "Node.js", "LLMs"],
   },
   {
-    year: "2021–2024",
+    year: "2021–2026",
     role: "Fullstack Developer",
     type: "Contract",
     desc: "Led end-to-end development of SaaS platforms and e-commerce products for clients across the US, UK, and Pakistan.",
