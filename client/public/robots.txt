@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-wheat-iota-47.vercel.app/sitemap.xml
