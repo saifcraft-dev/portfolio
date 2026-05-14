@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Link } from "wouter";
 import { Menu, LogIn, User as UserIcon, LayoutDashboard, LogOut, ArrowRight } from "lucide-react";
-import logoLight from "@assets/logo-light.png";
-import logoDark from "@assets/logo-dark.png";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/context/AuthContext";
@@ -20,6 +18,9 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+const logoLight = "/logo-light.png";
+const logoDark = "/logo-dark.png";
 
 const navItems = [
   { label: "Home", href: "/" },
