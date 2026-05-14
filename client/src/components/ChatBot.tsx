@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, User, Sparkles } from "lucide-react";
-import { geminiChat, ChatMessage, buildChatbotPrompt } from "@/lib/gemini";
+import { geminiChat, ChatMessage, buildChatbotPrompt } from "@/lib/ai";
 
 interface Message {
   role: "user" | "assistant";

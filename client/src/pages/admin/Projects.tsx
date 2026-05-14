@@ -29,7 +29,7 @@ import { Project } from "@/types";
 import { Plus, Pencil, Trash2, ExternalLink, Github, Loader2, Upload, X, Briefcase, Search, Star } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import { useImageUpload } from "@/hooks/use-image-upload";
 
 export default function ProjectsManagement() {
   const { data: projects, isLoading } = useProjects();
