@@ -2,8 +2,8 @@ import { Link } from "wouter";
 import { Twitter, Linkedin, Github, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { useDarkMode } from "@/hooks/use-dark-mode";
-import logoLight from "@assets/ChatGPT_Image_May_6,_2026,_10_12_48_AM_1778045218753.png";
-import logoDark from "@assets/ChatGPT_Image_May_6,_2026,_10_24_19_AM_1778045228982.png";
+import logoLight from "@assets/logo-light.png";
+import logoDark from "@assets/logo-dark.png";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

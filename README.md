@@ -1,19 +1,18 @@
-# DevStudio - Digital Agency Website
+# SaifCraft — Portfolio & Freelance Dev Site
 
-A professional portfolio and service website for a digital agency. Built with React, Firebase, and an AI-powered chatbot to showcase services, manage portfolios, and handle client inquiries.
+A public portfolio and service site for Saif Khan (SaifCraft), a senior full-stack developer. Features a Firebase-backed project and service catalog, a contact/lead form, a secure admin dashboard, and an AI chatbot powered by Groq.
 
 ---
 
 ## Features
 
-- **Public Portfolio** — Browse past projects with filtering by category and detailed case study pages
-- **Service Packages** — Interactive service tiers with pricing, timelines, and feature breakdowns
-- **AI Chatbot** — Powered by Google Gemini; answers questions about pricing, tech stacks, and delivery times
-- **Contact & Intake Forms** — Validated lead generation forms that save inquiries directly to Firestore
-- **Meet the Team** — Dynamic team section with fallback support
-- **Admin Dashboard** — Secure, authenticated admin area to manage orders, projects, and services
-- **Order Management** — Real-time incoming inquiry tracking via Firestore
-- **Image Uploads** — Direct Cloudinary integration for managing portfolio assets
+- **Portfolio Gallery** — Filterable project showcase with detail pages
+- **Services & Pricing** — Fixed-scope service packages with pricing and timelines
+- **AI Chatbot** — Powered by Groq (llama models); answers questions about services, pricing, and delivery
+- **Contact Form** — Validated lead capture that saves inquiries to Firestore
+- **Client Profile** — Clients can view their submitted inquiries at `/profile`
+- **Admin Dashboard** — Firebase-protected area to manage projects, services, and orders
+- **Image Uploads** — Cloudinary integration for portfolio asset management
 
 ---
 
@@ -25,11 +24,12 @@ A professional portfolio and service website for a digital agency. Built with Re
 | Styling | Tailwind CSS, shadcn/ui, Framer Motion |
 | Routing | wouter |
 | Data Fetching | TanStack React Query v5 |
-| Auth | Firebase Authentication (Email/Password + Google) |
-| Database | Firebase Firestore |
-| AI | Google Gemini (Flash / Pro with fallback) |
-| Media | Cloudinary |
 | Forms | React Hook Form + Zod |
+| Auth | Firebase Authentication |
+| Database | Firebase Firestore |
+| AI Chatbot | Groq API (multi-key rotation) |
+| Media | Cloudinary (unsigned preset) |
+| Deployment | Vercel |
 
 ---
 
@@ -38,26 +38,31 @@ A professional portfolio and service website for a digital agency. Built with Re
 ```
 client/
   index.html
+  public/              - Static assets (favicon, logo)
   src/
-    App.tsx                  - Main app with routing
-    main.tsx                 - Entry point
-    index.css                - Global styles
-    components/              - Reusable UI components (Header, Footer, ProjectCard, ServiceCard)
-    components/ui/           - shadcn/ui component library
-    context/                 - AuthContext for Firebase auth state
-    hooks/                   - Custom hooks (use-orders, use-projects, use-services, use-team)
+    App.tsx            - Root router (public + admin branches)
+    main.tsx           - Entry point
+    index.css          - Global styles & CSS variables
+    components/        - Shared UI (Header, Footer, Hero, ChatBot, etc.)
+    components/ui/     - shadcn/ui component library
+    context/           - AuthContext (Firebase auth state)
+    hooks/             - Custom hooks (use-projects, use-services, use-orders, use-dark-mode, etc.)
     lib/
-      firebase/              - Firebase config, auth, and Firestore helpers
-      cloudinary.ts          - Cloudinary upload helper
-      gemini.ts              - AI chatbot logic and business knowledge base
-      queryClient.ts         - TanStack React Query client setup
-      utils.ts               - Utility functions
-    pages/                   - Public pages (Home, Services, Portfolio, About, Contact)
-    pages/admin/             - Admin pages (Dashboard, Orders, Projects, Services)
-    types/                   - TypeScript type definitions
-vite.config.ts               - Vite configuration
-tailwind.config.ts           - Tailwind configuration
-postcss.config.js            - PostCSS configuration
+      firebase/        - Firebase config, auth helpers, Firestore CRUD
+      ai.ts            - Groq chatbot logic + site knowledge base
+      cloudinary.ts    - Cloudinary upload helper
+      queryClient.ts   - TanStack React Query client
+      utils.ts         - Utility functions
+    pages/             - Public pages (Home, Services, Portfolio, About, Contact, FAQ)
+    pages/admin/       - Admin pages (Dashboard, Orders, Projects, Services)
+    types/             - TypeScript interface definitions
+api/
+  chat.ts              - Vercel serverless function — Groq API proxy
+attached_assets/       - Logo images used by Header and Footer
+vite.config.ts         - Vite config (port 5000, /api/chat dev middleware)
+vercel.json            - Vercel deploy config (SPA fallback + serverless routes)
+firestore.rules        - Firestore security rules
+.env.example           - Required environment variables (copy to .env or set in Replit Secrets)
 ```
 
 ---
@@ -67,11 +72,11 @@ postcss.config.js            - PostCSS configuration
 ### Prerequisites
 
 - Node.js 18+
-- A Firebase project with Firestore and Authentication enabled
-- A Cloudinary account
-- A Google Gemini API key
+- Firebase project with Firestore and Authentication enabled
+- Cloudinary account (unsigned upload preset)
+- Groq API key
 
-### Installation
+### Install
 
 ```bash
 npm install
@@ -79,78 +84,54 @@ npm install
 
 ### Environment Variables
 
-Create a `.env` file in the root (or configure via your hosting platform). All `VITE_` prefixed variables are available in the React frontend via `import.meta.env`.
+Copy `.env.example` and fill in your values, or add them via the Replit Secrets tab. See `.env.example` for all required keys.
 
-#### Firebase
+**Important:** `GROQ_API_KEY` and siblings are server-only — never prefix them with `VITE_`. `VITE_*` vars are embedded into the client bundle at build time.
 
-```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-VITE_ADMIN_EMAILS=admin@example.com,other@example.com
-```
-
-#### Cloudinary
-
-```env
-VITE_CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-```
-
-#### AI Chatbot
-
-```env
-VITE_GEMINI_API_KEY=
-```
-
-### Running in Development
+### Development
 
 ```bash
-npx vite
+npm run dev
 ```
 
-The app will be available at `http://localhost:5000`.
+App runs at port 5000. The `/api/chat` endpoint is handled by a Vite middleware in dev and by `api/chat.ts` on Vercel in production.
 
-### Building for Production
+### Build
 
 ```bash
 npm run build
 ```
 
-Output is generated in `dist/public`.
+Output goes to `dist/public`.
+
+### Type Check
+
+```bash
+npm run check
+```
 
 ---
 
 ## Admin Access
 
-The admin dashboard is available at `/admin`. Access is restricted to authenticated users whose email addresses are listed in the `VITE_ADMIN_EMAILS` environment variable (comma-separated).
-
-Admins can:
-- View and manage incoming orders in real time
-- Add, edit, and delete portfolio projects
-- Manage service packages and pricing
-- Upload images directly to Cloudinary
+The admin dashboard is at `/admin`. Only users whose emails appear in `VITE_ADMIN_EMAILS` (comma-separated) or have `role: "admin"` in the Firestore `users` collection can access it.
 
 ---
 
 ## AI Chatbot
 
-The chatbot is powered by Google Gemini and uses a built-in site knowledge base (`client/src/lib/gemini.ts`) to answer specific business questions such as:
+Uses Groq with llama models and a built-in site knowledge base (`client/src/lib/ai.ts`). Implements:
+- Multi-key rotation across `GROQ_API_KEY` through `GROQ_API_KEY_5` on 429 rate-limit
+- Automatic model fallback (tries up to 3 models per key before giving up)
 
-- Service pricing and what's included
-- Technology stack used on projects
-- Typical delivery timelines
-- How to place an order
+---
 
-It implements automatic model fallback (Gemini Flash 2.5 → 2.0) and multi-key rotation for reliability.
+## Deployment
+
+Configured for Vercel. Set all environment variables in Vercel Project Settings → Environment Variables. The `vercel.json` routes `/api/chat` to the serverless function and falls back to the SPA for all other routes.
 
 ---
 
 ## License
 
-This project is private and intended for use by DevStudio. All rights reserved.
+Private. All rights reserved — Saif Khan / SaifCraft.

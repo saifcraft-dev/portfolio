@@ -14,10 +14,7 @@ import {
   type Unsubscribe
 } from 'firebase/firestore';
 import { db } from './config';
-import { Project, Service, Order, TeamMember } from '@/types';
-
-const naomiImg = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&q=80";
-const fullStackImg = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80";
+import { Project, Service, Order } from '@/types';
 
 // Generic CRUD helper
 const createCRUD = <T extends { id?: string }>(collectionName: string) => {
@@ -64,7 +61,6 @@ const createCRUD = <T extends { id?: string }>(collectionName: string) => {
 export const projectsApi = createCRUD<Project>('projects');
 export const servicesApi = createCRUD<Service>('services');
 export const ordersApi = createCRUD<Order>('orders');
-export const teamApi = createCRUD<TeamMember>('team');
 
 // Local fallback for services if Firestore is empty/inaccessible
 const localServices: Service[] = [
@@ -86,69 +82,6 @@ const localServices: Service[] = [
     active: true
   }
 ];
-
-// Local fallback for team if Firestore is empty/inaccessible
-const localTeam: TeamMember[] = [
-  {
-    id: "naomi-okafor",
-    name: "Naomi Okafor",
-    role: "Backend & DevOps Web Developer",
-    bio: "Naomi specializes in building reliable, secure backend services and deployment pipelines. She focuses on API design, database optimization, and observability (logs, metrics, tracing). She enjoys automating repetitive tasks and making deployments boring and predictable.",
-    imageUrl: naomiImg,
-    skills: ["Node.js", "Python (FastAPI, Django)", "REST & GraphQL APIs", "WebSockets", "PostgreSQL", "MySQL", "Redis", "Docker", "Kubernetes", "CI/CD (GitHub Actions)", "AWS"],
-    socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com"
-    }
-  },
-  {
-    id: "marco-alvarez",
-    name: "Marco Alvarez",
-    role: "Full-Stack Web Developer",
-    bio: "Marco builds end‑to‑end web applications, from database design to UI. He cares about clean architecture, scalable APIs, and maintainable code. He enjoys mentoring juniors and documenting everything so teams can move faster.",
-    imageUrl: "/marco-alvarez.png",
-    skills: ["JavaScript", "TypeScript", "Node.js", "Express.js", "Next.js", "REST & GraphQL APIs", "PostgreSQL", "MongoDB", "Redis", "Docker", "CI/CD", "Jest", "Playwright"],
-    socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com"
-    }
-  },
-  {
-    id: "aisha-khan",
-    name: "Aisha Khan",
-    role: "Frontend Web Developer",
-    bio: "Aisha is a frontend engineer focused on building smooth, accessible user interfaces. She loves transforming rough wireframes into pixel-perfect, responsive experiences and is obsessed with performance, micro-animations, and clean, reusable components.",
-    imageUrl: "/aisha-khan.png",
-    skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Figma to React workflows", "Responsive Design", "Accessibility (WCAG)"],
-    socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com"
-    }
-  },
-  {
-    id: "lena-schmidt",
-    name: "Lena Schmidt",
-    role: "Web Developer & UI/UX Designer",
-    bio: "Lena bridges design and development. She prototypes interfaces in Figma and then implements them as production‑ready components. She’s passionate about smooth micro‑interactions, inclusive design, and clear visual hierarchies.",
-    imageUrl: "/lena-schmidt.png",
-    skills: ["HTML", "CSS (Grid/Flexbox)", "JavaScript", "Vue.js", "Nuxt", "GSAP animations", "Figma", "Adobe XD", "Design Systems", "User Research", "Prototyping", "Usability Testing"],
-    socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com"
-    }
-  }
-];
-
-export const getTeamWithFallback = async (): Promise<TeamMember[]> => {
-  try {
-    const members = await teamApi.getAll();
-    if (members.length > 0) return members;
-    return localTeam;
-  } catch (error) {
-    console.error("Error fetching team, using fallback:", error);
-    return localTeam;
-  }
-};
 
 export const getServicesWithFallback = async (): Promise<Service[]> => {
   try {
