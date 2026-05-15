@@ -321,7 +321,7 @@ The `vercel.json` handles:
 **Saif Khan** — Senior Fullstack Developer
 
 - Website: [portfolio-wheat-iota-47.vercel.app](https://portfolio-wheat-iota-47.vercel.app/)
-- GitHub: [@saifkhan-dev](https://github.com/saifkhan-dev)
+- GitHub: [@saifcraft-dev](https://github.com/saifcraft-dev)
 - LinkedIn: [linkedin.com/in/saifkhan](https://linkedin.com/in/saifkhan)
 - Twitter: [@saifbuilds](https://twitter.com/saifbuilds)
 - Email: contact@saifcraft.com
